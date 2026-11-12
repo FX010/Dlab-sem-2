@@ -4,10 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Soy Rappi · Rappi Hunters (concepto v14)</title>
+<title>Soy Rappi · Rappi Hunters (concepto v15)</title>
 <script>try{var __t=localStorage.getItem("rh_theme");if(__t==="light"||__t==="dark")document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://tile.openstreetmap.org">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1228,6 +1230,24 @@
   .od-legend i { flex: none; width: 11px; height: 11px; border-radius: 50%; }
   .od-legend b { color: var(--ink); }
   .od-legend small { font-size: 10.5px; line-height: 1.35; padding-top: 3px; border-top: 1px solid var(--line); }
+  /* v15: leyenda de origen, solo en el mapa real */
+  .od-legend .od-lsrc { display: none; flex-basis: 100%; flex-wrap: wrap; gap: 2px 10px; padding-top: 5px; margin-top: 3px; border-top: 1px solid var(--line); }
+  .od-mapbox[data-mm="real"] .od-legend .od-lsrc { display: flex; }
+  .od-legend .od-lsrc button { gap: 5px; font-size: 11px; opacity: .9; }
+  .od-legend .od-lsrc button[aria-pressed="true"] { opacity: 1; font-weight: 800; box-shadow: inset 0 -2px 0 currentColor; color: var(--ink); }
+  .od-legend .od-lsrc em { font-style: normal; color: var(--ink); font-weight: 700; }
+  .od-mapbox[data-mm="real"] .od-legend { max-width: 340px; }
+  /* v15: mapa real — agrupación de pines, escala, zoom lejano y aviso sin conexión */
+  .rl-pin.dim { opacity: .38; filter: grayscale(.6) drop-shadow(0 1px 1px rgba(0,0,0,.2)); }
+  .rl-pin .rl-ok { position: absolute; right: -3px; top: -3px; width: 14px; height: 14px; border-radius: 50%; background: #1F9D55; border: 2px solid #fff; box-sizing: border-box; }
+  .rl-cl { position: absolute; transform: translate(-50%, -50%); min-width: 34px; height: 34px; padding: 0 8px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border-radius: 999px; color: #fff; font: 800 13px/1 var(--f-display); border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(0,0,0,.12), 0 3px 8px rgba(0,0,0,.35); cursor: pointer; transition: transform .2s; }
+  .rl-cl:hover { transform: translate(-50%, -50%) scale(1.12); }
+  .rl-dark .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.55); }
+  .rl-z-lo .rl-lbl { font-size: 10px; padding: 4px 7px; }
+  .rl-z-lo .rl-lbl b { display: none; }
+  .rl-z-hi .rl-lbl { font-size: 12px; }
+  .leaflet-control-scale-line { background: var(--glass); color: var(--ink); border-color: var(--muted); font: 700 10px/1.4 var(--f-display); }
+  .item.hl { background: var(--rappi-tint); box-shadow: inset 3px 0 0 var(--rappi); }
   .od-mctl { position: absolute; right: 12px; bottom: 12px; z-index: 500; display: grid; gap: 8px; }
   .od-mctl button { width: 38px; height: 38px; border-radius: 50%; background: var(--surface); box-shadow: 0 2px 10px rgba(0,0,0,.22); display: grid; place-items: center; font-size: 21px; font-weight: 600; color: var(--ink); }
   .od-mctl button:hover { color: var(--rappi-dark); transform: translateY(-1px); }
@@ -2334,6 +2354,7 @@
                 <div class="od-legend" id="od-legend">
                   <button type="button" data-k="hot" title="Zona caliente: 15 o más oportunidades abiertas"><i style="background:#FF441F"></i><span><b>Caliente</b> · 15 o más</span></button>
                   <button type="button" data-k="cold" title="Zona fría: menos de 15 oportunidades, o sin explorar"><i style="background:#2A63D6"></i><span><b>Fría</b> · menos de 15</span></button>
+                  <div class="od-lsrc" id="od-lsrc" role="group" aria-label="Origen de los locales en el mapa"></div>
                 </div>
                 <div class="od-mctl" id="od-mctl">
                   <button type="button" id="om-in" aria-label="Acercar el mapa">+</button>
@@ -2947,10 +2968,12 @@
      Hoy usa teselas CARTO (sin clave). Para otro proveedor (MapTiler, Mapbox, etc.) cambia solo estas líneas:
        light / dark -> URL de las teselas del proveedor (con tu clave si la pide)
        options      -> subdominios, zoom máximo y texto de atribución que exija el proveedor */
+  /* v15: CARTO ahora exige clave de API y devolvía teselas con el cartel "API KEY REQUIRED". Se usa OpenStreetMap (sin clave, apto para una demo
+     de poco tráfico). El modo oscuro no necesita otras teselas: se oscurece por CSS (.rl-dark). Para producción, cambia estas líneas por un proveedor con clave. */
   var MAP_TILES = {
-    light: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-    options: { subdomains: "abcd", maxZoom: 19, attribution: "&copy; OpenStreetMap &copy; CARTO" }
+    light: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    dark: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    options: { maxZoom: 19, attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a>" }
   };
 
   /* Leaflet (mapa real), cargado solo cuando se necesita */
@@ -2974,12 +2997,25 @@
   /* Mapa real: capas de comunas con calor, etiquetas, pines y posición. Devuelve null si Leaflet no está. */
   function makeReal(node, o) {
     var L = window.L; if (!L || !L.map) return null;
-    var map = L.map(node, { zoomControl: false, zoomSnap: .5, zoomDelta: .5, minZoom: 10, maxZoom: 18, worldCopyJump: false });
-    var tiles = L.tileLayer(MAP_TILES[isDark() ? "dark" : "light"], MAP_TILES.options).addTo(map);
+    o = o || {};
+    /* v15: el mapa no se sale del Gran Santiago (no pide teselas inútiles) */
+    var map = L.map(node, { zoomControl: false, zoomSnap: .5, zoomDelta: .5, minZoom: 10, maxZoom: 18, worldCopyJump: false,
+      maxBounds: [[-33.65, -70.90], [-33.25, -70.40]], maxBoundsViscosity: .85 });
+    var coarse = !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+    var tiles = L.tileLayer(MAP_TILES[isDark() ? "dark" : "light"], L.extend({ keepBuffer: 4, updateWhenIdle: coarse, updateWhenZooming: false }, MAP_TILES.options)).addTo(map);
+    /* v15: aviso único si fallan las teselas (sin conexión) en vez de dejar el fondo vacío en silencio */
+    var tileErr = 0, tileWarned = false;
+    tiles.on("tileerror", function () { if (++tileErr >= 4 && !tileWarned) { tileWarned = true; if (o.onOffline) o.onOffline(); } });
+    tiles.on("tileload", function () { tileErr = 0; tileWarned = false; });
+    L.control.scale({ imperial: false, metric: true, maxWidth: 84, position: "bottomright" }).addTo(map);
+    /* v15: etiquetas más compactas al alejar y más grandes al acercar */
+    function zoomClass() { var z = map.getZoom(), n = node.classList; n.toggle("rl-z-lo", z < 11.5); n.toggle("rl-z-hi", z >= 14); }
+    map.on("zoomend", zoomClass); zoomClass();
     map.createPane("blobs").style.zIndex = 380; map.getPane("blobs").style.pointerEvents = "none";
     var gC = L.layerGroup().addTo(map), gB = L.layerGroup().addTo(map), gL = L.layerGroup().addTo(map), gP = L.layerGroup().addTo(map), gU = L.layerGroup().addTo(map), meM = null;
     var kit = { map: map };
-    kit.setDark = function (on) { tiles.setUrl(MAP_TILES[on ? "dark" : "light"]); };
+    node.classList.toggle("rl-dark", isDark());
+    kit.setDark = function (on) { tiles.setUrl(MAP_TILES[on ? "dark" : "light"]); node.classList.toggle("rl-dark", !!on); };
     kit.bounds = function () {
       var pts = []; COMM.forEach(function (c) { c.rp.forEach(function (p) { pts.push(p); }); });
       return L.latLngBounds(pts);
@@ -3005,18 +3041,45 @@
         var poly = L.polygon(c.rp, { color: it.sel ? "#FF441F" : (hot ? "#E8431F" : "#2A63D6"), weight: it.sel ? 3.5 : 1.6, dashArray: it.sel ? null : "5 4", fillColor: col, fillOpacity: it.off ? .02 : (hot ? .1 + .1 * t : .08), opacity: it.off ? .35 : .85, smoothFactor: 1.2 });
         poly.on("click", function () { onClick(c.id); });
         poly.addTo(gC);
-        L.marker(c.rc, { icon: L.divIcon({ className: "rl-wrap", html: it.html, iconSize: [0, 0] }), interactive: true, keyboard: false }).on("click", function () { onClick(c.id); }).addTo(gL);
+        L.marker(c.rc, { icon: L.divIcon({ className: "rl-wrap", html: it.html, iconSize: [0, 0] }), interactive: true, keyboard: false, zIndexOffset: 800 }).on("click", function () { onClick(c.id); }).addTo(gL);
       });
     };
-    kit.drawPins = function (pins) { /* [{ll, html, onClick, size}] */
-      var sig = pins.map(function (p) { return p.ll.join(",") + (p.z || 0) + p.html; }).join("|");
-      if (sig === sigP) return; sigP = sig;
+    /* v15: pines con agrupación. [{ll, html, onClick, z, col}] - los que quedan a menos de ~46 px se funden en una burbuja con el total;
+       al tocarla el mapa se acerca a ese grupo. Un pin seleccionado (z > 0) nunca se agrupa. */
+    var pinsNow = [];
+    function paintPins() {
       gP.clearLayers();
-      pins.forEach(function (p) {
-        var m = L.marker(p.ll, { icon: L.divIcon({ className: "rl-wrap", html: p.html, iconSize: [0, 0] }), keyboard: false, zIndexOffset: p.z || 0 });
-        if (p.onClick) m.on("click", p.onClick);
-        m.addTo(gP);
+      var zoom = map.getZoom(), CELL = 46, cells = {}, order = [];
+      pinsNow.forEach(function (p) {
+        if (p.z > 0) { order.push([p]); return; }
+        var q = map.project(p.ll, zoom), k = Math.floor(q.x / CELL) + ":" + Math.floor(q.y / CELL);
+        if (!cells[k]) { cells[k] = []; order.push(cells[k]); }
+        cells[k].push(p);
       });
+      order.forEach(function (g) {
+        if (g.length === 1) {
+          var p = g[0], m = L.marker(p.ll, { icon: L.divIcon({ className: "rl-wrap", html: p.html, iconSize: [0, 0] }), keyboard: false, zIndexOffset: p.z || 0 });
+          if (p.onClick) m.on("click", p.onClick);
+          m.addTo(gP); return;
+        }
+        var by = {}, top = g[0].col || "#FF441F";
+        g.forEach(function (p) { by[p.col] = (by[p.col] || 0) + 1; });
+        Object.keys(by).forEach(function (c) { if (by[c] > (by[top] || 0)) top = c; });
+        var lat = 0, lng = 0; g.forEach(function (p) { lat += p.ll[0]; lng += p.ll[1]; });
+        var mk = L.marker([lat / g.length, lng / g.length], { icon: L.divIcon({ className: "rl-wrap", html: '<div class="rl-cl" role="button" aria-label="' + g.length + ' locales, toca para acercar" style="background:' + top + '">' + g.length + "</div>", iconSize: [0, 0] }), keyboard: false, zIndexOffset: 200 });
+        mk.on("click", function () {
+          var b = L.latLngBounds(g.map(function (p) { return p.ll; }));
+          if (map.getZoom() >= 17) return;
+          map.flyToBounds(b.pad(.6), { maxZoom: 17, duration: .5 });
+        });
+        mk.addTo(gP);
+      });
+    }
+    map.on("zoomend", function () { if (pinsNow.length) paintPins(); });
+    kit.drawPins = function (pins) {
+      var sig = pins.map(function (p) { return p.ll.join(",") + (p.z || 0) + (p.col || "") + p.html; }).join("|");
+      if (sig === sigP) return; sigP = sig;
+      pinsNow = pins; paintPins();
     };
     kit.drawUser = function (pins) {
       var sig = pins.map(function (p) { return p.ll.join(","); }).join("|");
@@ -3158,7 +3221,63 @@
       var kind = commKind(c), z = c.z;
       return { c: c, kind: kind, n: value(z), sel: z === selected, off: offO(c), html: '<div class="rl-lbl ' + kind + (z === selected ? " sel" : "") + '">' + z.pt + " · " + c.lbl + "<b>" + value(z) + "</b></div>" };
     }), function (id) { selectZone(commById(id).z, true); });
+    if (realO && oMode === "real") { realO.drawPins(officePins()); renderSrcLegend(); }
   }
+
+  /* v15: los locales también se ven en el mapa real de la oficina, con los mismos filtros que la lista */
+  var hlItem = null, pinCache = {};
+  function inPoly(pt, poly) {
+    var x = pt[1], y = pt[0], ins = false;
+    for (var i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      var xi = poly[i][1], yi = poly[i][0], xj = poly[j][1], yj = poly[j][0];
+      if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) ins = !ins;
+    }
+    return ins;
+  }
+  /* El local no trae coordenadas: se ubica de forma estable (siempre en el mismo sitio) dentro de su comuna */
+  function pinLL(c, x) {
+    if (LEAD_LL[x.n]) return LEAD_LL[x.n];
+    if (pinCache[x.n]) return pinCache[x.n];
+    var h = 2166136261, i; for (i = 0; i < x.n.length; i++) { h ^= x.n.charCodeAt(i); h = Math.imul(h, 16777619); }
+    function rnd() { h = Math.imul(h ^ (h >>> 15), 2246822507); h = Math.imul(h ^ (h >>> 13), 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; }
+    var sc = c.rp.map(function (p) { return [c.rc[0] + (p[0] - c.rc[0]) * .78, c.rc[1] + (p[1] - c.rc[1]) * .78]; });
+    var la = sc.map(function (p) { return p[0]; }), lo = sc.map(function (p) { return p[1]; });
+    var a = Math.min.apply(null, la), b = Math.max.apply(null, la), d = Math.min.apply(null, lo), e = Math.max.apply(null, lo), ll = c.rc;
+    for (i = 0; i < 60; i++) { var t = [a + (b - a) * rnd(), d + (e - d) * rnd()]; if (inPoly(t, sc)) { ll = t; break; } }
+    return (pinCache[x.n] = ll);
+  }
+  function officePins() {
+    var out = [];
+    zones.forEach(function (z) {
+      var c = z.comm; if (offO(c)) return;
+      z.list.forEach(function (x) {
+        if (!basePass(x) || !stagePass(x)) return;
+        var col = originMeta[x.src].color, sel = hlItem === x, dim = x.st === "rechazado";
+        out.push({ ll: pinLL(c, x), col: col, z: sel ? 500 : 0, onClick: function () { selectLeadO(z, x); },
+          html: '<div class="rl-pin' + (sel ? " sel" : "") + (dim ? " dim" : "") + '" role="button" aria-label="' + esc(x.n) + ", " + stTxt[x.st] + '"><svg width="28" height="34" viewBox="-14 -34 28 34"><path d="' + PIN_D + '" fill="' + col + '" stroke="#fff" stroke-width="2.2"/><circle cx="0" cy="-20" r="3.8" fill="#fff"/></svg>' + (x.st === "incorporado" ? '<i class="rl-ok"></i>' : "") + "</div>" });
+      });
+    });
+    return out;
+  }
+  function selectLeadO(z, x) {
+    hlItem = x; selected = z; renderOffice();
+    if (oMode === "real" && realO) realO.flyTo(pinLL(z.comm, x), Math.max(realO.map.getZoom(), 15), null);
+    var it = document.querySelector("#items .item.hl"); if (it && it.scrollIntoView) it.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+  function renderSrcLegend() {
+    var box = $("od-lsrc"); if (!box) return;
+    var keep = filterSrc; filterSrc = "todos";
+    var n = { hunter: 0, google: 0, scraping: 0, auto: 0 };
+    zones.forEach(function (z) { if (!offO(z.comm)) z.list.forEach(function (x) { if (basePass(x) && stagePass(x)) n[x.src]++; }); });
+    filterSrc = keep;
+    box.innerHTML = Object.keys(n).map(function (k) {
+      return '<button type="button" data-src="' + k + '" aria-pressed="' + (keep === k) + '" title="' + srcDesc[k] + '"><i style="background:' + originMeta[k].color + '"></i>' + originMeta[k].label + " <em>" + n[k] + "</em></button>";
+    }).join("");
+  }
+  $("od-lsrc").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-src]"); if (!b) return;
+    filterSrc = filterSrc === b.dataset.src ? "todos" : b.dataset.src; hlItem = null; renderOffice();
+  });
   function flyO(z) {
     var c = z.comm;
     if (oMode === "real" && realO) realO.flyTo(c.rc, Math.max(realO.map.getZoom(), 13), null);
@@ -3166,6 +3285,7 @@
   }
   function overviewO() { if (oMode === "real" && realO) realO.fit(10, 10); else fitO(); }
   function selectZone(z, fly) {
+    if (hlItem && z.list.indexOf(hlItem) < 0) hlItem = null;
     selected = z; renderOffice();
     if (fly) flyO(z);
   }
@@ -3183,7 +3303,7 @@
     $("od-mnote").textContent = "Cargando el mapa real…"; $("od-mnote").classList.add("show");
     ensureLeaflet().then(function () {
       if (!realO) {
-        realO = makeReal($("od-real"));
+        realO = makeReal($("od-real"), { onOffline: function () { showOToast("Sin conexión: faltan partes del mapa. Los datos siguen disponibles en el mapa esquemático."); } });
         realO.map.scrollWheelZoom.disable();
         $("od-real").addEventListener("wheel", function (e) {
           if (!(e.ctrlKey || e.metaKey || oExpanded)) return;
@@ -3302,7 +3422,7 @@
         var subline = x.src === "hunter"
           ? '<span class="post-ct">Postulado por ' + x.post + (x.post === 1 ? " repartidor" : " repartidores") + "</span> · último: " + x.by
           : x.note;
-        return '<div class="item' + (x.fresh ? " fresh" : "") + (op ? " alert" : "") + '">' +
+        return '<div class="item' + (x.fresh ? " fresh" : "") + (op ? " alert" : "") + (x === hlItem ? " hl" : "") + '">' +
           '<span class="n">' + esc(x.n) + '</span><span class="st ' + x.st + '">' + stTxt[x.st] + "</span>" +
           '<span class="origin-badge ' + om.cls + '">' + originIco(x.src) + om.label + "</span>" +
           (op ? '<span class="op-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>Oportunidad comercial · +' + THRESHOLD + "</span>" : "") +
@@ -3756,7 +3876,7 @@
     }), function (id) { selectComm(id); });
     realKit.drawPins(L.map(function (o) {
       var col = originMeta[o.item.src].color, sel = selLead === o.item.n;
-      return { ll: o.geo.ll, z: sel ? 500 : 0, onClick: function () { selectLead(o.item.n, true, true); },
+      return { ll: o.geo.ll, col: col, z: sel ? 500 : 0, onClick: function () { selectLead(o.item.n, true, true); },
         html: '<div class="rl-pin' + (sel ? " sel" : "") + '" role="button" aria-label="Lead ' + esc(o.item.n) + '"><svg width="28" height="34" viewBox="-14 -34 28 34"><path d="' + PIN_D + '" fill="' + col + '" stroke="#fff" stroke-width="2.2"/><circle cx="0" cy="-20" r="3.8" fill="#fff"/></svg></div>' };
     }));
     drawUserPins(false);
@@ -3935,7 +4055,7 @@
     ensureLeaflet().then(function () {
       meLL = ll; meComm = commAt(ll); meAcc = pos.coords.accuracy || 0; meSpeed = pos.coords.speed == null ? null : pos.coords.speed;
       if (!realKit) {
-        realKit = makeReal(document.getElementById("map-real"));
+        realKit = makeReal(document.getElementById("map-real"), { onOffline: function () { showRToast("Sin conexión: faltan partes del mapa. Tus leads siguen disponibles en la lista."); } });
         realKit.map.attributionControl.setPosition("bottomleft");
         realKit.map.on("click", function () { if (zoneSel) selectComm(null); });
       }
