@@ -9,10 +9,18 @@
 </p>
 
 <p align="center">
+  <img alt="Estado" src="https://img.shields.io/badge/Estado-Prototipo_de_pruebas-DE3410?style=flat-square">
+  <img alt="Programa" src="https://img.shields.io/badge/dLab-UDD_2026-26211d?style=flat-square">
+  <img alt="Stack" src="https://img.shields.io/badge/Stack-HTML_·_CSS_·_JS_puro-26211d?style=flat-square">
+  <img alt="Sin dependencias" src="https://img.shields.io/badge/Dependencias-ninguna-26211d?style=flat-square">
+</p>
+
+<p align="center">
   <img src="docs/img/app-repartidor.png" alt="App del repartidor con pedido en curso" width="32%">
   <img src="docs/img/oficina.png" alt="Oficina: resumen del día, leads y zonas" width="32%">
   <img src="docs/img/gemelo-digital.png" alt="Gemelo digital: escenarios y parámetros" width="32%">
 </p>
+<p align="center"><sub><b>App del repartidor</b> · <b>Oficina</b> · <b>Gemelo digital</b></sub></p>
 
 Proyecto del **dLab UDD 2026 · Desafío 18 «Repartidores como Hunters»**, para Rappi Chile.
 Todo corre en el navegador: un único archivo HTML, sin servidor, sin dependencias y sin instalar nada.
