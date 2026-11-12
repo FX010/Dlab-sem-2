@@ -60,8 +60,9 @@ Con 600 repartidores y 8 ejecutivos durante 30 días simulados:
 ## Estructura
 
 ```
-index.html                 Prototipo publicado (GitHub Pages)
-Rappi_Hunter_v14.html      Misma versión, con nombre de entrega
+index.html                 Prototipo publicado (GitHub Pages) · versión actual v15
+Rappi_Hunter_v15.html      Misma versión, con nombre de entrega
+Rappi_Hunter_v14.html      Versión anterior (base del informe de pruebas)
 docs/Informe_Pruebas.md    Informe de pruebas de la v14 y resultados de la simulación
 docs/qa/                   Hallazgos de la v13 y datos de las corridas (JSON)
 docs/img/                  Capturas
