@@ -1,0 +1,47 @@
+{
+  "simulado": true,
+  "aviso": "Datos SIMULADOS con parámetros supuestos (valores de ejemplo, no tasas reales de Rappi). Corridas del 2026-10-30 con Rappi_Hunter_v14.html. Cada escenario: 30 días, 600 repartidores, 20 semillas (14 a 33), salvo barridos (8 semillas).",
+  "invariantes_rotas_en_todas_las_corridas": 0,
+  "escenarios": {
+    "base":     { "leadsHunter": 1074, "rangoHunter": [988, 1188], "leadsTotal": 1193, "convIncorporado_pct": 49.1, "horasPrimerContacto": 19.9, "horasPrimerContactoMax": 34.4, "fueraDeSLA": 20, "rangoFueraDeSLA": [0, 95], "usoCupo_pct": 26.8, "duplicadosFrenados": 107, "duplicadosColados": 34.4, "cargaEjecutivos_pct": 90.3 },
+    "punta":    { "leadsHunter": 363,  "rangoHunter": [325, 405],  "leadsTotal": 486,  "convIncorporado_pct": 51.8, "horasPrimerContacto": 2.9,  "fueraDeSLA": 0,   "usoCupo_pct": 22.0, "duplicadosFrenados": 34,  "duplicadosColados": 10.8, "cargaEjecutivos_pct": 39.6 },
+    "valle0":   { "leadsHunter": 0,    "rangoHunter": [0, 0],      "leadsTotal": 119,  "convIncorporado_pct": 51.9, "horasPrimerContacto": 1.2,  "fueraDeSLA": 0,   "usoCupo_pct": 0,    "duplicadosFrenados": 0,   "duplicadosColados": 0,    "cargaEjecutivos_pct": 9.9 },
+    "spam":     { "leadsHunter": 765,  "rangoHunter": [693, 840],   "leadsTotal": 885,  "convIncorporado_pct": 52.1, "horasPrimerContacto": 3.7,  "fueraDeSLA": 0,   "usoCupo_pct": 24.7, "duplicadosFrenados": 418, "duplicadosColados": 168.6, "cargaEjecutivos_pct": 71.5 },
+    "saturada": { "leadsHunter": 1062, "rangoHunter": [984, 1155], "leadsTotal": 1302, "convIncorporado_pct": 18.4, "horasPrimerContacto": 199.4, "fueraDeSLA": 774, "rangoFueraDeSLA": [698, 858], "usoCupo_pct": 33.4, "duplicadosFrenados": 105, "duplicadosColados": 35.4, "cargaEjecutivos_pct": 98.9 },
+    "frias":    { "leadsHunter": 1084, "rangoHunter": [968, 1183], "leadsTotal": 1203, "convIncorporado_pct": 48.7, "horasPrimerContacto": 22.7, "fueraDeSLA": 32,  "usoCupo_pct": 27.3, "duplicadosFrenados": 107, "duplicadosColados": 35.2, "cargaEjecutivos_pct": 90.3 },
+    "cupo":     { "leadsHunter": 3934, "rangoHunter": [3910, 3964], "leadsTotal": 4055, "convIncorporado_pct": 16.4, "horasPrimerContacto": 305.7, "fueraDeSLA": 2776, "usoCupo_pct": 96.7, "duplicadosFrenados": 402, "duplicadosColados": 124.3, "cargaEjecutivos_pct": 100 }
+  },
+  "barrido_ejecutivos_en_base": {
+    "nota": "600 repartidores, 20 gestiones por ejecutivo al día, 8 semillas",
+    "2":  { "horasPrimerContacto": 228.6, "fueraDeSLA": 772, "convIncorporado_pct": 13.8, "carga_pct": 99.6 },
+    "3":  { "horasPrimerContacto": 185.4, "fueraDeSLA": 636, "convIncorporado_pct": 21.1, "carga_pct": 98.7 },
+    "4":  { "horasPrimerContacto": 148.5, "fueraDeSLA": 500, "convIncorporado_pct": 27.7, "carga_pct": 97.9 },
+    "6":  { "horasPrimerContacto": 71.7,  "fueraDeSLA": 226, "convIncorporado_pct": 39.9, "carga_pct": 94.5 },
+    "8":  { "horasPrimerContacto": 16.7,  "fueraDeSLA": 13,  "convIncorporado_pct": 49.4, "carga_pct": 89.6 },
+    "10": { "horasPrimerContacto": 3.8,   "fueraDeSLA": 0,   "convIncorporado_pct": 51.2, "carga_pct": 75.8 },
+    "12": { "horasPrimerContacto": 3.3,   "fueraDeSLA": 0,   "convIncorporado_pct": 52.0, "carga_pct": 62.7 }
+  },
+  "barrido_repartidores_en_base": {
+    "nota": "8 ejecutivos, 8 semillas",
+    "100":  { "leadsHunter": 173,  "fueraDeSLA": 0,   "horasPrimerContacto": 2.2,   "carga_pct": 23.8 },
+    "300":  { "leadsHunter": 536,  "fueraDeSLA": 0,   "horasPrimerContacto": 3.3,   "carga_pct": 53.6 },
+    "600":  { "leadsHunter": 1053, "fueraDeSLA": 13,  "horasPrimerContacto": 16.7,  "carga_pct": 89.6 },
+    "1000": { "leadsHunter": 1758, "fueraDeSLA": 593, "horasPrimerContacto": 108.6, "carga_pct": 96.3 }
+  },
+  "politica_en_oficina_saturada": {
+    "nota": "3 ejecutivos, otros canales x2, 8 semillas",
+    "fifo": { "fueraDeSLA": 749, "horasPrimerContacto": 198.0, "convIncorporado_pct": 19.0 },
+    "sla":  { "fueraDeSLA": 9,   "horasPrimerContacto": 49.7,  "convIncorporado_pct": 7.2 }
+  },
+  "perfiles_en_base_semilla_14": {
+    "oportunista": { "repartidores": 226, "leads": 644, "leadsPorRepartidor": 2.85 },
+    "constante":   { "repartidores": 79,  "leads": 312, "leadsPorRepartidor": 3.95 },
+    "esporadico":  { "repartidores": 164, "leads": 121, "leadsPorRepartidor": 0.74 },
+    "noParticipa": { "repartidores": 131, "leads": 0,   "leadsPorRepartidor": 0 }
+  },
+  "embudo_base_semilla_14": { "postulado": 95, "contactado": 55, "gestionado": 215, "incorporado": 559, "rechazado": 275 },
+  "reparto_por_comuna_hunter_semilla_14": {
+    "base":   { "porcentajeEnComunasFrias": 8.8, "leadsHunter": 1077 },
+    "frias":  { "porcentajeEnComunasFrias": 1.4, "leadsHunter": 1108 }
+  }
+}
