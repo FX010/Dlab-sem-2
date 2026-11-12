@@ -17,10 +17,10 @@
 
 <p align="center">
   <img src="docs/img/app-repartidor.png" alt="App del repartidor con pedido en curso" width="32%">
-  <img src="docs/img/oficina.png" alt="Oficina: resumen del día, leads y zonas" width="32%">
+  <img src="docs/img/oficina-mapa.jpg" alt="Oficina: mapa de calor por comuna y leads" width="32%">
   <img src="docs/img/gemelo-digital.png" alt="Gemelo digital: escenarios y parámetros" width="32%">
 </p>
-<p align="center"><sub><b>App del repartidor</b> · <b>Oficina</b> · <b>Gemelo digital</b></sub></p>
+<p align="center"><sub><b>App del repartidor</b> · <b>Oficina (mapa y leads)</b> · <b>Gemelo digital</b></sub></p>
 
 Proyecto del **dLab UDD 2026 · Desafío 18 «Repartidores como Hunters»**, para Rappi Chile.
 **Versión actual: v15** (mapa real con calles, pines en el mapa de la oficina, agrupación de pines y leyenda por fuente). Todo corre en el navegador: un único archivo HTML, sin servidor, sin dependencias y sin instalar nada.
