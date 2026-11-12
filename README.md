@@ -23,7 +23,7 @@
 <p align="center"><sub><b>App del repartidor</b> · <b>Oficina</b> · <b>Gemelo digital</b></sub></p>
 
 Proyecto del **dLab UDD 2026 · Desafío 18 «Repartidores como Hunters»**, para Rappi Chile.
-Todo corre en el navegador: un único archivo HTML, sin servidor, sin dependencias y sin instalar nada.
+**Versión actual: v15** (mapa real con calles, pines en el mapa de la oficina, agrupación de pines y leyenda por fuente). Todo corre en el navegador: un único archivo HTML, sin servidor, sin dependencias y sin instalar nada.
 
 ## Qué incluye
 
@@ -62,7 +62,7 @@ Con 600 repartidores y 8 ejecutivos durante 30 días simulados:
 ```
 index.html                 Prototipo publicado (GitHub Pages)
 Rappi_Hunter_v14.html      Misma versión, con nombre de entrega
-docs/Informe_Pruebas.md    Informe de pruebas y resultados de la simulación
+docs/Informe_Pruebas.md    Informe de pruebas de la v14 y resultados de la simulación
 docs/qa/                   Hallazgos de la v13 y datos de las corridas (JSON)
 docs/img/                  Capturas
 ```
