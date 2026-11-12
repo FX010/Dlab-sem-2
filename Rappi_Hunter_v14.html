@@ -3068,7 +3068,7 @@
     if (from === to) { node.textContent = to; return; }
     var start = performance.now(), dur = 500;
     function step(now) {
-      var p = Math.min(1, (now - start) / dur);
+      var p = Math.max(0, Math.min(1, (now - start) / dur));
       var eased = 1 - Math.pow(1 - p, 3);
       node.textContent = Math.round(from + (to - from) * eased);
       if (p < 1) requestAnimationFrame(step);
