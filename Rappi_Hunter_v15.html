@@ -1242,6 +1242,9 @@
   .rl-pin .rl-ok { position: absolute; right: -3px; top: -3px; width: 14px; height: 14px; border-radius: 50%; background: #1F9D55; border: 2px solid #fff; box-sizing: border-box; }
   .rl-cl { position: absolute; transform: translate(-50%, -50%); min-width: 34px; height: 34px; padding: 0 8px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border-radius: 999px; color: #fff; font: 800 13px/1 var(--f-display); border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(0,0,0,.12), 0 3px 8px rgba(0,0,0,.35); cursor: pointer; transition: transform .2s; }
   .rl-cl:hover { transform: translate(-50%, -50%) scale(1.12); }
+  /* v15.1: la atribución y la escala de Leaflet tapaban los botones del mapa (zoom, encuadrar, pantalla completa) */
+  .od-mapbox .od-mctl, .od-mapbox .od-legend { z-index: 1100; }
+  .od-real .leaflet-bottom.leaflet-right { right: 62px; }
   .rl-dark .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.55); }
   .rl-z-lo .rl-lbl { font-size: 10px; padding: 4px 7px; }
   .rl-z-lo .rl-lbl b { display: none; }
@@ -3007,7 +3010,7 @@
     var tileErr = 0, tileWarned = false;
     tiles.on("tileerror", function () { if (++tileErr >= 4 && !tileWarned) { tileWarned = true; if (o.onOffline) o.onOffline(); } });
     tiles.on("tileload", function () { tileErr = 0; tileWarned = false; });
-    L.control.scale({ imperial: false, metric: true, maxWidth: 84, position: "bottomright" }).addTo(map);
+    L.control.scale({ imperial: false, metric: true, maxWidth: 84, position: o.scalePos || "bottomright" }).addTo(map);
     /* v15: etiquetas más compactas al alejar y más grandes al acercar */
     function zoomClass() { var z = map.getZoom(), n = node.classList; n.toggle("rl-z-lo", z < 11.5); n.toggle("rl-z-hi", z >= 14); }
     map.on("zoomend", zoomClass); zoomClass();
@@ -4055,7 +4058,7 @@
     ensureLeaflet().then(function () {
       meLL = ll; meComm = commAt(ll); meAcc = pos.coords.accuracy || 0; meSpeed = pos.coords.speed == null ? null : pos.coords.speed;
       if (!realKit) {
-        realKit = makeReal(document.getElementById("map-real"), { onOffline: function () { showRToast("Sin conexión: faltan partes del mapa. Tus leads siguen disponibles en la lista."); } });
+        realKit = makeReal(document.getElementById("map-real"), { scalePos: "bottomleft", onOffline: function () { showRToast("Sin conexión: faltan partes del mapa. Tus leads siguen disponibles en la lista."); } });
         realKit.map.attributionControl.setPosition("bottomleft");
         realKit.map.on("click", function () { if (zoneSel) selectComm(null); });
       }
