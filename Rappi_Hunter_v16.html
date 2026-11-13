@@ -2043,7 +2043,7 @@
           </label>
           <div class="ls-dup" id="ls-dup" role="alert" hidden>
             <span class="bk-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></span>
-            <div><b>Este local ya está en Rappi o siendo gestionado por un ejecutivo</b><span class="sub" id="ls-dup-sub"></span></div>
+            <div><b id="ls-dup-t">Este local ya está en Rappi o siendo gestionado por un ejecutivo</b><span class="sub" id="ls-dup-sub"></span></div>
           </div>
           <fieldset class="ls-rest" id="ls-rest">
             <label class="ls-field">
@@ -3532,7 +3532,7 @@
     if (b.classList.contains("rej-ok")) {
       var sel = b.parentNode.querySelector(".rej-sel");
       it.rej = { at: Math.min(ORD.indexOf(it.st) + 1, 3), reason: REJ_REASONS[+sel.value] };
-      it.st = "rechazado"; it.rejecting = false;
+      it.st = "rechazado"; it.rejecting = false; it.rejAt = Date.now();
     } else {
       it.st = nextStage[it.st] || it.st;
     }
@@ -4608,8 +4608,29 @@
     else if (tg.z) { b.textContent = "Estás en " + tg.z.name; t.textContent = "Ubicación GPS" + (meAcc ? " · precisión ±" + Math.round(meAcc) + " m" : ""); }
     else { b.textContent = "Fuera de las 10 comunas del programa"; t.textContent = "No puedes reportar locales desde aquí."; }
   }
+  /* v16 (M2 y M3 en la app): además del nombre y el teléfono, se frena
+     a) un local que la oficina descartó hace menos de RH_REJ_DAYS días, y
+     b) con GPS real, un local abierto con nombre parecido a menos de RH_DEDUP_M metros. Ambos valores son supuestos a confirmar con Rappi */
+  var RH_REJ_DAYS = 30, RH_DEDUP_M = 75;
+  function appGuard(name, phone, ll) {
+    var pd = phoneDigits(phone), qt = nameTokens(name), lt = dtoLooseTokens(name), hit = null;
+    if (String(name).trim().length < 4 && pd.length !== 9) return null;
+    zones.forEach(function (z) {
+      z.list.forEach(function (x) {
+        if (hit) return;
+        if (x.st === "rechazado") {
+          var age = x.rejAt ? (Date.now() - x.rejAt) / 36e5 : ageH(x);
+          if (age == null || age >= RH_REJ_DAYS * 24) return;
+          var same = (pd.length === 9 && x.phone && phoneDigits(x.phone) === pd) || tokensMatch(qt, nameTokens(x.n)) || (ll && x.ll && distM(ll, x.ll) <= RH_DEDUP_M && dtoNameLoose(name, x.n, lt));
+          if (same) hit = { x: x, why: "rej", days: Math.max(1, Math.ceil(RH_REJ_DAYS - age / 24)) };
+        } else if (ll && x.ll && distM(ll, x.ll) <= RH_DEDUP_M && dtoNameLoose(name, x.n, lt)) hit = { x: x, why: "geo", m: Math.round(distM(ll, x.ll)) };
+      });
+    });
+    return hit;
+  }
   function refreshForm() {
-    var dup = findExisting(lsName.value, lsPhone.value), tg = leadTarget();
+    var tg = leadTarget(), dup = findExisting(lsName.value, lsPhone.value), why = dup ? findExisting.why : "", g = dup ? null : appGuard(lsName.value, lsPhone.value, tg.real ? tg.ll : null);
+    if (g) { dup = g.x; why = g.why; }
     var checks = [lsName.value.trim().length >= 3, phoneOk(lsPhone.value), !!shots.facade, !!shots.menu];
     var done = checks.filter(Boolean).length;
     var ready = !dup && done === 4 && !!tg.z;
@@ -4617,12 +4638,15 @@
     sheet.classList.toggle("dup", !!dup);
     lsDup.hidden = !dup;
     document.getElementById("ls-rest").disabled = !!dup;
-    if (dup) document.getElementById("ls-dup-sub").textContent = "Coincide con “" + dup.n + "” (" + (findExisting.why === "tel" ? "mismo teléfono" : "nombre muy parecido") + "). No necesitas reportarlo: sigue buscando locales nuevos.";
+    document.getElementById("ls-dup-t").textContent = why === "rej" ? "La oficina descartó este local hace poco" : "Este local ya está en Rappi o siendo gestionado por un ejecutivo";
+    if (dup) document.getElementById("ls-dup-sub").textContent = why === "rej" ? "Coincide con “" + dup.n + "”, que no avanzó. Podrás volver a reportarlo en " + g.days + (g.days === 1 ? " día" : " días") + " si el local cambia."
+      : why === "geo" ? "A " + g.m + " m hay un local con nombre parecido: “" + dup.n + "”. Si es el mismo, no necesitas reportarlo."
+      : "Coincide con “" + dup.n + "” (" + (why === "tel" ? "mismo teléfono" : "nombre muy parecido") + "). No necesitas reportarlo: sigue buscando locales nuevos.";
     document.getElementById("ls-count").textContent = done + " de 4 listos";
     document.getElementById("ls-prog").style.width = done * 25 + "%";
     if (!lsSubmit.classList.contains("loading")) lsSubmit.disabled = !ready;
     var names = ["nombre", "teléfono de 9 dígitos", "foto de la fachada", "foto de la carta"];
-    lsMissing.textContent = dup ? "Envío bloqueado: el local ya existe." : !tg.z ? "Estás fuera de las 10 comunas del programa: no puedes reportar aquí." : ready ? "Todo listo para enviar." :
+    lsMissing.textContent = dup ? (why === "rej" ? "Envío bloqueado: local descartado hace poco." : "Envío bloqueado: el local ya existe.") : !tg.z ? "Estás fuera de las 10 comunas del programa: no puedes reportar aquí." : ready ? "Todo listo para enviar." :
       "Falta: " + names.filter(function (_, i) { return !checks[i]; }).join(", ") + ".";
     return ready;
   }
@@ -5351,6 +5375,9 @@
   T.add("v16/cola-cuenta-bien", function () { var w = dtoRunSync(dtoQuick({ days: 8, riders: 300, officeCap: true })); T.eq(w.queue, w.leads.filter(function (l) { return l.st === "postulado"; }).length); });
   T.add("v16/cola-protege-oficina", function () { var a = dtoSummary(dtoRunSync(dtoScenarioParams("cupo", { days: 15, riders: 400 }))), b = dtoSummary(dtoRunSync(dtoScenarioParams("cupo", { days: 15, riders: 400, officeCap: true }))); T.assert(b.slaOut < a.slaOut / 5, "la pausa por cola no bajó el fuera de SLA (" + a.slaOut + " → " + b.slaOut + ")"); T.eq(b.violations, []); });
   T.add("v16/etapa-no-baja-conversion", function () { var a = 0, b = 0; for (var i = 0; i < 3; i++) { a += dtoSummary(dtoRunSync(dtoScenarioParams("saturada", { seed: 60 + i, days: 20, riders: 400 }))).funnel.incorporado; b += dtoSummary(dtoRunSync(dtoScenarioParams("saturada", { seed: 60 + i, days: 20, riders: 400, policy: "etapa" }))).funnel.incorporado; } T.assert(b >= a * .97, "la prioridad por etapa bajó los incorporados (" + a + " → " + b + ")"); });
+  T.add("v16/app-bloquea-descartado-reciente", function () { var g = appGuard("Pastas Ossa", "", null); T.assert(g && g.why === "rej", "no frenó el descartado de ejemplo"); T.assert(findExisting("Pastas Ossa", "") === null, "findExisting cambió"); });
+  T.add("v16/app-descartado-vencido", function () { var z = zones[4], it = { n: "Cafetería Prueba Vencida", t: "rest", st: "rechazado", src: "hunter", rejAt: Date.now() - 31 * 864e5 }; z.list.push(it); try { T.eq(appGuard("Cafetería Prueba Vencida", "", null), null); it.rejAt = Date.now() - 2 * 864e5; T.eq(appGuard("Cafetería Prueba Vencida", "", null).why, "rej"); } finally { z.list.splice(z.list.indexOf(it), 1); } });
+  T.add("v16/app-geo-con-gps", function () { var z = zones[2], it = { n: "Panadería Quintrala Sur", t: "rest", st: "postulado", src: "hunter", ll: [-33.456, -70.597] }; z.list.push(it); try { var g = appGuard(dtoVariantName("Panadería Quintrala Sur"), "", [-33.4562, -70.5972]); T.assert(g && g.why === "geo", "no frenó la variante cercana"); T.eq(appGuard(dtoVariantName("Panadería Quintrala Sur"), "", [-33.47, -70.62]), null); T.eq(appGuard(dtoVariantName("Panadería Quintrala Sur"), "", null), null); } finally { z.list.splice(z.list.indexOf(it), 1); } });
   T.add("v16/legacy-igual-v15-forma", function () { var s = dtoSummary(dtoRunSync(dtoScenarioParams("base", { days: 5, riders: 200, legacy: true }))); T.eq([s.geoBlocked, s.rejBlocked, s.zoneCapBlocked], [0, 0, 0]); });
   T.add("dto/inv-salida", function () { T.eq(dtoCheckOutput({ riders: [{ id: "S1", n: 3 }] })[0].inv, 6); T.eq(dtoCheckOutput({ ok: 1 }), []); T.eq(dtoCheckOutput({ x: "$2.900" })[0].inv, 7); T.eq(dtoCheckOutput({ x: "15 pesos" })[0].inv, 7); T.eq(DTO_INV.length, 9); });
   T.add("dto/res-determinista", function () { var p = dtoQuick({ days: 6, riders: 150 }), a = JSON.stringify(dtoSummary(dtoRunSync(p))), b = JSON.stringify(dtoSummary(dtoRunSync(dtoQuick({ days: 6, riders: 150 })))), c = JSON.stringify(dtoSummary(dtoRunSync(dtoQuick({ days: 6, riders: 150, seed: 99 })))); T.assert(a === b, "no determinista"); T.assert(a !== c, "otra semilla dio lo mismo"); });

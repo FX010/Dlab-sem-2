@@ -63,6 +63,40 @@ if (want("flows")) {
   }
 }
 
+/* 2b. Formulario del repartidor: duplicados, descartado reciente, fotos obligatorias, envío y recarga */
+if (want("form")) {
+  const { ctx, page, errors } = await openPage();
+  const PNG = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==", "base64");
+  const setField = (id, v) => page.evaluate(([i, x]) => { const el = document.getElementById(i); el.value = x; el.dispatchEvent(new Event("input", { bubbles: true })); }, [id, v]);
+  const state = () => page.evaluate(() => ({ dup: !document.getElementById("ls-dup").hidden, title: document.getElementById("ls-dup-t").textContent, sub: document.getElementById("ls-dup-sub").textContent, disabled: document.getElementById("ls-submit").disabled }));
+  await setField("ls-phone", "9 8765 4321");
+  await setField("ls-name", "Pizzería Plaza Ñuñoa");
+  let s = await state();
+  ok("formulario: local existente queda bloqueado", s.dup && s.disabled, s.sub);
+  await setField("ls-name", "Pastas Ossa");
+  s = await state();
+  ok("formulario: local descartado hace 2 días queda bloqueado (H-02)", s.dup && /descartó/.test(s.title) && s.disabled, s.title);
+  const NAME = "Empanadas Prueba Automática";
+  await setField("ls-name", NAME);
+  s = await state();
+  ok("formulario: sin fotos no se puede enviar", !s.dup && s.disabled);
+  await page.setInputFiles("#ls-ph-facade", { name: "f.png", mimeType: "image/png", buffer: PNG });
+  await page.setInputFiles("#ls-ph-menu", { name: "m.png", mimeType: "image/png", buffer: PNG });
+  await page.waitForTimeout(600);
+  s = await state();
+  ok("formulario: con nombre, teléfono y 2 fotos se habilita el envío", !s.dup && !s.disabled);
+  await page.evaluate(() => document.getElementById("ls-form").requestSubmit());
+  await page.waitForTimeout(3200);
+  await page.reload({ waitUntil: "load" });
+  await page.waitForFunction(() => !!window.__rhDTO);
+  await setField("ls-phone", "9 1111 0000");
+  await setField("ls-name", NAME);
+  s = await state();
+  ok("formulario: el lead enviado sobrevive a recargar y luego cuenta como duplicado", s.dup, s.sub);
+  ok("formulario: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
 /* 3. Regresión del gemelo: con las mejoras v16 apagadas debe dar exactamente lo mismo que la v15 */
 if (want("regression")) {
   const { ctx, page } = await openPage();
