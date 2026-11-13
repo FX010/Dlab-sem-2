@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Soy Rappi · Rappi Hunters (concepto v16)</title>
+<title>Soy Rappi · Rappi Hunters (concepto v17)</title>
 <script>try{var __t=localStorage.getItem("rh_theme");if(__t==="light"||__t==="dark")document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -703,6 +703,8 @@
   .st.gestionado { background: var(--info-bg); color: #2A4FCC; }
   .st.incorporado { background: var(--ok-bg); color: var(--ok-ink); }
   .item.alert { border-left: 3px solid var(--gold); background: var(--warn-bg); }
+  .pert-badge { grid-column: 1 / -1; display: inline-flex; align-self: start; font-size: 11px; font-weight: 800; color: var(--ok-ink); background: var(--ok-bg, #E6F6EC); border-radius: 999px; padding: 3px 10px; margin-top: 2px; width: fit-content; font-family: var(--f-display); }
+  .hunter.paused { opacity: .55; filter: grayscale(.8); }
   .op-badge {
     grid-column: 1 / -1; display: inline-flex; align-self: start; align-items: center; gap: 6px;
     font-size: 11px; font-weight: 800; color: var(--warn-ink); background: var(--warn-bg); border-radius: 999px;
@@ -1909,7 +1911,7 @@
         </div>
 
         <!-- Repartidor -->
-        <div class="blocker d-only o-only" role="status"><span class="bk-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></span><p>Funcionalidad bloqueada: Completa tu pedido en curso para cazar leads.</p></div>
+        <div class="blocker d-only o-only" role="status"><span class="bk-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></span><p>Bloqueado: termina tu pedido primero.</p></div>
         <button class="hint d-only n-only" id="hint-hunter" type="button">Tiempo de valle · <b><span class="hr-on">Activa el modo Hunter</span><span class="hr-off">Conoce el Programa Hunter</span></b> <span aria-hidden="true">›</span></button>
 
         <!-- Hunter -->
@@ -1946,7 +1948,7 @@
       <div class="order valle d-only n-only">
         <span class="valle-chip"><i aria-hidden="true"></i>Tiempo de valle</span>
         <div class="who" style="grid-column:1/-1">Sin pedidos activos</div>
-        <div class="what" style="grid-column:1/-1"><span class="hr-on">Activa el Modo Hunter y reporta locales que aún no están en Rappi mientras llega tu próximo pedido.</span><span class="hr-off">Mientras llega tu próximo pedido, puedes sumarte al Programa Hunter y reportar locales que aún no están en Rappi.</span></div>
+        <div class="what" style="grid-column:1/-1"><span class="hr-on">Reporta un local nuevo mientras llega tu próximo pedido.</span><span class="hr-off">Súmate al Programa Hunter y reporta locales mientras esperas.</span></div>
         <div class="valle-row">
           <button class="sec hr-on" id="prof-open2" type="button">Mis leads</button>
           <button class="sec hr-off" id="hunter-learn" type="button">Conocer el programa</button>
@@ -2008,15 +2010,15 @@
             <p class="iv-kicker iv-item" style="--i:1">Carta de invitación · Programa Hunter</p>
             <h2 class="iv-title iv-item" id="iv-title" style="--i:2">Te invitamos a ser Hunter</h2>
             <p class="iv-salute iv-item" style="--i:3">Estimado Rappitendero:</p>
-            <p class="iv-item" style="--i:4">Queremos felicitarte. Tu constancia y el esfuerzo con el que recorres la ciudad cada día son parte esencial de lo que hace posible a Rappi, y queremos reconocerlo.</p>
-            <p class="iv-item" style="--i:5">Por eso te invitamos a dar un paso más: ser Repartidor Hunter. Cuando no tengas un pedido en curso (tiempo de valle), puedes reportar locales que aún no están en Rappi, y si el local se suma a la plataforma, recibes tu bono.</p>
-            <p class="iv-item" style="--i:6">Tú decides cuándo y cuánto: no hay metas obligatorias y tus entregas siguen siendo lo primero: con un pedido activo, el Modo Hunter queda bloqueado.</p>
+            <p class="iv-item" style="--i:4">Gracias por tu esfuerzo de cada día.</p>
+            <p class="iv-item" style="--i:5">Sin pedido, reporta locales que aún no están en Rappi. Si avanza, ganas un bono.</p>
+            <p class="iv-item" style="--i:6">Tú decides cuándo, sin metas. Con un pedido activo, Hunter se bloquea. Eres parte de un piloto con grupo reducido.</p>
             <p class="iv-sign iv-item" style="--i:7">Con aprecio y gratitud,<br><b>Dirección de Growth &amp; Expansión Comercial</b><br>Rappi Chile SpA</p>
           </div>
           <div class="iv-foot iv-item" style="--i:8">
             <button class="iv-accept" id="invite-accept" type="button">Acepto</button>
             <button class="iv-later" id="invite-later" type="button">Ahora no</button>
-            <p class="iv-note">Al aceptar, activas el Modo Hunter y aceptas sus Términos y Condiciones. Puedes desactivarlo cuando quieras en Cuenta › Ajustes.</p>
+            <p class="iv-note">Al aceptar, activas Hunter y sus Términos. Lo desactivas en Cuenta › Ajustes.</p>
           </div>
         </div>
       </div>
@@ -2028,7 +2030,7 @@
           <div class="ls-head">
             <h3 id="ls-title">Reportar local</h3>
             <p>Menos de 10 segundos · <span id="ls-count">0 de 4 listos</span></p>
-            <p class="ls-safe"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.2 7.5 9.5 4.4-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg><span>Reporta solo con el vehículo detenido y en un lugar seguro.</span></p>
+            <p class="ls-safe"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.2 7.5 9.5 4.4-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg><span>Solo con la moto detenida.</span></p>
             <p class="ls-draft" id="ls-draft" hidden>Recuperamos tu borrador. <button type="button" id="ls-draft-clear">Empezar de cero</button></p>
             <div class="ls-prog" aria-hidden="true"><i id="ls-prog"></i></div>
           </div>
@@ -2043,17 +2045,17 @@
           </label>
           <div class="ls-dup" id="ls-dup" role="alert" hidden>
             <span class="bk-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></span>
-            <div><b id="ls-dup-t">Este local ya está en Rappi o siendo gestionado por un ejecutivo</b><span class="sub" id="ls-dup-sub"></span></div>
+            <div><b id="ls-dup-t">Este local ya está en Rappi o en gestión</b><span class="sub" id="ls-dup-sub"></span></div>
           </div>
           <fieldset class="ls-rest" id="ls-rest">
             <label class="ls-field">
-              <span>Teléfono del local (móvil o fijo)</span>
+              <span>Teléfono del local</span>
               <span class="ls-phone"><em>+56</em><input type="tel" inputmode="tel" id="ls-phone" placeholder="9 1234 5678" autocomplete="off" maxlength="16"></span>
             </label>
-            <label class="ls-consent"><input type="checkbox" id="ls-consent"><span>Le avisé al dueño que Rappi lo contactará <em>(recomendado)</em>. Puede pedir que no lo llamemos.</span></label>
+            <label class="ls-consent"><input type="checkbox" id="ls-consent"><span>Avisé al dueño que Rappi lo llamará</span></label>
             <label class="ls-field">
-              <span>Dirección o referencia (opcional)</span>
-              <input type="text" id="ls-dir" maxlength="100" placeholder="Ej: frente a la plaza, esquina Villaseca" autocomplete="off">
+              <span>Dirección (opcional)</span>
+              <input type="text" id="ls-dir" maxlength="100" placeholder="Ej: esquina Villaseca" autocomplete="off">
             </label>
             <div class="ls-photos">
               <div class="shot-wrap">
@@ -2063,7 +2065,7 @@
                   <span class="shot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h1.5l1.4-2h6.2l1.4 2H18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg><b>Tomar foto de la Fachada</b><small class="req">Obligatoria</small></span>
                   <span class="shot-ok" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
                 </button>
-                <span class="shot-note">Para que el ejecutivo reconozca el local.</span>
+                <span class="shot-note">Para reconocer el local.</span>
               </div>
               <div class="shot-wrap">
                 <input type="file" id="ls-ph-menu" accept="image/*" capture="environment" hidden>
@@ -2072,12 +2074,12 @@
                   <span class="shot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h10l3 3v15H6z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg><b>Tomar foto de la Carta/Menú</b><small class="req">Obligatoria</small></span>
                   <span class="shot-ok" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
                 </button>
-                <span class="shot-note">Con precios visibles: la oficina estima el ticket promedio.</span>
+                <span class="shot-note">Con precios visibles.</span>
               </div>
             </div>
             <label class="ls-field">
               <span>Observaciones (opcional)</span>
-              <textarea id="ls-obs" rows="2" placeholder="Ej: dueño interesado, llamar después de las 18 h"></textarea>
+              <textarea id="ls-obs" rows="2" placeholder="Ej: llamar después de las 18 h"></textarea>
             </label>
           </fieldset>
           <button type="submit" class="ls-submit" id="ls-submit" disabled>
@@ -2100,7 +2102,7 @@
             <h4>✅ Lead capturado</h4>
             <p class="ls-ticket-name" id="ls-ticket-name">—</p>
             <div class="ls-ticket-div" aria-hidden="true"></div>
-            <p class="ls-ticket-sub">La oficina Rappi ya lo recibió. Síguelo en Mis leads.</p>
+            <p class="ls-ticket-sub">Enviado. Síguelo en Mis leads.</p>
           </div>
         </div>
       </div>
@@ -2129,11 +2131,11 @@
         <div class="qr-card geo-card">
           <div class="geo-ico"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
           <h3 id="geo-t">¿Usar tu ubicación?</h3>
-          <p>Con el GPS de tu teléfono te mostramos el mapa real de Santiago y qué tan lejos queda cada lead.</p>
+          <p>Usa tu GPS para ver el mapa real y la distancia a cada lead.</p>
           <ul class="geo-list">
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Mapa real con calles y comunas</li>
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Distancia real desde donde estás</li>
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Solo se usa en Modo Hunter, sin pedido en curso</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Mapa real</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Distancia real</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Solo en Modo Hunter, sin pedido</li>
           </ul>
           <button class="qr-close geo-allow" id="geo-allow" type="button">Permitir ubicación</button>
           <button class="geo-demo" id="geo-demo" type="button">Ahora no, usar mapa de demostración</button>
@@ -2144,7 +2146,7 @@
       <div class="qr-sheet" id="qr" role="dialog" aria-modal="true" aria-labelledby="qr-title" aria-hidden="true">
         <div class="qr-card">
           <h3 id="qr-title">Mi código Hunter</h3>
-          <p>Muéstralo al dueño del local. Un ejecutivo lo contactará por WhatsApp.</p>
+          <p>Muéstraselo al dueño. Un ejecutivo lo contactará.</p>
           <div class="qr-box"><img id="qr-img" alt="Código QR del Hunter" style="width:100%;height:100%;display:block;object-fit:contain"></div>
           <div class="qr-code">HUNTER-4821</div>
           <a class="qr-link" id="qr-link" href="https://fx010.github.io/Dlab-sem-2/" target="_blank" rel="noopener noreferrer">Abrir la demo del programa <span aria-hidden="true">↗</span></a>
@@ -2180,7 +2182,7 @@
           <p class="cl-kicker cl-i" style="--i:1">¡Lead incorporado!</p>
           <h2 class="cl-title cl-i" id="cl-title" style="--i:2"><span id="cl-name">Tu lead</span> ya es parte de Rappi</h2>
           <p class="cl-sub cl-i" id="cl-sub" style="--i:2"></p>
-          <p class="cl-msg cl-i" style="--i:3">Lo encontraste, fuiste hasta el local y lo validaste en terreno. La oficina lo revisó y lo incorporó. Ese esfuerzo es lo que hace crecer a Rappi en tu ciudad.</p>
+          <p class="cl-msg cl-i" style="--i:3">Lo encontraste y ya vende en Rappi. Gracias.</p>
           <div class="cl-tl cl-i" style="--i:4" aria-label="Recorrido del lead">
             <span><i>✓</i>Reportado</span><b></b><span><i>✓</i>En revisión</span><b></b><span><i>✓</i>Gestión</span><b></b><span><i>✓</i>Activo</span>
           </div>
@@ -2768,6 +2770,10 @@
     c.z.cid = c.id; c.z.comm = c;
   });
   function total(z) { return z.c.rest + z.c.boti + z.c.farm; }
+  /* v17: demanda de pedidos por comuna (supuesto simulado; en producción vendría del mapa de calor de pedidos de Operaciones) */
+  var DEMAND = { stgo: "alta", prov: "alta", lc: "alta", nun: "alta", ec: "media", vit: "media", sm: "media", mac: "baja", lr: "baja", pen: "baja" };
+  var DEM_TXT = { alta: "Demanda de pedidos alta", media: "Demanda de pedidos media", baja: "Demanda de pedidos baja" };
+  function demandOf(c) { return (c && DEMAND[c.id]) || "media"; }
   function zoneKind(z) { return total(z) >= HOT_MIN ? "hot" : "cold"; }
   function commById(id) { return COMM.filter(function (c) { return c.id === id; })[0]; }
   function commN(c) { return total(c.z); }
@@ -3438,12 +3444,13 @@
     }
     return true;
   }
+  function pertinent(x) { return x.src === "hunter" && (x.st === "gestionado" || x.st === "incorporado" || (x.st === "rechazado" && x.rej && x.rej.at === 3)); }
   var STL = { todos: "Todos", postulado: "Postulados", contactado: "Contactados", gestionado: "Gestionados", incorporado: "Incorporados", rechazado: "Descartados" };
   function renderList() {
     var z = selected, kind = zoneKind(z), c = z.comm;
     $("z-name").textContent = "Punto " + z.pt + " · " + z.name;
     var pill = $("z-kind"); pill.textContent = kind === "hot" ? "Zona caliente" : "Zona fría"; pill.className = "od-pill " + kind;
-    $("z-meta").textContent = value(z) + " oportunidades detectadas · " + (z.reps ? z.reps + " Hunters activos" : "sin Hunters activos");
+    $("z-meta").textContent = value(z) + " oportunidades detectadas · " + (z.reps ? z.reps + " Hunters activos" : "sin Hunters activos") + " · " + DEM_TXT[demandOf(c)].toLowerCase() + (demandOf(c) === "alta" && kind === "hot" ? " · priorizar Hunters part-time" : "");
     var pool = z.list.filter(basePass);
     document.querySelectorAll("#od-st button").forEach(function (b) {
       var k = b.dataset.st, n = k === "todos" ? pool.length : pool.filter(function (x) { return x.st === k; }).length;
@@ -3480,12 +3487,13 @@
         return '<div class="item' + (x.fresh ? " fresh" : "") + (op ? " alert" : "") + (x === hlItem ? " hl" : "") + '">' +
           '<span class="n">' + esc(x.n) + '</span><span class="st ' + x.st + '">' + stTxt[x.st] + "</span>" +
           '<span class="origin-badge ' + om.cls + '">' + originIco(x.src) + om.label + "</span>" +
-          (op ? '<span class="op-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>Oportunidad comercial · +' + THRESHOLD + "</span>" : "") +
+          (pertinent(x) ? '<span class="pert-badge">Pertinente · bono de reconocimiento</span>' : "") + (op ? '<span class="op-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>Oportunidad comercial · +' + THRESHOLD + "</span>" : "") +
           (x.photos ? '<span class="item-photos"><figure><img class="item-photo" src="' + x.photos[0] + '" alt="Fachada del local"><figcaption>Fachada</figcaption></figure><figure><img class="item-photo" src="' + x.photos[1] + '" alt="Carta del local"><figcaption>Carta</figcaption></figure></span>' : "") +
           '<span class="m">' + labels[x.t] + " · " + esc(x.dir) + " · " + whenHtml(x) + "</span>" +
           '<span class="m">' + subline + "</span>" +
           (x.visited ? '<span class="m"><b style="color:var(--ok-ink)">Visitado por un Hunter en terreno</b></span>' : "") +
           (x.phone ? '<span class="m">📞 ' + esc(x.phone) + "</span>" : "") +
+          (x.src === "hunter" ? '<span class="m">HubSpot: lead sincronizado' + (pertinent(x) ? " · bono a la billetera" : "") + " (simulado)</span>" : "") +
           (x.consent === true ? '<span class="m ok">Dueño avisado ✓</span>' : x.consent === false ? '<span class="m warn">El dueño aún no sabe que fue reportado</span>' : "") +
           (slaBreach(x) ? '<span class="m warn">Fuera de SLA: más de 48 h sin primer contacto</span>' : "") +
           (x.obs ? '<span class="m">“' + esc(x.obs) + "”</span>" : "") +
@@ -3953,7 +3961,7 @@
       '<div class="zi-head"><span class="zdot ' + kind + '"></span><b>' + c.name + '</b><span class="zi-pill ' + kind + '">' + (kind === "hot" ? "Zona caliente" : "Zona fría") + "</span>" +
       '<button class="zi-x" id="zi-x" type="button" aria-label="Cerrar"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>' +
       '<div class="zi-n"><b>' + n + "</b>oportunidades abiertas" + (mine ? " · " + mine + (mine === 1 ? " lead para ti" : " leads para ti") : "") + "</div>" +
-      '<ul class="zi-list"><li>' + c.why + "</li><li>" + (kind === "hot" ? "Caliente: " + HOT_MIN + " o más oportunidades abiertas." : "Fría: menos de " + HOT_MIN + " oportunidades cubiertas. Explorarla suma a tus misiones.") + "</li></ul>" +
+      '<ul class="zi-list"><li>' + c.why + "</li><li>" + (kind === "hot" ? "Caliente: " + HOT_MIN + " o más oportunidades abiertas." : "Fría: poca cobertura. Suma a tus misiones.") + "</li><li>" + DEM_TXT[demandOf(c)] + (fleetType === "full" && demandOf(c) === "alta" ? ": Hunter en pausa para full-time." : ".") + "</li></ul>" +
       '<div class="zi-foot">Estimación de la simulación</div>';
     document.getElementById("zi-x").addEventListener("click", function () { selectComm(null); });
   }
@@ -4091,6 +4099,7 @@
     var chip = document.getElementById("sc-src");
     chip.dataset.m = mapMode;
     chip.querySelector("span").textContent = mapMode === "real" ? (meComm ? "GPS · " + meComm.lbl : "GPS real") : "Mapa demo";
+    if (typeof syncPause === "function") syncPause();
   }
   function setMapMode(m) {
     mapMode = m; view.dataset.map = m;
@@ -4122,7 +4131,7 @@
         realKit.map.on("click", function () { if (zoneSel) selectComm(null); });
       }
       setMapMode("real");
-      showRToast(meComm ? "Estás en " + meComm.name + " · " + (commKind(meComm) === "hot" ? "zona caliente" : "zona fría") + "." : "Ubicación activada. Estás fuera de las 10 comunas con datos.");
+      showRToast(meComm ? "Estás en " + meComm.name + " · " + (commKind(meComm) === "hot" ? "zona caliente" : "zona fría") + "." : "Ubicación activada. El piloto cubre todo Santiago.");
       stopWatch();
       if (navigator.geolocation.watchPosition) geoWatch = navigator.geolocation.watchPosition(function (p) {
         var n = [p.coords.latitude, p.coords.longitude];
@@ -4317,7 +4326,8 @@
     setTimeout(function () { setMode("hunter"); }, 700); /* el botón aparece, y recién después se entra al Modo Hunter (y a la orientación) */
   }
   function hunterAjustesSec() {
-    return '<div class="pf-sec"><h4>Programa Hunter</h4>' +
+    return (hunterRole ? '<div class="pf-sec"><h4>Cómo trabajas</h4><div class="pf-btns"><button type="button" class="pf-btn' + (fleetType === "part" ? "" : " sec") + '" data-fleet="part" aria-pressed="' + (fleetType === "part") + '">Part-time</button><button type="button" class="pf-btn' + (fleetType === "full" ? "" : " sec") + '" data-fleet="full" aria-pressed="' + (fleetType === "full") + '">Full-time</button></div><p>Si trabajas full-time, Hunter se pausa en zonas con mucha demanda de pedidos.</p></div>' : "") +
+      '<div class="pf-sec"><h4>Programa Hunter</h4><p>Piloto con grupo reducido. Cubre todas las comunas de Santiago.</p>' +
       '<div class="pf-row"><div><b>Modo Hunter</b><small>' + (hunterRole ? "Activo: ves el botón Hunter y puedes reportar locales." : "Desactivado. Actívalo para reportar locales en tiempo de valle.") + '</small></div><button type="button" class="pf-sw" role="switch" data-act="hr-toggle" aria-checked="' + hunterRole + '" aria-label="Modo Hunter"></button></div>' +
       (hunterRole ? '<div class="pf-btns"><button type="button" class="pf-btn sec" data-act="hr-tour">Repetir la guía</button></div>' : "") + "</div>";
   }
@@ -4332,7 +4342,7 @@
       return;
     }
     if (m === "hunter" && orderActive) {
-      showRToast("Funcionalidad bloqueada: Completa tu pedido en curso para cazar leads.");
+      showRToast("Bloqueado: termina tu pedido primero.");
       var sw = document.querySelector(".mode-switch"); sw.classList.remove("shake"); void sw.offsetWidth; sw.classList.add("shake");
       return;
     }
@@ -4464,9 +4474,9 @@
     { tab: "Pagos", title: "3. Incentivos y sistema de pagos", qa: [
       ["¿Qué pasa si me llega un pedido mientras estoy reportando un local?", "El pedido aparece por encima del formulario. Si lo aceptas, guardamos tu reporte como borrador. Si no alcanzas a responder, no afecta tu aceptación: tus pedidos siempre van primero."],
       ["¿Qué pasa si mi lead no recibe respuesta?", "Cada lead muestra su estado en Mi perfil. La oficina tiene como meta contactar a cada local en menos de 48 horas; los que pasan ese plazo se marcan para atenderlos primero."],
-      ["¿Cómo y cuándo me pagan por los locales que reporto?", "Recibirás tu incentivo (ya sea en RappiCréditos o bonos transaccionales) una vez que el local que reportaste quede activo en Rappi (haga su primer pedido). Además, existirán misiones estilo “Rush” donde podrás ganar bonos extra por cantidad de reportes (ej. “Reporta 5 locales hoy y gana un bono adicional”)."],
+      ["¿Cómo y cuándo me pagan por los locales que reporto?", "Recibirás tu incentivo (ya sea en RappiCréditos o bonos transaccionales) una vez que el local que reportaste quede activo en Rappi (haga su primer pedido). Si un ejecutivo califica tu lead como pertinente, ganas un bono de reconocimiento aunque el local no cierre. Además, existirán misiones estilo “Rush” donde podrás ganar bonos extra por cantidad de reportes (ej. “Reporta 5 locales hoy y gana un bono adicional”)."],
       ["¿Qué pasa si otro repartidor ya había reportado el mismo local que yo acabo de subir?", "El sistema premiará al primer repartidor que levante el “lead” (la oportunidad). Si un local ya está en la base de datos o fue reportado por un compañero, la aplicación te notificará rápidamente para que no pierdas tiempo y puedas buscar otras oportunidades."],
-      ["¿Me penalizan o baja mi calificación si el local que reporto decide no entrar a la aplicación?", "No, bajo ninguna circunstancia. Tu única tarea es encontrar la oportunidad y hacer el puente. Si el equipo de ventas interno no logra cerrar el trato con el restaurante, tú no recibes el bono de cierre de ese local, pero no hay multas, penalizaciones ni impacto en tu calificación como repartidor."],
+      ["¿Me penalizan o baja mi calificación si el local que reporto decide no entrar a la aplicación?", "No, bajo ninguna circunstancia. Tu única tarea es encontrar la oportunidad y hacer el puente. Si el equipo de ventas interno no logra cerrar el trato con el restaurante, tú no recibes el bono de cierre de ese local (si el ejecutivo lo calificó como pertinente, conservas tu bono de reconocimiento), pero no hay multas, penalizaciones ni impacto en tu calificación como repartidor."],
       ["¿Hacer de Hunter afectará mis métricas de tiempo de entrega (SLA)?", "No. El Modo Hunter se bloquea mientras tienes un pedido en curso y solo se habilita en tiempo de valle, sin pedido asignado. Así tus entregas nunca compiten con el reporte de locales."]
     ] }
   ];
@@ -4552,6 +4562,15 @@
 
   /* ---------- Botón Hunter: abre el bottom sheet de captación rápida ---------- */
   var btn = document.getElementById("hunter");
+  var fleetType = "part"; /* v17: part-time o full-time. Solo los full-time se pausan en zonas de alta demanda */
+  function myComm() { return mapMode === "real" ? meComm : (typeof nunoa !== "undefined" && nunoa ? nunoa.comm : null); }
+  function demandPause() { var c = myComm(); return fleetType === "full" && !!c && demandOf(c) === "alta"; }
+  function syncPause() {
+    if (!btn) return;
+    var p = demandPause(), t = document.getElementById("hunter-t2");
+    btn.classList.toggle("paused", p); btn.setAttribute("aria-disabled", p ? "true" : "false");
+    if (t) t.textContent = p ? "En pausa · mucha demanda de pedidos" : "Ubicación + datos en un toque";
+  }
   var t1 = document.getElementById("hunter-t1"), t2 = document.getElementById("hunter-t2");
   var live = document.getElementById("live"), badge = document.getElementById("badge");
   var count = 2, CUPO = 5, busy = false, lastReport = 0, meAcc = 0, meSpeed = null, draft = null, resetT = null, persistReady = false, sentCids = {};
@@ -4598,7 +4617,12 @@
     return hit;
   }
   function leadTarget() { /* v12: dónde está de verdad el repartidor */
-    if (mapMode === "real") return meComm && meComm.z ? { z: meComm.z, ll: meLL.slice(), real: true } : { z: null, real: true };
+    if (mapMode === "real") {
+      if (meComm && meComm.z) return { z: meComm.z, ll: meLL.slice(), real: true };
+      var near = null, bd = 1e12; /* v17: el piloto cubre todo Santiago; el lead se anota en la comuna más cercana con datos */
+      if (meLL) COMM.forEach(function (c) { var d = distM(meLL, c.rc); if (d < bd) { bd = d; near = c; } });
+      return near ? { z: near.z, ll: meLL.slice(), real: true, near: near } : { z: null, real: true };
+    }
     return { z: nunoa, ll: null, real: false };
   }
   function tooFast() { return mapMode === "real" && meSpeed != null && meSpeed > 1.7; } /* > ~6 km/h: en movimiento */
@@ -4606,7 +4630,8 @@
     var b = document.getElementById("ls-gps-b"), t = document.getElementById("ls-gps-s"), tg = leadTarget();
     if (!tg.real) { b.textContent = "Ubicación de demostración · Ñuñoa"; t.textContent = "Mapa de demostración · sin GPS"; }
     else if (tg.z) { b.textContent = "Estás en " + tg.z.name; t.textContent = "Ubicación GPS" + (meAcc ? " · precisión ±" + Math.round(meAcc) + " m" : ""); }
-    else { b.textContent = "Fuera de las 10 comunas del programa"; t.textContent = "No puedes reportar locales desde aquí."; }
+    else { b.textContent = "Sin ubicación"; t.textContent = "Activa el GPS para reportar."; }
+    if (tg.real && tg.near) { b.textContent = "Otra comuna de Santiago"; t.textContent = "Se anota en " + tg.near.name + " (la más cercana)."; }
   }
   /* v16 (M2 y M3 en la app): además del nombre y el teléfono, se frena
      a) un local que la oficina descartó hace menos de RH_REJ_DAYS días, y
@@ -4646,7 +4671,7 @@
     document.getElementById("ls-prog").style.width = done * 25 + "%";
     if (!lsSubmit.classList.contains("loading")) lsSubmit.disabled = !ready;
     var names = ["nombre", "teléfono de 9 dígitos", "foto de la fachada", "foto de la carta"];
-    lsMissing.textContent = dup ? (why === "rej" ? "Envío bloqueado: local descartado hace poco." : "Envío bloqueado: el local ya existe.") : !tg.z ? "Estás fuera de las 10 comunas del programa: no puedes reportar aquí." : ready ? "Todo listo para enviar." :
+    lsMissing.textContent = dup ? (why === "rej" ? "Envío bloqueado: local descartado hace poco." : "Envío bloqueado: el local ya existe.") : !tg.z ? "Sin ubicación: no puedes reportar." : ready ? "Todo listo para enviar." :
       "Falta: " + names.filter(function (_, i) { return !checks[i]; }).join(", ") + ".";
     return ready;
   }
@@ -4715,8 +4740,9 @@
   btn.addEventListener("click", function () {
     if (busy) return;
     updateGoal(false);
-    if (count >= CUPO) { showRToast("Cupo lleno: ya tienes 5 leads activos. Se libera uno cuando avance o sea rechazado."); return; }
-    if (tooFast()) { showRToast("Detente en un lugar seguro para reportar un local. Nunca uses el celular en marcha."); return; }
+    if (count >= CUPO) { showRToast("Cupo lleno: 5 leads activos."); return; }
+    if (demandPause()) { showRToast("Pausa Hunter: mucha demanda de pedidos aquí. Sigue repartiendo."); return; }
+    if (tooFast()) { showRToast("Detente para reportar. Nunca uses el celular en marcha."); return; }
     var now = Date.now();
     btn.classList.add("pulse");
     setTimeout(function () { btn.classList.remove("pulse"); }, 650);
@@ -5880,7 +5906,7 @@
   var STG = [
     { t: "Lead enviado", d: "Recibimos tu lead con fotos y ubicación." },
     { t: "En revisión", d: "La oficina está validando los datos y las fotos." },
-    { t: "Gestión comercial", d: "Un ejecutivo está conversando con el local." },
+    { t: "Gestión comercial", s: "Lead pertinente · bono", d: "El ejecutivo lo calificó como pertinente. Ya ganaste un bono, cierre o no." },
     { t: "Local activo", s: "Bono ganado", d: "El local ya vende en Rappi. Ganaste tu bono." }
   ];
   var ORD = ["postulado", "contactado", "gestionado", "incorporado"];
@@ -5903,7 +5929,7 @@
       return '<div class="pf-stat"><b>' + r[1] + "</b><span>" + r[0] + "</span></div>";
     }).join("");
     var list = document.getElementById("pf-list");
-    list.innerHTML = '<p class="pf-note">Sigue cada local como sigues un pedido: te avisamos en cada avance.</p>' + (L.length ? "" : '<p class="pf-note">Aún no has enviado leads. Reporta un local desde el mapa del Modo Hunter.</p>') + L.map(function (x) {
+    list.innerHTML = '<p class="pf-note">Te avisamos en cada avance.</p>' + (L.length ? "" : '<p class="pf-note">Aún no has enviado leads. Reporta un local desde el mapa del Modo Hunter.</p>') + L.map(function (x) {
       var rej = x.st === "rechazado" ? (x.rej || { at: 1, reason: "Descartado por la oficina." }) : null;
       var idx = rej ? rej.at : ORD.indexOf(x.st);
       var from = shownIdx.hasOwnProperty(x.n) ? shownIdx[x.n] : idx;
@@ -5926,8 +5952,9 @@
       });
       tl += "</div>";
       if (open) { shownIdx[x.n] = idx; if (rej) shownIdx[x.n + "#r"] = 1; }
-      var chip = rej ? '<span class="pl-chip no">No avanzó</span>' : idx === 3 ? '<span class="pl-chip win">Bono ganado</span>' : '<span class="pl-chip run">En curso</span>';
-      var msg = rej ? '<p class="pl-msg no">Toca el punto rojo para ver el motivo.</p>' : '<p class="pl-msg">' + STG[idx].d + "</p>";
+      var pert = rej ? rej.at === 3 : idx >= 2;
+      var chip = rej ? (pert ? '<span class="pl-chip win">Pertinente · bono</span>' : '<span class="pl-chip no">No avanzó</span>') : idx === 3 ? '<span class="pl-chip win">Bono ganado</span>' : idx === 2 ? '<span class="pl-chip win">Pertinente · bono</span>' : '<span class="pl-chip run">En curso</span>';
+      var msg = rej && pert ? '<p class="pl-msg">El local no cerró, pero tu lead era bueno. Conservas tu bono.</p>' : rej ? '<p class="pl-msg no">Toca el punto rojo para ver el motivo.</p>' : '<p class="pl-msg">' + STG[idx].d + "</p>";
       return '<article class="pl' + (x.fresh ? " fresh" : "") + '"><div class="pl-top"><div><h4>' + esc(x.n) + "</h4><p>" + esc(x.dir) + " · enviado " + whenHtml(x) + "</p></div>" + chip + "</div>" + tl + msg + (x.consent === false ? '<p class="pl-msg warn">Pendiente: cuéntale al dueño que Rappi lo va a contactar.</p>' : x.consent === true ? '<p class="pl-msg ok-msg">Dueño avisado ✓</p>' : "") + "</article>";
     }).join("");
     setTimeout(function () {
@@ -5995,7 +6022,7 @@
   function bdSvg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + BD_ICON[k] + "</svg>"; }
   function renderPerfil() {
     if (!hunterRole) { /* v13: antes de aceptar no hay nivel, insignias ni leads */
-      document.getElementById("pf-perfil").innerHTML = '<div class="pf-sec hr-card"><h4>Programa Hunter</h4><p>Cuando no tengas pedidos puedes sumarte al Programa Hunter: reportas locales que aún no están en Rappi y, si se suman, recibes tu bono. Tú decides cuándo.</p><div class="pf-btns"><button type="button" class="pf-btn" data-act="hr-learn">Conocer el programa</button></div></div>';
+      document.getElementById("pf-perfil").innerHTML = '<div class="pf-sec hr-card"><h4>Programa Hunter</h4><p>Sin pedidos, reporta locales nuevos. Si avanzan, ganas un bono.</p><div class="pf-btns"><button type="button" class="pf-btn" data-act="hr-learn">Conocer el programa</button></div></div>';
       var tn0 = document.getElementById("pf-tab-n"); if (tn0) tn0.hidden = true;
       return;
     }
@@ -6050,7 +6077,8 @@
   }
   document.getElementById("pf-tabs").addEventListener("click", function (e) { var b = e.target.closest("button[data-pt]"); if (b) setProfTab(b.dataset.pt); });
   document.getElementById("pf-ajustes").addEventListener("click", function (e) {
-    var s = e.target.closest("[data-pref]"), a = e.target.closest("[data-act]"), th = e.target.closest("[data-theme-set]");
+    var s = e.target.closest("[data-pref]"), a = e.target.closest("[data-act]"), th = e.target.closest("[data-theme-set]"), fl = e.target.closest("[data-fleet]");
+    if (fl) { fleetType = fl.dataset.fleet; syncPause(); renderAjustes(); showRToast(fleetType === "full" ? "Full-time: Hunter se pausa donde hay mucha demanda." : "Part-time: Hunter siempre disponible en tu valle."); return; }
     if (th) { setTheme(th.dataset.themeSet); return; }
     if (s) { prefs[s.dataset.pref] = !prefs[s.dataset.pref]; savePrefs(); applyPrefs(); renderAjustes(); return; }
     if (a && a.dataset.act === "geo-real") { closeProfile(); setTimeout(geoUserAsk, 480); }
@@ -6751,7 +6779,7 @@
       srGoal("Meta de hoy", "Completa " + SR.goalDay + " pedidos hoy.", today, SR.goalDay) +
       srGoal("Meta semanal", "Completa " + SR.goalWeek + " pedidos de lunes a domingo.", wk, SR.goalWeek) +
       srGoal("Hora punta", "Entrega " + SR.peakNeed + " pedidos entre las 19 y las 22 h.", peak, SR.peakNeed) + "</div>" +
-      (!hunterRole ? '<div class="sr-c sr-hun"><h4 aria-level="3">Programa Hunter<small>Nuevo</small></h4><p style="margin:0;font-size:13.5px;line-height:1.45;color:var(--ink2)">Reporta locales que aún no están en Rappi cuando no tengas pedidos y gana un bono si se suman.</p><button class="sr-btn blk" type="button" data-go="hunter">Conocer el programa</button></div>' : '<div class="sr-c sr-hun"><h4 aria-level="3">Modo Hunter<small>Esta semana</small></h4><div class="nums"><div><b>' + L.length + "</b><span>Leads enviados</span></div><div><b>" + act + "</b><span>Locales activos</span></div><div><b>" + count + "/" + CUPO + "</b><span>Cupo en uso</span></div></div>" +
+      (!hunterRole ? '<div class="sr-c sr-hun"><h4 aria-level="3">Programa Hunter<small>Nuevo</small></h4><p style="margin:0;font-size:13.5px;line-height:1.45;color:var(--ink2)">Reporta locales nuevos sin pedidos y gana un bono.</p><button class="sr-btn blk" type="button" data-go="hunter">Conocer el programa</button></div>' : '<div class="sr-c sr-hun"><h4 aria-level="3">Modo Hunter<small>Esta semana</small></h4><div class="nums"><div><b>' + L.length + "</b><span>Leads enviados</span></div><div><b>" + act + "</b><span>Locales activos</span></div><div><b>" + count + "/" + CUPO + "</b><span>Cupo en uso</span></div></div>" +
       '<button class="sr-btn blk" type="button" data-go="hunter">Ir al Modo Hunter</button></div>') +
       '<div class="sr-c"><div class="sr-rows">' + srInfo("tip", "Propinas: 100% tuyas", "Todo lo que te dejan los clientes es para ti.") + srInfo("wallet", "Pago semanal", "Tus ganancias se depositan cada semana en tu cuenta bancaria vinculada.") + srInfo("bag", "Tarjeta de compras", "En pedidos de compras, Rappi te transfiere el dinero y no adelantas nada.") + "</div></div>" +
       '<div class="sr-c"><h4 aria-level="3">Invita a un amigo<small>Suma por cada referido</small></h4><div class="sr-ref"><code>RAPPI-4821</code><button class="sr-btn sec" type="button" data-go="copy">Copiar código</button></div></div>';
@@ -6943,11 +6971,11 @@
 
   /* --- Novedades de la versión --- */
   var WN = [
-    { k: "Nuevo · Modo Hunter", t: "Gana más mientras esperas", p: "En tiempo de valle, reporta locales que aún no están en Rappi. Si el local se suma, recibes tu bono. Tus pedidos siempre van primero.", i: "hun" },
-    { k: "Mapa inteligente", t: "Zonas calientes y frías", p: "Mira dónde hay más oportunidades en Santiago. Con tu GPS ves el mapa real; sin él, un mapa de demostración.", i: "map" },
-    { k: "Misiones y niveles", t: "Cada lead suma", p: "Sigue el avance de tus leads, cumple misiones y sube de nivel: de Explorador a Leyenda.", i: "trend" },
-    { k: "Tú decides", t: "Sin metas obligatorias", p: "Con un pedido en curso el Modo Hunter se bloquea solo. Además llegó el modo oscuro, en Cuenta › Ajustes.", i: "moon" },
-    { k: "Nuevo · Tu seguridad primero", t: "Reporta solo detenido", p: "Si vas en movimiento, la app bloquea el reporte y guarda tu borrador. Si te llega un pedido mientras reportas, aparece por encima y no afecta tu aceptación.", i: "shield" }
+    { k: "Nuevo · Modo Hunter", t: "Gana más mientras esperas", p: "Sin pedido, reporta locales nuevos. Si avanzan, ganas un bono.", i: "hun" },
+    { k: "Mapa inteligente", t: "Zonas calientes y frías", p: "Mira dónde hay más oportunidades. Con GPS, mapa real.", i: "map" },
+    { k: "Misiones y niveles", t: "Cada lead suma", p: "Sigue tus leads, cumple misiones y sube de nivel.", i: "trend" },
+    { k: "Tú decides", t: "Sin metas obligatorias", p: "Con un pedido en curso, Hunter se bloquea solo.", i: "moon" },
+    { k: "Nuevo · Tu seguridad primero", t: "Reporta solo detenido", p: "En movimiento, la app bloquea el reporte y guarda tu borrador.", i: "shield" }
   ];
   var wnEl = document.getElementById("wn"), wnI = 0, WN_KEY = "rh_wn13";
   function srWnRender(anim) {

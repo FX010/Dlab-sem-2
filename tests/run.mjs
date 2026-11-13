@@ -9,7 +9,7 @@ import path from "node:path";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
-const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v16.html");
+const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v17.html");
 const only = (args.find(a => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
 const want = k => !only.length || only.includes(k);
 const BASE = path.join(HERE, "baseline-v15.json");
@@ -153,6 +153,36 @@ if (want("virtual")) {
     await page.screenshot({ path: path.join(OUT, "escenario-virtual.png") });
     ok("escenario virtual: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
   } else ok("escenario virtual: no incluido en esta versión (se omite)", true);
+  await ctx.close();
+}
+
+/* 5. v17: feedback de Rappi (13-nov): pausa por demanda, bono por lead pertinente, piloto en todo Santiago */
+if (want("v17")) {
+  const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
+  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v17/.test(document.title));
+  if (has) {
+    const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
+    await click("#hint-hunter"); await page.waitForTimeout(1200);
+    await click("#invite-accept"); await page.waitForTimeout(3000);
+    await click("#avatar-btn"); await page.waitForTimeout(600);
+    await click('#pf-tabs [data-pt="ajustes"]'); await page.waitForTimeout(300);
+    const txt = await page.evaluate(() => document.getElementById("pf-ajustes").textContent);
+    ok("v17: Ajustes dice que el piloto cubre todo Santiago con grupo reducido", /grupo reducido/.test(txt) && /todas las comunas de Santiago/.test(txt));
+    await click('[data-fleet="full"]'); await page.waitForTimeout(300);
+    await click("#pf-close"); await page.waitForTimeout(600);
+    let r = await page.evaluate(() => { document.getElementById("hunter").click(); return { paused: document.getElementById("hunter").classList.contains("paused"), sheet: document.getElementById("lead-sheet").getAttribute("aria-hidden"), toast: document.getElementById("rtoast-txt").textContent }; });
+    ok("v17: full-time en zona de alta demanda queda en pausa y no abre el formulario", r.paused && r.sheet === "true" && /Pausa Hunter/.test(r.toast), r.toast);
+    await click("#avatar-btn"); await page.waitForTimeout(600);
+    await click('#pf-tabs [data-pt="ajustes"]'); await page.waitForTimeout(300);
+    await click('[data-fleet="part"]'); await page.waitForTimeout(300);
+    await click("#pf-close"); await page.waitForTimeout(600);
+    r = await page.evaluate(() => { document.getElementById("hunter").click(); return { paused: document.getElementById("hunter").classList.contains("paused"), sheet: document.getElementById("lead-sheet").getAttribute("aria-hidden") }; });
+    ok("v17: part-time puede reportar en la misma zona", !r.paused && r.sheet === "false");
+    const src = await page.content();
+    ok("v17: el seguimiento reconoce el lead pertinente aunque no cierre", /Pertinente · bono/.test(src) && /Conservas tu bono/.test(src));
+    ok("v17: la oficina marca leads pertinentes y la sincronización con HubSpot", /pert-badge/.test(src) && /HubSpot: lead sincronizado/.test(src));
+    ok("v17: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
+  } else ok("v17: no incluido en esta versión (se omite)", true);
   await ctx.close();
 }
 
