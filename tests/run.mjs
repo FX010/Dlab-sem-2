@@ -97,6 +97,16 @@ if (want("form")) {
   await ctx.close();
 }
 
+/* 2c. El QR de «Mi código Hunter» abre la demo (H-05), no un perfil personal */
+if (want("qr")) {
+  const { default: jsQR } = await import("jsqr"), { PNG } = await import("pngjs");
+  const html = readFileSync(file, "utf8"), m = html.match(/QR_DATA_URI = "data:image\/png;base64,([^"]+)"/);
+  let data = null;
+  if (m) { const img = PNG.sync.read(Buffer.from(m[1], "base64")); const d = jsQR(new Uint8ClampedArray(img.data), img.width, img.height); data = d && d.data; }
+  ok("QR de Mi código Hunter apunta a la demo", data === "https://fx010.github.io/Dlab-sem-2/", String(data));
+  ok("sin enlaces a perfiles personales", !/linktr\.ee/i.test(html));
+}
+
 /* 3. Regresión del gemelo: con las mejoras v16 apagadas debe dar exactamente lo mismo que la v15 */
 if (want("regression")) {
   const { ctx, page } = await openPage();

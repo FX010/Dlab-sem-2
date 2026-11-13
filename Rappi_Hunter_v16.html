@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Soy Rappi · Rappi Hunters (concepto v15)</title>
+<title>Soy Rappi · Rappi Hunters (concepto v16)</title>
 <script>try{var __t=localStorage.getItem("rh_theme");if(__t==="light"||__t==="dark")document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -4534,7 +4534,7 @@
 
   /* Mi QR Hunter — código QR real provisto por el usuario, incrustado como imagen */
   var qr = document.getElementById("qr");
-  var QR_DATA_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQMAAACZOPi8AAAABlBMVEUaGiL///8n/1a2AAABFklEQVR42u2ZwQ7DMAhD0f7/nz0tBEN66X0vtFUrlJMF2Liht4h7gn0iMvS7la98VlafeIt/OhEFmhGITFSWiMcGYdXKQmFmwXjsYsncxcPNkm8uHp4XCUZWB3d+eIweF5ZfTu6Va2MHD4/NKVHKQ8aJqT/iRERuo5Unzg9P0fwI58Tkl6HCFK1XofOjWkUxsNm1wtRjRTAWY3uxE5Nve7HtPjHzIPWpK0M1S91ERP1hQondJqNQkPxSOnX2SmD3l2GUSS1E0Pt+77ZjeED9QtdGkc3YZrj77TQ+TDdk/yN6cWlHCOyPeYqaYKh6PYZm18MawfvrwyZj18dhDAXXD+o+KRfEOz/ZX1drkf4m++v3//498YwvcCIxuyYHnj8AAAAASUVORK5CYII=";
+  var QR_DATA_URI = "data:image/png;base64,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";
   function drawQr() {
     document.getElementById("qr-img").src = QR_DATA_URI;
   }
@@ -6019,7 +6019,7 @@
       "<p>" + (nxt ? "Te " + (need === 1 ? "falta 1 local activo" : "faltan " + need + " locales activos") + " para ser " + nxt.n + "." : "Llegaste al nivel más alto. ¡Gracias por hacer crecer Rappi!") + "</p></div>" +
       '<div class="pf-grid"><div class="pf-box"><b>' + sent + "</b><span>Leads enviados</span></div><div class=\"pf-box\"><b>" + act + "</b><span>Locales activos</span></div><div class=\"pf-box\"><b>" + count + " de " + CUPO + "</b><span>Cupo en uso</span></div></div>" +
       '<div class="pf-sec"><h4>Insignias</h4><div class="pf-badges">' + bds.map(function (b) { return '<div class="pf-bd' + (b[2] ? " on" : "") + '">' + bdSvg(b[0]) + b[1] + "</div>"; }).join("") + "</div></div>" +
-      '<div class="pf-sec"><h4>Mi Linktree</h4><p>Tu página con enlaces para compartir con los dueños de locales.</p><a class="pf-link" href="https://linktr.ee/PedroH192" target="_blank" rel="noopener noreferrer">linktr.ee/PedroH192 <span aria-hidden="true">↗</span></a></div>' + srAccount();
+      '<div class="pf-sec"><h4>Página del programa</h4><p>Enlace para compartir con los dueños de locales (demo del proyecto).</p><a class="pf-link" href="https://fx010.github.io/Dlab-sem-2/" target="_blank" rel="noopener noreferrer">fx010.github.io/Dlab-sem-2 <span aria-hidden="true">↗</span></a></div>' + srAccount();
     var tn = document.getElementById("pf-tab-n");
     tn.hidden = !run; tn.textContent = run;
   }

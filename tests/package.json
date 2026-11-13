@@ -2,6 +2,13 @@
   "name": "rappi-hunter-tests",
   "private": true,
   "description": "Pruebas automáticas del prototipo Rappi Hunter (solo desarrollo; la app no tiene dependencias).",
-  "scripts": { "test": "node run.mjs" },
-  "devDependencies": { "playwright-core": "1.56.1" }
+  "scripts": {
+    "test": "node run.mjs"
+  },
+  "devDependencies": {
+    "jsqr": "^1.4.0",
+    "playwright-core": "1.56.1",
+    "pngjs": "^7.0.0",
+    "qrcode": "^1.5.4"
+  }
 }
