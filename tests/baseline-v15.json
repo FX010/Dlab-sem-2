@@ -1,0 +1,443 @@
+{
+ "base:14": {
+  "leadsHunter": 1077,
+  "leadsTotal": 1199,
+  "convIncorp": 0.466222,
+  "avgHoursToContact": 22.743137,
+  "slaOut": 14,
+  "cupoUtil": 0.26388,
+  "dupBlocked": 111,
+  "dupEscaped": 27,
+  "execLoad": 0.891875,
+  "lockBlocked": 1945,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 95,
+   "contactado": 55,
+   "gestionado": 215,
+   "incorporado": 559,
+   "rechazado": 275
+  },
+  "violations": 0
+ },
+ "base:15": {
+  "leadsHunter": 1188,
+  "leadsTotal": 1309,
+  "convIncorp": 0.47288,
+  "avgHoursToContact": 28.332381,
+  "slaOut": 74,
+  "cupoUtil": 0.274479,
+  "dupBlocked": 98,
+  "dupEscaped": 37,
+  "execLoad": 0.93375,
+  "lockBlocked": 1930,
+  "cupoBlocked": 2,
+  "funnel": {
+   "postulado": 173,
+   "contactado": 45,
+   "gestionado": 190,
+   "incorporado": 619,
+   "rechazado": 282
+  },
+  "violations": 0
+ },
+ "base:16": {
+  "leadsHunter": 1011,
+  "leadsTotal": 1134,
+  "convIncorp": 0.491182,
+  "avgHoursToContact": 12.714142,
+  "slaOut": 0,
+  "cupoUtil": 0.260845,
+  "dupBlocked": 96,
+  "dupEscaped": 25,
+  "execLoad": 0.887708,
+  "lockBlocked": 1965,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 60,
+   "contactado": 33,
+   "gestionado": 201,
+   "incorporado": 557,
+   "rechazado": 283
+  },
+  "violations": 0
+ },
+ "punta:14": {
+  "leadsHunter": 360,
+  "leadsTotal": 471,
+  "convIncorp": 0.464968,
+  "avgHoursToContact": 2.783105,
+  "slaOut": 0,
+  "cupoUtil": 0.216137,
+  "dupBlocked": 35,
+  "dupEscaped": 14,
+  "execLoad": 0.386042,
+  "lockBlocked": 2998,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 1,
+   "contactado": 20,
+   "gestionado": 109,
+   "incorporado": 219,
+   "rechazado": 122
+  },
+  "violations": 0
+ },
+ "punta:15": {
+  "leadsHunter": 393,
+  "leadsTotal": 521,
+  "convIncorp": 0.483685,
+  "avgHoursToContact": 3.554639,
+  "slaOut": 0,
+  "cupoUtil": 0.220662,
+  "dupBlocked": 38,
+  "dupEscaped": 13,
+  "execLoad": 0.415833,
+  "lockBlocked": 3003,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 1,
+   "contactado": 24,
+   "gestionado": 100,
+   "incorporado": 252,
+   "rechazado": 144
+  },
+  "violations": 0
+ },
+ "punta:16": {
+  "leadsHunter": 337,
+  "leadsTotal": 468,
+  "convIncorp": 0.532051,
+  "avgHoursToContact": 2.857466,
+  "slaOut": 0,
+  "cupoUtil": 0.224618,
+  "dupBlocked": 40,
+  "dupEscaped": 6,
+  "execLoad": 0.393958,
+  "lockBlocked": 3051,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 2,
+   "contactado": 27,
+   "gestionado": 93,
+   "incorporado": 249,
+   "rechazado": 97
+  },
+  "violations": 0
+ },
+ "valle0:14": {
+  "leadsHunter": 0,
+  "leadsTotal": 113,
+  "convIncorp": 0.495575,
+  "avgHoursToContact": 1.259615,
+  "slaOut": 0,
+  "cupoUtil": 0,
+  "dupBlocked": 0,
+  "dupEscaped": 0,
+  "execLoad": 0.092292,
+  "lockBlocked": 3515,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 0,
+   "contactado": 7,
+   "gestionado": 18,
+   "incorporado": 56,
+   "rechazado": 32
+  },
+  "violations": 0
+ },
+ "valle0:15": {
+  "leadsHunter": 0,
+  "leadsTotal": 124,
+  "convIncorp": 0.556452,
+  "avgHoursToContact": 1.243478,
+  "slaOut": 0,
+  "cupoUtil": 0,
+  "dupBlocked": 0,
+  "dupEscaped": 0,
+  "execLoad": 0.108125,
+  "lockBlocked": 3528,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 0,
+   "contactado": 5,
+   "gestionado": 23,
+   "incorporado": 69,
+   "rechazado": 27
+  },
+  "violations": 0
+ },
+ "valle0:16": {
+  "leadsHunter": 0,
+  "leadsTotal": 119,
+  "convIncorp": 0.512605,
+  "avgHoursToContact": 1.216216,
+  "slaOut": 0,
+  "cupoUtil": 0,
+  "dupBlocked": 0,
+  "dupEscaped": 0,
+  "execLoad": 0.095208,
+  "lockBlocked": 3594,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 0,
+   "contactado": 9,
+   "gestionado": 27,
+   "incorporado": 61,
+   "rechazado": 22
+  },
+  "violations": 0
+ },
+ "spam:14": {
+  "leadsHunter": 754,
+  "leadsTotal": 876,
+  "convIncorp": 0.534247,
+  "avgHoursToContact": 3.560049,
+  "slaOut": 0,
+  "cupoUtil": 0.248964,
+  "dupBlocked": 426,
+  "dupEscaped": 163,
+  "execLoad": 0.7,
+  "lockBlocked": 1966,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 6,
+   "contactado": 42,
+   "gestionado": 170,
+   "incorporado": 468,
+   "rechazado": 190
+  },
+  "violations": 0
+ },
+ "spam:15": {
+  "leadsHunter": 806,
+  "leadsTotal": 927,
+  "convIncorp": 0.481122,
+  "avgHoursToContact": 3.890071,
+  "slaOut": 0,
+  "cupoUtil": 0.250536,
+  "dupBlocked": 466,
+  "dupEscaped": 187,
+  "execLoad": 0.735625,
+  "lockBlocked": 1929,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 9,
+   "contactado": 47,
+   "gestionado": 180,
+   "incorporado": 446,
+   "rechazado": 245
+  },
+  "violations": 0
+ },
+ "spam:16": {
+  "leadsHunter": 726,
+  "leadsTotal": 853,
+  "convIncorp": 0.493552,
+  "avgHoursToContact": 3.678887,
+  "slaOut": 0,
+  "cupoUtil": 0.24213,
+  "dupBlocked": 402,
+  "dupEscaped": 160,
+  "execLoad": 0.70375,
+  "lockBlocked": 1978,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 4,
+   "contactado": 41,
+   "gestionado": 180,
+   "incorporado": 421,
+   "rechazado": 207
+  },
+  "violations": 0
+ },
+ "saturada:14": {
+  "leadsHunter": 1075,
+  "leadsTotal": 1315,
+  "convIncorp": 0.16654,
+  "avgHoursToContact": 191.549118,
+  "slaOut": 803,
+  "cupoUtil": 0.331007,
+  "dupBlocked": 103,
+  "dupEscaped": 36,
+  "execLoad": 0.986111,
+  "lockBlocked": 1969,
+  "cupoBlocked": 29,
+  "funnel": {
+   "postulado": 890,
+   "contactado": 16,
+   "gestionado": 86,
+   "incorporado": 219,
+   "rechazado": 104
+  },
+  "violations": 0
+ },
+ "saturada:15": {
+  "leadsHunter": 1154,
+  "leadsTotal": 1394,
+  "convIncorp": 0.176471,
+  "avgHoursToContact": 214.610849,
+  "slaOut": 849,
+  "cupoUtil": 0.347326,
+  "dupBlocked": 102,
+  "dupEscaped": 35,
+  "execLoad": 0.992778,
+  "lockBlocked": 1937,
+  "cupoBlocked": 39,
+  "funnel": {
+   "postulado": 940,
+   "contactado": 19,
+   "gestionado": 72,
+   "incorporado": 246,
+   "rechazado": 117
+  },
+  "violations": 0
+ },
+ "saturada:16": {
+  "leadsHunter": 998,
+  "leadsTotal": 1238,
+  "convIncorp": 0.198708,
+  "avgHoursToContact": 189.130435,
+  "slaOut": 707,
+  "cupoUtil": 0.33044,
+  "dupBlocked": 87,
+  "dupEscaped": 36,
+  "execLoad": 0.989444,
+  "lockBlocked": 1990,
+  "cupoBlocked": 34,
+  "funnel": {
+   "postulado": 800,
+   "contactado": 20,
+   "gestionado": 68,
+   "incorporado": 246,
+   "rechazado": 104
+  },
+  "violations": 0
+ },
+ "frias:14": {
+  "leadsHunter": 1108,
+  "leadsTotal": 1209,
+  "convIncorp": 0.483871,
+  "avgHoursToContact": 30.642578,
+  "slaOut": 49,
+  "cupoUtil": 0.278011,
+  "dupBlocked": 110,
+  "dupEscaped": 39,
+  "execLoad": 0.889375,
+  "lockBlocked": 1985,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 129,
+   "contactado": 66,
+   "gestionado": 195,
+   "incorporado": 585,
+   "rechazado": 234
+  },
+  "violations": 0
+ },
+ "frias:15": {
+  "leadsHunter": 1183,
+  "leadsTotal": 1310,
+  "convIncorp": 0.455725,
+  "avgHoursToContact": 37.625122,
+  "slaOut": 115,
+  "cupoUtil": 0.289833,
+  "dupBlocked": 116,
+  "dupEscaped": 34,
+  "execLoad": 0.932292,
+  "lockBlocked": 1943,
+  "cupoBlocked": 3,
+  "funnel": {
+   "postulado": 208,
+   "contactado": 47,
+   "gestionado": 195,
+   "incorporado": 597,
+   "rechazado": 263
+  },
+  "violations": 0
+ },
+ "frias:16": {
+  "leadsHunter": 1025,
+  "leadsTotal": 1150,
+  "convIncorp": 0.488696,
+  "avgHoursToContact": 12.857994,
+  "slaOut": 0,
+  "cupoUtil": 0.268298,
+  "dupBlocked": 88,
+  "dupEscaped": 29,
+  "execLoad": 0.888542,
+  "lockBlocked": 1972,
+  "cupoBlocked": 0,
+  "funnel": {
+   "postulado": 67,
+   "contactado": 37,
+   "gestionado": 211,
+   "incorporado": 562,
+   "rechazado": 273
+  },
+  "violations": 0
+ },
+ "cupo:14": {
+  "leadsHunter": 3945,
+  "leadsTotal": 4070,
+  "convIncorp": 0.168059,
+  "avgHoursToContact": 303.504898,
+  "slaOut": 2795,
+  "cupoUtil": 0.968135,
+  "dupBlocked": 377,
+  "dupEscaped": 114,
+  "execLoad": 1,
+  "lockBlocked": 2775,
+  "cupoBlocked": 37753,
+  "funnel": {
+   "postulado": 2872,
+   "contactado": 24,
+   "gestionado": 209,
+   "incorporado": 684,
+   "rechazado": 281
+  },
+  "violations": 0
+ },
+ "cupo:15": {
+  "leadsHunter": 3926,
+  "leadsTotal": 4054,
+  "convIncorp": 0.162556,
+  "avgHoursToContact": 301.285324,
+  "slaOut": 2784,
+  "cupoUtil": 0.967301,
+  "dupBlocked": 370,
+  "dupEscaped": 111,
+  "execLoad": 1,
+  "lockBlocked": 2673,
+  "cupoBlocked": 37783,
+  "funnel": {
+   "postulado": 2875,
+   "contactado": 38,
+   "gestionado": 200,
+   "incorporado": 659,
+   "rechazado": 282
+  },
+  "violations": 0
+ },
+ "cupo:16": {
+  "leadsHunter": 3940,
+  "leadsTotal": 4070,
+  "convIncorp": 0.162408,
+  "avgHoursToContact": 301.690991,
+  "slaOut": 2795,
+  "cupoUtil": 0.967317,
+  "dupBlocked": 418,
+  "dupEscaped": 126,
+  "execLoad": 1,
+  "lockBlocked": 2717,
+  "cupoBlocked": 37580,
+  "funnel": {
+   "postulado": 2878,
+   "contactado": 38,
+   "gestionado": 194,
+   "incorporado": 661,
+   "rechazado": 299
+  },
+  "violations": 0
+ }
+}
