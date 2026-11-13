@@ -1,0 +1,6660 @@
+{
+ "simulado": true,
+ "generado": "2026-11-13T15:36:19.979Z",
+ "semillas": "14 a 33 (barridos: 14 a 21)",
+ "palancas": {
+  "officeCap": true,
+  "missions": 0.3,
+  "policy": "etapa"
+ },
+ "v15": {
+  "base": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1074.05,
+    "min": 988,
+    "max": 1188
+   },
+   "leadsTotal": {
+    "mean": 1193.2,
+    "min": 1109,
+    "max": 1309
+   },
+   "convIncorp": {
+    "mean": 0.49061812056621157,
+    "min": 0.4510433386837881,
+    "max": 0.54070796460177
+   },
+   "avgHoursToContact": {
+    "mean": 19.883060508303693,
+    "min": 6.107707509881423,
+    "max": 34.41306436119116
+   },
+   "slaOut": {
+    "mean": 20.15,
+    "min": 0,
+    "max": 95
+   },
+   "cupoUtil": {
+    "mean": 0.26778307953840474,
+    "min": 0.2555875798555554,
+    "max": 0.2763449094838524
+   },
+   "dupBlocked": {
+    "mean": 107.05,
+    "min": 82,
+    "max": 130
+   },
+   "dupEscaped": {
+    "mean": 34.4,
+    "min": 24,
+    "max": 44
+   },
+   "escapeRate": {
+    "mean": 0.24383103586119023,
+    "min": 0.1791044776119403,
+    "max": 0.30578512396694213
+   },
+   "falseRate": {
+    "mean": 0.00019826538390119207,
+    "min": 0,
+    "max": 0.0010416666666666667
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.9032083333333333,
+    "min": 0.8760416666666667,
+    "max": 0.93375
+   },
+   "coldShare": {
+    "mean": 0.09520292959708292,
+    "min": 0.07154882154882154,
+    "max": 0.11133603238866396
+   },
+   "coldStartShare": {
+    "mean": 0.18045671944312244,
+    "min": 0.15866797257590598,
+    "max": 0.22294776119402984
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 584.6,
+    "min": 557,
+    "max": 628
+   }
+  },
+  "punta": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 363.3,
+    "min": 325,
+    "max": 405
+   },
+   "leadsTotal": {
+    "mean": 486,
+    "min": 446,
+    "max": 523
+   },
+   "convIncorp": {
+    "mean": 0.5180465545618878,
+    "min": 0.46496815286624205,
+    "max": 0.5564356435643565
+   },
+   "avgHoursToContact": {
+    "mean": 2.9017234284892215,
+    "min": 2.325980392156863,
+    "max": 3.5720430107526884
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0.22030597958824155,
+    "min": 0.21363292878537193,
+    "max": 0.22776075809249802
+   },
+   "dupBlocked": {
+    "mean": 33.6,
+    "min": 19,
+    "max": 49
+   },
+   "dupEscaped": {
+    "mean": 10.8,
+    "min": 6,
+    "max": 19
+   },
+   "escapeRate": {
+    "mean": 0.2442897656763638,
+    "min": 0.13043478260869565,
+    "max": 0.3877551020408163
+   },
+   "falseRate": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.39596875000000004,
+    "min": 0.361875,
+    "max": 0.42625
+   },
+   "coldShare": {
+    "mean": 0.11625332532696733,
+    "min": 0.07738095238095238,
+    "max": 0.1440443213296399
+   },
+   "coldStartShare": {
+    "mean": 0.17948665356169075,
+    "min": 0.1361111111111111,
+    "max": 0.25076452599388377
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 251.85,
+    "min": 219,
+    "max": 282
+   }
+  },
+  "valle0": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "leadsTotal": {
+    "mean": 118.85,
+    "min": 110,
+    "max": 131
+   },
+   "convIncorp": {
+    "mean": 0.5188463375261763,
+    "min": 0.4375,
+    "max": 0.5966386554621849
+   },
+   "avgHoursToContact": {
+    "mean": 1.2408649743300653,
+    "min": 1.16,
+    "max": 1.3275862068965518
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dupBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dupEscaped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "escapeRate": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "falseRate": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.09930208333333333,
+    "min": 0.08708333333333333,
+    "max": 0.110625
+   },
+   "coldShare": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "coldStartShare": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 61.65,
+    "min": 49,
+    "max": 71
+   }
+  },
+  "spam": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 764.7,
+    "min": 693,
+    "max": 840
+   },
+   "leadsTotal": {
+    "mean": 885.45,
+    "min": 826,
+    "max": 957
+   },
+   "convIncorp": {
+    "mean": 0.5211423091116633,
+    "min": 0.4811218985976268,
+    "max": 0.5473340587595212
+   },
+   "avgHoursToContact": {
+    "mean": 3.7395899808029966,
+    "min": 3.028497409326425,
+    "max": 4.595480225988701
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0.24703412182666643,
+    "min": 0.24120947290473446,
+    "max": 0.2515797395453351
+   },
+   "dupBlocked": {
+    "mean": 417.65,
+    "min": 375,
+    "max": 473
+   },
+   "dupEscaped": {
+    "mean": 168.55,
+    "min": 153,
+    "max": 189
+   },
+   "escapeRate": {
+    "mean": 0.2875006180734768,
+    "min": 0.27419354838709675,
+    "max": 0.3083197389885807
+   },
+   "falseRate": {
+    "mean": 0.0000819672131147541,
+    "min": 0,
+    "max": 0.001639344262295082
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.7151458333333334,
+    "min": 0.6633333333333333,
+    "max": 0.7604166666666666
+   },
+   "coldShare": {
+    "mean": 0.10888130252122626,
+    "min": 0.07282913165266107,
+    "max": 0.15702479338842976
+   },
+   "coldStartShare": {
+    "mean": 0.18371714534251932,
+    "min": 0.14986376021798364,
+    "max": 0.2151238591916558
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 461.4,
+    "min": 421,
+    "max": 503
+   }
+  },
+  "saturada": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1061.9,
+    "min": 984,
+    "max": 1155
+   },
+   "leadsTotal": {
+    "mean": 1301.9,
+    "min": 1224,
+    "max": 1395
+   },
+   "convIncorp": {
+    "mean": 0.18416786494563092,
+    "min": 0.1635036496350365,
+    "max": 0.20915032679738563
+   },
+   "avgHoursToContact": {
+    "mean": 199.43681510878346,
+    "min": 186.3980343980344,
+    "max": 214.61084905660377
+   },
+   "slaOut": {
+    "mean": 773.8,
+    "min": 698,
+    "max": 858
+   },
+   "cupoUtil": {
+    "mean": 0.3338431868365469,
+    "min": 0.32115003236265494,
+    "max": 0.3574273567159387
+   },
+   "dupBlocked": {
+    "mean": 105.05,
+    "min": 87,
+    "max": 124
+   },
+   "dupEscaped": {
+    "mean": 35.35,
+    "min": 29,
+    "max": 42
+   },
+   "escapeRate": {
+    "mean": 0.2530837429063657,
+    "min": 0.20689655172413793,
+    "max": 0.3157894736842105
+   },
+   "falseRate": {
+    "mean": 0.00015363583575829612,
+    "min": 0,
+    "max": 0.0010482180293501049
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.9893055555555559,
+    "min": 0.9822222222222222,
+    "max": 0.9988888888888889
+   },
+   "coldShare": {
+    "mean": 0.07119759708712893,
+    "min": 0.06412478336221837,
+    "max": 0.08028455284552846
+   },
+   "coldStartShare": {
+    "mean": 0.17328742974029293,
+    "min": 0.14961389961389962,
+    "max": 0.19661335841956726
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 239.35,
+    "min": 216,
+    "max": 256
+   }
+  },
+  "frias": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1083.85,
+    "min": 968,
+    "max": 1183
+   },
+   "leadsTotal": {
+    "mean": 1202.65,
+    "min": 1084,
+    "max": 1310
+   },
+   "convIncorp": {
+    "mean": 0.48706193925203306,
+    "min": 0.45278637770897834,
+    "max": 0.5296722763507529
+   },
+   "avgHoursToContact": {
+    "mean": 22.70172080833829,
+    "min": 6.7172413793103445,
+    "max": 39.4
+   },
+   "slaOut": {
+    "mean": 32.3,
+    "min": 0,
+    "max": 115
+   },
+   "cupoUtil": {
+    "mean": 0.2726180442288349,
+    "min": 0.26172805620136014,
+    "max": 0.2898332095508463
+   },
+   "dupBlocked": {
+    "mean": 107.1,
+    "min": 80,
+    "max": 123
+   },
+   "dupEscaped": {
+    "mean": 35.2,
+    "min": 25,
+    "max": 45
+   },
+   "escapeRate": {
+    "mean": 0.24804202186030397,
+    "min": 0.1956521739130435,
+    "max": 0.3220338983050847
+   },
+   "falseRate": {
+    "mean": 0.000050968399592252805,
+    "min": 0,
+    "max": 0.0010193679918450561
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.9030416666666667,
+    "min": 0.8595833333333334,
+    "max": 0.9322916666666666
+   },
+   "coldShare": {
+    "mean": 0.020298991710384188,
+    "min": 0.007662835249042145,
+    "max": 0.037104072398190045
+   },
+   "coldStartShare": {
+    "mean": 0.02460844147004878,
+    "min": 0.01053639846743295,
+    "max": 0.04524886877828054
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 584.95,
+    "min": 548,
+    "max": 654
+   }
+  },
+  "cupo": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 3933.65,
+    "min": 3910,
+    "max": 3964
+   },
+   "leadsTotal": {
+    "mean": 4055.25,
+    "min": 4020,
+    "max": 4083
+   },
+   "convIncorp": {
+    "mean": 0.16350523935828734,
+    "min": 0.15617314313821937,
+    "max": 0.16860034559368056
+   },
+   "avgHoursToContact": {
+    "mean": 305.68237254666553,
+    "min": 298.56216216216217,
+    "max": 314.0254609306409
+   },
+   "slaOut": {
+    "mean": 2776.05,
+    "min": 2735,
+    "max": 2807
+   },
+   "cupoUtil": {
+    "mean": 0.9674856233013951,
+    "min": 0.9660906954310271,
+    "max": 0.9690272749259324
+   },
+   "dupBlocked": {
+    "mean": 402.1,
+    "min": 370,
+    "max": 463
+   },
+   "dupEscaped": {
+    "mean": 124.25,
+    "min": 111,
+    "max": 145
+   },
+   "escapeRate": {
+    "mean": 0.236621131467793,
+    "min": 0.20517241379310344,
+    "max": 0.2741020793950851
+   },
+   "falseRate": {
+    "mean": 0.00019677514395702273,
+    "min": 0,
+    "max": 0.0007849293563579278
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 1,
+    "min": 1,
+    "max": 1
+   },
+   "coldShare": {
+    "mean": 0.01662619889822744,
+    "min": 0.01628498727735369,
+    "max": 0.017135549872122763
+   },
+   "coldStartShare": {
+    "mean": 0.17792969014143978,
+    "min": 0.1505238947099412,
+    "max": 0.2091901497842092
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 663.05,
+    "min": 635,
+    "max": 684
+   }
+  }
+ },
+ "v16": {
+  "base": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1055.4,
+    "min": 935,
+    "max": 1159
+   },
+   "leadsTotal": {
+    "mean": 1172.85,
+    "min": 1052,
+    "max": 1274
+   },
+   "convIncorp": {
+    "mean": 0.49162533725027524,
+    "min": 0.4690189328743546,
+    "max": 0.529467680608365
+   },
+   "avgHoursToContact": {
+    "mean": 17.682191937736526,
+    "min": 3.979381443298969,
+    "max": 30.288349514563105
+   },
+   "slaOut": {
+    "mean": 17.45,
+    "min": 0,
+    "max": 88
+   },
+   "cupoUtil": {
+    "mean": 0.26858119097271643,
+    "min": 0.25881026456831296,
+    "max": 0.27565237734453923
+   },
+   "dupBlocked": {
+    "mean": 90.9,
+    "min": 64,
+    "max": 109
+   },
+   "dupEscaped": {
+    "mean": 0.05,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0003816793893129771,
+    "min": 0,
+    "max": 0.007633587786259542
+   },
+   "falseRate": {
+    "mean": 0.000806406239237242,
+    "min": 0,
+    "max": 0.003787878787878788
+   },
+   "geoBlocked": {
+    "mean": 32.7,
+    "min": 21,
+    "max": 43
+   },
+   "rejBlocked": {
+    "mean": 19.55,
+    "min": 12,
+    "max": 28
+   },
+   "rejReadmit": {
+    "mean": 0.05,
+    "min": 0,
+    "max": 1
+   },
+   "execLoad": {
+    "mean": 0.8937916666666668,
+    "min": 0.848125,
+    "max": 0.9275
+   },
+   "coldShare": {
+    "mean": 0.0971134815812589,
+    "min": 0.07014218009478673,
+    "max": 0.12412412412412413
+   },
+   "coldStartShare": {
+    "mean": 0.17610797219560265,
+    "min": 0.1475095785440613,
+    "max": 0.2138188608776844
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 576,
+    "min": 545,
+    "max": 607
+   }
+  },
+  "punta": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 346.95,
+    "min": 306,
+    "max": 398
+   },
+   "leadsTotal": {
+    "mean": 467.3,
+    "min": 430,
+    "max": 515
+   },
+   "convIncorp": {
+    "mean": 0.5208857295280106,
+    "min": 0.4692622950819672,
+    "max": 0.5651162790697675
+   },
+   "avgHoursToContact": {
+    "mean": 2.1197872153437,
+    "min": 1.7677261613691932,
+    "max": 2.6384297520661155
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0.2203227184450684,
+    "min": 0.21380469008256972,
+    "max": 0.22429727715857153
+   },
+   "dupBlocked": {
+    "mean": 28.65,
+    "min": 15,
+    "max": 40
+   },
+   "dupEscaped": {
+    "mean": 0.2,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.005589757125260971,
+    "min": 0,
+    "max": 0.03225806451612903
+   },
+   "falseRate": {
+    "mean": 0.001329594043088357,
+    "min": 0,
+    "max": 0.0064516129032258064
+   },
+   "geoBlocked": {
+    "mean": 10.4,
+    "min": 4,
+    "max": 16
+   },
+   "rejBlocked": {
+    "mean": 5.95,
+    "min": 3,
+    "max": 11
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.3792083333333333,
+    "min": 0.346875,
+    "max": 0.42625
+   },
+   "coldShare": {
+    "mean": 0.12246463611714246,
+    "min": 0.09281437125748503,
+    "max": 0.1503267973856209
+   },
+   "coldStartShare": {
+    "mean": 0.18654389041660124,
+    "min": 0.14285714285714285,
+    "max": 0.2441860465116279
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 243.45,
+    "min": 216,
+    "max": 291
+   }
+  },
+  "valle0": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "leadsTotal": {
+    "mean": 118.8,
+    "min": 101,
+    "max": 134
+   },
+   "convIncorp": {
+    "mean": 0.5367689373507949,
+    "min": 0.4626865671641791,
+    "max": 0.6271186440677966
+   },
+   "avgHoursToContact": {
+    "mean": 1.2003187809874625,
+    "min": 1.0543478260869565,
+    "max": 1.3277310924369747
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dupBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dupEscaped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "escapeRate": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "falseRate": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.09726041666666665,
+    "min": 0.07875,
+    "max": 0.10645833333333334
+   },
+   "coldShare": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "coldStartShare": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 63.7,
+    "min": 53,
+    "max": 74
+   }
+  },
+  "spam": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 598.5,
+    "min": 535,
+    "max": 636
+   },
+   "leadsTotal": {
+    "mean": 718.8,
+    "min": 660,
+    "max": 765
+   },
+   "convIncorp": {
+    "mean": 0.5245422182126875,
+    "min": 0.49635036496350365,
+    "max": 0.5509933774834437
+   },
+   "avgHoursToContact": {
+    "mean": 2.4337074619817307,
+    "min": 2.0546218487394956,
+    "max": 2.846262341325811
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0.23448766157119344,
+    "min": 0.2282049127445214,
+    "max": 0.23909842560970015
+   },
+   "dupBlocked": {
+    "mean": 304.35,
+    "min": 262,
+    "max": 340
+   },
+   "dupEscaped": {
+    "mean": 0.75,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.001460807834812003,
+    "min": 0,
+    "max": 0.0022675736961451248
+   },
+   "falseRate": {
+    "mean": 0.000760811769512344,
+    "min": 0,
+    "max": 0.003676470588235294
+   },
+   "geoBlocked": {
+    "mean": 204.15,
+    "min": 158,
+    "max": 241
+   },
+   "rejBlocked": {
+    "mean": 80.45,
+    "min": 68,
+    "max": 100
+   },
+   "rejReadmit": {
+    "mean": 0.15,
+    "min": 0,
+    "max": 1
+   },
+   "execLoad": {
+    "mean": 0.5829895833333334,
+    "min": 0.5316666666666666,
+    "max": 0.6247916666666666
+   },
+   "coldShare": {
+    "mean": 0.10984019201032195,
+    "min": 0.08427876823338736,
+    "max": 0.12460567823343849
+   },
+   "coldStartShare": {
+    "mean": 0.17951966607438563,
+    "min": 0.14760147601476015,
+    "max": 0.21543408360128619
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 377.1,
+    "min": 340,
+    "max": 416
+   }
+  },
+  "saturada": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1028.25,
+    "min": 928,
+    "max": 1140
+   },
+   "leadsTotal": {
+    "mean": 1268.25,
+    "min": 1168,
+    "max": 1380
+   },
+   "convIncorp": {
+    "mean": 0.18988606748902453,
+    "min": 0.16884057971014493,
+    "max": 0.2131849315068493
+   },
+   "avgHoursToContact": {
+    "mean": 196.36415685910208,
+    "min": 186.4247572815534,
+    "max": 209.19770114942528
+   },
+   "slaOut": {
+    "mean": 736.75,
+    "min": 642,
+    "max": 835
+   },
+   "cupoUtil": {
+    "mean": 0.3258733774419612,
+    "min": 0.3116184142294165,
+    "max": 0.3456922732146246
+   },
+   "dupBlocked": {
+    "mean": 87.4,
+    "min": 69,
+    "max": 110
+   },
+   "dupEscaped": {
+    "mean": 0.15,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.001183594885633062,
+    "min": 0,
+    "max": 0.008620689655172414
+   },
+   "falseRate": {
+    "mean": 0.0007427640893819198,
+    "min": 0,
+    "max": 0.0021119324181626186
+   },
+   "geoBlocked": {
+    "mean": 32.9,
+    "min": 25,
+    "max": 41
+   },
+   "rejBlocked": {
+    "mean": 19.25,
+    "min": 10,
+    "max": 29
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.9888888888888889,
+    "min": 0.9816666666666667,
+    "max": 0.9944444444444445
+   },
+   "coldShare": {
+    "mean": 0.07341298725506616,
+    "min": 0.06255585344057193,
+    "max": 0.0842911877394636
+   },
+   "coldStartShare": {
+    "mean": 0.18413627503410557,
+    "min": 0.14211076280041798,
+    "max": 0.2282712511938873
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 240.15,
+    "min": 224,
+    "max": 252
+   }
+  },
+  "frias": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1047.95,
+    "min": 947,
+    "max": 1165
+   },
+   "leadsTotal": {
+    "mean": 1168.15,
+    "min": 1066,
+    "max": 1287
+   },
+   "convIncorp": {
+    "mean": 0.48923610096360737,
+    "min": 0.46093064091308167,
+    "max": 0.5164152617568767
+   },
+   "avgHoursToContact": {
+    "mean": 16.91205693042183,
+    "min": 6.341164453524004,
+    "max": 29.819592628516006
+   },
+   "slaOut": {
+    "mean": 13.1,
+    "min": 0,
+    "max": 89
+   },
+   "cupoUtil": {
+    "mean": 0.2666157977270195,
+    "min": 0.25862480576024943,
+    "max": 0.2782731695477177
+   },
+   "dupBlocked": {
+    "mean": 90.55,
+    "min": 79,
+    "max": 107
+   },
+   "dupEscaped": {
+    "mean": 0.1,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0007623188405797102,
+    "min": 0,
+    "max": 0.008
+   },
+   "falseRate": {
+    "mean": 0.0009529211892489546,
+    "min": 0,
+    "max": 0.0038095238095238095
+   },
+   "geoBlocked": {
+    "mean": 33.4,
+    "min": 25,
+    "max": 44
+   },
+   "rejBlocked": {
+    "mean": 22.2,
+    "min": 15,
+    "max": 30
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.8919479166666667,
+    "min": 0.8522916666666667,
+    "max": 0.9172916666666666
+   },
+   "coldShare": {
+    "mean": 0.021970509789350737,
+    "min": 0.007889546351084813,
+    "max": 0.04500978473581213
+   },
+   "coldStartShare": {
+    "mean": 0.025991977071648003,
+    "min": 0.007889546351084813,
+    "max": 0.05283757338551859
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 571,
+    "min": 525,
+    "max": 602
+   }
+  },
+  "cupo": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 3928.55,
+    "min": 3891,
+    "max": 3962
+   },
+   "leadsTotal": {
+    "mean": 4050.5,
+    "min": 4012,
+    "max": 4091
+   },
+   "convIncorp": {
+    "mean": 0.16239713895383193,
+    "min": 0.15900621118012423,
+    "max": 0.16810664033571956
+   },
+   "avgHoursToContact": {
+    "mean": 305.0668209561979,
+    "min": 300.12148685403446,
+    "max": 310.250657318142
+   },
+   "slaOut": {
+    "mean": 2769.65,
+    "min": 2741,
+    "max": 2797
+   },
+   "cupoUtil": {
+    "mean": 0.9647139221113978,
+    "min": 0.9632648852074285,
+    "max": 0.9662902624820836
+   },
+   "dupBlocked": {
+    "mean": 357.75,
+    "min": 326,
+    "max": 404
+   },
+   "dupEscaped": {
+    "mean": 0.05,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.00009633911368015414,
+    "min": 0,
+    "max": 0.0019267822736030828
+   },
+   "falseRate": {
+    "mean": 0.0007883496260390466,
+    "min": 0,
+    "max": 0.001534134492457172
+   },
+   "geoBlocked": {
+    "mean": 118.15,
+    "min": 98,
+    "max": 148
+   },
+   "rejBlocked": {
+    "mean": 62.45,
+    "min": 43,
+    "max": 77
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 1,
+    "min": 1,
+    "max": 1
+   },
+   "coldShare": {
+    "mean": 0.01658432996254535,
+    "min": 0.016198430777018477,
+    "max": 0.01712678936605317
+   },
+   "coldStartShare": {
+    "mean": 0.17754558797379982,
+    "min": 0.13604060913705585,
+    "max": 0.20779549481144013
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 657.8,
+    "min": 640,
+    "max": 681
+   }
+  },
+  "lanzamiento": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1947.75,
+    "min": 1807,
+    "max": 2113
+   },
+   "leadsTotal": {
+    "mean": 2189.4,
+    "min": 2039,
+    "max": 2340
+   },
+   "convIncorp": {
+    "mean": 0.4854010645398922,
+    "min": 0.45384615384615384,
+    "max": 0.5242766061794998
+   },
+   "avgHoursToContact": {
+    "mean": 41.05672632583146,
+    "min": 25.91025641025641,
+    "max": 59.169330965068085
+   },
+   "slaOut": {
+    "mean": 304.75,
+    "min": 175,
+    "max": 429
+   },
+   "cupoUtil": {
+    "mean": 0.27247689006791903,
+    "min": 0.2656372390983365,
+    "max": 0.285618458961649
+   },
+   "dupBlocked": {
+    "mean": 164.15,
+    "min": 139,
+    "max": 203
+   },
+   "dupEscaped": {
+    "mean": 0.1,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0005025125628140704,
+    "min": 0,
+    "max": 0.005025125628140704
+   },
+   "falseRate": {
+    "mean": 0.0007407462938459206,
+    "min": 0,
+    "max": 0.0016034206306787815
+   },
+   "geoBlocked": {
+    "mean": 58.15,
+    "min": 43,
+    "max": 70
+   },
+   "rejBlocked": {
+    "mean": 36.75,
+    "min": 23,
+    "max": 55
+   },
+   "rejReadmit": {
+    "mean": 5.15,
+    "min": 1,
+    "max": 10
+   },
+   "execLoad": {
+    "mean": 0.7599166666666666,
+    "min": 0.7326041666666666,
+    "max": 0.7884375
+   },
+   "coldShare": {
+    "mean": 0.08426629012096117,
+    "min": 0.07387289516567083,
+    "max": 0.10112963959117806
+   },
+   "coldStartShare": {
+    "mean": 0.1808808927990183,
+    "min": 0.15161466885604816,
+    "max": 0.21965020576131689
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 1061.7,
+    "min": 1004,
+    "max": 1119
+   }
+  },
+  "feriado": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 727.55,
+    "min": 654,
+    "max": 781
+   },
+   "leadsTotal": {
+    "mean": 849,
+    "min": 774,
+    "max": 900
+   },
+   "convIncorp": {
+    "mean": 0.5233882462224795,
+    "min": 0.49772727272727274,
+    "max": 0.5476772616136919
+   },
+   "avgHoursToContact": {
+    "mean": 2.586469567044588,
+    "min": 2.2235609103078984,
+    "max": 2.9944979367262725
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0.24342463326764627,
+    "min": 0.2395504317498228,
+    "max": 0.24926023792351407
+   },
+   "dupBlocked": {
+    "mean": 65.2,
+    "min": 45,
+    "max": 81
+   },
+   "dupEscaped": {
+    "mean": 0.05,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0005208333333333333,
+    "min": 0,
+    "max": 0.010416666666666666
+   },
+   "falseRate": {
+    "mean": 0.0005528027870944884,
+    "min": 0,
+    "max": 0.002728512960436562
+   },
+   "geoBlocked": {
+    "mean": 21.25,
+    "min": 14,
+    "max": 28
+   },
+   "rejBlocked": {
+    "mean": 12.65,
+    "min": 6,
+    "max": 17
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.6864479166666667,
+    "min": 0.6110416666666667,
+    "max": 0.7270833333333333
+   },
+   "coldShare": {
+    "mean": 0.10969764907452657,
+    "min": 0.07170294494238157,
+    "max": 0.14873837981407703
+   },
+   "coldStartShare": {
+    "mean": 0.18581498893438647,
+    "min": 0.14245014245014245,
+    "max": 0.23904382470119523
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 444.2,
+    "min": 393,
+    "max": 472
+   }
+  },
+  "enfermo": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1051.9,
+    "min": 967,
+    "max": 1169
+   },
+   "leadsTotal": {
+    "mean": 1172.3,
+    "min": 1088,
+    "max": 1282
+   },
+   "convIncorp": {
+    "mean": 0.4251548882736137,
+    "min": 0.3813559322033898,
+    "max": 0.4733455882352941
+   },
+   "avgHoursToContact": {
+    "mean": 71.98092910025868,
+    "min": 50.07692307692308,
+    "max": 88.31131019036954
+   },
+   "slaOut": {
+    "mean": 109.8,
+    "min": 22,
+    "max": 211
+   },
+   "cupoUtil": {
+    "mean": 0.28527278894061664,
+    "min": 0.2737375228953623,
+    "max": 0.29613396387547425
+   },
+   "dupBlocked": {
+    "mean": 91.6,
+    "min": 74,
+    "max": 106
+   },
+   "dupEscaped": {
+    "mean": 0.1,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0007870370370370372,
+    "min": 0,
+    "max": 0.008333333333333333
+   },
+   "falseRate": {
+    "mean": 0.0008070777354995473,
+    "min": 0,
+    "max": 0.0029182879377431907
+   },
+   "geoBlocked": {
+    "mean": 32.2,
+    "min": 25,
+    "max": 47
+   },
+   "rejBlocked": {
+    "mean": 20.4,
+    "min": 14,
+    "max": 31
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.8967924528301886,
+    "min": 0.8811320754716981,
+    "max": 0.9224056603773585
+   },
+   "coldShare": {
+    "mean": 0.08910060578618506,
+    "min": 0.06673209028459273,
+    "max": 0.1111111111111111
+   },
+   "coldStartShare": {
+    "mean": 0.17824378658512563,
+    "min": 0.15169660678642716,
+    "max": 0.21621621621621623
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 497.65,
+    "min": 450,
+    "max": 537
+   }
+  }
+ },
+ "v16palancas": {
+  "base": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1043.55,
+    "min": 958,
+    "max": 1112
+   },
+   "leadsTotal": {
+    "mean": 1163.5,
+    "min": 1084,
+    "max": 1239
+   },
+   "convIncorp": {
+    "mean": 0.4995916333768974,
+    "min": 0.47127393838467946,
+    "max": 0.5223395613322502
+   },
+   "avgHoursToContact": {
+    "mean": 16.268600770942957,
+    "min": 8.10184287099903,
+    "max": 25.95014662756598
+   },
+   "slaOut": {
+    "mean": 10.25,
+    "min": 0,
+    "max": 35
+   },
+   "cupoUtil": {
+    "mean": 0.2659247982704986,
+    "min": 0.25602722129745686,
+    "max": 0.27340995529753126
+   },
+   "dupBlocked": {
+    "mean": 89.8,
+    "min": 74,
+    "max": 113
+   },
+   "dupEscaped": {
+    "mean": 0.15,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0012394051471721374,
+    "min": 0,
+    "max": 0.009708737864077669
+   },
+   "falseRate": {
+    "mean": 0.000856643534196342,
+    "min": 0,
+    "max": 0.002002002002002002
+   },
+   "geoBlocked": {
+    "mean": 31.2,
+    "min": 18,
+    "max": 40
+   },
+   "rejBlocked": {
+    "mean": 20.9,
+    "min": 14,
+    "max": 32
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.8965208333333334,
+    "min": 0.86625,
+    "max": 0.91375
+   },
+   "coldShare": {
+    "mean": 0.12159135123395284,
+    "min": 0.09982014388489209,
+    "max": 0.15092502434274585
+   },
+   "coldStartShare": {
+    "mean": 0.35358528607737705,
+    "min": 0.32290708371665133,
+    "max": 0.3801980198019802
+   },
+   "officeCapBlocked": {
+    "mean": 6.55,
+    "min": 0,
+    "max": 52
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 581,
+    "min": 552,
+    "max": 643
+   }
+  },
+  "punta": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 349.55,
+    "min": 314,
+    "max": 406
+   },
+   "leadsTotal": {
+    "mean": 468.5,
+    "min": 432,
+    "max": 535
+   },
+   "convIncorp": {
+    "mean": 0.5213217490573789,
+    "min": 0.4976851851851852,
+    "max": 0.5678496868475992
+   },
+   "avgHoursToContact": {
+    "mean": 2.1107181149955823,
+    "min": 1.6216814159292035,
+    "max": 2.557172557172557
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0.2190205845540499,
+    "min": 0.2094922045393054,
+    "max": 0.22372894682068858
+   },
+   "dupBlocked": {
+    "mean": 29.95,
+    "min": 22,
+    "max": 40
+   },
+   "dupEscaped": {
+    "mean": 0.1,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0028309409888357256,
+    "min": 0,
+    "max": 0.030303030303030304
+   },
+   "falseRate": {
+    "mean": 0.0018006897340058562,
+    "min": 0,
+    "max": 0.007874015748031496
+   },
+   "geoBlocked": {
+    "mean": 10.5,
+    "min": 6,
+    "max": 15
+   },
+   "rejBlocked": {
+    "mean": 6.35,
+    "min": 1,
+    "max": 9
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.3808854166666667,
+    "min": 0.34291666666666665,
+    "max": 0.44104166666666667
+   },
+   "coldShare": {
+    "mean": 0.369451953626719,
+    "min": 0.3267605633802817,
+    "max": 0.4301994301994302
+   },
+   "coldStartShare": {
+    "mean": 0.41668320227136296,
+    "min": 0.3630573248407643,
+    "max": 0.4928774928774929
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 244.3,
+    "min": 215,
+    "max": 287
+   }
+  },
+  "valle0": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "leadsTotal": {
+    "mean": 119,
+    "min": 103,
+    "max": 141
+   },
+   "convIncorp": {
+    "mean": 0.5112714106346127,
+    "min": 0.42063492063492064,
+    "max": 0.5803571428571429
+   },
+   "avgHoursToContact": {
+    "mean": 1.214223104890949,
+    "min": 1.1650485436893203,
+    "max": 1.3571428571428572
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dupBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dupEscaped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "escapeRate": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "falseRate": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "geoBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.09598958333333334,
+    "min": 0.08020833333333334,
+    "max": 0.111875
+   },
+   "coldShare": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "coldStartShare": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 60.8,
+    "min": 48,
+    "max": 70
+   }
+  },
+  "spam": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 602.15,
+    "min": 550,
+    "max": 668
+   },
+   "leadsTotal": {
+    "mean": 722.8,
+    "min": 672,
+    "max": 787
+   },
+   "convIncorp": {
+    "mean": 0.5254821089955346,
+    "min": 0.49404761904761907,
+    "max": 0.5734355044699873
+   },
+   "avgHoursToContact": {
+    "mean": 2.3685370976686935,
+    "min": 1.942097026604069,
+    "max": 2.727007299270073
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0.23428156551669205,
+    "min": 0.22799845004741037,
+    "max": 0.2385288123271672
+   },
+   "dupBlocked": {
+    "mean": 303,
+    "min": 270,
+    "max": 332
+   },
+   "dupEscaped": {
+    "mean": 0.75,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0014588522896089068,
+    "min": 0,
+    "max": 0.0020920502092050207
+   },
+   "falseRate": {
+    "mean": 0.0007564772773822513,
+    "min": 0,
+    "max": 0.0032733224222585926
+   },
+   "geoBlocked": {
+    "mean": 208.9,
+    "min": 182,
+    "max": 230
+   },
+   "rejBlocked": {
+    "mean": 81.4,
+    "min": 66,
+    "max": 104
+   },
+   "rejReadmit": {
+    "mean": 0.1,
+    "min": 0,
+    "max": 1
+   },
+   "execLoad": {
+    "mean": 0.5878645833333334,
+    "min": 0.5372916666666666,
+    "max": 0.656875
+   },
+   "coldShare": {
+    "mean": 0.30439911252360724,
+    "min": 0.23960066555740434,
+    "max": 0.35368043087971274
+   },
+   "coldStartShare": {
+    "mean": 0.42015034884323743,
+    "min": 0.39361702127659576,
+    "max": 0.455026455026455
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 380,
+    "min": 332,
+    "max": 449
+   }
+  },
+  "saturada": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 254.35,
+    "min": 235,
+    "max": 265
+   },
+   "leadsTotal": {
+    "mean": 494.35,
+    "min": 475,
+    "max": 505
+   },
+   "convIncorp": {
+    "mean": 0.4933980342453436,
+    "min": 0.4523809523809524,
+    "max": 0.5270541082164328
+   },
+   "avgHoursToContact": {
+    "mean": 62.3751709550362,
+    "min": 59.600467289719624,
+    "max": 64.86172839506173
+   },
+   "slaOut": {
+    "mean": 18.05,
+    "min": 9,
+    "max": 29
+   },
+   "cupoUtil": {
+    "mean": 0.22208462251490396,
+    "min": 0.2171432137818553,
+    "max": 0.22828847330729948
+   },
+   "dupBlocked": {
+    "mean": 21.75,
+    "min": 14,
+    "max": 29
+   },
+   "dupEscaped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "escapeRate": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "falseRate": {
+    "mean": 0.0009793593391193766,
+    "min": 0,
+    "max": 0.004016064257028112
+   },
+   "geoBlocked": {
+    "mean": 8.65,
+    "min": 6,
+    "max": 13
+   },
+   "rejBlocked": {
+    "mean": 3.55,
+    "min": 1,
+    "max": 7
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.9904722222222222,
+    "min": 0.9861111111111112,
+    "max": 0.9966666666666667
+   },
+   "coldShare": {
+    "mean": 0.37127606186932177,
+    "min": 0.33073929961089493,
+    "max": 0.41015625
+   },
+   "coldStartShare": {
+    "mean": 0.4275952928239658,
+    "min": 0.37735849056603776,
+    "max": 0.48828125
+   },
+   "officeCapBlocked": {
+    "mean": 903.7,
+    "min": 759,
+    "max": 1015
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 243.95,
+    "min": 224,
+    "max": 265
+   }
+  },
+  "frias": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1041.65,
+    "min": 977,
+    "max": 1102
+   },
+   "leadsTotal": {
+    "mean": 1161.45,
+    "min": 1089,
+    "max": 1231
+   },
+   "convIncorp": {
+    "mean": 0.5009293240285589,
+    "min": 0.4776604386677498,
+    "max": 0.5322003577817531
+   },
+   "avgHoursToContact": {
+    "mean": 16.530769922869247,
+    "min": 6.020309477756286,
+    "max": 32.26245210727969
+   },
+   "slaOut": {
+    "mean": 9.5,
+    "min": 0,
+    "max": 40
+   },
+   "cupoUtil": {
+    "mean": 0.2662162441751136,
+    "min": 0.25762809578220447,
+    "max": 0.27482762533912347
+   },
+   "dupBlocked": {
+    "mean": 88.65,
+    "min": 72,
+    "max": 105
+   },
+   "dupEscaped": {
+    "mean": 0.05,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.00041322314049586776,
+    "min": 0,
+    "max": 0.008264462809917356
+   },
+   "falseRate": {
+    "mean": 0.0009104824842919166,
+    "min": 0,
+    "max": 0.0030120481927710845
+   },
+   "geoBlocked": {
+    "mean": 33.8,
+    "min": 23,
+    "max": 44
+   },
+   "rejBlocked": {
+    "mean": 19.8,
+    "min": 12,
+    "max": 30
+   },
+   "rejReadmit": {
+    "mean": 0.05,
+    "min": 0,
+    "max": 1
+   },
+   "execLoad": {
+    "mean": 0.8956770833333334,
+    "min": 0.864375,
+    "max": 0.9160416666666666
+   },
+   "coldShare": {
+    "mean": 0.14433933957586292,
+    "min": 0.10724106324472961,
+    "max": 0.17599186164801628
+   },
+   "coldStartShare": {
+    "mean": 0.2848641580350363,
+    "min": 0.2622641509433962,
+    "max": 0.31213872832369943
+   },
+   "officeCapBlocked": {
+    "mean": 12.2,
+    "min": 0,
+    "max": 84
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 581.35,
+    "min": 553,
+    "max": 620
+   }
+  },
+  "cupo": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1189.7,
+    "min": 1151,
+    "max": 1218
+   },
+   "leadsTotal": {
+    "mean": 1311.1,
+    "min": 1277,
+    "max": 1336
+   },
+   "convIncorp": {
+    "mean": 0.506101164361169,
+    "min": 0.48952095808383234,
+    "max": 0.5347593582887701
+   },
+   "avgHoursToContact": {
+    "mean": 62.023060015259844,
+    "min": 61.00177619893428,
+    "max": 63.76986301369863
+   },
+   "slaOut": {
+    "mean": 50.95,
+    "min": 28,
+    "max": 74
+   },
+   "cupoUtil": {
+    "mean": 0.49454152386533046,
+    "min": 0.47287812811804575,
+    "max": 0.5194292397288646
+   },
+   "dupBlocked": {
+    "mean": 109.75,
+    "min": 92,
+    "max": 127
+   },
+   "dupEscaped": {
+    "mean": 0.1,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0006632989237865144,
+    "min": 0,
+    "max": 0.006896551724137931
+   },
+   "falseRate": {
+    "mean": 0.0008422179219017771,
+    "min": 0,
+    "max": 0.002570694087403599
+   },
+   "geoBlocked": {
+    "mean": 37.55,
+    "min": 28,
+    "max": 48
+   },
+   "rejBlocked": {
+    "mean": 21.3,
+    "min": 15,
+    "max": 30
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 1,
+    "min": 1,
+    "max": 1
+   },
+   "coldShare": {
+    "mean": 0.08756130828713944,
+    "min": 0.07130730050933787,
+    "max": 0.10390689941812137
+   },
+   "coldStartShare": {
+    "mean": 0.3302855330471139,
+    "min": 0.28595178719867,
+    "max": 0.3785357737104825
+   },
+   "officeCapBlocked": {
+    "mean": 38307.75,
+    "min": 38077,
+    "max": 38586
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 663.5,
+    "min": 641,
+    "max": 700
+   }
+  },
+  "lanzamiento": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 1625.8,
+    "min": 1569,
+    "max": 1696
+   },
+   "leadsTotal": {
+    "mean": 1866.05,
+    "min": 1810,
+    "max": 1957
+   },
+   "convIncorp": {
+    "mean": 0.5673551435491672,
+    "min": 0.5469613259668509,
+    "max": 0.5848261327713382
+   },
+   "avgHoursToContact": {
+    "mean": 28.985173624673383,
+    "min": 25.46809854706254,
+    "max": 36.0048163756773
+   },
+   "slaOut": {
+    "mean": 34.25,
+    "min": 14,
+    "max": 52
+   },
+   "cupoUtil": {
+    "mean": 0.2648660998290596,
+    "min": 0.25700059863958563,
+    "max": 0.2733798320500363
+   },
+   "dupBlocked": {
+    "mean": 142.25,
+    "min": 128,
+    "max": 167
+   },
+   "dupEscaped": {
+    "mean": 0.15,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0008050449213798562,
+    "min": 0,
+    "max": 0.005405405405405406
+   },
+   "falseRate": {
+    "mean": 0.0005827328075723481,
+    "min": 0,
+    "max": 0.001799640071985603
+   },
+   "geoBlocked": {
+    "mean": 49.15,
+    "min": 36,
+    "max": 58
+   },
+   "rejBlocked": {
+    "mean": 28.65,
+    "min": 19,
+    "max": 46
+   },
+   "rejReadmit": {
+    "mean": 3.75,
+    "min": 1,
+    "max": 9
+   },
+   "execLoad": {
+    "mean": 0.7630000000000001,
+    "min": 0.7354166666666667,
+    "max": 0.804375
+   },
+   "coldShare": {
+    "mean": 0.1257197914509897,
+    "min": 0.10903614457831326,
+    "max": 0.138871667699938
+   },
+   "coldStartShare": {
+    "mean": 0.3522481599863149,
+    "min": 0.3339427178549665,
+    "max": 0.3719776813391196
+   },
+   "officeCapBlocked": {
+    "mean": 380.65,
+    "min": 256,
+    "max": 537
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 1058.85,
+    "min": 990,
+    "max": 1124
+   }
+  },
+  "feriado": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 736.35,
+    "min": 635,
+    "max": 813
+   },
+   "leadsTotal": {
+    "mean": 856.35,
+    "min": 749,
+    "max": 925
+   },
+   "convIncorp": {
+    "mean": 0.52466565378432,
+    "min": 0.4912891986062718,
+    "max": 0.5475609756097561
+   },
+   "avgHoursToContact": {
+    "mean": 2.6533155051240516,
+    "min": 2.302176696542894,
+    "max": 3.195822454308094
+   },
+   "slaOut": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cupoUtil": {
+    "mean": 0.24458598531546918,
+    "min": 0.23855578481220213,
+    "max": 0.24988167220553226
+   },
+   "dupBlocked": {
+    "mean": 62.85,
+    "min": 46,
+    "max": 75
+   },
+   "dupEscaped": {
+    "mean": 0.05,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0005681818181818182,
+    "min": 0,
+    "max": 0.011363636363636364
+   },
+   "falseRate": {
+    "mean": 0.0009359525914264857,
+    "min": 0,
+    "max": 0.003778337531486146
+   },
+   "geoBlocked": {
+    "mean": 20.65,
+    "min": 12,
+    "max": 29
+   },
+   "rejBlocked": {
+    "mean": 14.1,
+    "min": 7,
+    "max": 23
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.6969895833333334,
+    "min": 0.61875,
+    "max": 0.7658333333333334
+   },
+   "coldShare": {
+    "mean": 0.2239164442925024,
+    "min": 0.16983523447401774,
+    "max": 0.2759103641456583
+   },
+   "coldStartShare": {
+    "mean": 0.4033548606888867,
+    "min": 0.35154061624649857,
+    "max": 0.43386243386243384
+   },
+   "officeCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 449.25,
+    "min": 394,
+    "max": 498
+   }
+  },
+  "enfermo": {
+   "n": 20,
+   "violations": 0,
+   "leadsHunter": {
+    "mean": 900.6,
+    "min": 840,
+    "max": 954
+   },
+   "leadsTotal": {
+    "mean": 1018.65,
+    "min": 951,
+    "max": 1074
+   },
+   "convIncorp": {
+    "mean": 0.48114305044212813,
+    "min": 0.4481792717086835,
+    "max": 0.5056294779938587
+   },
+   "avgHoursToContact": {
+    "mean": 17.709995668242527,
+    "min": 13.668176670441676,
+    "max": 25.529411764705884
+   },
+   "slaOut": {
+    "mean": 2,
+    "min": 0,
+    "max": 24
+   },
+   "cupoUtil": {
+    "mean": 0.25746076081154035,
+    "min": 0.24941530213163624,
+    "max": 0.2647058778814898
+   },
+   "dupBlocked": {
+    "mean": 79.45,
+    "min": 65,
+    "max": 100
+   },
+   "dupEscaped": {
+    "mean": 0.2,
+    "min": 0,
+    "max": 1
+   },
+   "escapeRate": {
+    "mean": 0.0019187687961052448,
+    "min": 0,
+    "max": 0.010101010101010102
+   },
+   "falseRate": {
+    "mean": 0.000836915958839176,
+    "min": 0,
+    "max": 0.003194888178913738
+   },
+   "geoBlocked": {
+    "mean": 28.15,
+    "min": 20,
+    "max": 41
+   },
+   "rejBlocked": {
+    "mean": 17.25,
+    "min": 11,
+    "max": 27
+   },
+   "rejReadmit": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "execLoad": {
+    "mean": 0.8853419811320755,
+    "min": 0.8554245283018868,
+    "max": 0.9108490566037736
+   },
+   "coldShare": {
+    "mean": 0.15265066832097068,
+    "min": 0.12089077412513255,
+    "max": 0.1963882618510158
+   },
+   "coldStartShare": {
+    "mean": 0.3706368775795361,
+    "min": 0.3292817679558011,
+    "max": 0.39592760180995473
+   },
+   "officeCapBlocked": {
+    "mean": 158.35,
+    "min": 94,
+    "max": 210
+   },
+   "zoneCapBlocked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "incorp": {
+    "mean": 489.8,
+    "min": 454,
+    "max": 515
+   }
+  }
+ },
+ "barridos": {
+  "dedupM": [
+   {
+    "m": 25,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 624.625,
+      "min": 565,
+      "max": 663
+     },
+     "leadsTotal": {
+      "mean": 745.625,
+      "min": 681,
+      "max": 775
+     },
+     "convIncorp": {
+      "mean": 0.5137329943540021,
+      "min": 0.49290322580645163,
+      "max": 0.5331529093369418
+     },
+     "avgHoursToContact": {
+      "mean": 2.380836673838276,
+      "min": 2.1777777777777776,
+      "max": 2.874095513748191
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23606590996680837,
+      "min": 0.22966566753744233,
+      "max": 0.2461530731826414
+     },
+     "dupBlocked": {
+      "mean": 329.125,
+      "min": 295,
+      "max": 367
+     },
+     "dupEscaped": {
+      "mean": 52.125,
+      "min": 42,
+      "max": 58
+     },
+     "escapeRate": {
+      "mean": 0.10267780842061872,
+      "min": 0.07850467289719626,
+      "max": 0.1228813559322034
+     },
+     "falseRate": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "geoBlocked": {
+      "mean": 130.625,
+      "min": 108,
+      "max": 159
+     },
+     "rejBlocked": {
+      "mean": 72.25,
+      "min": 47,
+      "max": 92
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.5940364583333333,
+      "min": 0.5420833333333334,
+      "max": 0.6122916666666667
+     },
+     "coldShare": {
+      "mean": 0.11367120143595769,
+      "min": 0.08240887480190175,
+      "max": 0.14285714285714285
+     },
+     "coldStartShare": {
+      "mean": 0.1882556438457857,
+      "min": 0.13628318584070798,
+      "max": 0.22274143302180685
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 383.125,
+      "min": 337,
+      "max": 399
+     }
+    }
+   },
+   {
+    "m": 50,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 578.625,
+      "min": 535,
+      "max": 622
+     },
+     "leadsTotal": {
+      "mean": 699.875,
+      "min": 661,
+      "max": 747
+     },
+     "convIncorp": {
+      "mean": 0.5227538801009302,
+      "min": 0.509641873278237,
+      "max": 0.5370650529500757
+     },
+     "avgHoursToContact": {
+      "mean": 2.408484030643829,
+      "min": 2.296,
+      "max": 2.598116169544741
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23539579834959803,
+      "min": 0.23247235487658183,
+      "max": 0.2387646885448381
+     },
+     "dupBlocked": {
+      "mean": 302.875,
+      "min": 269,
+      "max": 335
+     },
+     "dupEscaped": {
+      "mean": 0.625,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0012300869515808233,
+      "min": 0,
+      "max": 0.0022675736961451248
+     },
+     "falseRate": {
+      "mean": 0.0008617990267690861,
+      "min": 0,
+      "max": 0.001838235294117647
+     },
+     "geoBlocked": {
+      "mean": 201.5,
+      "min": 158,
+      "max": 239
+     },
+     "rejBlocked": {
+      "mean": 78.375,
+      "min": 68,
+      "max": 87
+     },
+     "rejReadmit": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "execLoad": {
+      "mean": 0.5662500000000001,
+      "min": 0.53,
+      "max": 0.606875
+     },
+     "coldShare": {
+      "mean": 0.10879847047139386,
+      "min": 0.08427876823338736,
+      "max": 0.12379421221864952
+     },
+     "coldStartShare": {
+      "mean": 0.1760441075435048,
+      "min": 0.14917127071823205,
+      "max": 0.21543408360128619
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 365.75,
+      "min": 345,
+      "max": 387
+     }
+    }
+   },
+   {
+    "m": 75,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 578.5,
+      "min": 535,
+      "max": 622
+     },
+     "leadsTotal": {
+      "mean": 699.75,
+      "min": 660,
+      "max": 747
+     },
+     "convIncorp": {
+      "mean": 0.5230449909064132,
+      "min": 0.509641873278237,
+      "max": 0.5393939393939394
+     },
+     "avgHoursToContact": {
+      "mean": 2.4157604382576907,
+      "min": 2.296,
+      "max": 2.598116169544741
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23540234088986509,
+      "min": 0.23247235487658183,
+      "max": 0.2387646885448381
+     },
+     "dupBlocked": {
+      "mean": 302,
+      "min": 262,
+      "max": 335
+     },
+     "dupEscaped": {
+      "mean": 0.625,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0012300869515808233,
+      "min": 0,
+      "max": 0.0022675736961451248
+     },
+     "falseRate": {
+      "mean": 0.001091578438533792,
+      "min": 0,
+      "max": 0.003676470588235294
+     },
+     "geoBlocked": {
+      "mean": 200.875,
+      "min": 158,
+      "max": 239
+     },
+     "rejBlocked": {
+      "mean": 78.5,
+      "min": 68,
+      "max": 88
+     },
+     "rejReadmit": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "execLoad": {
+      "mean": 0.5664583333333333,
+      "min": 0.5316666666666666,
+      "max": 0.606875
+     },
+     "coldShare": {
+      "mean": 0.10836397372311146,
+      "min": 0.08427876823338736,
+      "max": 0.12379421221864952
+     },
+     "coldStartShare": {
+      "mean": 0.17584788320557082,
+      "min": 0.14760147601476015,
+      "max": 0.21543408360128619
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 365.875,
+      "min": 345,
+      "max": 387
+     }
+    }
+   },
+   {
+    "m": 100,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 581.5,
+      "min": 542,
+      "max": 622
+     },
+     "leadsTotal": {
+      "mean": 699.625,
+      "min": 660,
+      "max": 747
+     },
+     "convIncorp": {
+      "mean": 0.5187196701570693,
+      "min": 0.4985835694050991,
+      "max": 0.5393939393939394
+     },
+     "avgHoursToContact": {
+      "mean": 2.3885897675520718,
+      "min": 2.172043010752688,
+      "max": 2.679186228482003
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.2340326677086083,
+      "min": 0.22446887049920963,
+      "max": 0.2387646885448381
+     },
+     "dupBlocked": {
+      "mean": 296,
+      "min": 262,
+      "max": 335
+     },
+     "dupEscaped": {
+      "mean": 0.5,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0009825621991055758,
+      "min": 0,
+      "max": 0.0022675736961451248
+     },
+     "falseRate": {
+      "mean": 0.0021545322253221774,
+      "min": 0,
+      "max": 0.0050933786078098476
+     },
+     "geoBlocked": {
+      "mean": 202.875,
+      "min": 158,
+      "max": 239
+     },
+     "rejBlocked": {
+      "mean": 79.875,
+      "min": 70,
+      "max": 88
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.5629687500000001,
+      "min": 0.5316666666666666,
+      "max": 0.6035416666666666
+     },
+     "coldShare": {
+      "mean": 0.10317978488672773,
+      "min": 0.08277027027027027,
+      "max": 0.12379421221864952
+     },
+     "coldStartShare": {
+      "mean": 0.17120426912849204,
+      "min": 0.14760147601476015,
+      "max": 0.21543408360128619
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 362.875,
+      "min": 342,
+      "max": 387
+     }
+    }
+   },
+   {
+    "m": 150,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 585,
+      "min": 547,
+      "max": 628
+     },
+     "leadsTotal": {
+      "mean": 701.25,
+      "min": 661,
+      "max": 747
+     },
+     "convIncorp": {
+      "mean": 0.51301105253244,
+      "min": 0.4985294117647059,
+      "max": 0.5258152173913043
+     },
+     "avgHoursToContact": {
+      "mean": 2.379344882186311,
+      "min": 2.172043010752688,
+      "max": 2.557142857142857
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23461456675769218,
+      "min": 0.22351311231255905,
+      "max": 0.2403759728925883
+     },
+     "dupBlocked": {
+      "mean": 294.75,
+      "min": 268,
+      "max": 331
+     },
+     "dupEscaped": {
+      "mean": 0.625,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0012299475270601552,
+      "min": 0,
+      "max": 0.0022675736961451248
+     },
+     "falseRate": {
+      "mean": 0.002751562627250839,
+      "min": 0,
+      "max": 0.0050933786078098476
+     },
+     "geoBlocked": {
+      "mean": 203,
+      "min": 158,
+      "max": 252
+     },
+     "rejBlocked": {
+      "mean": 80.625,
+      "min": 66,
+      "max": 93
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.5673697916666667,
+      "min": 0.5339583333333333,
+      "max": 0.6129166666666667
+     },
+     "coldShare": {
+      "mean": 0.10395060783541232,
+      "min": 0.08067226890756303,
+      "max": 0.12379421221864952
+     },
+     "coldStartShare": {
+      "mean": 0.172916741737062,
+      "min": 0.156140350877193,
+      "max": 0.21543408360128619
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 359.875,
+      "min": 337,
+      "max": 387
+     }
+    }
+   },
+   {
+    "m": 200,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 585,
+      "min": 547,
+      "max": 628
+     },
+     "leadsTotal": {
+      "mean": 701.25,
+      "min": 661,
+      "max": 747
+     },
+     "convIncorp": {
+      "mean": 0.51301105253244,
+      "min": 0.4985294117647059,
+      "max": 0.5258152173913043
+     },
+     "avgHoursToContact": {
+      "mean": 2.379344882186311,
+      "min": 2.172043010752688,
+      "max": 2.557142857142857
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23461456675769218,
+      "min": 0.22351311231255905,
+      "max": 0.2403759728925883
+     },
+     "dupBlocked": {
+      "mean": 294.75,
+      "min": 268,
+      "max": 331
+     },
+     "dupEscaped": {
+      "mean": 0.625,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0012299475270601552,
+      "min": 0,
+      "max": 0.0022675736961451248
+     },
+     "falseRate": {
+      "mean": 0.002751562627250839,
+      "min": 0,
+      "max": 0.0050933786078098476
+     },
+     "geoBlocked": {
+      "mean": 203,
+      "min": 158,
+      "max": 252
+     },
+     "rejBlocked": {
+      "mean": 80.625,
+      "min": 66,
+      "max": 93
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.5673697916666667,
+      "min": 0.5339583333333333,
+      "max": 0.6129166666666667
+     },
+     "coldShare": {
+      "mean": 0.10395060783541232,
+      "min": 0.08067226890756303,
+      "max": 0.12379421221864952
+     },
+     "coldStartShare": {
+      "mean": 0.172916741737062,
+      "min": 0.156140350877193,
+      "max": 0.21543408360128619
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 359.875,
+      "min": 337,
+      "max": 387
+     }
+    }
+   }
+  ],
+  "rejBlockDays": [
+   {
+    "d": 0,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 634,
+      "min": 584,
+      "max": 667
+     },
+     "leadsTotal": {
+      "mean": 756.125,
+      "min": 699,
+      "max": 792
+     },
+     "convIncorp": {
+      "mean": 0.5248001418888694,
+      "min": 0.505249343832021,
+      "max": 0.5547850208044383
+     },
+     "avgHoursToContact": {
+      "mean": 2.44700647477555,
+      "min": 2.2262090483619343,
+      "max": 2.6315789473684212
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23682776333737307,
+      "min": 0.22849673501932416,
+      "max": 0.2433092395208585
+     },
+     "dupBlocked": {
+      "mean": 309.125,
+      "min": 283,
+      "max": 338
+     },
+     "dupEscaped": {
+      "mean": 0.875,
+      "min": 0,
+      "max": 2
+     },
+     "escapeRate": {
+      "mean": 0.001764229894472656,
+      "min": 0,
+      "max": 0.004338394793926247
+     },
+     "falseRate": {
+      "mean": 0.0008971288211358118,
+      "min": 0,
+      "max": 0.0037735849056603774
+     },
+     "geoBlocked": {
+      "mean": 215.125,
+      "min": 184,
+      "max": 236
+     },
+     "rejBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.6154166666666667,
+      "min": 0.5570833333333334,
+      "max": 0.6560416666666666
+     },
+     "coldShare": {
+      "mean": 0.1132473701271001,
+      "min": 0.08974358974358974,
+      "max": 0.13493253373313344
+     },
+     "coldStartShare": {
+      "mean": 0.18862067022302478,
+      "min": 0.1541095890410959,
+      "max": 0.22488755622188905
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 396.875,
+      "min": 354,
+      "max": 419
+     }
+    }
+   },
+   {
+    "d": 7,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 607.875,
+      "min": 575,
+      "max": 651
+     },
+     "leadsTotal": {
+      "mean": 730,
+      "min": 686,
+      "max": 771
+     },
+     "convIncorp": {
+      "mean": 0.5192293182563901,
+      "min": 0.4936708860759494,
+      "max": 0.5466472303206997
+     },
+     "avgHoursToContact": {
+      "mean": 2.3555143264527096,
+      "min": 2.164804469273743,
+      "max": 2.596096096096096
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23728433732269147,
+      "min": 0.2306423491717487,
+      "max": 0.24485383088708515
+     },
+     "dupBlocked": {
+      "mean": 304.625,
+      "min": 271,
+      "max": 352
+     },
+     "dupEscaped": {
+      "mean": 0.75,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0014658973109561,
+      "min": 0,
+      "max": 0.0022471910112359553
+     },
+     "falseRate": {
+      "mean": 0.000877871476903218,
+      "min": 0,
+      "max": 0.0035714285714285713
+     },
+     "geoBlocked": {
+      "mean": 207.875,
+      "min": 179,
+      "max": 237
+     },
+     "rejBlocked": {
+      "mean": 44.25,
+      "min": 32,
+      "max": 53
+     },
+     "rejReadmit": {
+      "mean": 34.375,
+      "min": 26,
+      "max": 39
+     },
+     "execLoad": {
+      "mean": 0.5849739583333333,
+      "min": 0.5539583333333333,
+      "max": 0.6183333333333333
+     },
+     "coldShare": {
+      "mean": 0.11413420026458643,
+      "min": 0.09075907590759076,
+      "max": 0.14084507042253522
+     },
+     "coldStartShare": {
+      "mean": 0.18617544115287082,
+      "min": 0.1582608695652174,
+      "max": 0.24726134585289514
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 379,
+      "min": 351,
+      "max": 416
+     }
+    }
+   },
+   {
+    "d": 15,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 582,
+      "min": 541,
+      "max": 632
+     },
+     "leadsTotal": {
+      "mean": 701.75,
+      "min": 663,
+      "max": 740
+     },
+     "convIncorp": {
+      "mean": 0.5202136383331694,
+      "min": 0.4945945945945946,
+      "max": 0.5510204081632653
+     },
+     "avgHoursToContact": {
+      "mean": 2.405645651113818,
+      "min": 2.2057142857142855,
+      "max": 2.7481371087928466
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23562652273906706,
+      "min": 0.2307708800674314,
+      "max": 0.23959694483487196
+     },
+     "dupBlocked": {
+      "mean": 304.25,
+      "min": 269,
+      "max": 337
+     },
+     "dupEscaped": {
+      "mean": 0.625,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.001222667170440655,
+      "min": 0,
+      "max": 0.002257336343115124
+     },
+     "falseRate": {
+      "mean": 0.0010778813899475904,
+      "min": 0,
+      "max": 0.0032948929159802307
+     },
+     "geoBlocked": {
+      "mean": 202.5,
+      "min": 147,
+      "max": 233
+     },
+     "rejBlocked": {
+      "mean": 70.375,
+      "min": 54,
+      "max": 78
+     },
+     "rejReadmit": {
+      "mean": 8.875,
+      "min": 3,
+      "max": 18
+     },
+     "execLoad": {
+      "mean": 0.5688541666666667,
+      "min": 0.5320833333333334,
+      "max": 0.6060416666666667
+     },
+     "coldShare": {
+      "mean": 0.10818751596344589,
+      "min": 0.08386075949367089,
+      "max": 0.12155591572123177
+     },
+     "coldStartShare": {
+      "mean": 0.1803963533322173,
+      "min": 0.15711645101663585,
+      "max": 0.20907617504051865
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 365,
+      "min": 341,
+      "max": 395
+     }
+    }
+   },
+   {
+    "d": 30,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 578.5,
+      "min": 535,
+      "max": 622
+     },
+     "leadsTotal": {
+      "mean": 699.75,
+      "min": 660,
+      "max": 747
+     },
+     "convIncorp": {
+      "mean": 0.5230449909064132,
+      "min": 0.509641873278237,
+      "max": 0.5393939393939394
+     },
+     "avgHoursToContact": {
+      "mean": 2.4157604382576907,
+      "min": 2.296,
+      "max": 2.598116169544741
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.23540234088986509,
+      "min": 0.23247235487658183,
+      "max": 0.2387646885448381
+     },
+     "dupBlocked": {
+      "mean": 302,
+      "min": 262,
+      "max": 335
+     },
+     "dupEscaped": {
+      "mean": 0.625,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0012300869515808233,
+      "min": 0,
+      "max": 0.0022675736961451248
+     },
+     "falseRate": {
+      "mean": 0.001091578438533792,
+      "min": 0,
+      "max": 0.003676470588235294
+     },
+     "geoBlocked": {
+      "mean": 200.875,
+      "min": 158,
+      "max": 239
+     },
+     "rejBlocked": {
+      "mean": 78.5,
+      "min": 68,
+      "max": 88
+     },
+     "rejReadmit": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "execLoad": {
+      "mean": 0.5664583333333333,
+      "min": 0.5316666666666666,
+      "max": 0.606875
+     },
+     "coldShare": {
+      "mean": 0.10836397372311146,
+      "min": 0.08427876823338736,
+      "max": 0.12379421221864952
+     },
+     "coldStartShare": {
+      "mean": 0.17584788320557082,
+      "min": 0.14760147601476015,
+      "max": 0.21543408360128619
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 365.875,
+      "min": 345,
+      "max": 387
+     }
+    }
+   },
+   {
+    "d": 60,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 578.5,
+      "min": 535,
+      "max": 622
+     },
+     "leadsTotal": {
+      "mean": 699.75,
+      "min": 660,
+      "max": 747
+     },
+     "convIncorp": {
+      "mean": 0.5251111066088925,
+      "min": 0.515695067264574,
+      "max": 0.5393939393939394
+     },
+     "avgHoursToContact": {
+      "mean": 2.415681811103897,
+      "min": 2.296,
+      "max": 2.598116169544741
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.2353830861245796,
+      "min": 0.23247235487658183,
+      "max": 0.2387646885448381
+     },
+     "dupBlocked": {
+      "mean": 301.625,
+      "min": 262,
+      "max": 335
+     },
+     "dupEscaped": {
+      "mean": 0.625,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0012300869515808233,
+      "min": 0,
+      "max": 0.0022675736961451248
+     },
+     "falseRate": {
+      "mean": 0.001091578438533792,
+      "min": 0,
+      "max": 0.003676470588235294
+     },
+     "geoBlocked": {
+      "mean": 200.75,
+      "min": 158,
+      "max": 239
+     },
+     "rejBlocked": {
+      "mean": 78.625,
+      "min": 68,
+      "max": 88
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.5663802083333334,
+      "min": 0.5316666666666666,
+      "max": 0.60625
+     },
+     "coldShare": {
+      "mean": 0.10836397372311146,
+      "min": 0.08427876823338736,
+      "max": 0.12379421221864952
+     },
+     "coldStartShare": {
+      "mean": 0.17584788320557082,
+      "min": 0.14760147601476015,
+      "max": 0.21543408360128619
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 367.375,
+      "min": 345,
+      "max": 387
+     }
+    }
+   },
+   {
+    "d": 90,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 578.5,
+      "min": 535,
+      "max": 622
+     },
+     "leadsTotal": {
+      "mean": 699.75,
+      "min": 660,
+      "max": 747
+     },
+     "convIncorp": {
+      "mean": 0.5251111066088925,
+      "min": 0.515695067264574,
+      "max": 0.5393939393939394
+     },
+     "avgHoursToContact": {
+      "mean": 2.415681811103897,
+      "min": 2.296,
+      "max": 2.598116169544741
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.2353830861245796,
+      "min": 0.23247235487658183,
+      "max": 0.2387646885448381
+     },
+     "dupBlocked": {
+      "mean": 301.625,
+      "min": 262,
+      "max": 335
+     },
+     "dupEscaped": {
+      "mean": 0.625,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0012300869515808233,
+      "min": 0,
+      "max": 0.0022675736961451248
+     },
+     "falseRate": {
+      "mean": 0.001091578438533792,
+      "min": 0,
+      "max": 0.003676470588235294
+     },
+     "geoBlocked": {
+      "mean": 200.75,
+      "min": 158,
+      "max": 239
+     },
+     "rejBlocked": {
+      "mean": 78.625,
+      "min": 68,
+      "max": 88
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.5663802083333334,
+      "min": 0.5316666666666666,
+      "max": 0.60625
+     },
+     "coldShare": {
+      "mean": 0.10836397372311146,
+      "min": 0.08427876823338736,
+      "max": 0.12379421221864952
+     },
+     "coldStartShare": {
+      "mean": 0.17584788320557082,
+      "min": 0.14760147601476015,
+      "max": 0.21543408360128619
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 367.375,
+      "min": 345,
+      "max": 387
+     }
+    }
+   }
+  ],
+  "zoneCap": [
+   {
+    "c": 10,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 2151.375,
+      "min": 2042,
+      "max": 2271
+     },
+     "leadsTotal": {
+      "mean": 2268.625,
+      "min": 2170,
+      "max": 2381
+     },
+     "convIncorp": {
+      "mean": 0.28889440996754207,
+      "min": 0.26879462410751787,
+      "max": 0.3
+     },
+     "avgHoursToContact": {
+      "mean": 171.36201230492603,
+      "min": 155.03956834532374,
+      "max": 181.78966455122392
+     },
+     "slaOut": {
+      "mean": 949.125,
+      "min": 843,
+      "max": 1062
+     },
+     "cupoUtil": {
+      "mean": 0.4835713463815379,
+      "min": 0.4419651877643262,
+      "max": 0.5001415989074189
+     },
+     "dupBlocked": {
+      "mean": 191.875,
+      "min": 176,
+      "max": 207
+     },
+     "dupEscaped": {
+      "mean": 0.375,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0014102528663287178,
+      "min": 0,
+      "max": 0.0038461538461538464
+     },
+     "falseRate": {
+      "mean": 0.0010566539639017536,
+      "min": 0,
+      "max": 0.002442598925256473
+     },
+     "geoBlocked": {
+      "mean": 67.375,
+      "min": 51,
+      "max": 82
+     },
+     "rejBlocked": {
+      "mean": 42,
+      "min": 33,
+      "max": 54
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9900520833333333,
+      "min": 0.9885416666666667,
+      "max": 0.9910416666666667
+     },
+     "coldShare": {
+      "mean": 0.03174060369154893,
+      "min": 0.03038309114927345,
+      "max": 0.03330068560235064
+     },
+     "coldStartShare": {
+      "mean": 0.44169186165762014,
+      "min": 0.41234084231145934,
+      "max": 0.4715984147952444
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 34518.875,
+      "min": 33790,
+      "max": 35619
+     },
+     "incorp": {
+      "mean": 654.75,
+      "min": 640,
+      "max": 672
+     }
+    }
+   },
+   {
+    "c": 20,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 3330.625,
+      "min": 3268,
+      "max": 3498
+     },
+     "leadsTotal": {
+      "mean": 3449.625,
+      "min": 3387,
+      "max": 3605
+     },
+     "convIncorp": {
+      "mean": 0.18979347116522885,
+      "min": 0.18141470180305133,
+      "max": 0.19617647058823529
+     },
+     "avgHoursToContact": {
+      "mean": 232.8074262199627,
+      "min": 221.62841530054644,
+      "max": 241.69168900804289
+     },
+     "slaOut": {
+      "mean": 2070.625,
+      "min": 2013,
+      "max": 2208
+     },
+     "cupoUtil": {
+      "mean": 0.5797578678228245,
+      "min": 0.5609376794015872,
+      "max": 0.6018860760909068
+     },
+     "dupBlocked": {
+      "mean": 283.75,
+      "min": 266,
+      "max": 329
+     },
+     "dupEscaped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "escapeRate": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "falseRate": {
+      "mean": 0.0004522148842850359,
+      "min": 0,
+      "max": 0.001219884111009454
+     },
+     "geoBlocked": {
+      "mean": 96.25,
+      "min": 90,
+      "max": 107
+     },
+     "rejBlocked": {
+      "mean": 58.5,
+      "min": 43,
+      "max": 71
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+     },
+     "coldShare": {
+      "mean": 0.019635839160439976,
+      "min": 0.018867924528301886,
+      "max": 0.02015267175572519
+     },
+     "coldStartShare": {
+      "mean": 0.281151322460553,
+      "min": 0.26560587515299877,
+      "max": 0.313893653516295
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 27408.75,
+      "min": 26076,
+      "max": 28228
+     },
+     "incorp": {
+      "mean": 654.5,
+      "min": 645,
+      "max": 667
+     }
+    }
+   },
+   {
+    "c": 40,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 3922.375,
+      "min": 3900,
+      "max": 3948
+     },
+     "leadsTotal": {
+      "mean": 4041.875,
+      "min": 4014,
+      "max": 4074
+     },
+     "convIncorp": {
+      "mean": 0.16093281425420516,
+      "min": 0.15670154459392127,
+      "max": 0.1670362158167036
+     },
+     "avgHoursToContact": {
+      "mean": 270.21341307310405,
+      "min": 266.40831074977416,
+      "max": 279.09275618374556
+     },
+     "slaOut": {
+      "mean": 2764.5,
+      "min": 2749,
+      "max": 2777
+     },
+     "cupoUtil": {
+      "mean": 0.7866630637816914,
+      "min": 0.7773876652395689,
+      "max": 0.807038474782506
+     },
+     "dupBlocked": {
+      "mean": 361.5,
+      "min": 328,
+      "max": 396
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0002653927813163482,
+      "min": 0,
+      "max": 0.0021231422505307855
+     },
+     "falseRate": {
+      "mean": 0.000509133966721655,
+      "min": 0.000253613999492772,
+      "max": 0.0012683916793505834
+     },
+     "geoBlocked": {
+      "mean": 108.125,
+      "min": 91,
+      "max": 124
+     },
+     "rejBlocked": {
+      "mean": 73.875,
+      "min": 57,
+      "max": 87
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+     },
+     "coldShare": {
+      "mean": 0.016730554778081358,
+      "min": 0.016368286445012786,
+      "max": 0.017272034544069087
+     },
+     "coldStartShare": {
+      "mean": 0.22799011067952038,
+      "min": 0.21049935979513446,
+      "max": 0.2682864450127877
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 12473.875,
+      "min": 11086,
+      "max": 13054
+     },
+     "incorp": {
+      "mean": 650.5,
+      "min": 629,
+      "max": 678
+     }
+    }
+   },
+   {
+    "c": 60,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 3920,
+      "min": 3908,
+      "max": 3935
+     },
+     "leadsTotal": {
+      "mean": 4045.25,
+      "min": 4027,
+      "max": 4071
+     },
+     "convIncorp": {
+      "mean": 0.16275306964291344,
+      "min": 0.15917556493667742,
+      "max": 0.17033919286952215
+     },
+     "avgHoursToContact": {
+      "mean": 285.2019822419496,
+      "min": 281.18789521228547,
+      "max": 287.49143372407576
+     },
+     "slaOut": {
+      "mean": 2767.25,
+      "min": 2747,
+      "max": 2786
+     },
+     "cupoUtil": {
+      "mean": 0.8620629847276914,
+      "min": 0.8566881298885788,
+      "max": 0.872821261072117
+     },
+     "dupBlocked": {
+      "mean": 349.75,
+      "min": 320,
+      "max": 393
+     },
+     "dupEscaped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "escapeRate": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "falseRate": {
+      "mean": 0.0004784971426888828,
+      "min": 0,
+      "max": 0.0007666751852798365
+     },
+     "geoBlocked": {
+      "mean": 108,
+      "min": 95,
+      "max": 122
+     },
+     "rejBlocked": {
+      "mean": 71.5,
+      "min": 56,
+      "max": 88
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+     },
+     "coldShare": {
+      "mean": 0.016549916633570312,
+      "min": 0.01628913209468058,
+      "max": 0.01663254861821904
+     },
+     "coldStartShare": {
+      "mean": 0.21694560625311868,
+      "min": 0.20295767465578787,
+      "max": 0.2532451005344871
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 7000.5,
+      "min": 6262,
+      "max": 7506
+     },
+     "incorp": {
+      "mean": 658.375,
+      "min": 641,
+      "max": 688
+     }
+    }
+   },
+   {
+    "c": 100,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 3931.625,
+      "min": 3914,
+      "max": 3958
+     },
+     "leadsTotal": {
+      "mean": 4050.25,
+      "min": 4029,
+      "max": 4078
+     },
+     "convIncorp": {
+      "mean": 0.16535726970469264,
+      "min": 0.16011860637509265,
+      "max": 0.17037037037037037
+     },
+     "avgHoursToContact": {
+      "mean": 294.1516637310898,
+      "min": 288.6770740410348,
+      "max": 299.248
+     },
+     "slaOut": {
+      "mean": 2768.875,
+      "min": 2751,
+      "max": 2787
+     },
+     "cupoUtil": {
+      "mean": 0.91937533461174,
+      "min": 0.9157221714056542,
+      "max": 0.9245476607723676
+     },
+     "dupBlocked": {
+      "mean": 352.5,
+      "min": 319,
+      "max": 379
+     },
+     "dupEscaped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "escapeRate": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "falseRate": {
+      "mean": 0.0008892867426498791,
+      "min": 0.000505050505050505,
+      "max": 0.0015186028853454822
+     },
+     "geoBlocked": {
+      "mean": 113.25,
+      "min": 105,
+      "max": 120
+     },
+     "rejBlocked": {
+      "mean": 69.25,
+      "min": 62,
+      "max": 79
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 1,
+      "min": 1,
+      "max": 1
+     },
+     "coldShare": {
+      "mean": 0.016564529277139695,
+      "min": 0.016223067173637515,
+      "max": 0.016987829614604464
+     },
+     "coldStartShare": {
+      "mean": 0.1998649832072097,
+      "min": 0.18788032454361056,
+      "max": 0.23346007604562738
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 3020.625,
+      "min": 2630,
+      "max": 3198
+     },
+     "incorp": {
+      "mean": 669.75,
+      "min": 648,
+      "max": 690
+     }
+    }
+   }
+  ],
+  "execs": [
+   {
+    "e": 2,
+    "sin": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 996.5,
+      "min": 933,
+      "max": 1118
+     },
+     "leadsTotal": {
+      "mean": 1120.25,
+      "min": 1057,
+      "max": 1240
+     },
+     "convIncorp": {
+      "mean": 0.14959010030499298,
+      "min": 0.14112903225806453,
+      "max": 0.15528531337698784
+     },
+     "avgHoursToContact": {
+      "mean": 226.12239425192845,
+      "min": 212.9963768115942,
+      "max": 234.1328413284133
+     },
+     "slaOut": {
+      "mean": 751,
+      "min": 691,
+      "max": 873
+     },
+     "cupoUtil": {
+      "mean": 0.3401325375667224,
+      "min": 0.3236724681018656,
+      "max": 0.3556317146296136
+     },
+     "dupBlocked": {
+      "mean": 89.5,
+      "min": 81,
+      "max": 98
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0009765625,
+      "min": 0,
+      "max": 0.0078125
+     },
+     "falseRate": {
+      "mean": 0.000378855324212589,
+      "min": 0,
+      "max": 0.002107481559536354
+     },
+     "geoBlocked": {
+      "mean": 30.875,
+      "min": 25,
+      "max": 41
+     },
+     "rejBlocked": {
+      "mean": 15.625,
+      "min": 11,
+      "max": 19
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9959375,
+      "min": 0.9925,
+      "max": 1
+     },
+     "coldShare": {
+      "mean": 0.07351745272363389,
+      "min": 0.057245080500894455,
+      "max": 0.081
+     },
+     "coldStartShare": {
+      "mean": 0.1849182770062501,
+      "min": 0.16684266103484688,
+      "max": 0.23107177974434612
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 167.375,
+      "min": 159,
+      "max": 180
+     }
+    },
+    "cola": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 212,
+      "min": 197,
+      "max": 230
+     },
+     "leadsTotal": {
+      "mean": 330.5,
+      "min": 319,
+      "max": 340
+     },
+     "convIncorp": {
+      "mean": 0.49625832204051434,
+      "min": 0.4676923076923077,
+      "max": 0.5457317073170732
+     },
+     "avgHoursToContact": {
+      "mean": 62.560815960938946,
+      "min": 58.87062937062937,
+      "max": 65.81111111111112
+     },
+     "slaOut": {
+      "mean": 10,
+      "min": 1,
+      "max": 21
+     },
+     "cupoUtil": {
+      "mean": 0.2160494936588312,
+      "min": 0.2098217173032294,
+      "max": 0.221334984278341
+     },
+     "dupBlocked": {
+      "mean": 21.5,
+      "min": 14,
+      "max": 26
+     },
+     "dupEscaped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "escapeRate": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "falseRate": {
+      "mean": 0.0011995995581331124,
+      "min": 0,
+      "max": 0.004901960784313725
+     },
+     "geoBlocked": {
+      "mean": 5.875,
+      "min": 4,
+      "max": 9
+     },
+     "rejBlocked": {
+      "mean": 3.125,
+      "min": 1,
+      "max": 5
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9959375,
+      "min": 0.9925,
+      "max": 1
+     },
+     "coldShare": {
+      "mean": 0.12782842818622003,
+      "min": 0.09813084112149532,
+      "max": 0.16243654822335024
+     },
+     "coldStartShare": {
+      "mean": 0.18501654804343745,
+      "min": 0.13839285714285715,
+      "max": 0.24528301886792453
+     },
+     "officeCapBlocked": {
+      "mean": 915.25,
+      "min": 831,
+      "max": 1049
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 164,
+      "min": 151,
+      "max": 179
+     }
+    }
+   },
+   {
+    "e": 4,
+    "sin": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1011.125,
+      "min": 935,
+      "max": 1097
+     },
+     "leadsTotal": {
+      "mean": 1128.75,
+      "min": 1055,
+      "max": 1202
+     },
+     "convIncorp": {
+      "mean": 0.2870405577301852,
+      "min": 0.26455906821963393,
+      "max": 0.3061611374407583
+     },
+     "avgHoursToContact": {
+      "mean": 139.12708218131036,
+      "min": 129.27747747747748,
+      "max": 153.34513274336283
+     },
+     "slaOut": {
+      "mean": 453.125,
+      "min": 403,
+      "max": 530
+     },
+     "cupoUtil": {
+      "mean": 0.30291339394260935,
+      "min": 0.29222850772621156,
+      "max": 0.3151740202979298
+     },
+     "dupBlocked": {
+      "mean": 90.625,
+      "min": 64,
+      "max": 106
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.000946969696969697,
+      "min": 0,
+      "max": 0.007575757575757576
+     },
+     "falseRate": {
+      "mean": 0.001323847796589413,
+      "min": 0,
+      "max": 0.002824858757062147
+     },
+     "geoBlocked": {
+      "mean": 30.5,
+      "min": 25,
+      "max": 40
+     },
+     "rejBlocked": {
+      "mean": 20.125,
+      "min": 15,
+      "max": 27
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9797395833333333,
+      "min": 0.96875,
+      "max": 0.9891666666666666
+     },
+     "coldShare": {
+      "mean": 0.08116983210724857,
+      "min": 0.06987724268177525,
+      "max": 0.10206185567010309
+     },
+     "coldStartShare": {
+      "mean": 0.17692056184893715,
+      "min": 0.15454545454545454,
+      "max": 0.22684310018903592
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 323.375,
+      "min": 312,
+      "max": 335
+     }
+    },
+    "cola": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 527.5,
+      "min": 496,
+      "max": 544
+     },
+     "leadsTotal": {
+      "mean": 646.375,
+      "min": 625,
+      "max": 666
+     },
+     "convIncorp": {
+      "mean": 0.49320682351310957,
+      "min": 0.4681181959564541,
+      "max": 0.5200617283950617
+     },
+     "avgHoursToContact": {
+      "mean": 54.76729235578584,
+      "min": 53.31454545454545,
+      "max": 56.018382352941174
+     },
+     "slaOut": {
+      "mean": 16.75,
+      "min": 5,
+      "max": 28
+     },
+     "cupoUtil": {
+      "mean": 0.24155150458493388,
+      "min": 0.2380062978918001,
+      "max": 0.24677383135146366
+     },
+     "dupBlocked": {
+      "mean": 45.625,
+      "min": 38,
+      "max": 55
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0020833333333333333,
+      "min": 0,
+      "max": 0.016666666666666666
+     },
+     "falseRate": {
+      "mean": 0.0014214307366831331,
+      "min": 0,
+      "max": 0.0038461538461538464
+     },
+     "geoBlocked": {
+      "mean": 17.25,
+      "min": 11,
+      "max": 23
+     },
+     "rejBlocked": {
+      "mean": 10.625,
+      "min": 4,
+      "max": 15
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9797395833333333,
+      "min": 0.96875,
+      "max": 0.9891666666666666
+     },
+     "coldShare": {
+      "mean": 0.10309577081215449,
+      "min": 0.07536764705882353,
+      "max": 0.12430426716141002
+     },
+     "coldStartShare": {
+      "mean": 0.18311633475547254,
+      "min": 0.15101289134438306,
+      "max": 0.22393822393822393
+     },
+     "officeCapBlocked": {
+      "mean": 560,
+      "min": 474,
+      "max": 700
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 318.75,
+      "min": 301,
+      "max": 337
+     }
+    }
+   },
+   {
+    "e": 6,
+    "sin": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1020.875,
+      "min": 957,
+      "max": 1113
+     },
+     "leadsTotal": {
+      "mean": 1143.75,
+      "min": 1071,
+      "max": 1235
+     },
+     "convIncorp": {
+      "mean": 0.4081718479511481,
+      "min": 0.391156462585034,
+      "max": 0.45040946314831665
+     },
+     "avgHoursToContact": {
+      "mean": 66.96860836956978,
+      "min": 50.581336696090794,
+      "max": 80.83874849578821
+     },
+     "slaOut": {
+      "mean": 208.25,
+      "min": 150,
+      "max": 275
+     },
+     "cupoUtil": {
+      "mean": 0.2836047232404388,
+      "min": 0.2735469209451438,
+      "max": 0.29405227622577995
+     },
+     "dupBlocked": {
+      "mean": 92.25,
+      "min": 74,
+      "max": 104
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0009398496240601503,
+      "min": 0,
+      "max": 0.007518796992481203
+     },
+     "falseRate": {
+      "mean": 0.0011189696969316986,
+      "min": 0,
+      "max": 0.0020855057351407717
+     },
+     "geoBlocked": {
+      "mean": 32.875,
+      "min": 28,
+      "max": 41
+     },
+     "rejBlocked": {
+      "mean": 17.875,
+      "min": 9,
+      "max": 26
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9457291666666667,
+      "min": 0.9305555555555556,
+      "max": 0.9577777777777777
+     },
+     "coldShare": {
+      "mean": 0.09248802962954583,
+      "min": 0.08095238095238096,
+      "max": 0.11554192229038855
+     },
+     "coldStartShare": {
+      "mean": 0.17585789723228654,
+      "min": 0.1375387797311272,
+      "max": 0.2057142857142857
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 466.25,
+      "min": 432,
+      "max": 495
+     }
+    },
+    "cola": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 815.875,
+      "min": 792,
+      "max": 837
+     },
+     "leadsTotal": {
+      "mean": 934,
+      "min": 910,
+      "max": 949
+     },
+     "convIncorp": {
+      "mean": 0.5007359067236437,
+      "min": 0.4759871931696905,
+      "max": 0.5194942044257113
+     },
+     "avgHoursToContact": {
+      "mean": 43.423414102345454,
+      "min": 39.12163892445582,
+      "max": 47.93414634146342
+     },
+     "slaOut": {
+      "mean": 26,
+      "min": 10,
+      "max": 40
+     },
+     "cupoUtil": {
+      "mean": 0.2625334333796147,
+      "min": 0.2568848672235206,
+      "max": 0.2693652986408181
+     },
+     "dupBlocked": {
+      "mean": 73.5,
+      "min": 64,
+      "max": 85
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.001358695652173913,
+      "min": 0,
+      "max": 0.010869565217391304
+     },
+     "falseRate": {
+      "mean": 0.0009162128181077283,
+      "min": 0,
+      "max": 0.0024449877750611247
+     },
+     "geoBlocked": {
+      "mean": 23.5,
+      "min": 20,
+      "max": 29
+     },
+     "rejBlocked": {
+      "mean": 12.625,
+      "min": 7,
+      "max": 20
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9457291666666667,
+      "min": 0.9305555555555556,
+      "max": 0.9577777777777777
+     },
+     "coldShare": {
+      "mean": 0.10441201607597737,
+      "min": 0.09034653465346534,
+      "max": 0.11786600496277916
+     },
+     "coldStartShare": {
+      "mean": 0.17563735089126684,
+      "min": 0.1575682382133995,
+      "max": 0.20291616038882138
+     },
+     "officeCapBlocked": {
+      "mean": 237.375,
+      "min": 135,
+      "max": 351
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 467.75,
+      "min": 446,
+      "max": 493
+     }
+    }
+   },
+   {
+    "e": 8,
+    "sin": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1035.875,
+      "min": 935,
+      "max": 1144
+     },
+     "leadsTotal": {
+      "mean": 1152.375,
+      "min": 1052,
+      "max": 1253
+     },
+     "convIncorp": {
+      "mean": 0.498964047174804,
+      "min": 0.4748603351955307,
+      "max": 0.529467680608365
+     },
+     "avgHoursToContact": {
+      "mean": 13.844681313278949,
+      "min": 3.979381443298969,
+      "max": 29.241682974559687
+     },
+     "slaOut": {
+      "mean": 10.875,
+      "min": 0,
+      "max": 58
+     },
+     "cupoUtil": {
+      "mean": 0.2676528183617838,
+      "min": 0.25881026456831296,
+      "max": 0.27565237734453923
+     },
+     "dupBlocked": {
+      "mean": 89.75,
+      "min": 64,
+      "max": 104
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0009541984732824427,
+      "min": 0,
+      "max": 0.007633587786259542
+     },
+     "falseRate": {
+      "mean": 0.0009566949272743698,
+      "min": 0,
+      "max": 0.003787878787878788
+     },
+     "geoBlocked": {
+      "mean": 31.5,
+      "min": 21,
+      "max": 43
+     },
+     "rejBlocked": {
+      "mean": 19.75,
+      "min": 12,
+      "max": 28
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.8861979166666667,
+      "min": 0.848125,
+      "max": 0.90625
+     },
+     "coldShare": {
+      "mean": 0.09677815771007778,
+      "min": 0.07014218009478673,
+      "max": 0.12412412412412413
+     },
+     "coldStartShare": {
+      "mean": 0.1693979170427357,
+      "min": 0.1535393818544367,
+      "max": 0.18094405594405594
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 574.25,
+      "min": 557,
+      "max": 595
+     }
+    },
+    "cola": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1028.375,
+      "min": 935,
+      "max": 1083
+     },
+     "leadsTotal": {
+      "mean": 1145.75,
+      "min": 1052,
+      "max": 1198
+     },
+     "convIncorp": {
+      "mean": 0.4971949713037531,
+      "min": 0.4716193656093489,
+      "max": 0.529467680608365
+     },
+     "avgHoursToContact": {
+      "mean": 13.855261578314712,
+      "min": 3.979381443298969,
+      "max": 29.0197628458498
+     },
+     "slaOut": {
+      "mean": 6.375,
+      "min": 0,
+      "max": 29
+     },
+     "cupoUtil": {
+      "mean": 0.2673885437113338,
+      "min": 0.25881026456831296,
+      "max": 0.2730091030322238
+     },
+     "dupBlocked": {
+      "mean": 89.25,
+      "min": 64,
+      "max": 104
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.001,
+      "min": 0,
+      "max": 0.008
+     },
+     "falseRate": {
+      "mean": 0.0009566949272743698,
+      "min": 0,
+      "max": 0.003787878787878788
+     },
+     "geoBlocked": {
+      "mean": 31.25,
+      "min": 21,
+      "max": 43
+     },
+     "rejBlocked": {
+      "mean": 19.75,
+      "min": 12,
+      "max": 28
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.8861979166666667,
+      "min": 0.848125,
+      "max": 0.90625
+     },
+     "coldShare": {
+      "mean": 0.09586759286166424,
+      "min": 0.07014218009478673,
+      "max": 0.12412412412412413
+     },
+     "coldStartShare": {
+      "mean": 0.16834205182120027,
+      "min": 0.1535393818544367,
+      "max": 0.1790352504638219
+     },
+     "officeCapBlocked": {
+      "mean": 10.375,
+      "min": 0,
+      "max": 62
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 569,
+      "min": 557,
+      "max": 593
+     }
+    }
+   },
+   {
+    "e": 10,
+    "sin": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1020.125,
+      "min": 961,
+      "max": 1136
+     },
+     "leadsTotal": {
+      "mean": 1139.25,
+      "min": 1074,
+      "max": 1258
+     },
+     "convIncorp": {
+      "mean": 0.5201169497458814,
+      "min": 0.4995685936151855,
+      "max": 0.5417032484635645
+     },
+     "avgHoursToContact": {
+      "mean": 2.732189044983591,
+      "min": 2.3065764023210833,
+      "max": 3.454702329594478
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.26248294958617246,
+      "min": 0.2549511384774027,
+      "max": 0.2674916696587962
+     },
+     "dupBlocked": {
+      "mean": 94.125,
+      "min": 77,
+      "max": 113
+     },
+     "dupEscaped": {
+      "mean": 0.25,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0019715598609041235,
+      "min": 0,
+      "max": 0.00819672131147541
+     },
+     "falseRate": {
+      "mean": 0.0014909900134767898,
+      "min": 0,
+      "max": 0.0031088082901554403
+     },
+     "geoBlocked": {
+      "mean": 31.75,
+      "min": 25,
+      "max": 42
+     },
+     "rejBlocked": {
+      "mean": 17.5,
+      "min": 13,
+      "max": 24
+     },
+     "rejReadmit": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "execLoad": {
+      "mean": 0.7407708333333334,
+      "min": 0.6893333333333334,
+      "max": 0.8216666666666667
+     },
+     "coldShare": {
+      "mean": 0.09839719556339639,
+      "min": 0.0849609375,
+      "max": 0.11538461538461539
+     },
+     "coldStartShare": {
+      "mean": 0.17744132898746123,
+      "min": 0.1541501976284585,
+      "max": 0.2020972354623451
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 592.375,
+      "min": 549,
+      "max": 652
+     }
+    },
+    "cola": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1020.125,
+      "min": 961,
+      "max": 1136
+     },
+     "leadsTotal": {
+      "mean": 1139.25,
+      "min": 1074,
+      "max": 1258
+     },
+     "convIncorp": {
+      "mean": 0.5201169497458814,
+      "min": 0.4995685936151855,
+      "max": 0.5417032484635645
+     },
+     "avgHoursToContact": {
+      "mean": 2.732189044983591,
+      "min": 2.3065764023210833,
+      "max": 3.454702329594478
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.26248294958617246,
+      "min": 0.2549511384774027,
+      "max": 0.2674916696587962
+     },
+     "dupBlocked": {
+      "mean": 94.125,
+      "min": 77,
+      "max": 113
+     },
+     "dupEscaped": {
+      "mean": 0.25,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0019715598609041235,
+      "min": 0,
+      "max": 0.00819672131147541
+     },
+     "falseRate": {
+      "mean": 0.0014909900134767898,
+      "min": 0,
+      "max": 0.0031088082901554403
+     },
+     "geoBlocked": {
+      "mean": 31.75,
+      "min": 25,
+      "max": 42
+     },
+     "rejBlocked": {
+      "mean": 17.5,
+      "min": 13,
+      "max": 24
+     },
+     "rejReadmit": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "execLoad": {
+      "mean": 0.7407708333333334,
+      "min": 0.6893333333333334,
+      "max": 0.8216666666666667
+     },
+     "coldShare": {
+      "mean": 0.09839719556339639,
+      "min": 0.0849609375,
+      "max": 0.11538461538461539
+     },
+     "coldStartShare": {
+      "mean": 0.17744132898746123,
+      "min": 0.1541501976284585,
+      "max": 0.2020972354623451
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 592.375,
+      "min": 549,
+      "max": 652
+     }
+    }
+   },
+   {
+    "e": 12,
+    "sin": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1021.625,
+      "min": 952,
+      "max": 1141
+     },
+     "leadsTotal": {
+      "mean": 1145.25,
+      "min": 1075,
+      "max": 1264
+     },
+     "convIncorp": {
+      "mean": 0.5097891932847128,
+      "min": 0.484708063021316,
+      "max": 0.5338142470694319
+     },
+     "avgHoursToContact": {
+      "mean": 2.451618101485787,
+      "min": 2.1056829511465605,
+      "max": 2.758989310009718
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.26096407047838127,
+      "min": 0.2561738398886188,
+      "max": 0.2688762945360645
+     },
+     "dupBlocked": {
+      "mean": 87.875,
+      "min": 78,
+      "max": 105
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0011061946902654867,
+      "min": 0,
+      "max": 0.008849557522123894
+     },
+     "falseRate": {
+      "mean": 0.00046565963920886763,
+      "min": 0,
+      "max": 0.0027906976744186047
+     },
+     "geoBlocked": {
+      "mean": 29.5,
+      "min": 23,
+      "max": 38
+     },
+     "rejBlocked": {
+      "mean": 20.75,
+      "min": 15,
+      "max": 25
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.6130381944444445,
+      "min": 0.5718055555555556,
+      "max": 0.6652777777777777
+     },
+     "coldShare": {
+      "mean": 0.100332818552741,
+      "min": 0.0876424189307625,
+      "max": 0.11880261927034612
+     },
+     "coldStartShare": {
+      "mean": 0.18449686640801133,
+      "min": 0.1534446764091858,
+      "max": 0.2076707202993452
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 583.75,
+      "min": 523,
+      "max": 641
+     }
+    },
+    "cola": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1021.625,
+      "min": 952,
+      "max": 1141
+     },
+     "leadsTotal": {
+      "mean": 1145.25,
+      "min": 1075,
+      "max": 1264
+     },
+     "convIncorp": {
+      "mean": 0.5097891932847128,
+      "min": 0.484708063021316,
+      "max": 0.5338142470694319
+     },
+     "avgHoursToContact": {
+      "mean": 2.451618101485787,
+      "min": 2.1056829511465605,
+      "max": 2.758989310009718
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.26096407047838127,
+      "min": 0.2561738398886188,
+      "max": 0.2688762945360645
+     },
+     "dupBlocked": {
+      "mean": 87.875,
+      "min": 78,
+      "max": 105
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0011061946902654867,
+      "min": 0,
+      "max": 0.008849557522123894
+     },
+     "falseRate": {
+      "mean": 0.00046565963920886763,
+      "min": 0,
+      "max": 0.0027906976744186047
+     },
+     "geoBlocked": {
+      "mean": 29.5,
+      "min": 23,
+      "max": 38
+     },
+     "rejBlocked": {
+      "mean": 20.75,
+      "min": 15,
+      "max": 25
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.6130381944444445,
+      "min": 0.5718055555555556,
+      "max": 0.6652777777777777
+     },
+     "coldShare": {
+      "mean": 0.100332818552741,
+      "min": 0.0876424189307625,
+      "max": 0.11880261927034612
+     },
+     "coldStartShare": {
+      "mean": 0.18449686640801133,
+      "min": 0.1534446764091858,
+      "max": 0.2076707202993452
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 583.75,
+      "min": 523,
+      "max": 641
+     }
+    }
+   },
+   {
+    "e": 14,
+    "sin": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1027.25,
+      "min": 962,
+      "max": 1118
+     },
+     "leadsTotal": {
+      "mean": 1145.5,
+      "min": 1080,
+      "max": 1228
+     },
+     "convIncorp": {
+      "mean": 0.5150101759213808,
+      "min": 0.4804329725228976,
+      "max": 0.5314232902033271
+     },
+     "avgHoursToContact": {
+      "mean": 2.3922370167595384,
+      "min": 2.2887596899224807,
+      "max": 2.5114503816793894
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.26272979331516655,
+      "min": 0.2535224321185057,
+      "max": 0.2681745082198966
+     },
+     "dupBlocked": {
+      "mean": 95,
+      "min": 79,
+      "max": 107
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0009689922480620155,
+      "min": 0,
+      "max": 0.007751937984496124
+     },
+     "falseRate": {
+      "mean": 0.0002380952380952381,
+      "min": 0,
+      "max": 0.0019047619047619048
+     },
+     "geoBlocked": {
+      "mean": 34.125,
+      "min": 25,
+      "max": 44
+     },
+     "rejBlocked": {
+      "mean": 17.375,
+      "min": 10,
+      "max": 25
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.5274404761904762,
+      "min": 0.4953571428571429,
+      "max": 0.570952380952381
+     },
+     "coldShare": {
+      "mean": 0.10237474930599612,
+      "min": 0.07574304889741132,
+      "max": 0.1276595744680851
+     },
+     "coldStartShare": {
+      "mean": 0.18380401956795867,
+      "min": 0.16093117408906882,
+      "max": 0.21461609620721553
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 589.75,
+      "min": 542,
+      "max": 644
+     }
+    },
+    "cola": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1027.25,
+      "min": 962,
+      "max": 1118
+     },
+     "leadsTotal": {
+      "mean": 1145.5,
+      "min": 1080,
+      "max": 1228
+     },
+     "convIncorp": {
+      "mean": 0.5150101759213808,
+      "min": 0.4804329725228976,
+      "max": 0.5314232902033271
+     },
+     "avgHoursToContact": {
+      "mean": 2.3922370167595384,
+      "min": 2.2887596899224807,
+      "max": 2.5114503816793894
+     },
+     "slaOut": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "cupoUtil": {
+      "mean": 0.26272979331516655,
+      "min": 0.2535224321185057,
+      "max": 0.2681745082198966
+     },
+     "dupBlocked": {
+      "mean": 95,
+      "min": 79,
+      "max": 107
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0009689922480620155,
+      "min": 0,
+      "max": 0.007751937984496124
+     },
+     "falseRate": {
+      "mean": 0.0002380952380952381,
+      "min": 0,
+      "max": 0.0019047619047619048
+     },
+     "geoBlocked": {
+      "mean": 34.125,
+      "min": 25,
+      "max": 44
+     },
+     "rejBlocked": {
+      "mean": 17.375,
+      "min": 10,
+      "max": 25
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.5274404761904762,
+      "min": 0.4953571428571429,
+      "max": 0.570952380952381
+     },
+     "coldShare": {
+      "mean": 0.10237474930599612,
+      "min": 0.07574304889741132,
+      "max": 0.1276595744680851
+     },
+     "coldStartShare": {
+      "mean": 0.18380401956795867,
+      "min": 0.16093117408906882,
+      "max": 0.21461609620721553
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 589.75,
+      "min": 542,
+      "max": 644
+     }
+    }
+   }
+  ],
+  "missions": [
+   {
+    "m": 0,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1035.875,
+      "min": 935,
+      "max": 1144
+     },
+     "leadsTotal": {
+      "mean": 1152.375,
+      "min": 1052,
+      "max": 1253
+     },
+     "convIncorp": {
+      "mean": 0.498964047174804,
+      "min": 0.4748603351955307,
+      "max": 0.529467680608365
+     },
+     "avgHoursToContact": {
+      "mean": 13.844681313278949,
+      "min": 3.979381443298969,
+      "max": 29.241682974559687
+     },
+     "slaOut": {
+      "mean": 10.875,
+      "min": 0,
+      "max": 58
+     },
+     "cupoUtil": {
+      "mean": 0.2676528183617838,
+      "min": 0.25881026456831296,
+      "max": 0.27565237734453923
+     },
+     "dupBlocked": {
+      "mean": 89.75,
+      "min": 64,
+      "max": 104
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0009541984732824427,
+      "min": 0,
+      "max": 0.007633587786259542
+     },
+     "falseRate": {
+      "mean": 0.0009566949272743698,
+      "min": 0,
+      "max": 0.003787878787878788
+     },
+     "geoBlocked": {
+      "mean": 31.5,
+      "min": 21,
+      "max": 43
+     },
+     "rejBlocked": {
+      "mean": 19.75,
+      "min": 12,
+      "max": 28
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.8861979166666667,
+      "min": 0.848125,
+      "max": 0.90625
+     },
+     "coldShare": {
+      "mean": 0.09677815771007778,
+      "min": 0.07014218009478673,
+      "max": 0.12412412412412413
+     },
+     "coldStartShare": {
+      "mean": 0.1693979170427357,
+      "min": 0.1535393818544367,
+      "max": 0.18094405594405594
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 574.25,
+      "min": 557,
+      "max": 595
+     }
+    }
+   },
+   {
+    "m": 0.15,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1031.625,
+      "min": 978,
+      "max": 1109
+     },
+     "leadsTotal": {
+      "mean": 1155.75,
+      "min": 1107,
+      "max": 1234
+     },
+     "convIncorp": {
+      "mean": 0.5013435550079771,
+      "min": 0.4905008635578584,
+      "max": 0.518918918918919
+     },
+     "avgHoursToContact": {
+      "mean": 13.636990015888102,
+      "min": 5.808910891089109,
+      "max": 24.322766570605186
+     },
+     "slaOut": {
+      "mean": 4.5,
+      "min": 0,
+      "max": 36
+     },
+     "cupoUtil": {
+      "mean": 0.26621332788687785,
+      "min": 0.25620522832269294,
+      "max": 0.2775694156794554
+     },
+     "dupBlocked": {
+      "mean": 89.375,
+      "min": 72,
+      "max": 102
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.000925925925925926,
+      "min": 0,
+      "max": 0.007407407407407408
+     },
+     "falseRate": {
+      "mean": 0.0014594891026149773,
+      "min": 0,
+      "max": 0.0029644268774703555
+     },
+     "geoBlocked": {
+      "mean": 30.75,
+      "min": 20,
+      "max": 41
+     },
+     "rejBlocked": {
+      "mean": 18,
+      "min": 14,
+      "max": 25
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.8931770833333335,
+      "min": 0.8622916666666667,
+      "max": 0.9254166666666667
+     },
+     "coldShare": {
+      "mean": 0.16189208052555448,
+      "min": 0.13082259663032705,
+      "max": 0.18731117824773413
+     },
+     "coldStartShare": {
+      "mean": 0.3044930971880825,
+      "min": 0.27089627391742194,
+      "max": 0.3284132841328413
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 579.25,
+      "min": 544,
+      "max": 619
+     }
+    }
+   },
+   {
+    "m": 0.3,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1025.375,
+      "min": 961,
+      "max": 1114
+     },
+     "leadsTotal": {
+      "mean": 1143.125,
+      "min": 1066,
+      "max": 1233
+     },
+     "convIncorp": {
+      "mean": 0.5016222883512285,
+      "min": 0.4720194647201946,
+      "max": 0.5196998123827392
+     },
+     "avgHoursToContact": {
+      "mean": 13.46275667949204,
+      "min": 5.664670658682635,
+      "max": 26.58823529411765
+     },
+     "slaOut": {
+      "mean": 9.125,
+      "min": 0,
+      "max": 44
+     },
+     "cupoUtil": {
+      "mean": 0.26587899892710204,
+      "min": 0.2582507534740417,
+      "max": 0.28475600462590983
+     },
+     "dupBlocked": {
+      "mean": 94.125,
+      "min": 77,
+      "max": 113
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0009398496240601503,
+      "min": 0,
+      "max": 0.007518796992481203
+     },
+     "falseRate": {
+      "mean": 0.0008521239245002261,
+      "min": 0,
+      "max": 0.0010395010395010396
+     },
+     "geoBlocked": {
+      "mean": 29.25,
+      "min": 20,
+      "max": 35
+     },
+     "rejBlocked": {
+      "mean": 21.75,
+      "min": 13,
+      "max": 29
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.8863802083333334,
+      "min": 0.8454166666666667,
+      "max": 0.9079166666666667
+     },
+     "coldShare": {
+      "mean": 0.12607989511716544,
+      "min": 0.1021355617455896,
+      "max": 0.13943808532778357
+     },
+     "coldStartShare": {
+      "mean": 0.36226115644763085,
+      "min": 0.3440082644628099,
+      "max": 0.386046511627907
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 572.5,
+      "min": 554,
+      "max": 590
+     }
+    }
+   },
+   {
+    "m": 0.5,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1014.75,
+      "min": 928,
+      "max": 1113
+     },
+     "leadsTotal": {
+      "mean": 1138.125,
+      "min": 1043,
+      "max": 1234
+     },
+     "convIncorp": {
+      "mean": 0.4964154236181231,
+      "min": 0.4813614262560778,
+      "max": 0.5183823529411765
+     },
+     "avgHoursToContact": {
+      "mean": 13.612300921427291,
+      "min": 3.193782383419689,
+      "max": 29.9262851600388
+     },
+     "slaOut": {
+      "mean": 13,
+      "min": 0,
+      "max": 69
+     },
+     "cupoUtil": {
+      "mean": 0.26358494112356795,
+      "min": 0.2502510122654409,
+      "max": 0.285640202871496
+     },
+     "dupBlocked": {
+      "mean": 90,
+      "min": 74,
+      "max": 107
+     },
+     "dupEscaped": {
+      "mean": 0.125,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0010162601626016261,
+      "min": 0,
+      "max": 0.008130081300813009
+     },
+     "falseRate": {
+      "mean": 0.0014848206553294912,
+      "min": 0.0008976660682226212,
+      "max": 0.0030211480362537764
+     },
+     "geoBlocked": {
+      "mean": 31.25,
+      "min": 16,
+      "max": 38
+     },
+     "rejBlocked": {
+      "mean": 18.75,
+      "min": 14,
+      "max": 28
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.8835416666666667,
+      "min": 0.8291666666666667,
+      "max": 0.9229166666666667
+     },
+     "coldShare": {
+      "mean": 0.10932251180469439,
+      "min": 0.0880503144654088,
+      "max": 0.12849740932642487
+     },
+     "coldStartShare": {
+      "mean": 0.42764919054596123,
+      "min": 0.3977379830348728,
+      "max": 0.46113989637305697
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 564.375,
+      "min": 537,
+      "max": 595
+     }
+    }
+   },
+   {
+    "m": 0.7,
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1032.875,
+      "min": 962,
+      "max": 1119
+     },
+     "leadsTotal": {
+      "mean": 1156.75,
+      "min": 1083,
+      "max": 1250
+     },
+     "convIncorp": {
+      "mean": 0.5046289925198034,
+      "min": 0.48925619834710743,
+      "max": 0.5259326660600546
+     },
+     "avgHoursToContact": {
+      "mean": 13.825788091934061,
+      "min": 4.5790010193679915,
+      "max": 24.082296650717705
+     },
+     "slaOut": {
+      "mean": 8.25,
+      "min": 0,
+      "max": 43
+     },
+     "cupoUtil": {
+      "mean": 0.2646598849081263,
+      "min": 0.25807839357609047,
+      "max": 0.2692896278783989
+     },
+     "dupBlocked": {
+      "mean": 88.75,
+      "min": 68,
+      "max": 103
+     },
+     "dupEscaped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "escapeRate": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "falseRate": {
+      "mean": 0.0006002295942655548,
+      "min": 0,
+      "max": 0.001962708537782139
+     },
+     "geoBlocked": {
+      "mean": 28.375,
+      "min": 15,
+      "max": 38
+     },
+     "rejBlocked": {
+      "mean": 20.5,
+      "min": 14,
+      "max": 29
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.8918229166666667,
+      "min": 0.8545833333333334,
+      "max": 0.9197916666666667
+     },
+     "coldShare": {
+      "mean": 0.10280020462010857,
+      "min": 0.08897485493230174,
+      "max": 0.11375387797311272
+     },
+     "coldStartShare": {
+      "mean": 0.46536538896261814,
+      "min": 0.4060963618485742,
+      "max": 0.5004906771344455
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 583.5,
+      "min": 540,
+      "max": 622
+     }
+    }
+   }
+  ],
+  "policy": [
+   {
+    "pol": "fifo",
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1003,
+      "min": 928,
+      "max": 1110
+     },
+     "leadsTotal": {
+      "mean": 1243,
+      "min": 1168,
+      "max": 1350
+     },
+     "convIncorp": {
+      "mean": 0.19629725101404574,
+      "min": 0.1794871794871795,
+      "max": 0.2131849315068493
+     },
+     "avgHoursToContact": {
+      "mean": 192.55065760932962,
+      "min": 186.51089588377724,
+      "max": 197.82201405152225
+     },
+     "slaOut": {
+      "mean": 715.875,
+      "min": 642,
+      "max": 835
+     },
+     "cupoUtil": {
+      "mean": 0.3256285326365508,
+      "min": 0.31558080007351913,
+      "max": 0.33980726948230483
+     },
+     "dupBlocked": {
+      "mean": 85,
+      "min": 69,
+      "max": 101
+     },
+     "dupEscaped": {
+      "mean": 0.25,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.001881401007186103,
+      "min": 0,
+      "max": 0.007751937984496124
+     },
+     "falseRate": {
+      "mean": 0.0006281932586748621,
+      "min": 0,
+      "max": 0.0019120458891013384
+     },
+     "geoBlocked": {
+      "mean": 31.375,
+      "min": 27,
+      "max": 35
+     },
+     "rejBlocked": {
+      "mean": 17.5,
+      "min": 10,
+      "max": 22
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9894444444444445,
+      "min": 0.9816666666666667,
+      "max": 0.9944444444444445
+     },
+     "coldShare": {
+      "mean": 0.07461062928174987,
+      "min": 0.06846846846846846,
+      "max": 0.0842911877394636
+     },
+     "coldStartShare": {
+      "mean": 0.18066378222683005,
+      "min": 0.14211076280041798,
+      "max": 0.2282712511938873
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 243.375,
+      "min": 231,
+      "max": 252
+     }
+    }
+   },
+   {
+    "pol": "sla",
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 988.5,
+      "min": 923,
+      "max": 1092
+     },
+     "leadsTotal": {
+      "mean": 1228.5,
+      "min": 1163,
+      "max": 1332
+     },
+     "convIncorp": {
+      "mean": 0.08042550401473884,
+      "min": 0.06381381381381382,
+      "max": 0.09286328460877043
+     },
+     "avgHoursToContact": {
+      "mean": 48.577975418096116,
+      "min": 47.93358999037536,
+      "max": 49.31416309012876
+     },
+     "slaOut": {
+      "mean": 6.125,
+      "min": 3,
+      "max": 10
+     },
+     "cupoUtil": {
+      "mean": 0.3372271767085702,
+      "min": 0.3120432129704398,
+      "max": 0.3546480518667388
+     },
+     "dupBlocked": {
+      "mean": 87.75,
+      "min": 76,
+      "max": 108
+     },
+     "dupEscaped": {
+      "mean": 0.25,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0018249147485080988,
+      "min": 0,
+      "max": 0.007352941176470588
+     },
+     "falseRate": {
+      "mean": 0.000882391208439052,
+      "min": 0,
+      "max": 0.0029354207436399216
+     },
+     "geoBlocked": {
+      "mean": 30,
+      "min": 23,
+      "max": 35
+     },
+     "rejBlocked": {
+      "mean": 17.5,
+      "min": 11,
+      "max": 25
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9894444444444445,
+      "min": 0.9816666666666667,
+      "max": 0.9944444444444445
+     },
+     "coldShare": {
+      "mean": 0.06987978418869016,
+      "min": 0.06471183013144591,
+      "max": 0.0790899241603467
+     },
+     "coldStartShare": {
+      "mean": 0.17289763860722285,
+      "min": 0.13434452871072589,
+      "max": 0.2118561710398445
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 98.375,
+      "min": 85,
+      "max": 109
+     }
+    }
+   },
+   {
+    "pol": "etapa",
+    "r": {
+     "n": 8,
+     "violations": 0,
+     "leadsHunter": {
+      "mean": 1004.875,
+      "min": 948,
+      "max": 1112
+     },
+     "leadsTotal": {
+      "mean": 1244.875,
+      "min": 1188,
+      "max": 1352
+     },
+     "convIncorp": {
+      "mean": 0.19407952927334615,
+      "min": 0.1802773497688752,
+      "max": 0.21179401993355482
+     },
+     "avgHoursToContact": {
+      "mean": 194.0749832752875,
+      "min": 186.39903846153845,
+      "max": 202.77649769585253
+     },
+     "slaOut": {
+      "mean": 711.125,
+      "min": 658,
+      "max": 822
+     },
+     "cupoUtil": {
+      "mean": 0.32253112395389844,
+      "min": 0.3044726427245863,
+      "max": 0.3412862847036509
+     },
+     "dupBlocked": {
+      "mean": 87,
+      "min": 77,
+      "max": 107
+     },
+     "dupEscaped": {
+      "mean": 0.25,
+      "min": 0,
+      "max": 1
+     },
+     "escapeRate": {
+      "mean": 0.0018835325440435054,
+      "min": 0,
+      "max": 0.007874015748031496
+     },
+     "falseRate": {
+      "mean": 0.0006021123138520945,
+      "min": 0,
+      "max": 0.003766478342749529
+     },
+     "geoBlocked": {
+      "mean": 31.375,
+      "min": 27,
+      "max": 38
+     },
+     "rejBlocked": {
+      "mean": 16.5,
+      "min": 10,
+      "max": 22
+     },
+     "rejReadmit": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "execLoad": {
+      "mean": 0.9894444444444445,
+      "min": 0.9816666666666667,
+      "max": 0.9944444444444445
+     },
+     "coldShare": {
+      "mean": 0.07560494909388209,
+      "min": 0.06744604316546762,
+      "max": 0.08622502628811778
+     },
+     "coldStartShare": {
+      "mean": 0.18698012994012453,
+      "min": 0.15611814345991562,
+      "max": 0.23018147086914995
+     },
+     "officeCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "zoneCapBlocked": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "incorp": {
+      "mean": 241.125,
+      "min": 234,
+      "max": 255
+     }
+    }
+   }
+  ]
+ }
+}

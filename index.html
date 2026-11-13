@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Soy Rappi · Rappi Hunters (concepto v15)</title>
+<title>Soy Rappi · Rappi Hunters (concepto v16)</title>
 <script>try{var __t=localStorage.getItem("rh_theme");if(__t==="light"||__t==="dark")document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1434,6 +1434,38 @@
   /* ===== v14: Gemelo digital (simulación) ===== */
   .dto-scroll { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: 16px 20px 40px; overscroll-behavior: contain; outline: none; }
   .dto-scroll:focus-visible { box-shadow: inset 0 0 0 3px rgba(255,68,31,.35); }
+  /* v16: escenario virtual en la Oficina */
+  .vs-bar { flex: none; background: var(--warn-bg); color: var(--warn-ink); border-bottom: 2px dashed currentColor; padding: 10px 20px; display: grid; gap: 8px; font-size: 12.5px; }
+  .vs-bar[hidden] { display: none; }
+  .vs-top { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .vs-badge { background: var(--warn-ink); color: var(--warn-bg); font-family: var(--f-display); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 11px; border-radius: 999px; padding: 3px 9px; }
+  .vs-ctl { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .vs-ctl button, .vs-ctl select { font: inherit; font-weight: 700; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; cursor: pointer; }
+  .vs-ctl select { border-radius: 10px; margin-left: 4px; }
+  .vs-ctl button:focus-visible, .vs-ctl select:focus-visible { outline: 2px solid var(--warn-ink); outline-offset: 2px; }
+  .vs-speed { display: inline-flex; gap: 4px; }
+  .vs-speed button[aria-pressed="true"] { background: var(--warn-ink); color: var(--warn-bg); border-color: var(--warn-ink); }
+  .vs-ctl .vs-exit { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .vs-clock { font-family: var(--f-display); font-weight: 800; font-size: 14px; min-width: 112px; }
+  .vs-stats { display: flex; gap: 6px; flex-wrap: wrap; }
+  .vs-stats span { background: var(--surface); color: var(--ink); border-radius: 8px; padding: 3px 8px; }
+  .vs-stats b { font-family: var(--f-display); }
+  .vs-evw { display: grid; gap: 4px; }
+  .vs-events { margin: 0; padding: 0 0 0 18px; max-height: 64px; overflow: auto; color: var(--ink); }
+  .vs-events li { margin: 1px 0; }
+  .vs-events time { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 6px; }
+  .io-vs[aria-pressed="true"] { background: var(--warn-bg); color: var(--warn-ink); border-color: var(--warn-ink); box-shadow: inset 0 0 0 1px var(--warn-ink); }
+  .vs-more { display: none; }
+  .device.vs-on .v-oficina { box-shadow: inset 0 0 0 3px var(--warn-ink); }
+  .rl-pin.sim path { stroke-dasharray: 3 2; stroke: var(--warn-ink); }
+  @media (max-width: 720px) {
+    .vs-bar { padding: 8px 12px; gap: 6px; } .vs-note { display: none; }
+    .vs-ctl { gap: 6px; } .vs-ctl button, .vs-ctl select { padding: 4px 9px; }
+    .vs-scn { font-size: 0; } .vs-scn select { font-size: 12.5px; margin-left: 0; max-width: 150px; }
+    .vs-more { display: inline-block; }
+    .vs-bar:not(.vs-open) .vs-stats, .vs-bar:not(.vs-open) .vs-evw { display: none; }
+    .vs-events { max-height: 60px; }
+  }
   .dto-sim { background: var(--warn-bg); color: var(--warn-ink); border-radius: 999px; padding: 4px 10px; font-weight: 700; font-family: var(--f-display); }
   .dto-banner { display: flex; gap: 10px; align-items: flex-start; background: var(--warn-bg); color: var(--warn-ink); border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.45; margin-bottom: 16px; }
   .dto-banner b { font-family: var(--f-display); }
@@ -2011,7 +2043,7 @@
           </label>
           <div class="ls-dup" id="ls-dup" role="alert" hidden>
             <span class="bk-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></span>
-            <div><b>Este local ya está en Rappi o siendo gestionado por un ejecutivo</b><span class="sub" id="ls-dup-sub"></span></div>
+            <div><b id="ls-dup-t">Este local ya está en Rappi o siendo gestionado por un ejecutivo</b><span class="sub" id="ls-dup-sub"></span></div>
           </div>
           <fieldset class="ls-rest" id="ls-rest">
             <label class="ls-field">
@@ -2115,7 +2147,7 @@
           <p>Muéstralo al dueño del local. Un ejecutivo lo contactará por WhatsApp.</p>
           <div class="qr-box"><img id="qr-img" alt="Código QR del Hunter" style="width:100%;height:100%;display:block;object-fit:contain"></div>
           <div class="qr-code">HUNTER-4821</div>
-          <a class="qr-link" id="qr-link" href="https://linktr.ee/PedroH192" target="_blank" rel="noopener noreferrer">Abrir mi Linktree <span aria-hidden="true">↗</span></a>
+          <a class="qr-link" id="qr-link" href="https://fx010.github.io/Dlab-sem-2/" target="_blank" rel="noopener noreferrer">Abrir la demo del programa <span aria-hidden="true">↗</span></a>
           <button class="qr-close" id="qr-close" type="button">Cerrar</button>
         </div>
       </div>
@@ -2242,9 +2274,28 @@
             <span>Importar</span>
           </button>
           <input type="file" id="io-file" hidden>
+          <button class="io-btn io-vs" id="io-vs" type="button" aria-pressed="false" title="Ver la Oficina funcionando con un Santiago simulado">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></svg>
+            <span>Escenario virtual</span>
+          </button>
         </div>
         <div class="user" aria-label="Ejecutivo comercial">EC</div>
       </header>
+      <div class="vs-bar" id="vs-bar" role="region" aria-label="Escenario virtual" hidden>
+        <div class="vs-top"><span class="vs-badge">Simulado</span><span class="vs-note"><b>Escenario virtual.</b> Los datos de esta vista no son reales. Al salir, la Oficina vuelve a sus datos.</span></div>
+        <div class="vs-ctl">
+          <label class="vs-scn">Escenario <select id="vs-scn" aria-label="Escenario simulado"></select></label>
+          <span class="vs-clock" id="vs-clock">Día 1 · 08:00</span>
+          <div class="vs-speed" id="vs-speed" role="group" aria-label="Velocidad del reloj"></div>
+          <button type="button" id="vs-pause">Pausa</button>
+          <button type="button" id="vs-h">+1 h</button>
+          <button type="button" id="vs-d">+1 día</button>
+          <button type="button" id="vs-more" class="vs-more" aria-expanded="false" aria-controls="vs-stats">Detalle</button>
+          <button type="button" id="vs-exit" class="vs-exit">Salir</button>
+        </div>
+        <div class="vs-stats" id="vs-stats"></div>
+        <div class="vs-evw"><b>Qué está pasando</b><ol class="vs-events" id="vs-events" aria-live="polite"></ol></div>
+      </div>
 
       <nav class="od-nav" id="od-nav" aria-label="Secciones del panel">
         <div class="od-pills" data-ds="x">
@@ -3239,6 +3290,7 @@
   }
   /* El local no trae coordenadas: se ubica de forma estable (siempre en el mismo sitio) dentro de su comuna */
   function pinLL(c, x) {
+    if (x.ll && x.sim) return x.ll; /* v16: los leads simulados ya traen su ubicación */
     if (LEAD_LL[x.n]) return LEAD_LL[x.n];
     if (pinCache[x.n]) return pinCache[x.n];
     var h = 2166136261, i; for (i = 0; i < x.n.length; i++) { h ^= x.n.charCodeAt(i); h = Math.imul(h, 16777619); }
@@ -3257,7 +3309,7 @@
         if (!basePass(x) || !stagePass(x)) return;
         var col = originMeta[x.src].color, sel = hlItem === x, dim = x.st === "rechazado";
         out.push({ ll: pinLL(c, x), col: col, z: sel ? 500 : 0, onClick: function () { selectLeadO(z, x); },
-          html: '<div class="rl-pin' + (sel ? " sel" : "") + (dim ? " dim" : "") + '" role="button" aria-label="' + esc(x.n) + ", " + stTxt[x.st] + '"><svg width="28" height="34" viewBox="-14 -34 28 34"><path d="' + PIN_D + '" fill="' + col + '" stroke="#fff" stroke-width="2.2"/><circle cx="0" cy="-20" r="3.8" fill="#fff"/></svg>' + (x.st === "incorporado" ? '<i class="rl-ok"></i>' : "") + "</div>" });
+          html: '<div class="rl-pin' + (sel ? " sel" : "") + (dim ? " dim" : "") + (x.sim ? " sim" : "") + '" role="button" aria-label="' + esc(x.n) + ", " + stTxt[x.st] + '"><svg width="28" height="34" viewBox="-14 -34 28 34"><path d="' + PIN_D + '" fill="' + col + '" stroke="#fff" stroke-width="2.2"/><circle cx="0" cy="-20" r="3.8" fill="#fff"/></svg>' + (x.st === "incorporado" ? '<i class="rl-ok"></i>' : "") + "</div>" });
       });
     });
     return out;
@@ -3430,7 +3482,7 @@
           '<span class="origin-badge ' + om.cls + '">' + originIco(x.src) + om.label + "</span>" +
           (op ? '<span class="op-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>Oportunidad comercial · +' + THRESHOLD + "</span>" : "") +
           (x.photos ? '<span class="item-photos"><figure><img class="item-photo" src="' + x.photos[0] + '" alt="Fachada del local"><figcaption>Fachada</figcaption></figure><figure><img class="item-photo" src="' + x.photos[1] + '" alt="Carta del local"><figcaption>Carta</figcaption></figure></span>' : "") +
-          '<span class="m">' + labels[x.t] + " · " + esc(x.dir) + " · " + esc(x.when) + "</span>" +
+          '<span class="m">' + labels[x.t] + " · " + esc(x.dir) + " · " + whenHtml(x) + "</span>" +
           '<span class="m">' + subline + "</span>" +
           (x.visited ? '<span class="m"><b style="color:var(--ok-ink)">Visitado por un Hunter en terreno</b></span>' : "") +
           (x.phone ? '<span class="m">📞 ' + esc(x.phone) + "</span>" : "") +
@@ -3480,7 +3532,7 @@
     if (b.classList.contains("rej-ok")) {
       var sel = b.parentNode.querySelector(".rej-sel");
       it.rej = { at: Math.min(ORD.indexOf(it.st) + 1, 3), reason: REJ_REASONS[+sel.value] };
-      it.st = "rechazado"; it.rejecting = false;
+      it.st = "rechazado"; it.rejecting = false; it.rejAt = Date.now();
     } else {
       it.st = nextStage[it.st] || it.st;
     }
@@ -3506,7 +3558,14 @@
   /* ---------- Tendencia, embudo y fuentes ---------- */
   var trendAll = [12, 15, 14, 18, 21, 17, 11, 16, 19, 23, 20, 25, 18, 14, 20, 22, 26, 24, 29, 21, 16, 23, 25, 21, 27, 19, 33, 28, 41, 37];
   var trendNow = null;
-  function trendSeries() { var a = trendAll.slice(); a[a.length - 1] = 37 + todayDelta; return a.slice(-range); }
+  function trendSeries() {
+    if (vsState && vsState.on && vsState.w) { /* v16: en el escenario virtual, leads nuevos por día simulado */
+      var w = vsState.w, d = w.perDay.map(function (x) { return x.total; }); d.push(w.day.total);
+      while (d.length < range) d.unshift(0);
+      return d.slice(-range);
+    }
+    var a = trendAll.slice(); a[a.length - 1] = 37 + todayDelta; return a.slice(-range);
+  }
   function dateOf(i, n) { var d = new Date(); d.setDate(d.getDate() - (n - 1 - i)); return d; }
   function renderTrend() {
     var svg = $("chart-trend"), data = trendSeries(), n = data.length;
@@ -3620,12 +3679,12 @@
     zones.forEach(function (z) { sum += value(z); if (zoneKind(z) === "hot") hotN++; else coldN++; });
     countUp($("k-total"), sum);
     $("k-total-s").textContent = "en " + zones.length + " comunas · " + hotN + " calientes y " + coldN + " frías";
-    var today = 37 + todayDelta, yest = trendAll[trendAll.length - 2], pct = Math.round((today - yest) / yest * 100);
+    var tr = trendSeries(), today = tr[tr.length - 1], yest = tr[tr.length - 2] || 1, pct = Math.round((today - yest) / yest * 100);
     countUp($("k-today"), today);
-    $("k-today-d").textContent = todayDelta ? "+" + todayDelta + " en esta sesión" : "";
+    $("k-today-d").textContent = vsState && vsState.on ? "simulado" : todayDelta ? "+" + todayDelta + " en esta sesión" : "";
     $("k-today-s").innerHTML = '<b class="' + (pct >= 0 ? "up" : "dn") + '">' + (pct >= 0 ? "▲ " : "▼ ") + Math.abs(pct) + "%</b> vs ayer (" + yest + ")";
     var sp = $("k-spark"); sp.innerHTML = "";
-    var sd = trendAll.slice(-7).map(function (v, i, a) { return i === a.length - 1 ? today : v; }), smx = Math.max.apply(null, sd), smn = Math.min.apply(null, sd);
+    var sd = (vsState && vsState.on ? tr.slice(-7) : trendAll.slice(-7).map(function (v, i, a) { return i === a.length - 1 ? today : v; })), smx = Math.max.apply(null, sd), smn = Math.min.apply(null, sd);
     var sp2 = sd.map(function (v, i) { return (i ? "L" : "M") + (i * 20).toFixed(1) + " " + (24 - (v - smn) / ((smx - smn) || 1) * 21).toFixed(1); }).join(" ");
     el("path", { d: sp2, fill: "none", stroke: "#FF441F", "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round", "vector-effect": "non-scaling-stroke" }, sp);
     var ops = all.filter(isOp), opPend = ops.filter(function (x) { return x.st === "postulado"; }).length;
@@ -4475,7 +4534,7 @@
 
   /* Mi QR Hunter — código QR real provisto por el usuario, incrustado como imagen */
   var qr = document.getElementById("qr");
-  var QR_DATA_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQMAAACZOPi8AAAABlBMVEUaGiL///8n/1a2AAABFklEQVR42u2ZwQ7DMAhD0f7/nz0tBEN66X0vtFUrlJMF2Liht4h7gn0iMvS7la98VlafeIt/OhEFmhGITFSWiMcGYdXKQmFmwXjsYsncxcPNkm8uHp4XCUZWB3d+eIweF5ZfTu6Va2MHD4/NKVHKQ8aJqT/iRERuo5Unzg9P0fwI58Tkl6HCFK1XofOjWkUxsNm1wtRjRTAWY3uxE5Nve7HtPjHzIPWpK0M1S91ERP1hQondJqNQkPxSOnX2SmD3l2GUSS1E0Pt+77ZjeED9QtdGkc3YZrj77TQ+TDdk/yN6cWlHCOyPeYqaYKh6PYZm18MawfvrwyZj18dhDAXXD+o+KRfEOz/ZX1drkf4m++v3//498YwvcCIxuyYHnj8AAAAASUVORK5CYII=";
+  var QR_DATA_URI = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEICAYAAACj9mr/AAAAAklEQVR4AewaftIAAAdQSURBVO3BwZEcSw5EwSCs9YgT9BcIp5CESwEWefhpZdVDPvdfv/8QAPwfJQBYlABgUQKARQkAFiUAWJQAYFECgEUJABYlAFiUAGBRAoBFCQAWJQBYlABgUQKAxUeX7NbfLBk9yW7dSEZPsls/WTI6sVt/s2R0owQAixIALEoAsCgBwKIEAIsSACxKALD46GHJ6JvZrSfZrRvJ6E3J6IbdOklGN+zWk5LRN7NbTyoBwKIEAIsSACxKALAoAcCiBACLEgAsPnqZ3XpSMnqS3bqRjE7s1kkyumG3TpLRid06SUZPSkZvsltPSkZvKgHAogQAixIALEoAsCgBwKIEAIsSACw+wj8tGd1IRid260nJCM8pAcCiBACLEgAsSgCwKAHAogQAixIALD7Co5LRid16kt16UjJ6k906SUb470oAsCgBwKIEAIsSACxKALAoAcCiBACLj16WjP5mduskGd2wW2+yWzeS0U+WjP5mJQBYlABgUQKARQkAFiUAWJQAYFECgMVHD7Nb/7JkdGK3TpLRjWR0YrdOktGJ3TpJRid26yQZnditk2R0w279y0oAsCgBwKIEAIsSACxKALAoAcCiBACLX7//EP4zu/WTJaMbduskGd2wWzeSEf67EgAsSgCwKAHAogQAixIALEoAsCgBwOKjS3brJBmd2K1vloxOktGb7NZJMjqxWyfJ6CQZvSkZ3bBb3ywZvakEAIsSACxKALAoAcCiBACLEgAsSgCw+OjLJaMTu3UjGd2wWzeS0YndOklGN5LRm+zWN0tGJ3brJBk9yW6dJKMbJQBYlABgUQKARQkAFiUAWJQAYFECgMWv33/oQXbrJBmd2K2TZHTDbn2zZPQmu3WSjL6Z3TpJRid260Yy+slKALAoAcCiBACLEgAsSgCwKAHAogQAi48eloy+WTI6sVs3ktGT7NZJMjqxWyfJ6El260YyelIyOrFbJ3brJBmd2K2TZPSkEgAsSgCwKAHAogQAixIALEoAsCgBwOKjS3brRjJ6kt26kYxu2K2TZHQjGd1IRid260nJ6JvZrZNkdGK3TuzWSTJ6UwkAFiUAWJQAYFECgEUJABYlAFiUAGDx6/cf+sHs1o1kdGK3TpLRid36yZLRDbv1kyWjE7t1koyeZLdOktGNEgAsSgCwKAHAogQAixIALEoAsCgBwOKjS3brJBndsFsnyeiG3fpmyejEbj3Jbt1IRk+yWyfJ6MRuPclu3UhGJ8noSSUAWJQAYFECgEUJABYlAFiUAGBRAoDFR5eS0YndOklGJ8noxG6dJKOTZHTDbt1IRjeS0YndOklGJ3brSXbrJBndsFtvSkY37NZJMnpSCQAWJQBYlABgUQKARQkAFiUAWJQAYPHr9x/6h9mtk2R0w26dJKMTu3WSjG7YrZNkdMNunSSjG3brJBndsFsnyejEbt1IRm8qAcCiBACLEgAsSgCwKAHAogQAixIALD66ZLdOktGJ3TpJRid260YyOrFbN5LRN0tGT0pGJ3brSXbrRjI6sVsnyejEbt2wWyfJ6EYJABYlAFiUAGBRAoBFCQAWJQBYlABg8dHLktGb7NZJMnqS3TpJRm+yWzeS0Y1khF0yelIJABYlAFiUAGBRAoBFCQAWJQBYlABg8dHL7NaNZPTN7NZJMjqxWzeS0YndelMyepPdOklGJ8noRjI6sVsnyehJJQBYlABgUQKARQkAFiUAWJQAYFECgMVHP5zdelMyelIyelIyepLdOklGJ3brTXbrRjI6sVs37NZJMrpRAoBFCQAWJQBYlABgUQKARQkAFiUAWHx0KRndSEY/md16kt16UzI6sVsnyejEbp0koxO7dZKMnmS3TuzWT1YCgEUJABYlAFiUAGBRAoBFCQAWJQBY/Pr9hy7Yrb9ZMrpht24koxO7hV0yOrFbJ8noxG49KRm9qQQAixIALEoAsCgBwKIEAIsSACxKALD46GHJ6JvZrRt260YyOrFbT0pGJ3brRjI6sVtvSkZPSkZPslsnyehGCQAWJQBYlABgUQKARQkAFiUAWJQAYPHRy+zWk5LRvywZnditG8noxG7dSEYnduvEbn0zu3UjGT2pBACLEgAsSgCwKAHAogQAixIALEoAsPgIr7JbN5LRid06SUY37NabktGT7NZJMjqxW0+yWyfJ6EYJABYlAFiUAGBRAoBFCQAWJQBYlABg8RG+WjI6sVtPsls3ktENu3WSjE7s1pPs1puS0ZNKALAoAcCiBACLEgAsSgCwKAHAogQAi49elox+smR0YrdOktGNZPSkZPTN7NaTktENu3WSjE7s1ptKALAoAcCiBACLEgAsSgCwKAHAogQAi48eZrf+ZnbrJBmd2K2TZHRit06S0Q279aRkdCMZPclu3UhGJ3brJBm9qQQAixIALEoAsCgBwKIEAIsSACxKALD49fsPAcD/UQKARQkAFiUAWJQAYFECgEUJABYlAFiUAGBRAoBFCQAWJQBYlABgUQKARQkAFiUAWPwP1as4430Nc5kAAAAASUVORK5CYII=";
   function drawQr() {
     document.getElementById("qr-img").src = QR_DATA_URI;
   }
@@ -4549,8 +4608,29 @@
     else if (tg.z) { b.textContent = "Estás en " + tg.z.name; t.textContent = "Ubicación GPS" + (meAcc ? " · precisión ±" + Math.round(meAcc) + " m" : ""); }
     else { b.textContent = "Fuera de las 10 comunas del programa"; t.textContent = "No puedes reportar locales desde aquí."; }
   }
+  /* v16 (M2 y M3 en la app): además del nombre y el teléfono, se frena
+     a) un local que la oficina descartó hace menos de RH_REJ_DAYS días, y
+     b) con GPS real, un local abierto con nombre parecido a menos de RH_DEDUP_M metros. Ambos valores son supuestos a confirmar con Rappi */
+  var RH_REJ_DAYS = 30, RH_DEDUP_M = 75;
+  function appGuard(name, phone, ll) {
+    var pd = phoneDigits(phone), qt = nameTokens(name), lt = dtoLooseTokens(name), hit = null;
+    if (String(name).trim().length < 4 && pd.length !== 9) return null;
+    zones.forEach(function (z) {
+      z.list.forEach(function (x) {
+        if (hit) return;
+        if (x.st === "rechazado") {
+          var age = x.rejAt ? (Date.now() - x.rejAt) / 36e5 : ageH(x);
+          if (age == null || age >= RH_REJ_DAYS * 24) return;
+          var same = (pd.length === 9 && x.phone && phoneDigits(x.phone) === pd) || tokensMatch(qt, nameTokens(x.n)) || (ll && x.ll && distM(ll, x.ll) <= RH_DEDUP_M && dtoNameLoose(name, x.n, lt));
+          if (same) hit = { x: x, why: "rej", days: Math.max(1, Math.ceil(RH_REJ_DAYS - age / 24)) };
+        } else if (ll && x.ll && distM(ll, x.ll) <= RH_DEDUP_M && dtoNameLoose(name, x.n, lt)) hit = { x: x, why: "geo", m: Math.round(distM(ll, x.ll)) };
+      });
+    });
+    return hit;
+  }
   function refreshForm() {
-    var dup = findExisting(lsName.value, lsPhone.value), tg = leadTarget();
+    var tg = leadTarget(), dup = findExisting(lsName.value, lsPhone.value), why = dup ? findExisting.why : "", g = dup ? null : appGuard(lsName.value, lsPhone.value, tg.real ? tg.ll : null);
+    if (g) { dup = g.x; why = g.why; }
     var checks = [lsName.value.trim().length >= 3, phoneOk(lsPhone.value), !!shots.facade, !!shots.menu];
     var done = checks.filter(Boolean).length;
     var ready = !dup && done === 4 && !!tg.z;
@@ -4558,12 +4638,15 @@
     sheet.classList.toggle("dup", !!dup);
     lsDup.hidden = !dup;
     document.getElementById("ls-rest").disabled = !!dup;
-    if (dup) document.getElementById("ls-dup-sub").textContent = "Coincide con “" + dup.n + "” (" + (findExisting.why === "tel" ? "mismo teléfono" : "nombre muy parecido") + "). No necesitas reportarlo: sigue buscando locales nuevos.";
+    document.getElementById("ls-dup-t").textContent = why === "rej" ? "La oficina descartó este local hace poco" : "Este local ya está en Rappi o siendo gestionado por un ejecutivo";
+    if (dup) document.getElementById("ls-dup-sub").textContent = why === "rej" ? "Coincide con “" + dup.n + "”, que no avanzó. Podrás volver a reportarlo en " + g.days + (g.days === 1 ? " día" : " días") + " si el local cambia."
+      : why === "geo" ? "A " + g.m + " m hay un local con nombre parecido: “" + dup.n + "”. Si es el mismo, no necesitas reportarlo."
+      : "Coincide con “" + dup.n + "” (" + (why === "tel" ? "mismo teléfono" : "nombre muy parecido") + "). No necesitas reportarlo: sigue buscando locales nuevos.";
     document.getElementById("ls-count").textContent = done + " de 4 listos";
     document.getElementById("ls-prog").style.width = done * 25 + "%";
     if (!lsSubmit.classList.contains("loading")) lsSubmit.disabled = !ready;
     var names = ["nombre", "teléfono de 9 dígitos", "foto de la fachada", "foto de la carta"];
-    lsMissing.textContent = dup ? "Envío bloqueado: el local ya existe." : !tg.z ? "Estás fuera de las 10 comunas del programa: no puedes reportar aquí." : ready ? "Todo listo para enviar." :
+    lsMissing.textContent = dup ? (why === "rej" ? "Envío bloqueado: local descartado hace poco." : "Envío bloqueado: el local ya existe.") : !tg.z ? "Estás fuera de las 10 comunas del programa: no puedes reportar aquí." : ready ? "Todo listo para enviar." :
       "Falta: " + names.filter(function (_, i) { return !checks[i]; }).join(", ") + ".";
     return ready;
   }
@@ -4748,8 +4831,16 @@
     shiftProb: .35, valleProb: .45, valleMin: 18, findProb: .10,
     execs: 8, execCapDay: 20, execStart: 9, execEnd: 19, policy: "fifo",
     contactProb: .9, manageProb: .6, incorpProb: .4, rejectProb: .06, lagManageH: 24, lagIncorpH: 72,
-    dupProb: .12, variantShare: .25, channelScale: 1, zoneBias: 0, mut: {}
+    dupProb: .12, variantShare: .25, channelScale: 1, zoneBias: 0, mut: {},
+    /* v16: reglas nuevas (encendidas) y palancas (apagadas por defecto). legacy:true las apaga todas y reproduce la v15 exacta */
+    geoDedup: true, dedupM: 75, rejBlockDays: 30, rejRetry: .15, valleCurve: true, neighborShare: .1,
+    zoneCap: 0, officeCap: false, missions: 0, ramp: false, outage: 0
   };
+  var DTO_LEGACY_OFF = { geoDedup: false, rejBlockDays: 0, rejRetry: 0, valleCurve: false, neighborShare: 0, zoneCap: 0, officeCap: false, missions: 0, ramp: false, outage: 0 };
+  /* v16 (M4): el valle cambia durante el día. Poco valle en almuerzo y cena, más a media tarde. Supuesto; se normaliza a media 1 entre las 8 y las 22 h */
+  var DTO_VALLE_RAW = { 8: 1, 9: 1.1, 10: 1.2, 11: .8, 12: .35, 13: .35, 14: .9, 15: 1.4, 16: 1.4, 17: 1.2, 18: .9, 19: .8, 20: .4, 21: .5 };
+  var DTO_VALLE = (function () { var s = 0, n = 0, k, o = {}; for (k in DTO_VALLE_RAW) { s += DTO_VALLE_RAW[k]; n++; } for (k in DTO_VALLE_RAW) o[k] = DTO_VALLE_RAW[k] * n / s; return o; })();
+  var DTO_STAGE_SLA = { postulado: 48, contactado: 48, gestionado: 72 }; /* v16 (M8): horas por etapa, contadas desde que el lead queda listo para esa etapa (supuesto) */
   var DTO_SCENARIOS = [
     { id: "base", label: "Base", why: "Operación normal con los supuestos iniciales.", patch: {} },
     { id: "punta", label: "Hora punta", why: "Muchos pedidos y poco valle: ¿cuánto baja el flujo de leads?", patch: { valleProb: .15 } },
@@ -4757,7 +4848,11 @@
     { id: "spam", label: "Ola de duplicados", why: "Muchos intentos de reportar locales que ya existen, algunos con el nombre alterado.", patch: { dupProb: .5, variantShare: .4 } },
     { id: "saturada", label: "Oficina saturada", why: "Pocos ejecutivos y más leads de otros canales: ¿se rompe el SLA de 48 h?", patch: { execs: 3, channelScale: 2 } },
     { id: "frias", label: "Zonas frías", why: "Casi todos los Hunters trabajan en comunas calientes: ¿las frías quedan desatendidas?", patch: { zoneBias: .85 } },
-    { id: "cupo", label: "Cupo lleno", why: "Hunters muy activos: ¿cuánto frena el límite de 5 leads activos?", patch: { shiftProb: .7, valleProb: .7, findProb: .5, mix: { oportunista: 0, constante: 1, esporadico: 0, noParticipa: 0 } } }
+    { id: "cupo", label: "Cupo lleno", why: "Hunters muy activos: ¿cuánto frena el límite de 5 leads activos?", patch: { shiftProb: .7, valleProb: .7, findProb: .5, mix: { oportunista: 0, constante: 1, esporadico: 0, noParticipa: 0 } } },
+    { id: "lanzamiento", label: "Lanzamiento", why: "El programa crece de 100 a 1.000 Hunters en 60 días: ¿cuándo se satura la oficina?", patch: { riders: 1000, days: 60, ramp: true } },
+    { id: "feriado", label: "Feriado o lluvia", why: "Muchos pedidos y más repartidores conectados, pero casi sin valle.", patch: { valleProb: .2, shiftProb: .55 } },
+    { id: "enfermo", label: "Ejecutivo enfermo", why: "La capacidad de la oficina cae a la mitad entre los días 8 y 14: ¿cuánto tarda en recuperarse?", patch: { outage: .5 } },
+    { id: "palancas", label: "Base + palancas", why: "Base con las palancas de rediseño: pausa de reportes cuando la cola de primer contacto pasa de 48 h, tope de 40 leads por comuna al día, misiones a comunas frías y prioridad por etapa.", patch: { officeCap: true, zoneCap: 40, missions: .3, policy: "etapa" } }
   ];
   function dtoRng(seed) { /* mulberry32 */
     var a = (seed >>> 0) || 1;
@@ -4789,7 +4884,18 @@
     out.lagIncorpH = dtoNum(P.lagIncorpH, D.lagIncorpH, 0, 720, true);
     out.channelScale = dtoNum(P.channelScale, D.channelScale, 0, 20, false);
     ["shiftProb", "valleProb", "findProb", "contactProb", "manageProb", "incorpProb", "rejectProb", "dupProb", "variantShare", "zoneBias"].forEach(function (k) { out[k] = dtoNum(P[k], D[k], 0, 1, false); });
-    out.policy = P.policy === "sla" ? "sla" : "fifo";
+    out.policy = P.policy === "sla" || P.policy === "etapa" ? P.policy : "fifo";
+    var bool = function (v, d) { return v === undefined || v === null || v === "" ? d : v === true || v === "true" || v === 1 || v === "1"; };
+    out.geoDedup = bool(P.geoDedup, D.geoDedup);
+    out.valleCurve = bool(P.valleCurve, D.valleCurve);
+    out.ramp = bool(P.ramp, D.ramp);
+    out.officeCap = bool(P.officeCap, D.officeCap);
+    out.dedupM = dtoNum(P.dedupM, D.dedupM, 5, 500, true);
+    out.rejBlockDays = dtoNum(P.rejBlockDays, D.rejBlockDays, 0, 365, true);
+    out.zoneCap = dtoNum(P.zoneCap, D.zoneCap, 0, 1000, true);
+    ["rejRetry", "neighborShare", "missions", "outage"].forEach(function (k) { out[k] = dtoNum(P[k], D[k], 0, 1, false); });
+    out.legacy = !!P.legacy;
+    if (out.legacy) for (var lk in DTO_LEGACY_OFF) out[lk] = DTO_LEGACY_OFF[lk];
     var mix = {}, sum = 0, src = P.mix || {};
     DTO_PROFILES.forEach(function (k) { mix[k] = dtoNum(src[k], 0, 0, 1e6, false); sum += mix[k]; });
     if (!P.mix || sum <= 0) { mix = {}; sum = 0; DTO_PROFILES.forEach(function (k) { mix[k] = D.mix[k]; sum += mix[k]; }); }
@@ -4830,16 +4936,90 @@
     for (i = 0; i < ws.length; i++) { r -= ws[i]; if (r < 0) return i; }
     return ws.length - 1;
   }
+  /* ===== v16: geografía del gemelo (M2, M14). Usa un generador aparte (w.geo) para no alterar la secuencia del motor de la v15 ===== */
+  var DTO_CELL = .001; /* ~110 m de latitud, ~93 m de longitud en Santiago */
+  function dtoCellKey(ll) { return Math.floor(ll[0] / DTO_CELL) + ":" + Math.floor(ll[1] / DTO_CELL); }
+  function dtoGridAdd(w, zi, x) { if (!x.ll) return; var g = w.grid[zi], k = dtoCellKey(x.ll); (g[k] || (g[k] = [])).push(x); }
+  function dtoNearby(w, zi, ll, m) {
+    var out = [], g = w.grid[zi], r = Math.ceil(m / 90), a = Math.floor(ll[0] / DTO_CELL), b = Math.floor(ll[1] / DTO_CELL), i, j, c, k;
+    for (i = -r; i <= r; i++) for (j = -r; j <= r; j++) { c = g[(a + i) + ":" + (b + j)]; if (c) for (k = 0; k < c.length; k++) if (distM(ll, c[k].ll) <= m) out.push(c[k]); }
+    return out;
+  }
+  function dtoRandLL(w, zi) {
+    var c = zones[zi].comm, la = c.rp.map(function (q) { return q[0]; }), lo = c.rp.map(function (q) { return q[1]; });
+    var a = Math.min.apply(null, la), b = Math.max.apply(null, la), d = Math.min.apply(null, lo), e = Math.max.apply(null, lo);
+    for (var i = 0; i < 40; i++) { var t = [a + (b - a) * w.geo(), d + (e - d) * w.geo()]; if (pointIn(t, c.rp)) return t; }
+    return c.rc.slice();
+  }
+  function dtoJitter(w, ll, minM, maxM) { /* punto a una distancia entre minM y maxM metros */
+    var d = minM + (maxM - minM) * w.geo(), ang = w.geo() * 2 * Math.PI;
+    return [ll[0] + d * Math.cos(ang) / 111320, ll[1] + d * Math.sin(ang) / (111320 * Math.cos(ll[0] * Math.PI / 180))];
+  }
+  /* Distancia de edición con transposición (OSA), con tope para cortar temprano */
+  function dtoOsa(a, b, cap) {
+    if (Math.abs(a.length - b.length) > cap) return cap + 1;
+    var d = [], i, j;
+    for (i = 0; i <= a.length; i++) { d[i] = [i]; }
+    for (j = 0; j <= b.length; j++) d[0][j] = j;
+    for (i = 1; i <= a.length; i++) {
+      var rowMin = 1e9;
+      for (j = 1; j <= b.length; j++) {
+        var cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost);
+        if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+        if (d[i][j] < rowMin) rowMin = d[i][j];
+      }
+      if (rowMin > cap) return cap + 1;
+    }
+    return d[a.length][b.length];
+  }
+  function dtoLooseTokens(v) { return nameTokens(String(v).replace(/\([^)]*\)/g, " ")); }
+  /* v16 (M2): nombre «parecido» = cada palabra del nombre más corto tiene una casi igual en el otro (1 error, o 2 si es larga) */
+  function dtoNameLoose(a, b, at, bt) {
+    var A = at || dtoLooseTokens(a), B = bt || dtoLooseTokens(b);
+    if (!A.length || !B.length) return false;
+    var small = A.length <= B.length ? A : B, big = small === A ? B : A;
+    if (small.join("").length < 5) return false;
+    return small.every(function (t) { var cap = t.length >= 8 ? 2 : 1; return big.some(function (u) { return dtoOsa(t, u, cap) <= cap; }); });
+  }
+  /* v16 (M2): ¿hay un local abierto a menos de dedupM metros con un nombre parecido? */
+  function dtoNearDup(w, zi, name, ll) {
+    if (!ll) return null;
+    var qt = dtoLooseTokens(name), near = dtoNearby(w, zi, ll, w.p.dedupM), i, x;
+    for (i = 0; i < near.length; i++) { x = near[i]; if (x.st === "rechazado") continue; if (dtoNameLoose(name, x.n, qt, x._lt || (x._lt = dtoLooseTokens(x.n)))) return x; }
+    return null;
+  }
+  /* v16 (M3): ¿es un local que la oficina descartó? (mismo teléfono, mismo nombre o nombre parecido cerca) */
+  function dtoFindRejected(w, zi, name, phone, ll) {
+    var list = w.rej[zi], pd = phoneDigits(phone), qt = dtoLooseTokens(name), i, x;
+    for (i = 0; i < list.length; i++) {
+      x = list[i];
+      if (pd.length === 9 && x.phone && phoneDigits(x.phone) === pd) return x;
+      if (tokensMatch(nameTokens(name), nameTokens(x.n))) return x;
+      if (ll && x.ll && distM(ll, x.ll) <= w.p.dedupM && dtoNameLoose(name, x.n, qt)) return x;
+    }
+    return null;
+  }
   function dtoWorld(p) {
-    var w = { p: p, rng: dtoRng(p.seed), t: 0, zones: dtoCloneZones(zones), riders: [], execs: [], leads: [], seq: 0, carry: 0, capAcc: 0, actDone: 0, utilSum: 0, utilN: 0,
-      stats: { attempts: 0, lock: 0, cupo: 0, dupBlocked: 0, dupEscaped: 0, created: 0 }, day: { hunter: 0, total: 0, incorp: 0, dupBlocked: 0, lock: 0, cupo: 0 }, perDay: [], log: [] }, i, k, r, acc, prof;
+    var w = { p: p, rng: dtoRng(p.seed), geo: dtoRng((p.seed ^ 0x9E3779B9) >>> 0), t: 0, zones: dtoCloneZones(zones), riders: [], execs: [], leads: [], seq: 0, carry: 0, capAcc: 0, actDone: 0, utilSum: 0, utilN: 0,
+      stats: { attempts: 0, lock: 0, cupo: 0, dupBlocked: 0, dupEscaped: 0, created: 0, geoBlocked: 0, rejBlocked: 0, rejReadmit: 0, zoneCap: 0, officeCap: 0, falseBlocked: 0, newAttempts: 0, dupAttempts: 0 },
+      day: { hunter: 0, total: 0, incorp: 0, dupBlocked: 0, lock: 0, cupo: 0, zoneCap: 0 }, perDay: [], log: [], grid: [], rej: [], zoneDay: [], dayHunter: 0, queue: 0 }, i, k, r, acc, prof;
     for (i = 0; i < p.riders; i++) {
       r = w.rng(); acc = 0; prof = DTO_PROFILES[DTO_PROFILES.length - 1];
       for (k = 0; k < DTO_PROFILES.length; k++) { acc += p.mix[DTO_PROFILES[k]]; if (r < acc) { prof = DTO_PROFILES[k]; break; } }
       w.riders.push({ id: "S" + (i + 1), prof: prof, zi: dtoPickZone(w, w.rng() < p.zoneBias ? 1 : 0), busy: false, active: 0 });
+      w.riders[i].home = w.riders[i].zi;
     }
     for (i = 0; i < p.execs; i++) w.execs.push({ id: "E" + (i + 1), done: 0 });
-    w.zones.forEach(function (z) { z._seed = z.list.length; });
+    w.zones.forEach(function (z, zi) {
+      z._seed = z.list.length; w.grid[zi] = {}; w.rej[zi] = []; w.zoneDay[zi] = 0;
+      z.list.forEach(function (x) {
+        x.ll = x.ll ? x.ll.slice() : pinLL(zones[zi].comm, x).slice();
+        if (x.st === "rechazado") { x.rejT = -48; w.rej[zi].push(x); } /* descartado de ejemplo: hace 2 días */
+        dtoGridAdd(w, zi, x);
+      });
+    });
+    w.cold0 = w.zones.map(function (z) { return zoneKind(z) === "cold"; }); /* comunas frías al comenzar */
     w.seedBySrc = {};
     w.zones.forEach(function (z, zi) { z.list.forEach(function (x) { var key = x.src + ":" + zi; w.seedBySrc[key] = (w.seedBySrc[key] || 0) + 1; }); });
     return w;
@@ -4848,46 +5028,83 @@
   function dtoAddLead(w, o) {
     var z = w.zones[o.zi];
     var lead = { n: o.n, t: o.t || "rest", dir: "Simulado · " + z.name, st: "postulado", src: o.src, post: o.src === "hunter" ? 1 : undefined, phone: o.phone, by: o.by, prof: o.prof,
-      born: w.t, sentAt: w.t, seq: ++w.seq, cid: "SIM" + w.seq, hist: [0], zi: o.zi, stAt: w.t, sim: true, ctx: o.ctx };
-    z.list.unshift(lead); z.c[lead.t]++; w.leads.push(lead); w.stats.created++; w.day.total++;
+      born: w.t, sentAt: w.t, seq: ++w.seq, cid: "SIM" + w.seq, hist: [0], zi: o.zi, stAt: w.t, sim: true, ctx: o.ctx, ll: o.ll || dtoRandLL(w, o.zi), when: "simulado" };
+    if (o.src === "hunter") { lead.cold = zoneKind(z) === "cold"; lead.cold0 = !!w.cold0[o.zi]; w.zoneDay[o.zi]++; w.dayHunter++; }
+    z.list.unshift(lead); z.c[lead.t]++; w.leads.push(lead); w.stats.created++; w.day.total++; w.queue++;
+    dtoGridAdd(w, o.zi, lead);
     if (o.src === "hunter") w.day.hunter++;
     if (w.p.mut && w.p.mut.dropLead && o.src === "hunter" && w.seq % 7 === 0) z.list.shift(); /* mutación de prueba: pierde un lead */
     return lead;
   }
+  function dtoVariantName(n) { return String(n).split(" ").map(function (t) { return t.length > 3 ? t.slice(0, 1) + t.slice(2, 3) + t.slice(1, 2) + t.slice(3) : t + "x"; }).join(" "); }
   function dtoIntent(w, rider) {
     var u = w.rng(), p = w.p, pool = [], z = w.zones[rider.zi], l;
-    if (u >= p.dupProb) return { kind: "new" };
-    for (var i = 0; i < z.list.length && pool.length < 60; i++) { l = z.list[i]; if (l.st !== "rechazado") pool.push(l); }
-    if (!pool.length) return { kind: "new" };
-    l = pool[Math.floor(w.rng() * pool.length)];
-    if (w.rng() < p.variantShare) {
-      var alt = String(l.n).split(" ").map(function (t) { return t.length > 3 ? t.slice(0, 1) + t.slice(2, 3) + t.slice(1, 2) + t.slice(3) : t + "x"; }).join(" ");
-      return { kind: "variant", name: alt, phone: dtoNewPhone(w), of: l.n };
+    if (u >= p.dupProb) {
+      /* v16: algunos locales nuevos están junto a uno conocido y comparten una palabra del nombre (calle, barrio): sirven para medir falsos positivos */
+      if (p.neighborShare > 0 && z.list.length && w.geo() < p.neighborShare) {
+        var nb = z.list[Math.floor(w.geo() * z.list.length)], tk = dtoLooseTokens(nb.n)[0];
+        if (tk && nb.ll) return { kind: "new", neighbor: tk, ll: dtoJitter(w, nb.ll, 20, 150) };
+      }
+      return { kind: "new", ll: dtoRandLL(w, rider.zi) };
     }
-    return { kind: "dup", name: l.n, phone: l.phone || dtoNewPhone(w) };
+    /* v16 (M3): parte de los intentos apunta a un local que la oficina ya descartó */
+    if (p.rejRetry > 0 && w.rej[rider.zi].length && w.geo() < p.rejRetry) {
+      l = w.rej[rider.zi][Math.floor(w.geo() * w.rej[rider.zi].length)];
+      return { kind: "rej", name: w.geo() < .5 ? l.n : dtoVariantName(l.n), phone: w.geo() < .5 && l.phone ? l.phone : dtoNewPhone(w), of: l.n, ll: dtoJitter(w, l.ll, 0, 35) };
+    }
+    for (var i = 0; i < z.list.length && pool.length < 60; i++) { l = z.list[i]; if (l.st !== "rechazado") pool.push(l); }
+    if (!pool.length) return { kind: "new", ll: dtoRandLL(w, rider.zi) };
+    l = pool[Math.floor(w.rng() * pool.length)];
+    var near = l.ll ? dtoJitter(w, l.ll, 0, 35) : null; /* el mismo local, con el error típico del GPS */
+    if (w.rng() < p.variantShare) return { kind: "variant", name: dtoVariantName(l.n), phone: dtoNewPhone(w), of: l.n, ll: near };
+    return { kind: "dup", name: l.n, phone: l.phone || dtoNewPhone(w), ll: near };
   }
-  /* Orden de reglas de la app: bloqueo por pedido → cupo de 5 → anti-spam → se crea el lead */
+  /* Orden de reglas: bloqueo por pedido → cupo de 5 → tope por comuna (v16) → anti-spam por nombre/teléfono → descartado reciente (v16) → anti-spam por ubicación (v16) → se crea el lead */
   function dtoTryReport(w, rider, intent) {
-    var mut = w.p.mut || {}, it = intent || dtoIntent(w, rider), st = w.stats;
+    var p = w.p, mut = p.mut || {}, it = intent || dtoIntent(w, rider), st = w.stats;
     st.attempts++;
     if (rider.busy && !mut.ignoreLock) { st.lock++; w.day.lock++; return "lock"; }
     if (rider.active >= CUPO && !mut.ignoreCupo) { st.cupo++; w.day.cupo++; return "cupo"; }
+    if (p.zoneCap > 0 && w.zoneDay[rider.zi] >= p.zoneCap && !mut.ignoreZoneCap) { st.zoneCap++; w.day.zoneCap++; return "zona"; }
+    if (p.officeCap && w.queue >= dtoQueueCap(w) && !mut.ignoreOfficeCap) { st.officeCap++; w.day.zoneCap++; return "oficina"; }
     var name = it.kind === "new" ? dtoNewName(w) : it.name, phone = it.kind === "new" ? dtoNewPhone(w) : it.phone;
+    if (it.neighbor) name = it.neighbor.charAt(0).toUpperCase() + it.neighbor.slice(1) + " " + name.split(" ").slice(1).join(" ");
+    if (it.kind === "new") st.newAttempts++;
+    if (it.kind === "dup" || it.kind === "variant") st.dupAttempts++;
     var hit = findExisting(name, phone, w.zones);
-    if (hit && !mut.ignoreDup) { st.dupBlocked++; w.day.dupBlocked++; return "dup"; }
-    var ctx = { busy: !!rider.busy, dupHit: hit ? hit.n : null, activeBefore: rider.active, variant: it.kind === "variant", of: it.of || null };
-    dtoAddLead(w, { zi: rider.zi, n: name, phone: phone, src: "hunter", by: rider.id, prof: rider.prof, t: ["rest", "rest", "rest", "boti", "farm"][Math.floor(w.rng() * 5)], ctx: ctx });
+    if (hit && !mut.ignoreDup) { st.dupBlocked++; w.day.dupBlocked++; if (it.kind === "new") st.falseBlocked++; return "dup"; }
+    var ll = it.ll || null, rej = p.rejBlockDays > 0 ? dtoFindRejected(w, rider.zi, name, phone, ll) : null, rejIn = !!rej && w.t - rej.rejT < p.rejBlockDays * 24;
+    if (rejIn && !mut.ignoreRej) { st.rejBlocked++; if (it.kind === "new") st.falseBlocked++; return "rej"; }
+    if (rej) st.rejReadmit++;
+    var geo = p.geoDedup ? dtoNearDup(w, rider.zi, name, ll) : null;
+    if (geo && !mut.ignoreGeo) { st.geoBlocked++; w.day.dupBlocked++; if (it.kind === "new") st.falseBlocked++; return "geo"; }
+    var ctx = { busy: !!rider.busy, dupHit: hit ? hit.n : null, activeBefore: rider.active, variant: it.kind === "variant", of: it.of || null, geoHit: geo ? geo.n : null, rejHit: rejIn ? rej.n : null, zoneDayBefore: w.zoneDay[rider.zi], queueOver: p.officeCap && w.queue >= dtoQueueCap(w) };
+    dtoAddLead(w, { zi: rider.zi, n: name, phone: phone, src: "hunter", by: rider.id, prof: rider.prof, t: ["rest", "rest", "rest", "boti", "farm"][Math.floor(w.rng() * 5)], ctx: ctx, ll: ll });
     rider.active++;
     if (it.kind === "variant") { st.dupEscaped++; return "escape"; }
     return "lead";
   }
+  /* v16 (M7): a las 8 h, una parte de los Hunters acepta la misión del día y trabaja en una comuna fría */
+  function dtoMissions(w) {
+    var p = w.p, cold = [];
+    w.zones.forEach(function (z, zi) { if (zoneKind(z) === "cold") cold.push(zi); });
+    w.riders.forEach(function (r) {
+      r.zi = r.home;
+      if (r.prof === "noParticipa" || !cold.length) return;
+      if (w.rng() < p.missions) r.zi = cold[Math.floor(w.rng() * cold.length)];
+    });
+  }
   function dtoRidersStep(w) {
     var p = w.p, h = w.t % 24;
     if (h < 8 || h >= 22) return;
-    w.riders.forEach(function (r) {
+    if (p.missions > 0 && h === 8) dtoMissions(w);
+    var vp = p.valleCurve ? Math.min(1, p.valleProb * DTO_VALLE[h]) : p.valleProb;
+    var activeN = p.ramp ? Math.round(w.riders.length * Math.min(1, .1 + .9 * w.t / Math.max(1, p.days * 24 - 24))) : w.riders.length;
+    w.riders.forEach(function (r, ri) {
+      if (ri >= activeN) return;
       if (r.prof === "noParticipa") return;
       if (w.rng() >= p.shiftProb) return;
-      r.busy = w.rng() >= p.valleProb;
+      r.busy = w.rng() >= vp;
       if (r.busy) { if (w.rng() < .05) dtoTryReport(w, r); return; }
       var wait = p.valleMin > 0 ? -Math.log(1 - w.rng()) * p.valleMin : 0;
       if (wait >= DTO_MINW[r.prof] && w.rng() < DTO_DECIDE[r.prof] && w.rng() < p.findProb) dtoTryReport(w, r);
@@ -4906,11 +5123,12 @@
   var DTO_REJ = ["El local cerró de forma permanente.", "Trabaja con otra plataforma en exclusiva.", "No cumple los requisitos.", "Datos de contacto inválidos."];
   function dtoSetStage(w, l, to) {
     var idx = ORD.indexOf(to);
+    if (l.st === "postulado" && to !== "postulado") w.queue--;
     l.st = to; l.stAt = w.t;
-    if (to === "rechazado") { l.hist.push(-1); l.rej = { at: Math.max(1, Math.min(3, l.hist[l.hist.length - 2] + 1)), reason: DTO_REJ[Math.floor(w.rng() * DTO_REJ.length)] }; }
+    if (to === "rechazado") { l.hist.push(-1); l.rej = { at: Math.max(1, Math.min(3, l.hist[l.hist.length - 2] + 1)), reason: DTO_REJ[Math.floor(w.rng() * DTO_REJ.length)] }; l.rejT = w.t; w.rej[l.zi].push(l); }
     else l.hist.push(idx);
     if (to === "contactado" && l.cAt == null) l.cAt = w.t;
-    if (to === "incorporado") w.day.incorp++;
+    if (to === "incorporado") { w.day.incorp++; l.iAt = w.t; }
     if (!dtoOpen(l)) {
       if (l.src === "hunter") { var r = w.riders[+l.by.slice(1) - 1]; if (r && r.active > 0) r.active--; }
       var zc = w.zones[l.zi].c; if (zc[l.t] > 0) zc[l.t]--;
@@ -4919,8 +5137,9 @@
   function dtoOfficeStep(w) {
     var p = w.p, h = w.t % 24;
     if (!p.execs || h < p.execStart || h >= p.execEnd) return;
-    var cap = p.execs * p.execCapDay / (p.execEnd - p.execStart) + w.carry, n = Math.floor(cap);
-    w.carry = cap - n; w.capAcc += p.execs * p.execCapDay / (p.execEnd - p.execStart);
+    var dayN = Math.floor(w.t / 24), down = p.outage > 0 && dayN >= 7 && dayN <= 13 ? 1 - p.outage : 1; /* v16 (M9): días 8 a 14 con menos capacidad */
+    var cap = p.execs * p.execCapDay * down / (p.execEnd - p.execStart) + w.carry, n = Math.floor(cap);
+    w.carry = cap - n; w.capAcc += p.execs * p.execCapDay * down / (p.execEnd - p.execStart);
     if (n <= 0) return;
     var ready = w.leads.filter(function (l) {
       if (!dtoOpen(l)) return false;
@@ -4933,6 +5152,11 @@
       var late = [], rest = [];
       ready.forEach(function (l) { (l.st === "postulado" && w.t - l.born > SLA_H ? late : rest).push(l); });
       ready = late.concat(rest);
+    } else if (p.policy === "etapa") {
+      /* v16 (M8): primero lo más cercano a cerrarse (gestionado → contactado → postulado) y, dentro de cada etapa, el plazo que vence antes.
+         Probado: ordenar solo por plazo (el que vence antes) bajaba la conversión igual que «Primero los fuera de SLA» */
+      var rk = { gestionado: 0, contactado: 1, postulado: 2 };
+      ready = ready.map(function (l, i) { return { l: l, r: rk[l.st], d: dtoDeadline(p, l), i: i }; }).sort(function (a, b) { return a.r - b.r || a.d - b.d || a.i - b.i; }).map(function (x) { return x.l; });
     }
     var mut = p.mut || {}, i, l, e;
     for (i = 0; i < ready.length && i < n; i++) {
@@ -4946,6 +5170,24 @@
     }
   }
   function dtoSlaOut(w) { var n = 0; w.leads.forEach(function (l) { if (l.st === "postulado" && w.t - l.born > SLA_H) n++; }); return n; }
+  /* v16 (M8): plazo de la etapa actual = desde que el lead queda listo para esa etapa */
+  function dtoDeadline(p, l) {
+    if (l.st === "postulado") return l.born + DTO_STAGE_SLA.postulado;
+    if (l.st === "contactado") return l.stAt + p.lagManageH + DTO_STAGE_SLA.contactado;
+    return l.stAt + p.lagIncorpH + DTO_STAGE_SLA.gestionado;
+  }
+  /* v16 (M6): freno por cola. Si la cola de primer contacto ya es más de lo que la oficina contacta en 48 h, se pausan los reportes nuevos de Hunters.
+     Se supone que ~35 % de las gestiones del día son primeros contactos (supuesto). Se probó un tope fijo por fórmula y dejaba la oficina al 54 %: se descartó */
+  function dtoQueueCapFor(p, dayN) {
+    var down = p.outage > 0 && dayN >= 7 && dayN <= 13 ? 1 - p.outage : 1;
+    return Math.max(0, Math.floor(p.execs * p.execCapDay * down * (SLA_H / 24) * .35));
+  }
+  function dtoQueueCap(w) { return dtoQueueCapFor(w.p, Math.floor(w.t / 24)); }
+  function dtoSlaStage(w) {
+    var o = { postulado: 0, contactado: 0, gestionado: 0 };
+    w.leads.forEach(function (l) { if (dtoOpen(l) && w.t > dtoDeadline(w.p, l)) o[l.st]++; });
+    return o;
+  }
   function dtoOpps(w) { return w.zones.map(function (z) { return { pt: z.pt, name: z.name, open: total(z), hot: zoneKind(z) === "hot" }; }); }
   function dtoStep(w) {
     var h = w.t % 24;
@@ -4959,19 +5201,27 @@
       var so = dtoSlaOut(w), dn = Math.floor(w.t / 24) + 1;
       w.perDay.push({ day: dn, hunter: d.hunter, total: d.total, incorporated: d.incorp, slaOut: so });
       w.log.push({ t: w.t, msg: "Día " + dn + ": " + d.hunter + " leads Hunter, " + d.total + " en total, " + d.dupBlocked + " duplicados frenados, " + d.lock + " bloqueos por pedido, " + d.cupo + " por cupo lleno" + (so ? ", " + so + " fuera de SLA" : "") + "." });
-      w.day = { hunter: 0, total: 0, incorp: 0, dupBlocked: 0, lock: 0, cupo: 0 };
+      if (d.zoneCap) w.log[w.log.length - 1].msg += " Tope por comuna: " + d.zoneCap + " intentos frenados.";
+      w.day = { hunter: 0, total: 0, incorp: 0, dupBlocked: 0, lock: 0, cupo: 0, zoneCap: 0 };
+      for (var zi = 0; zi < w.zoneDay.length; zi++) w.zoneDay[zi] = 0;
+      w.dayHunter = 0;
     }
     w.t++;
   }
-  var DTO_INV = ["Cupo máximo de 5 leads activos por Hunter", "Sin leads con el Modo Hunter bloqueado", "Sin duplicados detectables", "Las etapas solo avanzan o se rechazan", "Conservación de leads", "Sin datos individuales de repartidores", "Sin montos en pesos"];
+  var DTO_INV = ["Cupo máximo de 5 leads activos por Hunter", "Sin leads con el Modo Hunter bloqueado", "Sin duplicados detectables", "Las etapas solo avanzan o se rechazan", "Conservación de leads", "Sin datos individuales de repartidores", "Sin montos en pesos",
+    "Un local descartado no vuelve antes del plazo de bloqueo", "Topes de volumen por comuna y por oficina"];
   function dtoCheck(w) {
-    var v = [], per = {}, inList = 0;
+    var v = [], per = {}, inList = 0, p = w.p, zd = {};
     w.leads.forEach(function (l) {
       if (l.src === "hunter") {
         if (dtoOpen(l)) per[l.by] = (per[l.by] || 0) + 1;
         if (l.ctx.activeBefore >= CUPO) v.push({ inv: 1, t: l.born, msg: "Un Hunter creó un lead con " + l.ctx.activeBefore + " activos." });
         if (l.ctx.busy) v.push({ inv: 2, t: l.born, msg: "Lead creado con el Modo Hunter bloqueado (pedido en curso)." });
         if (l.ctx.dupHit && !l.ctx.variant) v.push({ inv: 3, t: l.born, msg: "Lead duplicado de “" + l.ctx.dupHit + "” admitido." });
+        if (l.ctx.geoHit && p.geoDedup) v.push({ inv: 3, t: l.born, msg: "Lead admitido a menos de " + p.dedupM + " m de “" + l.ctx.geoHit + "”, con nombre parecido." });
+        if (l.ctx.rejHit && p.rejBlockDays > 0) v.push({ inv: 8, t: l.born, msg: "Se admitió “" + l.n + "”, descartado hace menos de " + p.rejBlockDays + " días." });
+        if (l.ctx.queueOver) v.push({ inv: 9, t: l.born, msg: "Entró un lead de Hunter con la cola de primer contacto llena." });
+        if (p.zoneCap > 0) { var key = l.zi + ":" + Math.floor(l.born / 24); zd[key] = (zd[key] || 0) + 1; if (zd[key] === p.zoneCap + 1) v.push({ inv: 9, t: l.born, msg: "Una comuna recibió más de " + p.zoneCap + " leads de Hunters en un día." }); }
       }
       var h = l.hist, i, bad = false;
       for (i = 1; i < h.length; i++) { if (h[i] === -1) { if (i !== h.length - 1) bad = true; } else if (h[i] <= h[i - 1] || h[i - 1] === -1) bad = true; }
@@ -4999,12 +5249,18 @@
       if (l.src === "hunter") { hn++; byProf[l.prof].leads++; }
       if (l.cAt != null) { cs += l.cAt - l.born; cn++; }
     });
-    var viol = dtoCheck(w), s = {
+    var ih = 0, inn = 0, cold = 0, cold0 = 0;
+    w.leads.forEach(function (l) { if (l.iAt != null) { ih += l.iAt - l.born; inn++; } if (l.src === "hunter" && l.cold) cold++; if (l.src === "hunter" && l.cold0) cold0++; });
+    var st = w.stats, viol = dtoCheck(w), s = {
       simulado: true, seed: p.seed, days: p.days, params: JSON.parse(JSON.stringify(p)), leadsHunter: hn, leadsTotal: w.leads.length, funnel: f,
       convIncorp: w.leads.length ? f.incorporado / w.leads.length : 0, avgHoursToContact: cn ? cs / cn : 0, slaOut: dtoSlaOut(w),
       cupoUtil: w.utilN ? w.utilSum / w.utilN : 0, dupBlocked: w.stats.dupBlocked, dupEscaped: w.stats.dupEscaped, lockBlocked: w.stats.lock, cupoBlocked: w.stats.cupo,
       execLoad: w.capAcc ? Math.min(1, w.actDone / w.capAcc) : 0, perDay: w.perDay.slice(), heat: dtoOpps(w), byProfile: byProf,
-      log: w.log.slice(-200).map(function (x) { return x.msg; }), violations: viol
+      log: w.log.slice(-200).map(function (x) { return x.msg; }), violations: viol,
+      /* v16 */
+      geoBlocked: st.geoBlocked, rejBlocked: st.rejBlocked, rejReadmit: st.rejReadmit, zoneCapBlocked: st.zoneCap, officeCapBlocked: st.officeCap, dayCap: p.officeCap ? dtoQueueCapFor(p, 0) : 0, falseBlocked: st.falseBlocked,
+      falseRate: st.newAttempts ? st.falseBlocked / st.newAttempts : 0, escapeRate: st.dupAttempts ? st.dupEscaped / st.dupAttempts : 0,
+      coldShare: hn ? cold / hn : 0, coldStartShare: hn ? cold0 / hn : 0, avgHoursToIncorp: inn ? ih / inn : 0, slaStage: dtoSlaStage(w)
     };
     return s;
   }
@@ -5021,7 +5277,7 @@
     tm = setTimeout(chunk, 0);
     return function () { dead = true; if (tm) clearTimeout(tm); };
   }
-  var DTO_MULTI_KEYS = ["leadsHunter", "leadsTotal", "convIncorp", "avgHoursToContact", "slaOut", "cupoUtil", "dupBlocked", "dupEscaped", "execLoad"];
+  var DTO_MULTI_KEYS = ["leadsHunter", "leadsTotal", "convIncorp", "avgHoursToContact", "slaOut", "cupoUtil", "dupBlocked", "dupEscaped", "execLoad", "geoBlocked", "escapeRate", "falseRate", "coldShare", "coldStartShare", "zoneCapBlocked", "officeCapBlocked"];
   function dtoAggregate(list) {
     var out = {}, viol = 0;
     list.forEach(function (s) { viol += s.violations.length; });
@@ -5065,7 +5321,7 @@
   T.add("dto/rng-determinista", function () { var a = dtoRng(7), b = dtoRng(7), c = dtoRng(8), x = [], y = []; for (var i = 0; i < 5; i++) { x.push(a()); y.push(b()); } T.eq(x, y); T.assert(c() !== x[0], "semillas iguales"); var r = dtoRng(3); for (i = 0; i < 1000; i++) { var v = r(); T.assert(v >= 0 && v < 1, "fuera de rango"); } });
   T.add("dto/params-limites", function () { T.eq(dtoParams({ riders: 99999 }).riders, 1000); T.eq(dtoParams({ days: 999 }).days, 60); T.eq(dtoParams({ riders: -5 }).riders, 0); T.eq(dtoParams({ execs: 0 }).execs, 0); T.eq(dtoParams({ riders: "abc" }).riders, DTO_DEFAULTS.riders); T.eq(dtoParams({ valleProb: 5 }).valleProb, 1); T.eq(dtoParams({ riders: "" }).riders, DTO_DEFAULTS.riders); });
   T.add("dto/params-mix-normaliza", function () { var m = dtoParams({ mix: { oportunista: 2, constante: 2, esporadico: 0, noParticipa: 0 } }).mix, s = 0; DTO_PROFILES.forEach(function (k) { s += m[k]; }); T.assert(Math.abs(s - 1) < 1e-9, "no suma 1"); var d = dtoParams({ mix: { oportunista: 0, constante: 0, esporadico: 0, noParticipa: 0 } }).mix; T.eq(d, DTO_DEFAULTS.mix); });
-  T.add("dto/escenarios", function () { T.eq(DTO_SCENARIOS.map(function (s) { return s.id; }), ["base", "punta", "valle0", "spam", "saturada", "frias", "cupo"]); T.eq(dtoScenarioParams("valle0").valleProb, 0); T.assert(dtoScenarioParams("saturada").execs < dtoScenarioParams("base").execs, "saturada no baja ejecutivos"); T.assert(dtoScenarioParams("spam").dupProb > dtoScenarioParams("base").dupProb, "spam no sube duplicados"); });
+  T.add("dto/escenarios", function () { T.eq(DTO_SCENARIOS.map(function (s) { return s.id; }), ["base", "punta", "valle0", "spam", "saturada", "frias", "cupo", "lanzamiento", "feriado", "enfermo", "palancas"]); T.eq(dtoScenarioParams("valle0").valleProb, 0); T.assert(dtoScenarioParams("saturada").execs < dtoScenarioParams("base").execs, "saturada no baja ejecutivos"); T.assert(dtoScenarioParams("spam").dupProb > dtoScenarioParams("base").dupProb, "spam no sube duplicados"); });
   T.add("dto/clone-aislado", function () { var c = dtoCloneZones(zones); T.eq(c.length, zones.length); var before = zones[0].list[0].st; c[0].list[0].st = "x"; T.eq(zones[0].list[0].st, before); c.forEach(function (z) { z.list.forEach(function (l) { T.assert(!("photos" in l), "copió fotos"); }); }); });
   T.add("dto/mundo-crea-repartidores", function () { var w = dtoWorld(dtoQuick({ riders: 50 })); T.eq(w.riders.length, 50); w.riders.forEach(function (r) { T.assert(DTO_PROFILES.indexOf(r.prof) >= 0 && r.zi >= 0 && r.zi <= 9, "repartidor inválido"); }); T.eq(dtoWorld(dtoQuick({ riders: 0 })).riders.length, 0); });
   T.add("dto/mundo-no-toca-zones", function () { var a = dtoZSnap(); dtoWorld(dtoQuick({ riders: 20 })); T.eq(dtoZSnap() === a, true); });
@@ -5090,7 +5346,40 @@
   T.add("dto/inv-mutacion-dup", function () { mutOk(3, "spam", { ignoreDup: true }); });
   T.add("dto/inv-mutacion-retroceso", function () { mutOk(4, "base", { regress: true }); });
   T.add("dto/inv-mutacion-pierde-lead", function () { mutOk(5, "base", { dropLead: true }); });
-  T.add("dto/inv-salida", function () { T.eq(dtoCheckOutput({ riders: [{ id: "S1", n: 3 }] })[0].inv, 6); T.eq(dtoCheckOutput({ ok: 1 }), []); T.eq(dtoCheckOutput({ x: "$2.900" })[0].inv, 7); T.eq(dtoCheckOutput({ x: "15 pesos" })[0].inv, 7); T.eq(DTO_INV.length, 7); });
+  /* ===== v16: pruebas de las reglas nuevas ===== */
+  T.add("v16/legacy-apaga-todo", function () { var q = dtoParams({ legacy: true, zoneCap: 40, missions: .5, geoDedup: true }); for (var k in DTO_LEGACY_OFF) T.eq(q[k], DTO_LEGACY_OFF[k], k); });
+  T.add("v16/params-nuevos", function () { var q = dtoParams({ dedupM: 9999, rejBlockDays: -3, zoneCap: "abc", missions: 7, geoDedup: "false", policy: "etapa" }); T.eq([q.dedupM, q.rejBlockDays, q.zoneCap, q.missions, q.geoDedup, q.policy], [500, 0, 0, 1, false, "etapa"]); T.eq(dtoParams({ policy: "otra" }).policy, "fifo"); });
+  T.add("v16/osa-y-nombre-parecido", function () { T.eq(dtoOsa("plaza", "palza", 1), 1); T.eq(dtoOsa("plaza", "pzala", 1), 2); T.eq(dtoOsa("plaza", "plazas", 1), 1); T.assert(dtoOsa("plaza", "torre", 1) > 1, "osa"); T.assert(dtoNameLoose("Pizzería Plaza Ñuñoa", dtoVariantName("Pizzería Plaza Ñuñoa")), "variante no parecida"); T.assert(!dtoNameLoose("quillamon davtra (sim)", "quillamon peltolve (sim)"), "vecino con una palabra en común = falso positivo"); T.assert(!dtoNameLoose("abc", "abd"), "nombres cortos"); });
+  T.add("v16/geo-frena-variante-cerca", function () { var w = dtoWorld(dtoQuick({ riders: 1 })), r = w.riders[0]; dtoTryReport(w, r, { kind: "new", ll: [-33.45, -70.6] }); var l = w.leads[0]; r.active = 0; T.eq(dtoTryReport(w, r, { kind: "variant", name: dtoVariantName(l.n), phone: "+56 9 0333 3333", of: l.n, ll: dtoJitter(w, l.ll, 10, 30) }), "geo"); T.eq(w.stats.geoBlocked, 1); });
+  T.add("v16/geo-admite-variante-lejos", function () { var w = dtoWorld(dtoQuick({ riders: 1 })), r = w.riders[0]; dtoTryReport(w, r, { kind: "new", ll: [-33.45, -70.6] }); var l = w.leads[0]; T.eq(dtoTryReport(w, r, { kind: "variant", name: dtoVariantName(l.n), phone: "+56 9 0333 3334", of: l.n, ll: dtoJitter(w, l.ll, 800, 900) }), "escape"); });
+  T.add("v16/geo-apagado", function () { var w = dtoWorld(dtoQuick({ riders: 1, geoDedup: false })), r = w.riders[0]; dtoTryReport(w, r, { kind: "new", ll: [-33.45, -70.6] }); var l = w.leads[0]; T.eq(dtoTryReport(w, r, { kind: "variant", name: dtoVariantName(l.n), phone: "+56 9 0333 3335", of: l.n, ll: l.ll.slice() }), "escape"); });
+  T.add("v16/rechazado-bloqueado-y-vuelve", function () {
+    var w = dtoWorld(dtoQuick({ riders: 1, rejBlockDays: 30 })), r = w.riders[0], zi = r.zi;
+    dtoTryReport(w, r, { kind: "new", ll: dtoRandLL(w, zi) }); var l = w.leads[0]; dtoSetStage(w, l, "rechazado");
+    T.eq(dtoTryReport(w, r, { kind: "rej", name: l.n, phone: "+56 9 0444 4444", of: l.n, ll: l.ll }), "rej");
+    w.t += 31 * 24; T.eq(dtoTryReport(w, r, { kind: "rej", name: l.n, phone: "+56 9 0444 4445", of: l.n, ll: l.ll }), "lead"); T.eq(w.stats.rejReadmit, 1);
+  });
+  T.add("v16/rechazado-por-telefono", function () { var w = dtoWorld(dtoQuick({ riders: 1 })), r = w.riders[0]; dtoTryReport(w, r, { kind: "new", ll: dtoRandLL(w, r.zi) }); var l = w.leads[0]; dtoSetStage(w, l, "rechazado"); T.eq(dtoTryReport(w, r, { kind: "rej", name: "Otro Nombre Distinto", phone: l.phone, of: l.n, ll: null }), "rej"); });
+  T.add("v16/tope-por-comuna", function () { var w = dtoWorld(dtoQuick({ riders: 3, zoneCap: 2 })), rs = w.riders; rs.forEach(function (r) { r.zi = 0; }); T.eq(dtoTryReport(w, rs[0], { kind: "new", ll: dtoRandLL(w, 0) }), "lead"); T.eq(dtoTryReport(w, rs[1], { kind: "new", ll: dtoRandLL(w, 0) }), "lead"); T.eq(dtoTryReport(w, rs[2], { kind: "new", ll: dtoRandLL(w, 0) }), "zona"); });
+  T.add("v16/leads-con-ubicacion-en-su-comuna", function () { var w = dtoRunSync(dtoQuick({ days: 4, riders: 200 })); T.assert(w.leads.length > 0, "sin leads"); w.leads.forEach(function (l) { T.assert(l.ll && isFinite(l.ll[0]), "lead sin ubicación"); }); w.leads.filter(function (l) { return !l.ctx || !l.ctx.variant; }).slice(0, 300).forEach(function (l) { T.assert(distM(l.ll, zones[l.zi].comm.rc) < 9000, "lead lejos de su comuna"); }); });
+  T.add("v16/curva-valle", function () { var s = 0; for (var h = 8; h < 22; h++) s += DTO_VALLE[h]; T.assert(Math.abs(s / 14 - 1) < 1e-9, "media distinta de 1"); T.assert(DTO_VALLE[12] < DTO_VALLE[16], "almuerzo con más valle que la tarde"); });
+  T.add("v16/rampa", function () { var w = dtoRunSync(dtoQuick({ days: 10, riders: 300, ramp: true })), a = w.perDay.slice(0, 3).reduce(function (x, d) { return x + d.hunter; }, 0), b = w.perDay.slice(-3).reduce(function (x, d) { return x + d.hunter; }, 0); T.assert(b > a, "la rampa no hace crecer los leads (" + a + " → " + b + ")"); });
+  T.add("v16/enfermo-baja-capacidad", function () { var a = dtoRunSync(dtoQuick({ days: 20, riders: 300 })), b = dtoRunSync(dtoQuick({ days: 20, riders: 300, outage: .5 })); T.assert(b.capAcc < a.capAcc, "la capacidad no bajó"); });
+  T.add("v16/misiones-suben-frias", function () { var a = 0, b = 0; for (var i = 0; i < 3; i++) { a += dtoSummary(dtoRunSync(dtoQuick({ seed: 40 + i, days: 10, riders: 300 }))).coldStartShare; b += dtoSummary(dtoRunSync(dtoQuick({ seed: 40 + i, days: 10, riders: 300, missions: .3 }))).coldStartShare; } T.assert(b > a, "las misiones no suben la cobertura de comunas frías (" + a + " vs " + b + ")"); });
+  T.add("v16/politica-etapa-ordena", function () { var w = dtoRunSync(dtoQuick({ days: 6, riders: 200, policy: "etapa", execs: 3 })); T.eq(dtoCheck(w), []); var o = dtoSlaStage(w); T.assert(o.postulado >= 0 && o.contactado >= 0 && o.gestionado >= 0, "sla por etapa"); });
+  T.add("v16/escenarios-nuevos-limpios", function () { ["lanzamiento", "feriado", "enfermo", "palancas"].forEach(function (id) { var s = dtoSummary(dtoRunSync(dtoScenarioParams(id, { days: 12, riders: 200 }))); T.eq(s.violations, [], id); T.eq(dtoCheckOutput(s), [], id); }); });
+  T.add("v16/inv-mutacion-geo", function () { mutOk(3, "spam", { ignoreGeo: true }); });
+  T.add("v16/inv-mutacion-rechazado", function () { var v = dtoCheck(dtoRunSync(dtoScenarioParams("spam", { days: 20, riders: 300, rejRetry: 1, rejectProb: .3, mut: { ignoreRej: true } }))); T.assert(v.some(function (x) { return x.inv === 8; }), "la mutación ignoreRej no activó la invariante 8"); });
+  T.add("v16/inv-mutacion-tope", function () { var v = dtoCheck(dtoRunSync(dtoScenarioParams("cupo", { days: 3, riders: 300, zoneCap: 5, mut: { ignoreZoneCap: true } }))); T.assert(v.some(function (x) { return x.inv === 9; }), "la mutación ignoreZoneCap no activó la invariante 9"); });
+  T.add("v16/inv-mutacion-cola", function () { var v = dtoCheck(dtoRunSync(dtoScenarioParams("cupo", { days: 4, riders: 300, officeCap: true, mut: { ignoreOfficeCap: true } }))); T.assert(v.some(function (x) { return x.inv === 9; }), "la mutación ignoreOfficeCap no activó la invariante 9"); });
+  T.add("v16/cola-cuenta-bien", function () { var w = dtoRunSync(dtoQuick({ days: 8, riders: 300, officeCap: true })); T.eq(w.queue, w.leads.filter(function (l) { return l.st === "postulado"; }).length); });
+  T.add("v16/cola-protege-oficina", function () { var a = dtoSummary(dtoRunSync(dtoScenarioParams("cupo", { days: 15, riders: 400 }))), b = dtoSummary(dtoRunSync(dtoScenarioParams("cupo", { days: 15, riders: 400, officeCap: true }))); T.assert(b.slaOut < a.slaOut / 5, "la pausa por cola no bajó el fuera de SLA (" + a.slaOut + " → " + b.slaOut + ")"); T.eq(b.violations, []); });
+  T.add("v16/etapa-no-baja-conversion", function () { var a = 0, b = 0; for (var i = 0; i < 3; i++) { a += dtoSummary(dtoRunSync(dtoScenarioParams("saturada", { seed: 60 + i, days: 20, riders: 400 }))).funnel.incorporado; b += dtoSummary(dtoRunSync(dtoScenarioParams("saturada", { seed: 60 + i, days: 20, riders: 400, policy: "etapa" }))).funnel.incorporado; } T.assert(b >= a * .97, "la prioridad por etapa bajó los incorporados (" + a + " → " + b + ")"); });
+  T.add("v16/app-bloquea-descartado-reciente", function () { var g = appGuard("Pastas Ossa", "", null); T.assert(g && g.why === "rej", "no frenó el descartado de ejemplo"); T.assert(findExisting("Pastas Ossa", "") === null, "findExisting cambió"); });
+  T.add("v16/app-descartado-vencido", function () { var z = zones[4], it = { n: "Cafetería Prueba Vencida", t: "rest", st: "rechazado", src: "hunter", rejAt: Date.now() - 31 * 864e5 }; z.list.push(it); try { T.eq(appGuard("Cafetería Prueba Vencida", "", null), null); it.rejAt = Date.now() - 2 * 864e5; T.eq(appGuard("Cafetería Prueba Vencida", "", null).why, "rej"); } finally { z.list.splice(z.list.indexOf(it), 1); } });
+  T.add("v16/app-geo-con-gps", function () { var z = zones[2], it = { n: "Panadería Quintrala Sur", t: "rest", st: "postulado", src: "hunter", ll: [-33.456, -70.597] }; z.list.push(it); try { var g = appGuard(dtoVariantName("Panadería Quintrala Sur"), "", [-33.4562, -70.5972]); T.assert(g && g.why === "geo", "no frenó la variante cercana"); T.eq(appGuard(dtoVariantName("Panadería Quintrala Sur"), "", [-33.47, -70.62]), null); T.eq(appGuard(dtoVariantName("Panadería Quintrala Sur"), "", null), null); } finally { z.list.splice(z.list.indexOf(it), 1); } });
+  T.add("v16/legacy-igual-v15-forma", function () { var s = dtoSummary(dtoRunSync(dtoScenarioParams("base", { days: 5, riders: 200, legacy: true }))); T.eq([s.geoBlocked, s.rejBlocked, s.zoneCapBlocked], [0, 0, 0]); });
+  T.add("dto/inv-salida", function () { T.eq(dtoCheckOutput({ riders: [{ id: "S1", n: 3 }] })[0].inv, 6); T.eq(dtoCheckOutput({ ok: 1 }), []); T.eq(dtoCheckOutput({ x: "$2.900" })[0].inv, 7); T.eq(dtoCheckOutput({ x: "15 pesos" })[0].inv, 7); T.eq(DTO_INV.length, 9); });
   T.add("dto/res-determinista", function () { var p = dtoQuick({ days: 6, riders: 150 }), a = JSON.stringify(dtoSummary(dtoRunSync(p))), b = JSON.stringify(dtoSummary(dtoRunSync(dtoQuick({ days: 6, riders: 150 })))), c = JSON.stringify(dtoSummary(dtoRunSync(dtoQuick({ days: 6, riders: 150, seed: 99 })))); T.assert(a === b, "no determinista"); T.assert(a !== c, "otra semilla dio lo mismo"); });
   T.add("dto/res-valle0", function () { T.eq(dtoSummary(dtoRunSync(dtoScenarioParams("valle0", { days: 10, riders: 300 }))).leadsHunter, 0); });
   T.add("dto/res-sin-ids-ni-dinero", function () { DTO_SCENARIOS.forEach(function (s) { T.eq(dtoCheckOutput(dtoSummary(dtoRunSync(dtoScenarioParams(s.id, { days: 7, riders: 200 })))), [], s.id); }); });
@@ -5153,7 +5442,14 @@
     { k: "mix.constante", l: "Constantes (%)", tag: "supuesto", pct: 1, step: 1 },
     { k: "mix.esporadico", l: "Esporádicos (%)", tag: "supuesto", pct: 1, step: 1 },
     { k: "mix.noParticipa", l: "No participan (%)", tag: "supuesto", pct: 1, step: 1 },
-    { k: "policy", l: "Prioridad de la oficina", tag: "supuesto", opts: [["fifo", "Más antiguo primero"], ["sla", "Primero los fuera de SLA"]] }
+    { k: "policy", l: "Prioridad de la oficina", tag: "control", opts: [["fifo", "Más antiguo primero"], ["sla", "Primero los fuera de SLA"], ["etapa", "Terminar lo avanzado + SLA por etapa (v16)"]] },
+    { k: "geoDedup", l: "Anti-spam por ubicación", tag: "control", opts: [["true", "Encendido"], ["false", "Apagado"]] },
+    { k: "dedupM", l: "…distancia para considerar el mismo local (m)", tag: "supuesto", step: 5 },
+    { k: "rejBlockDays", l: "Días de bloqueo de un local descartado", tag: "supuesto", step: 1 },
+    { k: "valleCurve", l: "Valle según la hora del día", tag: "supuesto", opts: [["true", "Sí (poco valle en almuerzo y cena)"], ["false", "No (parejo todo el día)"]] },
+    { k: "zoneCap", l: "Tope de leads por comuna al día (0 = sin tope)", tag: "control", step: 5 },
+    { k: "officeCap", l: "Pausar reportes si la cola de primer contacto pasa de 48 h", tag: "control", opts: [["false", "Apagado"], ["true", "Encendido"]] },
+    { k: "missions", l: "Aceptan misión a comuna fría (%)", tag: "control", pct: 1, step: 1 }
   ];
   function dtoGet(p, k) { return k.indexOf("mix.") === 0 ? p.mix[k.slice(4)] : p[k]; }
   function dtoBuildForm() {
@@ -5213,8 +5509,14 @@
       ["Duplicados frenados", dtoNf(s.dupBlocked), dtoNf(s.dupEscaped) + " se colaron con el nombre alterado", s.dupEscaped ? "bad" : "ok"],
       ["Bloqueos por pedido", dtoNf(s.lockBlocked), "intentos con pedido en curso", ""],
       ["Frenados por cupo lleno", dtoNf(s.cupoBlocked), "intentos con 5 de 5 leads", ""],
-      ["Carga de ejecutivos", dtoPct(s.execLoad), "de su capacidad", s.execLoad > .95 ? "bad" : ""]
+      ["Carga de ejecutivos", dtoPct(s.execLoad), "de su capacidad", s.execLoad > .95 ? "bad" : ""],
+      ["Frenados por ubicación", dtoNf(s.geoBlocked || 0), s.params.geoDedup ? "mismo local a menos de " + s.params.dedupM + " m" : "anti-spam por ubicación apagado", ""],
+      ["Duplicados que se colaron", dtoPct(s.escapeRate || 0), "de los intentos de duplicado · locales nuevos frenados por error: " + dtoPct(s.falseRate || 0), (s.escapeRate || 0) > .05 ? "bad" : "ok"],
+      ["Leads de comunas frías", dtoPct(s.coldShare || 0), "en el momento del reporte · " + dtoPct(s.coldStartShare || 0) + " en comunas que partieron frías" + (s.params.missions ? " · con misiones" : ""), ""]
     ];
+    if (s.params.zoneCap) k.push(["Frenados por tope de comuna", dtoNf(s.zoneCapBlocked || 0), "tope de " + s.params.zoneCap + " al día por comuna", ""]);
+    if (s.params.officeCap) k.push(["Frenados por cola llena", dtoNf(s.officeCapBlocked || 0), "se pausan los reportes con " + dtoNf(s.dayCap || 0) + " o más leads esperando primer contacto", ""]);
+    if (s.params.rejBlockDays) k.push(["Descartados que volvieron", dtoNf(s.rejBlocked || 0), "frenados · " + dtoNf(s.rejReadmit || 0) + " admitidos tras " + s.params.rejBlockDays + " días", ""]);
     $("dto-kpis").innerHTML = k.map(function (r) { return '<div class="dto-kpi ' + r[3] + '"><small>' + r[0] + "</small><b>" + r[1] + "</b><span>" + r[2] + "</span></div>"; }).join("");
   }
   function dtoLineSvg(series, upto, label) {
@@ -5301,7 +5603,8 @@
       });
     });
   }
-  var DTO_MULTI_LABELS = { leadsHunter: ["Leads de Hunters", dtoNf], leadsTotal: ["Leads en total", dtoNf], convIncorp: ["Conversión a incorporado", dtoPct], avgHoursToContact: ["Horas al primer contacto", function (v) { return v.toFixed(1).replace(".", ","); }], slaOut: ["Fuera de SLA", dtoNf], cupoUtil: ["Uso del cupo", dtoPct], dupBlocked: ["Duplicados frenados", dtoNf], dupEscaped: ["Duplicados que se colaron", dtoNf], execLoad: ["Carga de ejecutivos", dtoPct] };
+  var DTO_MULTI_LABELS = { leadsHunter: ["Leads de Hunters", dtoNf], leadsTotal: ["Leads en total", dtoNf], convIncorp: ["Conversión a incorporado", dtoPct], avgHoursToContact: ["Horas al primer contacto", function (v) { return v.toFixed(1).replace(".", ","); }], slaOut: ["Fuera de SLA", dtoNf], cupoUtil: ["Uso del cupo", dtoPct], dupBlocked: ["Duplicados frenados", dtoNf], dupEscaped: ["Duplicados que se colaron", dtoNf], execLoad: ["Carga de ejecutivos", dtoPct],
+    geoBlocked: ["Frenados por ubicación", dtoNf], escapeRate: ["% de duplicados que se colaron", dtoPct], falseRate: ["% de locales nuevos frenados por error", dtoPct], coldShare: ["Leads de comunas frías", dtoPct], coldStartShare: ["Leads en comunas que partieron frías", dtoPct], zoneCapBlocked: ["Frenados por tope de comuna", dtoNf], officeCapBlocked: ["Frenados por cola llena", dtoNf] };
   function dtoMultiUi(n) {
     dtoCancel(); dtoStopPlay();
     var p = dtoReadForm(); dtoWriteForm(p); dui.cur = p;
@@ -5367,7 +5670,7 @@
   T.add("ui/rotulo", function () { T.assert($("dto-banner").textContent.indexOf("Simulado") >= 0 && $("dto-sim-chip").textContent.indexOf("Simulado") >= 0, "falta el rótulo Simulado"); });
   T.add("ui/ejecutar", function () {
     dtoWriteForm(dtoParams({ riders: 100, days: 7 }));
-    return dtoRunUi().then(function (s) { T.assert(s && s.simulado === true, "sin resumen"); T.assert(document.querySelectorAll("#dto-kpis .dto-kpi").length >= 6, "faltan tarjetas"); T.eq(document.querySelectorAll("#dto-charts svg").length, 4); T.eq(document.querySelectorAll("#dto-inv .dto-inv-item, #dto-inv li").length, 7); });
+    return dtoRunUi().then(function (s) { T.assert(s && s.simulado === true, "sin resumen"); T.assert(document.querySelectorAll("#dto-kpis .dto-kpi").length >= 6, "faltan tarjetas"); T.eq(document.querySelectorAll("#dto-charts svg").length, 4); T.eq(document.querySelectorAll("#dto-inv .dto-inv-item, #dto-inv li").length, DTO_INV.length); });
   });
   T.add("ui/sin-dinero", function () { var re = /\$\s?\d|CLP|pesos/i; T.assert(!re.test($("view-ruta").textContent), "dinero en la vista del repartidor"); var g = $("view-gemelo").cloneNode(true), inv = g.querySelector("#dto-inv"); if (inv) inv.remove(); /* la etiqueta de la regla 7 nombra los pesos a propósito */ T.assert(!re.test(g.textContent), "dinero en el gemelo"); });
   T.add("ui/campos-invalidos", function () {
@@ -5377,7 +5680,7 @@
   T.add("ui/doble-ejecucion", function () {
     dtoWriteForm(dtoParams({ riders: 80, days: 6 }));
     var a = dtoRunUi(), b = dtoRunUi();
-    return Promise.all([a, b]).then(function (r) { T.eq(r[0], null); T.assert(r[1] && r[1].simulado, "la segunda no terminó"); T.eq(document.querySelectorAll("#dto-kpis .dto-kpi").length, 9); });
+    return Promise.all([a, b]).then(function (r) { T.eq(r[0], null); T.assert(r[1] && r[1].simulado, "la segunda no terminó"); T.assert(document.querySelectorAll("#dto-kpis .dto-kpi").length >= 12, "faltan tarjetas"); });
   });
   T.add("ui/cancelar", function () {
     dtoWriteForm(dtoParams({ riders: 80, days: 30 }));
@@ -5398,9 +5701,180 @@
     return dtoRunUi().then(function () { return new Promise(function (ok, no) { dtoPlay(); setTimeout(function () { try { T.assert(!dui.timer || +$("dto-day").textContent <= 5, "día fuera de rango"); dtoStopPlay(); T.eq($("dto-day").textContent, "5"); ok(); } catch (e) { no(e); } }, 400); }); });
   });
   T.add("ui/res-bitacora", function () { T.assert(document.querySelectorAll("#dto-log li").length <= 200, "bitácora larga"); });
-  T.add("ui/exp-multi", function () { dtoWriteForm(dtoParams({ riders: 60, days: 4 })); return dtoMultiUi(5).then(function (m) { T.assert(m.keys.leadsHunter.min <= m.keys.leadsHunter.mean && m.keys.leadsHunter.mean <= m.keys.leadsHunter.max, "rango inválido"); T.eq(document.querySelectorAll("#dto-multi-tbl tbody tr").length, 9); }); });
+  T.add("ui/exp-multi", function () { dtoWriteForm(dtoParams({ riders: 60, days: 4 })); return dtoMultiUi(5).then(function (m) { T.assert(m.keys.leadsHunter.min <= m.keys.leadsHunter.mean && m.keys.leadsHunter.mean <= m.keys.leadsHunter.max, "rango inválido"); T.eq(document.querySelectorAll("#dto-multi-tbl tbody tr").length, DTO_MULTI_KEYS.length); }); });
   T.add("ui/exp-autoprueba", function () { T.assert(!!$("dto-selftest") && !!$("dto-selftest-out"), "falta el botón"); });
   window.__rhDTO = { selfTest: dtoSelfTest, T: T, run: dtoRunSync, params: dtoParams, summary: dtoSummary, scenario: dtoScenarioParams, multi: dtoMulti, check: dtoCheck, ui: { run: dtoRunUi, play: dtoPlay, get last() { return dui.last; } } };
+
+  /* ================= v16 (M1): escenario virtual en la Oficina =================
+     Muestra la Oficina funcionando con un Santiago simulado (motor del gemelo digital, reloj acelerado).
+     Aislamiento: guarda las listas reales aparte y las devuelve al salir; nunca llama a persistSave ni toca rh_state12.
+     Solo guarda su propia configuración (escenario y velocidad) en rh_sim16. Se apaga solo al salir de la pestaña Oficina. */
+  var VS_KEY = "rh_sim16";
+  var VS_SPEEDS = [[600, "×600"], [3600, "×3.600"], [14400, "×14.400"]]; /* horas simuladas por hora real */
+  var vsState = { on: false, w: null, saved: null, timer: null, speed: 3600, paused: false, acc: 0, events: [], scn: "base", liveTxt: null };
+  function vsLoadCfg() {
+    try {
+      var d = JSON.parse(localStorage.getItem(VS_KEY) || "null");
+      if (d && DTO_SCENARIOS.some(function (s) { return s.id === d.scn; })) vsState.scn = d.scn;
+      if (d && VS_SPEEDS.some(function (x) { return x[0] === d.speed; })) vsState.speed = d.speed;
+    } catch (e) {}
+  }
+  function vsSaveCfg() { try { localStorage.setItem(VS_KEY, JSON.stringify({ scn: vsState.scn, speed: vsState.speed })); } catch (e) {} }
+  function vsClock(t) { var d = Math.floor(t / 24) + 1, h = t % 24; return "Día " + d + " · " + (h < 10 ? "0" : "") + h + ":00"; }
+  function vsPush(msg) {
+    var w = vsState.w;
+    vsState.events.unshift({ t: w ? w.t : 0, msg: msg });
+    if (vsState.events.length > 30) vsState.events.length = 30;
+  }
+  function vsSnap(w) {
+    var s = w.stats;
+    return { n: w.leads.length, geo: s.geoBlocked, rej: s.rejBlocked, esc: s.dupEscaped, dup: s.dupBlocked, cupo: s.cupo, zone: s.zoneCap, office: s.officeCap, inc: w.leads.length ? null : 0, kinds: w.zones.map(function (z) { return zoneKind(z); }) };
+  }
+  /* Un paso de una hora simulada, con los eventos que vale la pena contar */
+  function vsStepOne(w) {
+    var a = vsSnap(w), inc0 = 0;
+    w.leads.forEach(function (l) { if (l.st === "incorporado") inc0++; });
+    dtoStep(w);
+    var b = vsSnap(w), fresh = w.leads.slice(a.n), hz = {}, nh = 0, inc1 = 0;
+    fresh.forEach(function (l) { if (l.src === "hunter") { nh++; hz[w.zones[l.zi].name] = (hz[w.zones[l.zi].name] || 0) + 1; } });
+    w.leads.forEach(function (l) { if (l.st === "incorporado") inc1++; });
+    var t0 = w.t - 1;
+    function ev(msg) { vsState.events.unshift({ t: t0, msg: msg }); }
+    if (nh) ev(nh + (nh === 1 ? " lead nuevo de Hunter en " : " leads nuevos de Hunters en ") + Object.keys(hz).map(function (k) { return k + (hz[k] > 1 ? " ×" + hz[k] : ""); }).join(", ") + ".");
+    if (b.geo > a.geo) ev((b.geo - a.geo) + " duplicado" + (b.geo - a.geo > 1 ? "s frenados" : " frenado") + " por ubicación: el mismo local, con el nombre escrito distinto, a menos de " + w.p.dedupM + " m.");
+    if (b.dup > a.dup) ev((b.dup - a.dup) + " duplicado" + (b.dup - a.dup > 1 ? "s frenados" : " frenado") + " por nombre o teléfono.");
+    if (b.esc > a.esc) ev((b.esc - a.esc) + " duplicado" + (b.esc - a.esc > 1 ? "s se colaron" : " se coló") + " con el nombre alterado.");
+    if (b.rej > a.rej) ev((b.rej - a.rej) + " intento" + (b.rej - a.rej > 1 ? "s" : "") + " de reportar un local descartado hace poco: frenado.");
+    if (b.cupo > a.cupo) ev((b.cupo - a.cupo) + " Hunter" + (b.cupo - a.cupo > 1 ? "s" : "") + " con el cupo lleno (5 de 5) no pudo reportar.");
+    if (b.office > a.office && a.office === 0) ev("La cola de primer contacto pasó de 48 h: se pausan los reportes nuevos de Hunters.");
+    if (inc1 > inc0) ev((inc1 - inc0) + " local" + (inc1 - inc0 > 1 ? "es quedaron activos" : " quedó activo") + " en Rappi.");
+    b.kinds.forEach(function (k, i) { if (k !== a.kinds[i]) ev(w.zones[i].name + " pasa a zona " + (k === "hot" ? "caliente" : "fría") + "."); });
+    if (vsState.events.length > 30) vsState.events.length = 30;
+  }
+  function vsAdvance(h) {
+    var w = vsState.w; if (!w) return;
+    var end = Math.min(w.t + h, w.p.days * 24);
+    while (w.t < end) vsStepOne(w);
+    if (w.t >= w.p.days * 24 && !vsState.paused) { vsState.paused = true; vsPush("Fin del escenario: " + w.p.days + " días simulados."); }
+    vsRender();
+  }
+  function vsTick() {
+    if (!vsState.on || vsState.paused || document.hidden) return;
+    vsState.acc += vsState.speed * .25 / 3600;
+    var n = Math.floor(vsState.acc); if (!n) return;
+    vsState.acc -= n; vsAdvance(Math.min(n, 24));
+  }
+  function vsRenderBar() {
+    var on = vsState.on, w = vsState.w;
+    $("vs-bar").hidden = !on;
+    $("io-vs").setAttribute("aria-pressed", on ? "true" : "false");
+    var live = document.querySelector("#view-oficina .od-live");
+    if (live) { if (vsState.liveTxt == null) vsState.liveTxt = live.innerHTML; live.innerHTML = on && w ? '<i aria-hidden="true"></i>Simulado · ' + vsClock(w.t) : vsState.liveTxt; }
+    if (!on || !w) return;
+    $("vs-clock").textContent = vsClock(w.t);
+    $("vs-pause").textContent = vsState.paused ? "Seguir" : "Pausa";
+    $("vs-pause").disabled = w.t >= w.p.days * 24;
+    document.querySelectorAll("#vs-speed button").forEach(function (b) { b.setAttribute("aria-pressed", +b.dataset.sp === vsState.speed ? "true" : "false"); });
+    var hn = 0; w.leads.forEach(function (l) { if (l.src === "hunter") hn++; });
+    var s = w.stats, chips = [
+      ["Leads simulados", dtoNf(w.leads.length)], ["de Hunters", dtoNf(hn)], ["Esperando primer contacto", dtoNf(w.queue)], ["Fuera de SLA", dtoNf(dtoSlaOut(w))],
+      ["Frenados por ubicación", dtoNf(s.geoBlocked)], ["Descartados frenados", dtoNf(s.rejBlocked)]
+    ];
+    if (w.p.officeCap) chips.push(["Pausas por cola llena", dtoNf(s.officeCap)]);
+    if (w.p.zoneCap) chips.push(["Frenados por tope de comuna", dtoNf(s.zoneCap)]);
+    $("vs-stats").innerHTML = chips.map(function (c) { return "<span>" + c[0] + ": <b>" + c[1] + "</b></span>"; }).join("");
+    $("vs-events").innerHTML = vsState.events.slice(0, 12).map(function (e) { return "<li><time>" + vsClock(e.t) + "</time>" + esc(e.msg) + "</li>"; }).join("");
+  }
+  function vsRender() {
+    if (!vsState.on) return;
+    renderOffice();
+    vsRenderBar();
+  }
+  function vsStart(o) {
+    o = o || {};
+    if (vsState.on) vsStop(true);
+    var scn = o.scn || vsState.scn, extra = { seed: o.seed != null ? o.seed : 21, days: 60 };
+    if (o.riders != null) extra.riders = o.riders;
+    var p = dtoScenarioParams(scn, extra), w = dtoWorld(p), label = (DTO_SCENARIOS.filter(function (x) { return x.id === scn; })[0] || DTO_SCENARIOS[0]).label;
+    vsState.scn = scn;
+    vsState.saved = zones.map(function (z) { return { list: z.list, l: z.l, c: z.c, reps: z.reps }; });
+    zones.forEach(function (z, i) { z.list = w.zones[i].list; z.l = z.list; z.c = w.zones[i].c; z.reps = 0; });
+    w.riders.forEach(function (r) { zones[r.home].reps++; });
+    while (w.t < 8) dtoStep(w); /* el día simulado parte a las 8:00 */
+    vsState.w = w; vsState.on = true; vsState.paused = false; vsState.acc = 0; vsState.events = [];
+    hlItem = null;
+    document.getElementById("device").classList.add("vs-on");
+    vsPush("Comienza el escenario «" + label + "» con " + dtoNf(p.riders) + " repartidores y " + dtoNf(p.execs) + " ejecutivos simulados (semilla " + p.seed + ").");
+    vsSaveCfg();
+    $("vs-scn").value = scn;
+    clearInterval(vsState.timer); vsState.timer = setInterval(vsTick, 250);
+    vsRender();
+  }
+  function vsStop(silent) {
+    if (!vsState.on) return;
+    clearInterval(vsState.timer); vsState.timer = null;
+    zones.forEach(function (z, i) { var s = vsState.saved[i]; z.list = s.list; z.l = s.l; z.c = s.c; z.reps = s.reps; });
+    vsState.on = false; vsState.w = null; vsState.saved = null; vsState.events = [];
+    hlItem = null;
+    document.getElementById("device").classList.remove("vs-on");
+    vsRenderBar();
+    if (!silent) { renderOffice(); showOToast("Saliste del escenario virtual. La Oficina muestra de nuevo sus datos."); }
+  }
+  (function () {
+    vsLoadCfg();
+    $("vs-scn").innerHTML = DTO_SCENARIOS.map(function (s) { return '<option value="' + s.id + '">' + esc(s.label) + "</option>"; }).join("");
+    $("vs-scn").value = vsState.scn;
+    $("vs-speed").innerHTML = VS_SPEEDS.map(function (x) { return '<button type="button" data-sp="' + x[0] + '" aria-pressed="false" title="' + (x[0] / 3600 >= 1 ? x[0] / 3600 + " h simuladas por segundo" : "1 h simulada cada " + 3600 / x[0] + " s") + '">' + x[1] + "</button>"; }).join("");
+    $("io-vs").addEventListener("click", function () { if (vsState.on) vsStop(); else vsStart({}); });
+    $("vs-exit").addEventListener("click", function () { vsStop(); });
+    $("vs-more").addEventListener("click", function () { var o = $("vs-bar").classList.toggle("vs-open"); $("vs-more").setAttribute("aria-expanded", o ? "true" : "false"); $("vs-more").textContent = o ? "Ocultar" : "Detalle"; });
+    $("vs-pause").addEventListener("click", function () { vsState.paused = !vsState.paused; vsRenderBar(); });
+    $("vs-h").addEventListener("click", function () { vsAdvance(1); });
+    $("vs-d").addEventListener("click", function () { vsAdvance(24); });
+    $("vs-scn").addEventListener("change", function () { vsStart({ scn: $("vs-scn").value }); });
+    $("vs-speed").addEventListener("click", function (e) { var b = e.target.closest("button[data-sp]"); if (!b) return; vsState.speed = +b.dataset.sp; vsSaveCfg(); vsRenderBar(); });
+    /* Importar datos reales mientras se ve un escenario simulado mezclaría ambos: se bloquea */
+    $("io-import").addEventListener("click", function (e) { if (vsState.on) { e.stopImmediatePropagation(); e.preventDefault(); showOToast("Sal del escenario virtual para importar datos reales."); } }, true);
+    /* El escenario vive solo en la Oficina: al cambiar de pestaña se apaga y vuelven los datos reales */
+    document.querySelectorAll(".tab").forEach(function (t) { t.addEventListener("click", function () { if (t.dataset.view !== "oficina" && vsState.on) vsStop(true); }, true); });
+  })();
+  T.add("v16/vs-aislamiento", function () {
+    var z = dtoZSnap(), ls = JSON.stringify(dtoLsSnap()), ml = myLeads().length;
+    vsStart({ scn: "base", riders: 150 }); vsAdvance(24 * 3);
+    T.assert(vsState.w.leads.length > 0, "el escenario no generó leads");
+    T.assert(dtoZSnap() !== z, "la Oficina no muestra el escenario");
+    vsStop(true);
+    T.assert(dtoZSnap() === z, "los datos reales cambiaron");
+    var ls2 = dtoLsSnap(); delete ls2[VS_KEY]; var ls1 = JSON.parse(ls); delete ls1[VS_KEY];
+    T.eq(JSON.stringify(ls2), JSON.stringify(ls1), "localStorage real cambió");
+    T.eq(myLeads().length, ml);
+  });
+  T.add("v16/vs-determinista", function () {
+    vsStart({ scn: "base", riders: 120, seed: 9 }); vsAdvance(30); var a = JSON.stringify(vsState.w.leads.map(function (l) { return [l.n, l.ll, l.st]; })); vsStop(true);
+    vsStart({ scn: "base", riders: 120, seed: 9 }); vsAdvance(30); var b = JSON.stringify(vsState.w.leads.map(function (l) { return [l.n, l.ll, l.st]; })); vsStop(true);
+    T.assert(a === b, "misma semilla, distinto resultado");
+  });
+  T.add("v16/vs-pines-en-su-comuna", function () {
+    vsStart({ scn: "base", riders: 200 }); vsAdvance(48);
+    try { vsState.w.leads.forEach(function (l) { if (!l.ctx || (!l.ctx.variant && !l.ctx.of)) T.assert(pointIn(l.ll, zones[l.zi].comm.rp) || distM(l.ll, zones[l.zi].comm.rc) < 9000, "pin fuera de su comuna"); }); }
+    finally { vsStop(true); }
+  });
+  T.add("v16/vs-no-guarda", function () {
+    var before; try { before = localStorage.getItem(ST_KEY); } catch (e) {}
+    vsStart({ scn: "base", riders: 100 }); vsAdvance(12); persistSave(); var mid; try { mid = localStorage.getItem(ST_KEY); } catch (e) {} vsStop(true);
+    T.eq(mid, before, "se guardaron datos simulados");
+  });
+  T.add("v16/vs-export-marcado", function () {
+    vsStart({ scn: "base", riders: 100 }); vsAdvance(12);
+    try { var rows = exportRows(); T.assert(rows.length && rows.every(function (r) { return r.simulado === "sí"; }), "export sin marca"); T.assert(JSON.parse(toJSONBackup()).simulado === true, "json sin marca"); }
+    finally { vsStop(true); }
+    T.assert(exportRows().every(function (r) { return r.simulado === "no"; }), "export real marcado como simulado");
+  });
+  T.add("v16/vs-paso-rapido", function () {
+    vsStart({ scn: "base", riders: 1000 }); var t0 = performance.now(); vsAdvance(24); var ms = (performance.now() - t0) / 24; vsStop(true);
+    T.assert(ms < 50, "cada hora simulada tardó " + Math.round(ms) + " ms");
+  });
+  window.__rhVS = { start: vsStart, stop: function () { vsStop(true); }, advance: vsAdvance, state: function () { return { on: vsState.on, t: vsState.w ? vsState.w.t : 0, leads: vsState.w ? vsState.w.leads.length : 0, events: vsState.events.length }; }, realSnap: function () { return dtoZSnap(); } };
 
   /* ---------- Mi Perfil Hunter: seguimiento de cada lead, como el de un pedido ---------- */
   var STG = [
@@ -5454,7 +5928,7 @@
       if (open) { shownIdx[x.n] = idx; if (rej) shownIdx[x.n + "#r"] = 1; }
       var chip = rej ? '<span class="pl-chip no">No avanzó</span>' : idx === 3 ? '<span class="pl-chip win">Bono ganado</span>' : '<span class="pl-chip run">En curso</span>';
       var msg = rej ? '<p class="pl-msg no">Toca el punto rojo para ver el motivo.</p>' : '<p class="pl-msg">' + STG[idx].d + "</p>";
-      return '<article class="pl' + (x.fresh ? " fresh" : "") + '"><div class="pl-top"><div><h4>' + esc(x.n) + "</h4><p>" + esc(x.dir) + " · enviado " + esc(x.when) + "</p></div>" + chip + "</div>" + tl + msg + (x.consent === false ? '<p class="pl-msg warn">Pendiente: cuéntale al dueño que Rappi lo va a contactar.</p>' : x.consent === true ? '<p class="pl-msg ok-msg">Dueño avisado ✓</p>' : "") + "</article>";
+      return '<article class="pl' + (x.fresh ? " fresh" : "") + '"><div class="pl-top"><div><h4>' + esc(x.n) + "</h4><p>" + esc(x.dir) + " · enviado " + whenHtml(x) + "</p></div>" + chip + "</div>" + tl + msg + (x.consent === false ? '<p class="pl-msg warn">Pendiente: cuéntale al dueño que Rappi lo va a contactar.</p>' : x.consent === true ? '<p class="pl-msg ok-msg">Dueño avisado ✓</p>' : "") + "</article>";
     }).join("");
     setTimeout(function () {
       list.querySelectorAll(".tl-line i").forEach(function (i) { i.style.width = i.dataset.on === "1" ? "100%" : "0%"; });
@@ -5545,7 +6019,7 @@
       "<p>" + (nxt ? "Te " + (need === 1 ? "falta 1 local activo" : "faltan " + need + " locales activos") + " para ser " + nxt.n + "." : "Llegaste al nivel más alto. ¡Gracias por hacer crecer Rappi!") + "</p></div>" +
       '<div class="pf-grid"><div class="pf-box"><b>' + sent + "</b><span>Leads enviados</span></div><div class=\"pf-box\"><b>" + act + "</b><span>Locales activos</span></div><div class=\"pf-box\"><b>" + count + " de " + CUPO + "</b><span>Cupo en uso</span></div></div>" +
       '<div class="pf-sec"><h4>Insignias</h4><div class="pf-badges">' + bds.map(function (b) { return '<div class="pf-bd' + (b[2] ? " on" : "") + '">' + bdSvg(b[0]) + b[1] + "</div>"; }).join("") + "</div></div>" +
-      '<div class="pf-sec"><h4>Mi Linktree</h4><p>Tu página con enlaces para compartir con los dueños de locales.</p><a class="pf-link" href="https://linktr.ee/PedroH192" target="_blank" rel="noopener noreferrer">linktr.ee/PedroH192 <span aria-hidden="true">↗</span></a></div>' + srAccount();
+      '<div class="pf-sec"><h4>Página del programa</h4><p>Enlace para compartir con los dueños de locales (demo del proyecto).</p><a class="pf-link" href="https://fx010.github.io/Dlab-sem-2/" target="_blank" rel="noopener noreferrer">fx010.github.io/Dlab-sem-2 <span aria-hidden="true">↗</span></a></div>' + srAccount();
     var tn = document.getElementById("pf-tab-n");
     tn.hidden = !run; tn.textContent = run;
   }
@@ -5740,7 +6214,7 @@
         var p = leadLL(x, c);
         out.push({ punto: z.pt, comuna: z.name, local: x.n, tipo: TNAME[x.t] || x.t, direccion: x.dir || "", etapa: stTxt[x.st] || x.st, fuente: SNAME[x.src] || x.src,
           postulaciones: x.post || "", hunter: x.by || "", telefono: x.phone ? String(x.phone).replace(/^\+/, "") : "", dueno_avisado: x.consent === true ? "sí" : x.consent === false ? "no" : "", notas: x.note || x.obs || "", lat: +p.ll[0].toFixed(6), lng: +p.ll[1].toFixed(6),
-          ubicacion: p.exact ? (x.gps ? "GPS" : "del archivo") : "aproximada", zona: zoneKind(z) === "hot" ? "caliente" : "fría", oportunidades_zona: total(z) });
+          ubicacion: p.exact ? (x.gps ? "GPS" : x.sim ? "simulada" : "del archivo") : "aproximada", zona: zoneKind(z) === "hot" ? "caliente" : "fría", oportunidades_zona: total(z), simulado: vsState && vsState.on ? "sí" : "no" });
       });
     });
     return out;
@@ -5782,14 +6256,14 @@
     return s + "</Document></kml>";
   }
   function toJSONBackup() {
-    return JSON.stringify({ exportado: new Date().toISOString(), zonas: zones.map(function (z) {
+    return JSON.stringify({ exportado: new Date().toISOString(), simulado: !!(vsState && vsState.on), zonas: zones.map(function (z) {
       return { pt: z.pt, name: z.name, reps: z.reps, c: z.c, locales: z.list.map(function (x) {
         return { n: x.n, t: x.t, dir: x.dir, when: x.when, st: x.st, src: x.src, post: x.post || null, by: x.by || null, phone: x.phone || null, obs: x.obs || null, note: x.note || null, rej: x.rej || null, ll: x.ll || null };
       }) };
     }) }, null, 2);
   }
   function doExport(fmt) {
-    var day = new Date().toISOString().slice(0, 10), base = "rappi-hunting-" + day;
+    var day = new Date().toISOString().slice(0, 10), base = (vsState && vsState.on ? "SIMULADO-" : "") + "rappi-hunting-" + day;
     if (fmt === "csv") dlBlob(base + ".csv", "text/csv;charset=utf-8", toCSV(exportRows(), ","));
     else if (fmt === "csv-es") dlBlob(base + "-excel-es.csv", "text/csv;charset=utf-8", toCSV(exportRows(), ";"));
     else if (fmt === "geojson") dlBlob(base + ".geojson", "application/geo+json", toGeoJSON());
@@ -6626,6 +7100,7 @@
   /* ---------- v12: los leads que reportas sobreviven a recargar la página (sin fotos: no se guardan en el dispositivo) ---------- */
   var ST_KEY = "rh_state12";
   function ageH(x) {
+    if (x.sim && vsState && vsState.w) return vsState.w.t - x.born;
     if (x.sentAt > 1e9) return (Date.now() - x.sentAt) / 36e5;
     var w = String(x.when || "").toLowerCase(), m;
     if (/instantes/.test(w)) return 0;
@@ -6635,9 +7110,20 @@
     if ((m = w.match(/(\d+)\s*d[ií]a/))) return 24 * +m[1];
     return null;
   }
+  /* v16 (M12): «hace instantes» deja de quedar congelado: se recalcula al pintar y cada 30 s */
+  function whenHtml(x) {
+    if (x.sim && vsState && vsState.w) return "<time>" + esc(whenText(Math.max(0, ageH(x)))) + " (simulado)</time>";
+    if (x.sentAt > 1e9) return '<time data-sent="' + x.sentAt + '">' + esc(whenText(ageH(x))) + "</time>";
+    return esc(x.when);
+  }
+  setInterval(function () {
+    if (document.hidden) return;
+    document.querySelectorAll("time[data-sent]").forEach(function (t) { var ms = +t.getAttribute("data-sent"); if (ms > 1e9) t.textContent = whenText((Date.now() - ms) / 36e5); });
+  }, 30000);
   function whenText(h) { return h < 1 / 12 ? "hace instantes" : h < 1 ? "hace " + Math.round(h * 60) + " min" : h < 24 ? "hace " + Math.round(h) + " h" : h < 48 ? "ayer" : "hace " + Math.round(h / 24) + " días"; }
   function persistSave() {
     if (!persistReady) return;
+    if (vsState && vsState.on) return; /* v16: el escenario virtual nunca se guarda */
     try {
       var out = [];
       zones.forEach(function (z, zi) {

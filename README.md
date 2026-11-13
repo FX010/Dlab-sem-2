@@ -5,7 +5,7 @@
 
 <p align="center">
   <a href="https://fx010.github.io/Dlab-sem-2/"><img alt="Ver demo" src="https://img.shields.io/badge/▶_Ver_demo_en_vivo-DE3410?style=for-the-badge"></a>
-  <a href="docs/Informe_Pruebas.md"><img alt="Informe de pruebas" src="https://img.shields.io/badge/Informe_de_pruebas-26211d?style=for-the-badge"></a>
+  <a href="docs/Informe_Pruebas_v16.md"><img alt="Informe de pruebas" src="https://img.shields.io/badge/Informe_de_pruebas-26211d?style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -23,14 +23,14 @@
 <p align="center"><sub><b>App del repartidor</b> · <b>Oficina (mapa y leads)</b> · <b>Gemelo digital</b></sub></p>
 
 Proyecto del **dLab UDD 2026 · Desafío 18 «Repartidores como Hunters»**, para Rappi Chile.
-**Versión actual: v15** (mapa real con calles, pines en el mapa de la oficina, agrupación de pines y leyenda por fuente). Todo corre en el navegador: un único archivo HTML, sin servidor, sin dependencias y sin instalar nada.
+**Versión actual: v16** (escenario virtual en la Oficina, anti-spam por distancia, bloqueo de locales descartados, misiones a comunas frías, pausa por cola de la oficina y pruebas automáticas antes de publicar). Todo corre en el navegador: un único archivo HTML, sin servidor, sin dependencias y sin instalar nada.
 
 ## Qué incluye
 
 | Vista | Para quién | Qué hace |
 |---|---|---|
 | **App repartidor** | Repartidor | Pedido en curso, tiempo de valle, carta de invitación al **Modo Hunter**, formulario para reportar un local (fachada + carta), cupo de 5 leads activos, código QR personal y seguimiento de cada lead. |
-| **Oficina Rappi** | Equipo comercial | Resumen del día, mapa con zonas calientes y frías, cola de primer contacto con SLA de 48 h, embudo de conversión, importar y exportar. |
+| **Oficina Rappi** | Equipo comercial | Resumen del día, mapa con zonas calientes y frías, cola de primer contacto con SLA de 48 h, embudo de conversión, importar y exportar. **Escenario virtual** (v16): un Santiago simulado con reloj acelerado para ver la Oficina funcionando, sin mezclarse nunca con los datos reales. |
 | **Gemelo digital** | Equipo del proyecto | Simulación basada en agentes (repartidores, locales, ejecutivos) con escenarios, semilla fija y chequeo automático de invariantes. |
 
 **Reglas de diseño que cuidamos**
@@ -49,6 +49,15 @@ Con 600 repartidores y 8 ejecutivos durante 30 días simulados:
 5. **Sin tiempo de valle no hay programa:** con espera cercana a 0, los leads de Hunters caen a 0.
 6. **Las comunas frías casi no se cubren solas** (~9 % de los leads), así que hace falta una señal que dirija a los Hunters.
 
+### Lo que agregó la v16 (simulado, 20 semillas)
+
+- **Anti-spam por distancia (75 m):** los duplicados colados bajan de ~29 % a ~0,1 %, frenando ~0,1 % de locales legítimos.
+- **Pausar la captación cuando la cola de la oficina se llena** es la palanca que protege a la oficina: en «Cupo lleno» los leads fuera de SLA bajan de ~2.770 a ~51 y la conversión sube de 16 % a 51 %, con los mismos locales incorporados. El tope por comuna, solo, no basta.
+- **Misiones a comunas frías:** con 30 % de Hunters siguiendo la sugerencia, los leads desde comunas frías pasan de ~18 % a ~35 %.
+- **SLA por etapa** no empeora la conversión (a diferencia del SLA puro), pero por sí solo no la mejora.
+
+Detalle, tablas y supuestos por confirmar en el [informe v16](docs/Informe_Pruebas_v16.md).
+
 > Son resultados de un **modelo con parámetros de ejemplo**, no datos de Rappi. Sirven para explorar «¿qué pasaría si…?», no para pronosticar. El método, los límites y los 7 hallazgos de la v13 están en el [informe completo](docs/Informe_Pruebas.md).
 
 ## Cómo probarlo
@@ -56,15 +65,19 @@ Con 600 repartidores y 8 ejecutivos durante 30 días simulados:
 - **En línea:** abre la [demo](https://fx010.github.io/Dlab-sem-2/).
 - **En local:** descarga el repositorio y abre `index.html` en el navegador.
 - **Autopruebas del gemelo:** en la vista *Gemelo digital*, botón **Autoprueba** (determinismo, aislamiento, reglas reales, extremos y pruebas de mutación).
+- **Pruebas automáticas (desarrollo):** `cd tests && npm install && npm test` abre la app en Edge sin ventana, corre las autopruebas y recorre los flujos clave. `node measure.mjs` regenera la matriz de simulación (`docs/qa/resultados-v16.json`). La app en sí sigue sin dependencias.
 
 ## Estructura
 
 ```
-index.html                 Prototipo publicado (GitHub Pages) · versión actual v15
-Rappi_Hunter_v15.html      Misma versión, con nombre de entrega
-Rappi_Hunter_v14.html      Versión anterior (base del informe de pruebas)
-docs/Informe_Pruebas.md    Informe de pruebas de la v14 y resultados de la simulación
+index.html                 Prototipo publicado (GitHub Pages) · versión actual v16
+Rappi_Hunter_v16.html      Misma versión, con nombre de entrega
+Rappi_Hunter_v15.html      Versión anterior (mapa real)
+Rappi_Hunter_v14.html      Versión base del primer informe de pruebas
+docs/Informe_Pruebas_v16.md  Informe de pruebas de la v16 (palancas y escenario virtual)
+docs/Informe_Pruebas.md    Informe de pruebas de la v14
 docs/qa/                   Hallazgos de la v13 y datos de las corridas (JSON)
+tests/                     Pruebas automáticas y matriz de simulación (solo desarrollo)
 docs/img/                  Capturas
 ```
 
