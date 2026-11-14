@@ -9,7 +9,7 @@ import path from "node:path";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
-const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v17.html");
+const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v18.html");
 const only = (args.find(a => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
 const want = k => !only.length || only.includes(k);
 const BASE = path.join(HERE, "baseline-v15.json");
@@ -159,7 +159,7 @@ if (want("virtual")) {
 /* 5. v17: feedback de Rappi (13-nov): pausa por demanda, bono por lead pertinente, piloto en todo Santiago */
 if (want("v17")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v17/.test(document.title));
+  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v1[78]/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     await click("#hint-hunter"); await page.waitForTimeout(1200);
@@ -167,7 +167,7 @@ if (want("v17")) {
     await click("#avatar-btn"); await page.waitForTimeout(600);
     await click('#pf-tabs [data-pt="ajustes"]'); await page.waitForTimeout(300);
     const txt = await page.evaluate(() => document.getElementById("pf-ajustes").textContent);
-    ok("v17: Ajustes dice que el piloto cubre todo Santiago con grupo reducido", /grupo reducido/.test(txt) && /todas las comunas de Santiago/.test(txt));
+    ok("v17: Ajustes dice que el piloto cubre todo Santiago con grupo reducido", /grupo reducido/.test(txt) && /todo Santiago/.test(txt));
     await click('[data-fleet="full"]'); await page.waitForTimeout(300);
     await click("#pf-close"); await page.waitForTimeout(600);
     let r = await page.evaluate(() => { document.getElementById("hunter").click(); return { paused: document.getElementById("hunter").classList.contains("paused"), sheet: document.getElementById("lead-sheet").getAttribute("aria-hidden"), toast: document.getElementById("rtoast-txt").textContent }; });
@@ -178,6 +178,14 @@ if (want("v17")) {
     await click("#pf-close"); await page.waitForTimeout(600);
     r = await page.evaluate(() => { document.getElementById("hunter").click(); return { paused: document.getElementById("hunter").classList.contains("paused"), sheet: document.getElementById("lead-sheet").getAttribute("aria-hidden") }; });
     ok("v17: part-time puede reportar en la misma zona", !r.paused && r.sheet === "false");
+    await page.waitForTimeout(900);
+    const vis = await page.evaluate(() => {
+      const R = document.getElementById("lead-sheet"); let n = 0, w = document.createTreeWalker(R, NodeFilter.SHOW_TEXT), x;
+      while ((x = w.nextNode())) { const t = x.nodeValue.replace(/\s+/g, " ").trim(), e = x.parentElement; if (t && !e.closest("script,style,svg") && e.getClientRects().length && getComputedStyle(e).display !== "none") n += t.length; }
+      const hid = q => { const e = document.querySelector(q); return !e || e.getClientRects().length === 0; };
+      return { n, hid: hid("#sc-legend") && hid("#help-btn") && hid("#ls-dir") && hid("#ls-obs") ? 1 : 0 };
+    });
+    ok("v18: el formulario muestra poco texto (≤ 230 caracteres) y sin campos opcionales", vis.n <= 230 && vis.hid === 1, vis.n + " caracteres");
     const src = await page.content();
     ok("v17: el seguimiento reconoce el lead pertinente aunque no cierre", /Pertinente · bono/.test(src) && /Conservas tu bono/.test(src));
     ok("v17: la oficina marca leads pertinentes y la sincronización con HubSpot", /pert-badge/.test(src) && /HubSpot: lead sincronizado/.test(src));

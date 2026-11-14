@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Soy Rappi · Rappi Hunters (concepto v17)</title>
+<title>Soy Rappi · Rappi Hunters (concepto v18)</title>
 <script>try{var __t=localStorage.getItem("rh_theme");if(__t==="light"||__t==="dark")document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1867,6 +1867,14 @@
   .qa-act { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 16px; padding: 11px 18px; min-height: 44px; border-radius: 999px; background: var(--rappi); color: #fff; font-family: var(--f-display); font-weight: 800; font-size: 14px; }
   .qa:not(.open) .qa-act { visibility: hidden; }
 </style>
+<style>
+/* v18: interfaz mínima del repartidor. Objetivo: la mitad del texto, de la información y de los botones en pantalla */
+.sc-legend, #prof-open, .rush-txt, .hs-col small, .hint, .order.valle .what, #o-what, #of-sub, .shot-note, .ls-ticket-sub, .ls-gps div span, .ls-gps em,
+.faq-head p, .faq-foot > span, .sr-h p, .sr-tile span, .sr-goal p, .mis-d, .pf-note, .sr-row .tx em, .req,
+#profile .pf-sec > p:not(.keep), #profile .pf-row small, .ls-head > p:not(.ls-safe):not(.ls-draft),
+.tl-node:not(.cur):not(.rej) .tl-lbl, .wn-k, #wn-p, #help-btn, #sc-in, #sc-out, .bn:not([aria-current="page"]) > span:not(.bn-c), .bn:not([aria-current="page"]) .bn-lbl, .tl-lbl small, .sr-c h4 small, .o-skip-x, #o-eta-l, .ls-missing,
+.order.valle:not(.sr-offl) .valle-chip, .faq-sec, .lead-sub .zdot + *, #pf-ajustes .pf-sec:has([data-theme-set]), #pf-ajustes .pf-sec:has([data-pref]), .ls-field:has(#ls-dir), .ls-field:has(#ls-obs), .sr-ord .sr-chip.ok, .qr-card > p, .geo-card > p, .geo-list { display: none !important; }
+</style>
 </head>
 <body>
 <div class="stage">
@@ -1917,8 +1925,8 @@
         <!-- Hunter -->
         <div class="strip h-only">
           <i class="dot" aria-hidden="true"></i>
-          <span>Tiempo de valle · <b>sin pedido activo</b></span>
-          <button type="button" id="sim-order">Simular pedido</button>
+          <span><b>Valle</b></span>
+          <button type="button" id="sim-order">Pedido</button>
         </div>
 
         <div class="hstats h-only">
@@ -1951,8 +1959,8 @@
         <div class="what" style="grid-column:1/-1"><span class="hr-on">Reporta un local nuevo mientras llega tu próximo pedido.</span><span class="hr-off">Súmate al Programa Hunter y reporta locales mientras esperas.</span></div>
         <div class="valle-row">
           <button class="sec hr-on" id="prof-open2" type="button">Mis leads</button>
-          <button class="sec hr-off" id="hunter-learn" type="button">Conocer el programa</button>
-          <button class="pri" id="sim-order2" type="button">Simular pedido</button>
+          <button class="sec hr-off" id="hunter-learn" type="button">Hunter</button>
+          <button class="pri" id="sim-order2" type="button">Pedido</button>
         </div>
       </div>
 
@@ -1974,9 +1982,8 @@
             <button class="seg-b" type="button" role="tab" data-tab="leads" aria-selected="true">Leads <span class="cnt" id="leads-cnt">0</span></button>
             <button class="seg-b" type="button" role="tab" data-tab="misiones" aria-selected="false">Misiones <span class="cnt" id="mis-cnt">0</span></button>
           </div>
-          <button class="qr-chip" id="qr-open" type="button" aria-haspopup="dialog" aria-controls="qr">
+          <button class="qr-chip" id="qr-open" type="button" aria-label="Mi código QR" aria-haspopup="dialog" aria-controls="qr">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20h1"/></svg>
-            Mi QR
           </button>
         </div>
         <div class="pane" id="pane-leads">
@@ -2007,18 +2014,14 @@
               <svg viewBox="0 0 64 32" aria-hidden="true"><path fill="currentColor" d="M32 10c-3-6-10-8-15-5-4 2.3-5 6-9 6-3 0-6-1.4-8-4 1 7 7 13 15 13 6 0 10-3.3 12-7.3C28.7 16 32.7 19 39 19c8 0 14-6 15-13-2 2.6-5 4-8 4-4 0-5-3.7-9-6-5-3-12-1-15 5z"/></svg>
               <span class="iv-brand">Rappi</span>
             </div>
-            <p class="iv-kicker iv-item" style="--i:1">Carta de invitación · Programa Hunter</p>
             <h2 class="iv-title iv-item" id="iv-title" style="--i:2">Te invitamos a ser Hunter</h2>
-            <p class="iv-salute iv-item" style="--i:3">Estimado Rappitendero:</p>
-            <p class="iv-item" style="--i:4">Gracias por tu esfuerzo de cada día.</p>
             <p class="iv-item" style="--i:5">Sin pedido, reporta locales que aún no están en Rappi. Si avanza, ganas un bono.</p>
-            <p class="iv-item" style="--i:6">Tú decides cuándo, sin metas. Con un pedido activo, Hunter se bloquea. Eres parte de un piloto con grupo reducido.</p>
-            <p class="iv-sign iv-item" style="--i:7">Con aprecio y gratitud,<br><b>Dirección de Growth &amp; Expansión Comercial</b><br>Rappi Chile SpA</p>
+            <p class="iv-item" style="--i:6">Tú decides. Sin metas.</p>
           </div>
           <div class="iv-foot iv-item" style="--i:8">
             <button class="iv-accept" id="invite-accept" type="button">Acepto</button>
             <button class="iv-later" id="invite-later" type="button">Ahora no</button>
-            <p class="iv-note">Al aceptar, activas Hunter y sus Términos. Lo desactivas en Cuenta › Ajustes.</p>
+            <p class="iv-note">Piloto con grupo reducido. Aceptas los Términos.</p>
           </div>
         </div>
       </div>
@@ -2040,7 +2043,7 @@
             <em>Auto</em>
           </div>
           <label class="ls-field">
-            <span>Nombre del local</span>
+            <span>Nombre</span>
             <input type="text" id="ls-name" placeholder="Ej: Empanadas Doña Tere" autocomplete="off">
           </label>
           <div class="ls-dup" id="ls-dup" role="alert" hidden>
@@ -2049,10 +2052,10 @@
           </div>
           <fieldset class="ls-rest" id="ls-rest">
             <label class="ls-field">
-              <span>Teléfono del local</span>
+              <span>Teléfono</span>
               <span class="ls-phone"><em>+56</em><input type="tel" inputmode="tel" id="ls-phone" placeholder="9 1234 5678" autocomplete="off" maxlength="16"></span>
             </label>
-            <label class="ls-consent"><input type="checkbox" id="ls-consent"><span>Avisé al dueño que Rappi lo llamará</span></label>
+            <label class="ls-consent"><input type="checkbox" id="ls-consent"><span>Avisé al dueño</span></label>
             <label class="ls-field">
               <span>Dirección (opcional)</span>
               <input type="text" id="ls-dir" maxlength="100" placeholder="Ej: esquina Villaseca" autocomplete="off">
@@ -2062,7 +2065,7 @@
                 <input type="file" id="ls-ph-facade" accept="image/*" capture="environment" hidden>
                 <button type="button" class="ls-shot" id="shot-facade">
                   <img alt="Foto de la fachada" hidden>
-                  <span class="shot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h1.5l1.4-2h6.2l1.4 2H18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg><b>Tomar foto de la Fachada</b><small class="req">Obligatoria</small></span>
+                  <span class="shot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h1.5l1.4-2h6.2l1.4 2H18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg><b>Fachada</b><small class="req">Obligatoria</small></span>
                   <span class="shot-ok" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
                 </button>
                 <span class="shot-note">Para reconocer el local.</span>
@@ -2071,7 +2074,7 @@
                 <input type="file" id="ls-ph-menu" accept="image/*" capture="environment" hidden>
                 <button type="button" class="ls-shot" id="shot-menu">
                   <img alt="Foto de la carta o menú" hidden>
-                  <span class="shot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h10l3 3v15H6z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg><b>Tomar foto de la Carta/Menú</b><small class="req">Obligatoria</small></span>
+                  <span class="shot-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h10l3 3v15H6z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg><b>Carta</b><small class="req">Obligatoria</small></span>
                   <span class="shot-ok" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
                 </button>
                 <span class="shot-note">Con precios visibles.</span>
@@ -2085,7 +2088,7 @@
           <button type="submit" class="ls-submit" id="ls-submit" disabled>
             <span class="ls-spinner" aria-hidden="true"></span>
             <span class="ls-lock"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></span>
-            <span class="ls-submit-txt">Enviar Lead</span>
+            <span class="ls-submit-txt">Enviar</span>
           </button>
           <p class="ls-missing" id="ls-missing"></p>
           <button type="button" class="ls-skip" id="ls-example">Rellenar con datos de ejemplo</button>
@@ -3960,9 +3963,8 @@
     box.innerHTML =
       '<div class="zi-head"><span class="zdot ' + kind + '"></span><b>' + c.name + '</b><span class="zi-pill ' + kind + '">' + (kind === "hot" ? "Zona caliente" : "Zona fría") + "</span>" +
       '<button class="zi-x" id="zi-x" type="button" aria-label="Cerrar"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>' +
-      '<div class="zi-n"><b>' + n + "</b>oportunidades abiertas" + (mine ? " · " + mine + (mine === 1 ? " lead para ti" : " leads para ti") : "") + "</div>" +
-      '<ul class="zi-list"><li>' + c.why + "</li><li>" + (kind === "hot" ? "Caliente: " + HOT_MIN + " o más oportunidades abiertas." : "Fría: poca cobertura. Suma a tus misiones.") + "</li><li>" + DEM_TXT[demandOf(c)] + (fleetType === "full" && demandOf(c) === "alta" ? ": Hunter en pausa para full-time." : ".") + "</li></ul>" +
-      '<div class="zi-foot">Estimación de la simulación</div>';
+      '<div class="zi-n"><b>' + n + "</b>oportunidades" + (mine ? " · " + mine + (mine === 1 ? " lead para ti" : " leads para ti") : "") + "</div>" +
+      (fleetType === "full" && demandOf(c) === "alta" ? '<div class="zi-n"><b>⏸</b>Hunter en pausa: mucha demanda.</div>' : "");
     document.getElementById("zi-x").addEventListener("click", function () { selectComm(null); });
   }
   function selectComm(id) {
@@ -4050,8 +4052,8 @@
       return '<article class="lead' + (selLead === x.n ? " sel" : "") + (x.visited ? " visited" : "") + '" data-n="' + esc(x.n) + '" style="animation-delay:' + (i * 50) + 'ms">' +
         '<div class="lead-top"><span class="lead-n">' + esc(x.n) + '</span><span class="lead-dist">' + o.geo.dist + "</span></div>" +
         '<div class="lead-sub"><i class="zdot ' + o.kind + '"></i>' + o.zone.name + " · " + labels[x.t] + "</div>" +
-        '<div class="lead-why">' + (x.note ? esc(x.note) + ". " : "") + WHY[x.src] + "</div>" +
-        '<div class="lead-meta"><span class="origin-badge ' + om.cls + '">' + originIco(x.src) + om.label + '</span><span class="prio ' + pr.k + '">' + pr.t + "</span>" + (x.visited ? '<span class="vtag">Visitado</span>' : "") + '<button type="button" class="lead-det" data-n="' + esc(x.n) + '">Detalles ›</button></div></article>';
+        '' +
+        '<div class="lead-meta">' + (x.visited ? '<span class="vtag">Visitado</span>' : "") + '<button type="button" class="lead-det" data-n="' + esc(x.n) + '" aria-label="Ver detalles">›</button></div></article>';
     }).join("") : '<div class="lead-empty">' + (all.length ? (sc ? "No tienes leads disponibles en " + sc.name + " por ahora." : "No hay leads en este tipo de zona.") : "Sin leads nuevos por ahora. Te avisamos cuando la oficina comparta uno.") + "</div>";
     var zf = document.getElementById("zfilter");
     zf.hidden = !sc;
@@ -4084,7 +4086,7 @@
   document.getElementById("carousel").addEventListener("click", function (e) {
     var d = e.target.closest(".lead-det"), c = e.target.closest(".lead");
     if (d) { openLd(d.dataset.n); return; }
-    if (c) selectLead(c.dataset.n, false, true);
+    if (c) { if (selLead === c.dataset.n && !e.target.closest(".lead-det")) { openLd(c.dataset.n); return; } selectLead(c.dataset.n, false, true); }
   });
   dragScroll(document.getElementById("carousel"), "x");
   dragScroll(document.getElementById("mis-list"), "x");
@@ -4275,11 +4277,11 @@
     document.getElementById("ld-card").innerHTML =
       '<div class="ls-handle" aria-hidden="true"></div>' +
       '<button class="x-btn ld-x" id="ld-close" type="button" aria-label="Cerrar detalle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
-      '<div class="ld-badges"><span class="origin-badge ' + om.cls + '">' + originIco(x.src) + om.label + "</span>" + ztag(o) + '<span class="prio ' + pr.k + '">' + pr.t + "</span>" + (x.visited ? '<span class="vtag">Visitado</span>' : "") + "</div>" +
+      '' +
       '<div><h3 id="ld-title">' + esc(x.n) + '</h3><p class="ld-sub">' + labels[x.t] + " · " + esc(x.dir) + "</p></div>" +
-      '<div class="ld-tiles"><div class="ld-tile"><small>Distancia</small><b>' + o.geo.dist + '</b></div><div class="ld-tile"><small>En ruta</small><b>≈ ' + rideMin(o) + ' min</b></div><div class="ld-tile"><small>Estado</small><b>' + (x.visited ? "Visitado" : "Por validar") + "</b></div></div>" +
-      '<div><p class="ld-sec">Por qué es un buen lead</p><ul class="ld-list">' + signals.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul></div>" +
-      '<div><p class="ld-sec">Qué hacer</p><ol class="ld-list ld-steps"><li>Acércate al local cuando estés en tiempo de valle.</li><li>Cuéntale al dueño que un ejecutivo lo contactará y muéstrale tu QR.</li><li>Marca el lead como visitado para sumar a tus misiones.</li></ol></div>' +
+      '<div class="ld-tiles"><div class="ld-tile"><small>Distancia</small><b>' + o.geo.dist + '</b></div><div class="ld-tile"><small>En ruta</small><b>≈ ' + rideMin(o) + ' min</b></div></div>' +
+      '' +
+      '' +
       '<div class="ld-acts"><a class="ld-go" href="' + maps + '" target="_blank" rel="noopener noreferrer">Cómo llegar <span aria-hidden="true">↗</span></a><button class="ld-visit" id="ld-visit" type="button"' + (x.visited ? " disabled" : "") + ">" + (x.visited ? "Visitado ✓" : "Lo visité") + "</button></div>";
     document.getElementById("ld-close").addEventListener("click", closeLd);
     document.getElementById("ld-visit").addEventListener("click", function () {
@@ -4327,7 +4329,7 @@
   }
   function hunterAjustesSec() {
     return (hunterRole ? '<div class="pf-sec"><h4>Cómo trabajas</h4><div class="pf-btns"><button type="button" class="pf-btn' + (fleetType === "part" ? "" : " sec") + '" data-fleet="part" aria-pressed="' + (fleetType === "part") + '">Part-time</button><button type="button" class="pf-btn' + (fleetType === "full" ? "" : " sec") + '" data-fleet="full" aria-pressed="' + (fleetType === "full") + '">Full-time</button></div><p>Si trabajas full-time, Hunter se pausa en zonas con mucha demanda de pedidos.</p></div>' : "") +
-      '<div class="pf-sec"><h4>Programa Hunter</h4><p>Piloto con grupo reducido. Cubre todas las comunas de Santiago.</p>' +
+      '<div class="pf-sec"><h4>Programa Hunter</h4><p class="keep">Piloto · grupo reducido · todo Santiago</p>' +
       '<div class="pf-row"><div><b>Modo Hunter</b><small>' + (hunterRole ? "Activo: ves el botón Hunter y puedes reportar locales." : "Desactivado. Actívalo para reportar locales en tiempo de valle.") + '</small></div><button type="button" class="pf-sw" role="switch" data-act="hr-toggle" aria-checked="' + hunterRole + '" aria-label="Modo Hunter"></button></div>' +
       (hunterRole ? '<div class="pf-btns"><button type="button" class="pf-btn sec" data-act="hr-tour">Repetir la guía</button></div>' : "") + "</div>";
   }
@@ -4482,6 +4484,16 @@
   ];
   /* v13: primera pregunta del Soporte: repetir la guía interactiva si el repartidor la olvidó */
   FAQ[0].qa.unshift(["¿Cómo se usa el Modo Hunter? ¿Puedo repetir la guía?", "Sí. La guía te lleva por la app real en 1 minuto: eliges una zona, un local cercano y practicas el reporte sin enviar nada. Puedes verla de nuevo cuando quieras, aquí o en Cuenta › Ajustes.", "guide"]);
+  /* v18: solo las preguntas que un repartidor necesita en la calle */
+  (function () {
+    var keep = [[["¿Puedo reportar", "¿Puedo reportar manejando?"], ["¿Cuánto tiempo", "¿Cuánto demora?"]], [["¿Qué hago si el dueño", "¿Y si el dueño pregunta por cobros?"]], [["¿Cómo y cuándo me pagan", "¿Cómo me pagan?"], ["¿Me penalizan", "¿Me penalizan si no entra?"]]];
+    var firstSentences = function (t) { var m = t.match(/^(.*?[.!?])(\s+.*?[.!?])?(\s|$)/); return m ? (m[1] + (m[2] || "")).trim() : t; };
+    FAQ.forEach(function (sec, i) {
+      var k = keep[i] || [], out = [];
+      k.forEach(function (p) { sec.qa.forEach(function (q) { if (q[0].indexOf(p[0]) === 0) out.push([p[1], firstSentences(q[1])]); }); });
+      sec.qa = out;
+    });
+  })();
   var faq = document.getElementById("faq"), faqTab = 0, helpBtn = document.getElementById("help-btn");
   var CHEV = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
   function renderFaq() {
@@ -5904,10 +5916,10 @@
 
   /* ---------- Mi Perfil Hunter: seguimiento de cada lead, como el de un pedido ---------- */
   var STG = [
-    { t: "Lead enviado", d: "Recibimos tu lead con fotos y ubicación." },
-    { t: "En revisión", d: "La oficina está validando los datos y las fotos." },
-    { t: "Gestión comercial", s: "Lead pertinente · bono", d: "El ejecutivo lo calificó como pertinente. Ya ganaste un bono, cierre o no." },
-    { t: "Local activo", s: "Bono ganado", d: "El local ya vende en Rappi. Ganaste tu bono." }
+    { t: "Enviado", d: "Recibimos tu lead con fotos y ubicación." },
+    { t: "Revisión", d: "La oficina está validando los datos y las fotos." },
+    { t: "Gestión", s: "Lead pertinente · bono", d: "El ejecutivo lo calificó como pertinente. Ya ganaste un bono, cierre o no." },
+    { t: "Activo", s: "Bono ganado", d: "El local ya vende en Rappi. Ganaste tu bono." }
   ];
   var ORD = ["postulado", "contactado", "gestionado", "incorporado"];
   var shownIdx = {}, profUpdates = 0, pendingFree = false;
@@ -5954,8 +5966,8 @@
       if (open) { shownIdx[x.n] = idx; if (rej) shownIdx[x.n + "#r"] = 1; }
       var pert = rej ? rej.at === 3 : idx >= 2;
       var chip = rej ? (pert ? '<span class="pl-chip win">Pertinente · bono</span>' : '<span class="pl-chip no">No avanzó</span>') : idx === 3 ? '<span class="pl-chip win">Bono ganado</span>' : idx === 2 ? '<span class="pl-chip win">Pertinente · bono</span>' : '<span class="pl-chip run">En curso</span>';
-      var msg = rej && pert ? '<p class="pl-msg">El local no cerró, pero tu lead era bueno. Conservas tu bono.</p>' : rej ? '<p class="pl-msg no">Toca el punto rojo para ver el motivo.</p>' : '<p class="pl-msg">' + STG[idx].d + "</p>";
-      return '<article class="pl' + (x.fresh ? " fresh" : "") + '"><div class="pl-top"><div><h4>' + esc(x.n) + "</h4><p>" + esc(x.dir) + " · enviado " + whenHtml(x) + "</p></div>" + chip + "</div>" + tl + msg + (x.consent === false ? '<p class="pl-msg warn">Pendiente: cuéntale al dueño que Rappi lo va a contactar.</p>' : x.consent === true ? '<p class="pl-msg ok-msg">Dueño avisado ✓</p>' : "") + "</article>";
+      var msg = rej && pert ? '<p class="pl-msg">El local no cerró, pero tu lead era bueno. Conservas tu bono.</p>' : rej ? '<p class="pl-msg no">Toca el punto rojo.</p>' : idx >= 2 ? '<p class="pl-msg">' + STG[idx].d + "</p>" : "";
+      return '<article class="pl' + (x.fresh ? " fresh" : "") + '"><div class="pl-top"><div><h4>' + esc(x.n) + "</h4><p>" + "enviado " + whenHtml(x) + "</p></div>" + chip + "</div>" + tl + msg + (x.consent === false ? '<p class="pl-msg warn">Pendiente: cuéntale al dueño que Rappi lo va a contactar.</p>' : x.consent === true ? '<p class="pl-msg ok-msg">Dueño avisado ✓</p>' : "") + "</article>";
     }).join("");
     setTimeout(function () {
       list.querySelectorAll(".tl-line i").forEach(function (i) { i.style.width = i.dataset.on === "1" ? "100%" : "0%"; });
@@ -6043,10 +6055,9 @@
     ];
     document.getElementById("pf-perfil").innerHTML =
       '<div class="pf-lvl"><small>Tu nivel</small><b>' + cur.n + '</b><div class="pf-bar" role="progressbar" aria-label="Progreso hacia el siguiente nivel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i style="width:' + pct + '%"></i></div>' +
-      "<p>" + (nxt ? "Te " + (need === 1 ? "falta 1 local activo" : "faltan " + need + " locales activos") + " para ser " + nxt.n + "." : "Llegaste al nivel más alto. ¡Gracias por hacer crecer Rappi!") + "</p></div>" +
+      "</div>" +
       '<div class="pf-grid"><div class="pf-box"><b>' + sent + "</b><span>Leads enviados</span></div><div class=\"pf-box\"><b>" + act + "</b><span>Locales activos</span></div><div class=\"pf-box\"><b>" + count + " de " + CUPO + "</b><span>Cupo en uso</span></div></div>" +
-      '<div class="pf-sec"><h4>Insignias</h4><div class="pf-badges">' + bds.map(function (b) { return '<div class="pf-bd' + (b[2] ? " on" : "") + '">' + bdSvg(b[0]) + b[1] + "</div>"; }).join("") + "</div></div>" +
-      '<div class="pf-sec"><h4>Página del programa</h4><p>Enlace para compartir con los dueños de locales (demo del proyecto).</p><a class="pf-link" href="https://fx010.github.io/Dlab-sem-2/" target="_blank" rel="noopener noreferrer">fx010.github.io/Dlab-sem-2 <span aria-hidden="true">↗</span></a></div>' + srAccount();
+            srAccount();
     var tn = document.getElementById("pf-tab-n");
     tn.hidden = !run; tn.textContent = run;
   }
@@ -6772,32 +6783,32 @@
     var accPct = Math.round(SR.accepted / SR.offers * 100), peak = Math.min(SR.peakNeed, Math.floor(today / 2));
     var left = Math.max(0, SR.goalWeek - wk);
     document.getElementById("metas-body").innerHTML =
-      '<div class="sr-c sr-hero"><small>Esta semana</small><b>' + wk + '</b><p>pedidos entregados · ' + (left ? "te faltan " + left + " para tu meta semanal" : "¡cumpliste tu meta semanal!") + '</p><div class="sr-meter" aria-hidden="true"><i style="width:' + srPct(wk, SR.goalWeek) + '%"></i></div></div>' +
+      '<div class="sr-c sr-hero"><small>Esta semana</small><b>' + wk + '</b><p>pedidos' + (left ? " · faltan " + left : " · meta cumplida ✓") + '</p><div class="sr-meter" aria-hidden="true"><i style="width:' + srPct(wk, SR.goalWeek) + '%"></i></div></div>' +
       '<div class="sr-c"><h4 aria-level="3">Pedidos por día<small>Hoy: ' + today + "</small></h4>" + '<div class="sr-bars" role="img" aria-label="' + aria + '">' + bars + "</div></div>" +
-      '<div class="sr-tiles"><div class="sr-tile"><small>Conectado hoy</small><b>' + srHM(SR.mins) + '</b><span>en la calle</span></div><div class="sr-tile"><small>Aceptación</small><b>' + accPct + '%</b><span>de los pedidos</span></div></div>' +
+      '<div class="sr-tiles"><div class="sr-tile"><small>Conectado hoy</small><b>' + srHM(SR.mins) + '</b><span>en la calle</span></div></div>' +
       '<div class="sr-c"><h4 aria-level="3">Metas por pedidos<small>Bono al cumplir</small></h4>' +
       srGoal("Meta de hoy", "Completa " + SR.goalDay + " pedidos hoy.", today, SR.goalDay) +
       srGoal("Meta semanal", "Completa " + SR.goalWeek + " pedidos de lunes a domingo.", wk, SR.goalWeek) +
-      srGoal("Hora punta", "Entrega " + SR.peakNeed + " pedidos entre las 19 y las 22 h.", peak, SR.peakNeed) + "</div>" +
+      "</div>" +
       (!hunterRole ? '<div class="sr-c sr-hun"><h4 aria-level="3">Programa Hunter<small>Nuevo</small></h4><p style="margin:0;font-size:13.5px;line-height:1.45;color:var(--ink2)">Reporta locales nuevos sin pedidos y gana un bono.</p><button class="sr-btn blk" type="button" data-go="hunter">Conocer el programa</button></div>' : '<div class="sr-c sr-hun"><h4 aria-level="3">Modo Hunter<small>Esta semana</small></h4><div class="nums"><div><b>' + L.length + "</b><span>Leads enviados</span></div><div><b>" + act + "</b><span>Locales activos</span></div><div><b>" + count + "/" + CUPO + "</b><span>Cupo en uso</span></div></div>" +
       '<button class="sr-btn blk" type="button" data-go="hunter">Ir al Modo Hunter</button></div>') +
-      '<div class="sr-c"><div class="sr-rows">' + srInfo("tip", "Propinas: 100% tuyas", "Todo lo que te dejan los clientes es para ti.") + srInfo("wallet", "Pago semanal", "Tus ganancias se depositan cada semana en tu cuenta bancaria vinculada.") + srInfo("bag", "Tarjeta de compras", "En pedidos de compras, Rappi te transfiere el dinero y no adelantas nada.") + "</div></div>" +
-      '<div class="sr-c"><h4 aria-level="3">Invita a un amigo<small>Suma por cada referido</small></h4><div class="sr-ref"><code>RAPPI-4821</code><button class="sr-btn sec" type="button" data-go="copy">Copiar código</button></div></div>';
+      "" +
+      "";
   }
 
   /* --- Pedidos --- */
   function renderPedidos() {
     var out = "", f = srFilter, last = "";
     if (f !== "hun") {
-      SR_HIST.forEach(function (h, i) {
+      SR_HIST.slice(0, 4).forEach(function (h, i) {
         if (h.day !== last) { out += '<div class="sr-day">' + h.day + "</div>"; last = h.day; }
-        out += '<div class="sr-ord' + (h.fresh ? " fresh" : "") + '"><button class="sr-ord-t" type="button" aria-expanded="false"><span class="sr-ord-ic">' + srIc("del") + '</span><span><b>' + esc(h.store) + '</b><span class="s">' + h.id + " · " + h.time + " · " + h.km + ' km</span></span><span class="sr-chip ok">Entregado</span></button>' +
+        out += '<div class="sr-ord' + (h.fresh ? " fresh" : "") + '"><button class="sr-ord-t" type="button" aria-expanded="false"><span class="sr-ord-ic">' + srIc("del") + '</span><span><b>' + esc(h.store) + '</b><span class="s">' + h.time + " · " + h.km + ' km</span></span><span class="sr-chip ok">Entregado</span></button>' +
           '<div class="sr-ord-d"><div><u>Retiro</u>' + esc(h.a1) + "</div><div><u>Entrega</u>" + esc(h.a2) + "</div><div><u>Duración</u>" + h.min + ' min</div><div><u>Propina</u>100% tuya</div><button type="button" data-go="help">Ayuda con este pedido</button></div></div>';
       });
     }
-    if (f !== "del") {
+    if (f === "hun") {
       var L = myLeads();
-      if (f === "all" && L.length) out += '<div class="sr-day">Locales que reportaste</div>';
+      
       if (!L.length && f === "hun") out += '<div class="sr-empty"><b>Aún no reportas locales</b>Activa el Modo Hunter en tiempo de valle y reporta el primero.</div>';
       L.forEach(function (x) {
         var s = SR_ST[x.st] || ["En revisión", "in"];
@@ -6955,8 +6966,6 @@
     function row(k, ic, t, s, dt) { return '<div class="sr-rowx" data-acc="' + k + '"><button class="sr-row" type="button"' + (dt ? ' aria-expanded="false"' : "") + '><span class="ic">' + srIc(ic) + '</span><span class="tx"><b>' + t + "</b><em>" + s + '</em></span><i class="go" aria-hidden="true">›</i></button>' + (dt ? '<div class="dt">' + dt + "</div>" : "") + "</div>"; }
     return '<div class="pf-sec"><h4>Mi cuenta</h4><div class="sr-rows">' +
       row("ben", "shield", "Beneficios", "Seguro de accidentes y descuentos con marcas aliadas.", "• Cobertura de accidentes mientras trabajas.<br>• Descuentos exclusivos con marcas aliadas.<br>• Mochila oficial de Rappi recomendada, pero no obligatoria.") +
-      row("ref", "gift", "Invita a un amigo", "Tu código: RAPPI-4821. Toca para copiarlo.") +
-      row("wn", "sparks", "Novedades de la versión", "Conoce el Modo Hunter y lo nuevo de la app.") +
       row("faq", "help", "Ayuda y soporte", "Preguntas frecuentes y hablar con una persona.") + "</div></div>";
   }
   document.getElementById("pf-perfil").addEventListener("click", function (e) {
@@ -6977,6 +6986,7 @@
     { k: "Tú decides", t: "Sin metas obligatorias", p: "Con un pedido en curso, Hunter se bloquea solo.", i: "moon" },
     { k: "Nuevo · Tu seguridad primero", t: "Reporta solo detenido", p: "En movimiento, la app bloquea el reporte y guarda tu borrador.", i: "shield" }
   ];
+  WN = [WN[0], WN[1], WN[4]]; /* v18: tres novedades, no cinco */
   var wnEl = document.getElementById("wn"), wnI = 0, WN_KEY = "rh_wn13";
   function srWnRender(anim) {
     var s = WN[wnI];
@@ -7009,13 +7019,11 @@
   /* ---------- v13: guía interactiva del primer uso: se aprende tocando la app real ---------- */
   var coachEl = document.getElementById("coach"), coachI = -1, coachOn = false, coachWait = false, coachTimer = null, coachClick = null, coachMiss = 0;
   var COACH = [
-    { t: "¡Bienvenido, Hunter!", p: "Te muestro cómo se usa en 1 minuto, tocando la app de verdad. Tus pedidos siempre van primero.", ok: "Empezar" },
-    { sel: '#sc-legend [data-z="hot"]', t: "Toca «Calientes»", p: "El mapa resalta las zonas con más locales por descubrir.", click: true },
-    { sel: "#carousel > *:first-child", t: "Elige un local cercano", p: "Cada tarjeta es un lead cerca de ti. Tócala y el mapa te lleva hasta él.", click: true },
-    { sel: "#hunter", t: "Reporta un local nuevo", p: "Detente en un lugar seguro y toca «Reportar local» cuando veas un negocio que aún no está en Rappi.", until: function () { return srOpen(sheet); } },
-    { sel: "#ls-example", t: "Completa los datos", p: "Pide nombre, teléfono y foto de la fachada. Para practicar, toca «Rellenar con datos de ejemplo».", click: true, needSheet: true },
-    { sel: "#ls-submit", t: "Y se envía aquí", p: "Cuando todo está listo, «Enviar Lead» lo manda a la oficina. En esta práctica no lo enviaremos.", ok: "Terminar práctica", block: true, needSheet: true, onOk: practiceEnd },
-    { sel: "#prof-open", t: "Sigue tus leads", p: "Toca «Mis leads» para ver en qué etapa va cada local y cuándo se activa.", click: true }
+    { t: "¡Bienvenido, Hunter!", p: "Practica en 1 minuto.", ok: "Empezar" },
+    { sel: "#carousel > *:first-child", t: "Elige un local cercano", p: "Tócalo: el mapa te lleva.", click: true },
+    { sel: "#hunter", t: "Reporta un local nuevo", p: "Detenido, toca «Reportar local».", until: function () { return srOpen(sheet); } },
+    { sel: "#ls-example", t: "Completa los datos", p: "Toca «Rellenar con datos de ejemplo».", click: true, needSheet: true },
+    { sel: "#ls-submit", t: "Y se envía aquí", p: "Aquí se envía. En la práctica no.", ok: "Terminar práctica", block: true, needSheet: true, onOk: practiceEnd }
   ];
   function $c(id) { return document.getElementById(id); }
   function practiceEnd() {
