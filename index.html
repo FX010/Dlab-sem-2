@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Soy Rappi · Rappi Hunters (concepto v18)</title>
+<title>Soy Rappi · Rappi Hunters (concepto v19)</title>
 <script>try{var __t=localStorage.getItem("rh_theme");if(__t==="light"||__t==="dark")document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -4872,12 +4872,20 @@
     dupProb: .12, variantShare: .25, channelScale: 1, zoneBias: 0, mut: {},
     /* v16: reglas nuevas (encendidas) y palancas (apagadas por defecto). legacy:true las apaga todas y reproduce la v15 exacta */
     geoDedup: true, dedupM: 75, rejBlockDays: 30, rejRetry: .15, valleCurve: true, neighborShare: .1,
-    zoneCap: 0, officeCap: false, missions: 0, ramp: false, outage: 0
+    zoneCap: 0, officeCap: false, missions: 0, ramp: false, outage: 0,
+    /* v19: capa de realismo (todo supuesto, a confirmar con Rappi). legacy:true la apaga y reproduce la v15 exacta */
+    realism: true, fullShare: .5, demandPause: true, demandValle: true, weekCurve: true, motivation: true, noveltyDecay: .3, pertBonus: true,
+    consentRate: .75, syncFail: .03, execAbsence: .06, fraudShare: .01, fraudDetect: .85, reportMin: 3,
+    strictFunnel: true, retryProb: .3, maxTries: 3, dayCap: 5, fraudRate: .15
   };
-  var DTO_LEGACY_OFF = { geoDedup: false, rejBlockDays: 0, rejRetry: 0, valleCurve: false, neighborShare: 0, zoneCap: 0, officeCap: false, missions: 0, ramp: false, outage: 0 };
+  var DTO_LEGACY_OFF = { geoDedup: false, rejBlockDays: 0, rejRetry: 0, valleCurve: false, neighborShare: 0, zoneCap: 0, officeCap: false, missions: 0, ramp: false, outage: 0, realism: false };
   /* v16 (M4): el valle cambia durante el día. Poco valle en almuerzo y cena, más a media tarde. Supuesto; se normaliza a media 1 entre las 8 y las 22 h */
   var DTO_VALLE_RAW = { 8: 1, 9: 1.1, 10: 1.2, 11: .8, 12: .35, 13: .35, 14: .9, 15: 1.4, 16: 1.4, 17: 1.2, 18: .9, 19: .8, 20: .4, 21: .5 };
   var DTO_VALLE = (function () { var s = 0, n = 0, k, o = {}; for (k in DTO_VALLE_RAW) { s += DTO_VALLE_RAW[k]; n++; } for (k in DTO_VALLE_RAW) o[k] = DTO_VALLE_RAW[k] * n / s; return o; })();
+  /* v19: factor del valle por día de la semana (0 = lunes). Viernes y fin de semana hay más pedidos, así que menos valle. Supuesto */
+  var DTO_DOW = [1, 1, 1, 1, .95, .85, .9];
+  /* v19: no todos buscan con la misma frecuencia: los constantes encuentran mucho más que los esporádicos (el promedio se mantiene cerca de findProb). Supuesto */
+  var DTO_FIND = { oportunista: 1.2, constante: 2, esporadico: .5, noParticipa: 0 };
   var DTO_STAGE_SLA = { postulado: 48, contactado: 48, gestionado: 72 }; /* v16 (M8): horas por etapa, contadas desde que el lead queda listo para esa etapa (supuesto) */
   var DTO_SCENARIOS = [
     { id: "base", label: "Base", why: "Operación normal con los supuestos iniciales.", patch: {} },
@@ -4890,7 +4898,13 @@
     { id: "lanzamiento", label: "Lanzamiento", why: "El programa crece de 100 a 1.000 Hunters en 60 días: ¿cuándo se satura la oficina?", patch: { riders: 1000, days: 60, ramp: true } },
     { id: "feriado", label: "Feriado o lluvia", why: "Muchos pedidos y más repartidores conectados, pero casi sin valle.", patch: { valleProb: .2, shiftProb: .55 } },
     { id: "enfermo", label: "Ejecutivo enfermo", why: "La capacidad de la oficina cae a la mitad entre los días 8 y 14: ¿cuánto tarda en recuperarse?", patch: { outage: .5 } },
-    { id: "palancas", label: "Base + palancas", why: "Base con las palancas de rediseño: pausa de reportes cuando la cola de primer contacto pasa de 48 h, tope de 40 leads por comuna al día, misiones a comunas frías y prioridad por etapa.", patch: { officeCap: true, zoneCap: 40, missions: .3, policy: "etapa" } }
+    { id: "palancas", label: "Base + palancas", why: "Base con las palancas de rediseño: pausa de reportes cuando la cola de primer contacto pasa de 48 h, tope de 40 leads por comuna al día, misiones a comunas frías y prioridad por etapa.", patch: { officeCap: true, zoneCap: 40, missions: .3, policy: "etapa" } },
+    { id: "sinbono", label: "Sin bono por pertinencia", why: "Feedback de Rappi: si el lead es bueno pero no cierra, el repartidor se frustra. Aquí no hay reconocimiento intermedio: ¿cae la adopción y la permanencia?", patch: { pertBonus: false } },
+    { id: "sinpausa", label: "Sin pausa por demanda", why: "Feedback de Rappi: los full-time en zonas calientes de pedidos no deberían prospectar. Aquí la pausa está apagada: ¿cuántos reportes salen de zonas de alta demanda?", patch: { demandPause: false } },
+    { id: "fulltime", label: "Flota casi full-time", why: "Si la mayoría de los Hunters son full-time, la pausa por demanda los frena más: ¿se queda sin flujo de leads el programa?", patch: { fullShare: .9 } },
+    { id: "integracion", label: "Integración inestable", why: "Feedback de Rappi: hay que conectar la app, HubSpot y la billetera. Aquí 30 % de los leads se demora un día en llegar al CRM.", patch: { syncFail: .3 } },
+    { id: "motivados", label: "Hunters muy activos", why: "La frecuencia con que un Hunter encuentra locales es el supuesto más incierto. Aquí se triplica: ¿alcanza la meta de adopción del proyecto y la oficina lo aguanta?", patch: { findProb: .3, mix: { oportunista: .3, constante: .4, esporadico: .1, noParticipa: .2 } } },
+    { id: "fraude", label: "Caza de bonos", why: "Candados anti-fraude: 10 % de los Hunters inventa leads para ganar bonos y la oficina detecta solo la mitad a la primera.", patch: { fraudShare: .1, fraudDetect: .5 } }
   ];
   function dtoRng(seed) { /* mulberry32 */
     var a = (seed >>> 0) || 1;
@@ -4928,6 +4942,11 @@
     out.valleCurve = bool(P.valleCurve, D.valleCurve);
     out.ramp = bool(P.ramp, D.ramp);
     out.officeCap = bool(P.officeCap, D.officeCap);
+    out.realism = bool(P.realism, D.realism);
+    ["demandPause", "demandValle", "weekCurve", "motivation", "pertBonus", "strictFunnel"].forEach(function (k) { out[k] = bool(P[k], D[k]); });
+    ["fullShare", "noveltyDecay", "consentRate", "syncFail", "execAbsence", "fraudShare", "fraudDetect", "retryProb", "fraudRate"].forEach(function (k) { out[k] = dtoNum(P[k], D[k], 0, 1, false); });
+    out.reportMin = dtoNum(P.reportMin, D.reportMin, 0, 60, false);
+    out.maxTries = dtoNum(P.maxTries, D.maxTries, 1, 10, true); out.dayCap = dtoNum(P.dayCap, D.dayCap, 0, 100, true);
     out.dedupM = dtoNum(P.dedupM, D.dedupM, 5, 500, true);
     out.rejBlockDays = dtoNum(P.rejBlockDays, D.rejBlockDays, 0, 365, true);
     out.zoneCap = dtoNum(P.zoneCap, D.zoneCap, 0, 1000, true);
@@ -5039,14 +5058,15 @@
     return null;
   }
   function dtoWorld(p) {
-    var w = { p: p, rng: dtoRng(p.seed), geo: dtoRng((p.seed ^ 0x9E3779B9) >>> 0), t: 0, zones: dtoCloneZones(zones), riders: [], execs: [], leads: [], seq: 0, carry: 0, capAcc: 0, actDone: 0, utilSum: 0, utilN: 0,
-      stats: { attempts: 0, lock: 0, cupo: 0, dupBlocked: 0, dupEscaped: 0, created: 0, geoBlocked: 0, rejBlocked: 0, rejReadmit: 0, zoneCap: 0, officeCap: 0, falseBlocked: 0, newAttempts: 0, dupAttempts: 0 },
+    var w = { p: p, rng: dtoRng(p.seed), geo: dtoRng((p.seed ^ 0x9E3779B9) >>> 0), rz: dtoRng((p.seed ^ 0x5BD1E995) >>> 0), absDay: 1, t: 0, zones: dtoCloneZones(zones), riders: [], execs: [], leads: [], seq: 0, carry: 0, capAcc: 0, actDone: 0, utilSum: 0, utilN: 0,
+      stats: { attempts: 0, lock: 0, cupo: 0, dupBlocked: 0, dupEscaped: 0, created: 0, geoBlocked: 0, rejBlocked: 0, rejReadmit: 0, zoneCap: 0, officeCap: 0, falseBlocked: 0, newAttempts: 0, dupAttempts: 0, pauseBlocked: 0, fullAlta: 0, dayCapBlocked: 0, connH: 0, reports: 0, interrupted: 0, fakeFiled: 0, fakeCaught: 0, fakeActions: 0, syncDelayed: 0 },
       day: { hunter: 0, total: 0, incorp: 0, dupBlocked: 0, lock: 0, cupo: 0, zoneCap: 0 }, perDay: [], log: [], grid: [], rej: [], zoneDay: [], dayHunter: 0, queue: 0 }, i, k, r, acc, prof;
     for (i = 0; i < p.riders; i++) {
       r = w.rng(); acc = 0; prof = DTO_PROFILES[DTO_PROFILES.length - 1];
       for (k = 0; k < DTO_PROFILES.length; k++) { acc += p.mix[DTO_PROFILES[k]]; if (r < acc) { prof = DTO_PROFILES[k]; break; } }
       w.riders.push({ id: "S" + (i + 1), prof: prof, zi: dtoPickZone(w, w.rng() < p.zoneBias ? 1 : 0), busy: false, active: 0 });
       w.riders[i].home = w.riders[i].zi;
+      if (p.realism) { var rr = w.riders[i]; rr.full = w.rz() < p.fullShare; rr.mot = 1; rr.fraud = rr.prof !== "noParticipa" && w.rz() < p.fraudShare; rr.wk = []; }
     }
     for (i = 0; i < p.execs; i++) w.execs.push({ id: "E" + (i + 1), done: 0 });
     w.zones.forEach(function (z, zi) {
@@ -5071,6 +5091,10 @@
     z.list.unshift(lead); z.c[lead.t]++; w.leads.push(lead); w.stats.created++; w.day.total++; w.queue++;
     dtoGridAdd(w, o.zi, lead);
     if (o.src === "hunter") w.day.hunter++;
+    if (w.p.realism && o.src === "hunter") {
+      lead.consent = w.rz() < w.p.consentRate; /* ¿el repartidor le avisó al dueño? */
+      if (w.rz() < w.p.syncFail) { lead.hold = w.t + 24; w.stats.syncDelayed++; } /* el lead tarda un día en llegar al CRM */
+    }
     if (w.p.mut && w.p.mut.dropLead && o.src === "hunter" && w.seq % 7 === 0) z.list.shift(); /* mutación de prueba: pierde un lead */
     return lead;
   }
@@ -5132,20 +5156,57 @@
       if (w.rng() < p.missions) r.zi = cold[Math.floor(w.rng() * cold.length)];
     });
   }
+  /* v19: un reporte con sus efectos de realismo (adopción semanal, interrupciones, fraude). Sin realismo hace exactamente lo mismo que dtoTryReport */
+  function dtoRep(w, r, fake) {
+    var p = w.p, st = w.stats;
+    if (p.realism && p.dayCap > 0) { /* candado: tope de postulaciones por turno */
+      var dd = Math.floor(w.t / 24);
+      if (r.dayIdx !== dd) { r.dayIdx = dd; r.dayReps = 0; }
+      if (r.dayReps >= p.dayCap) { st.dayCapBlocked++; return "tope"; }
+    }
+    var res = dtoTryReport(w, r);
+    if (p.realism && (res === "lead" || res === "escape")) {
+      r.dayReps = (r.dayReps || 0) + 1;
+      var l = w.leads[w.leads.length - 1], wi = Math.floor(w.t / 168);
+      l.ctx.full = !!r.full; l.ctx.dem = DEMAND[w.zones[r.zi].cid] || "media";
+      r.wk[wi] = (r.wk[wi] || 0) + 1; st.reports++;
+      if (r.full && l.ctx.dem === "alta" && !fake) st.fullAlta++;
+      if (fake) { l.fake = true; st.fakeFiled++; }
+      else if (w.rz() < 1 - Math.exp(-p.reportMin / Math.max(1, p.valleMin))) st.interrupted++; /* llegó un pedido mientras iba al local */
+    }
+    return res;
+  }
   function dtoRidersStep(w) {
-    var p = w.p, h = w.t % 24;
+    var p = w.p, h = w.t % 24, R = p.realism, st = w.stats;
     if (h < 8 || h >= 22) return;
     if (p.missions > 0 && h === 8) dtoMissions(w);
+    var dayN = Math.floor(w.t / 24), dow = dayN % 7;
     var vp = p.valleCurve ? Math.min(1, p.valleProb * DTO_VALLE[h]) : p.valleProb;
     var activeN = p.ramp ? Math.round(w.riders.length * Math.min(1, .1 + .9 * w.t / Math.max(1, p.days * 24 - 24))) : w.riders.length;
+    var nov = R && p.motivation ? 1 - p.noveltyDecay * (1 - Math.exp(-dayN / 10)) : 1; /* la novedad se gasta */
     w.riders.forEach(function (r, ri) {
       if (ri >= activeN) return;
       if (r.prof === "noParticipa") return;
-      if (w.rng() >= p.shiftProb) return;
-      r.busy = w.rng() >= vp;
-      if (r.busy) { if (w.rng() < .05) dtoTryReport(w, r); return; }
+      var sp = p.shiftProb, vz = vp, dem = null;
+      if (R) {
+        sp = Math.min(1, sp * (r.full ? 1.3 : .8)); /* los full-time se conectan más y tienen menos valle */
+        vz = vz * (r.full ? .8 : 1.2);
+        dem = DEMAND[w.zones[r.zi].cid] || "media";
+        if (p.demandValle) vz *= dem === "alta" ? .7 : dem === "baja" ? 1.25 : 1;
+        if (p.weekCurve) vz *= DTO_DOW[dow];
+        vz = Math.min(1, vz);
+      }
+      if (w.rng() >= sp) return;
+      if (R) st.connH++;
+      r.busy = w.rng() >= vz;
+      if (r.busy) { if (w.rng() < .05) dtoRep(w, r); return; }
       var wait = p.valleMin > 0 ? -Math.log(1 - w.rng()) * p.valleMin : 0;
-      if (wait >= DTO_MINW[r.prof] && w.rng() < DTO_DECIDE[r.prof] && w.rng() < p.findProb) dtoTryReport(w, r);
+      var mm = R && p.motivation ? Math.min(1.3, r.mot) * nov : 1;
+      var paused = R && p.demandPause && r.full && dem === "alta" && !(p.mut && p.mut.ignorePause); /* pausa Hunter: el full-time sigue repartiendo */
+      if (wait >= DTO_MINW[r.prof] && w.rng() < DTO_DECIDE[r.prof] * mm && w.rng() < p.findProb * (R ? DTO_FIND[r.prof] : 1)) {
+        if (paused) st.pauseBlocked++; else dtoRep(w, r);
+      }
+      if (R && r.fraud && !paused && w.rz() < p.fraudRate) dtoRep(w, r, true);
     });
   }
   function dtoChannelArrivals(w) {
@@ -5165,6 +5226,17 @@
     l.st = to; l.stAt = w.t;
     if (to === "rechazado") { l.hist.push(-1); l.rej = { at: Math.max(1, Math.min(3, l.hist[l.hist.length - 2] + 1)), reason: DTO_REJ[Math.floor(w.rng() * DTO_REJ.length)] }; l.rejT = w.t; w.rej[l.zi].push(l); }
     else l.hist.push(idx);
+    if (w.p.realism && w.p.motivation && l.src === "hunter") {
+      var rd = w.riders[+l.by.slice(1) - 1];
+      if (rd && rd.mot !== undefined) {
+        var gest = l.hist.indexOf(2) >= 0; /* llegó a gestión: el ejecutivo lo calificó como pertinente */
+        if (to === "gestionado" && w.p.pertBonus) rd.mot += .10;
+        else if (to === "incorporado") rd.mot += .25;
+        else if (to === "rechazado") rd.mot -= gest ? (w.p.pertBonus ? 0 : .15) : .10;
+        rd.mot = Math.max(.2, Math.min(1.6, rd.mot));
+      }
+    }
+    if (to !== "rechazado") l.tries = 0;
     if (to === "contactado" && l.cAt == null) l.cAt = w.t;
     if (to === "incorporado") { w.day.incorp++; l.iAt = w.t; }
     if (!dtoOpen(l)) {
@@ -5172,15 +5244,26 @@
       var zc = w.zones[l.zi].c; if (zc[l.t] > 0) zc[l.t]--;
     }
   }
+  /* v19: una gestión que no avanza se reintenta con probabilidad retryProb, hasta maxTries; después el lead se descarta (no contesta, el dueño desiste) */
+  function dtoFailTry(w, l) {
+    l.tries = (l.tries || 0) + 1;
+    if (l.tries >= w.p.maxTries || w.rz() >= w.p.retryProb) dtoSetStage(w, l, "rechazado"); else l.stAt = w.t;
+  }
   function dtoOfficeStep(w) {
     var p = w.p, h = w.t % 24;
     if (!p.execs || h < p.execStart || h >= p.execEnd) return;
     var dayN = Math.floor(w.t / 24), down = p.outage > 0 && dayN >= 7 && dayN <= 13 ? 1 - p.outage : 1; /* v16 (M9): días 8 a 14 con menos capacidad */
+    if (p.realism) { /* v19: ausencias del día y semana laboral (el día 1 es lunes: sábado a media capacidad, domingo cerrado) */
+      if (h === p.execStart) w.absDay = 1 - p.execAbsence * (.5 + w.rz());
+      down *= w.absDay;
+      if (p.weekCurve) { var dw = dayN % 7; down *= dw === 6 ? 0 : dw === 5 ? .5 : 1; }
+    }
     var cap = p.execs * p.execCapDay * down / (p.execEnd - p.execStart) + w.carry, n = Math.floor(cap);
     w.carry = cap - n; w.capAcc += p.execs * p.execCapDay * down / (p.execEnd - p.execStart);
     if (n <= 0) return;
     var ready = w.leads.filter(function (l) {
       if (!dtoOpen(l)) return false;
+      if (l.hold && w.t < l.hold) return false;
       if (l.st === "postulado") return true;
       if (l.st === "contactado") return w.t - l.stAt >= p.lagManageH;
       return w.t - l.stAt >= p.lagIncorpH;
@@ -5199,12 +5282,13 @@
     var mut = p.mut || {}, i, l, e;
     for (i = 0; i < ready.length && i < n; i++) {
       l = ready[i]; e = w.execs[w.actDone % w.execs.length]; e.done++; w.actDone++;
+      if (l.fake) { w.stats.fakeActions++; if (l.st !== "postulado" || w.rz() < p.fraudDetect) { w.stats.fakeCaught++; dtoSetStage(w, l, "rechazado"); continue; } }
       if (w.rng() < p.rejectProb) { dtoSetStage(w, l, "rechazado"); continue; }
-      if (l.st === "postulado") { if (w.rng() < p.contactProb) dtoSetStage(w, l, "contactado"); }
+      if (l.st === "postulado") { if (w.rng() < p.contactProb * (l.consent === false ? .75 : 1)) dtoSetStage(w, l, "contactado"); else if (p.realism && p.strictFunnel) dtoFailTry(w, l); }
       else if (l.st === "contactado") {
         if (mut.regress && l.hist.length === 2) { l.st = "postulado"; l.hist.push(0); continue; }
-        if (w.rng() < p.manageProb) dtoSetStage(w, l, "gestionado"); else l.stAt = w.t;
-      } else if (w.rng() < p.incorpProb) dtoSetStage(w, l, "incorporado"); else l.stAt = w.t;
+        if (w.rng() < p.manageProb) dtoSetStage(w, l, "gestionado"); else if (p.realism && p.strictFunnel) dtoFailTry(w, l); else l.stAt = w.t;
+      } else if (w.rng() < p.incorpProb) dtoSetStage(w, l, "incorporado"); else if (p.realism && p.strictFunnel) dtoFailTry(w, l); else l.stAt = w.t;
     }
   }
   function dtoSlaOut(w) { var n = 0; w.leads.forEach(function (l) { if (l.st === "postulado" && w.t - l.born > SLA_H) n++; }); return n; }
@@ -5236,6 +5320,10 @@
       var d = w.day, act = 0, cnt = 0;
       w.riders.forEach(function (r) { if (r.active > 0) { act += r.active / CUPO; cnt++; } });
       if (cnt) { w.utilSum += act / cnt; w.utilN++; }
+      if (w.p.realism && w.p.motivation) {
+        w.riders.forEach(function (r) { if (r.mot !== undefined) r.mot = 1 + (r.mot - 1) * .95; });
+        w.leads.forEach(function (l) { if (l.src === "hunter" && l.st === "postulado" && w.t - l.born > 72) { var rr = w.riders[+l.by.slice(1) - 1]; if (rr && rr.mot !== undefined) rr.mot = Math.max(.2, rr.mot - .02); } });
+      }
       var so = dtoSlaOut(w), dn = Math.floor(w.t / 24) + 1;
       w.perDay.push({ day: dn, hunter: d.hunter, total: d.total, incorporated: d.incorp, slaOut: so });
       w.log.push({ t: w.t, msg: "Día " + dn + ": " + d.hunter + " leads Hunter, " + d.total + " en total, " + d.dupBlocked + " duplicados frenados, " + d.lock + " bloqueos por pedido, " + d.cupo + " por cupo lleno" + (so ? ", " + so + " fuera de SLA" : "") + "." });
@@ -5247,7 +5335,7 @@
     w.t++;
   }
   var DTO_INV = ["Cupo máximo de 5 leads activos por Hunter", "Sin leads con el Modo Hunter bloqueado", "Sin duplicados detectables", "Las etapas solo avanzan o se rechazan", "Conservación de leads", "Sin datos individuales de repartidores", "Sin montos en pesos",
-    "Un local descartado no vuelve antes del plazo de bloqueo", "Topes de volumen por comuna y por oficina"];
+    "Un local descartado no vuelve antes del plazo de bloqueo", "Topes de volumen por comuna y por oficina", "Pausa por demanda: ningún full-time reporta en zonas de alta demanda"];
   function dtoCheck(w) {
     var v = [], per = {}, inList = 0, p = w.p, zd = {};
     w.leads.forEach(function (l) {
@@ -5258,6 +5346,7 @@
         if (l.ctx.dupHit && !l.ctx.variant) v.push({ inv: 3, t: l.born, msg: "Lead duplicado de “" + l.ctx.dupHit + "” admitido." });
         if (l.ctx.geoHit && p.geoDedup) v.push({ inv: 3, t: l.born, msg: "Lead admitido a menos de " + p.dedupM + " m de “" + l.ctx.geoHit + "”, con nombre parecido." });
         if (l.ctx.rejHit && p.rejBlockDays > 0) v.push({ inv: 8, t: l.born, msg: "Se admitió “" + l.n + "”, descartado hace menos de " + p.rejBlockDays + " días." });
+        if (p.realism && p.demandPause && l.ctx.full && l.ctx.dem === "alta") v.push({ inv: 10, t: l.born, msg: "Un Hunter full-time reportó desde una zona de alta demanda con la pausa encendida." });
         if (l.ctx.queueOver) v.push({ inv: 9, t: l.born, msg: "Entró un lead de Hunter con la cola de primer contacto llena." });
         if (p.zoneCap > 0) { var key = l.zi + ":" + Math.floor(l.born / 24); zd[key] = (zd[key] || 0) + 1; if (zd[key] === p.zoneCap + 1) v.push({ inv: 9, t: l.born, msg: "Una comuna recibió más de " + p.zoneCap + " leads de Hunters en un día." }); }
       }
@@ -5300,7 +5389,26 @@
       falseRate: st.newAttempts ? st.falseBlocked / st.newAttempts : 0, escapeRate: st.dupAttempts ? st.dupEscaped / st.dupAttempts : 0,
       coldShare: hn ? cold / hn : 0, coldStartShare: hn ? cold0 / hn : 0, avgHoursToIncorp: inn ? ih / inn : 0, slaStage: dtoSlaStage(w)
     };
+    var re = dtoRealism(w); for (var rk in re) s[rk] = re[rk];
     return s;
+  }
+  /* v19: indicadores de las hipótesis del proyecto (adopción semanal H1, conversión H3) y de las condiciones realistas */
+  function dtoRealism(w) {
+    var p = w.p, st = w.stats, en = w.riders.filter(function (r) { return r.prof !== "noParticipa"; }), weeks = Math.floor(p.days / 7), arr = [], arr1 = [], wi, i;
+    for (wi = 0; wi < weeks; wi++) { var n = 0, n1 = 0; en.forEach(function (r) { var c = r.wk && r.wk[wi] || 0; if (c >= 2) n++; if (c >= 1) n1++; }); arr.push(en.length ? n / en.length : 0); arr1.push(en.length ? n1 / en.length : 0); }
+    var mean = arr.length ? arr.reduce(function (a, b) { return a + b; }, 0) / arr.length : 0, hl = 0, hi = 0, ml = 0, mi = 0, pert = 0, pnc = 0, cut = p.days * 24 <= 336 ? Infinity : p.days * 24 - 336;
+    w.leads.forEach(function (l) {
+      if (l.src !== "hunter") return;
+      hl++; if (l.st === "incorporado") hi++;
+      if (l.born <= cut) { ml++; if (l.st === "incorporado") mi++; }
+      if (!l.fake && l.hist.indexOf(2) >= 0) { pert++; if (l.st === "rechazado") pnc++; }
+    });
+    var ms = 0, mn = 0, fu = 0; en.forEach(function (r) { if (r.mot !== undefined) { ms += r.mot; mn++; } if (r.full) fu++; });
+    return { adopcionSemanal: mean, adopcionUltima: arr.length ? arr[arr.length - 1] : 0, adopcionSemanas: arr, retencion: arr1.length > 1 && Math.max.apply(null, arr1) > 0 ? arr1[arr1.length - 1] / Math.max.apply(null, arr1) : 0, adopcion1: arr1.length ? arr1.reduce(function (a, b) { return a + b; }, 0) / arr1.length : 0,
+      demoraEntrega: st.connH ? (st.interrupted * (p.reportMin / 2)) / (st.connH * 1.4) / 32 : 0, dayCapBlocked: st.dayCapBlocked,
+      convHunter: hl ? hi / hl : 0, convHunterMaduro: ml ? mi / ml : 0, pertinentes: pert, pertSinCierre: pnc, pauseBlocked: st.pauseBlocked, fullAlta: st.fullAlta,
+      interruptShare: st.reports ? st.interrupted / st.reports : 0, fakeFiled: st.fakeFiled, fakeCaught: st.fakeCaught, execWasteShare: w.actDone ? st.fakeActions / w.actDone : 0,
+      syncDelayed: st.syncDelayed, motMedia: mn ? ms / mn : 0, fullReal: en.length ? fu / en.length : 0 };
   }
   function dtoRunSync(p) { var w = dtoWorld(p), n = p.days * 24; while (w.t < n) dtoStep(w); return w; }
   function dtoRunChunked(p, onProgress, onDone) {
@@ -5315,7 +5423,7 @@
     tm = setTimeout(chunk, 0);
     return function () { dead = true; if (tm) clearTimeout(tm); };
   }
-  var DTO_MULTI_KEYS = ["leadsHunter", "leadsTotal", "convIncorp", "avgHoursToContact", "slaOut", "cupoUtil", "dupBlocked", "dupEscaped", "execLoad", "geoBlocked", "escapeRate", "falseRate", "coldShare", "coldStartShare", "zoneCapBlocked", "officeCapBlocked"];
+  var DTO_MULTI_KEYS = ["leadsHunter", "leadsTotal", "convIncorp", "avgHoursToContact", "slaOut", "cupoUtil", "dupBlocked", "dupEscaped", "execLoad", "geoBlocked", "escapeRate", "falseRate", "coldShare", "coldStartShare", "zoneCapBlocked", "officeCapBlocked", "adopcionSemanal", "retencion", "convHunterMaduro", "pauseBlocked", "fullAlta", "demoraEntrega", "execWasteShare"];
   function dtoAggregate(list) {
     var out = {}, viol = 0;
     list.forEach(function (s) { viol += s.violations.length; });
@@ -5359,7 +5467,7 @@
   T.add("dto/rng-determinista", function () { var a = dtoRng(7), b = dtoRng(7), c = dtoRng(8), x = [], y = []; for (var i = 0; i < 5; i++) { x.push(a()); y.push(b()); } T.eq(x, y); T.assert(c() !== x[0], "semillas iguales"); var r = dtoRng(3); for (i = 0; i < 1000; i++) { var v = r(); T.assert(v >= 0 && v < 1, "fuera de rango"); } });
   T.add("dto/params-limites", function () { T.eq(dtoParams({ riders: 99999 }).riders, 1000); T.eq(dtoParams({ days: 999 }).days, 60); T.eq(dtoParams({ riders: -5 }).riders, 0); T.eq(dtoParams({ execs: 0 }).execs, 0); T.eq(dtoParams({ riders: "abc" }).riders, DTO_DEFAULTS.riders); T.eq(dtoParams({ valleProb: 5 }).valleProb, 1); T.eq(dtoParams({ riders: "" }).riders, DTO_DEFAULTS.riders); });
   T.add("dto/params-mix-normaliza", function () { var m = dtoParams({ mix: { oportunista: 2, constante: 2, esporadico: 0, noParticipa: 0 } }).mix, s = 0; DTO_PROFILES.forEach(function (k) { s += m[k]; }); T.assert(Math.abs(s - 1) < 1e-9, "no suma 1"); var d = dtoParams({ mix: { oportunista: 0, constante: 0, esporadico: 0, noParticipa: 0 } }).mix; T.eq(d, DTO_DEFAULTS.mix); });
-  T.add("dto/escenarios", function () { T.eq(DTO_SCENARIOS.map(function (s) { return s.id; }), ["base", "punta", "valle0", "spam", "saturada", "frias", "cupo", "lanzamiento", "feriado", "enfermo", "palancas"]); T.eq(dtoScenarioParams("valle0").valleProb, 0); T.assert(dtoScenarioParams("saturada").execs < dtoScenarioParams("base").execs, "saturada no baja ejecutivos"); T.assert(dtoScenarioParams("spam").dupProb > dtoScenarioParams("base").dupProb, "spam no sube duplicados"); });
+  T.add("dto/escenarios", function () { T.eq(DTO_SCENARIOS.map(function (s) { return s.id; }), ["base", "punta", "valle0", "spam", "saturada", "frias", "cupo", "lanzamiento", "feriado", "enfermo", "palancas", "sinbono", "sinpausa", "fulltime", "integracion", "motivados", "fraude"]); T.eq(dtoScenarioParams("valle0").valleProb, 0); T.assert(dtoScenarioParams("saturada").execs < dtoScenarioParams("base").execs, "saturada no baja ejecutivos"); T.assert(dtoScenarioParams("spam").dupProb > dtoScenarioParams("base").dupProb, "spam no sube duplicados"); });
   T.add("dto/clone-aislado", function () { var c = dtoCloneZones(zones); T.eq(c.length, zones.length); var before = zones[0].list[0].st; c[0].list[0].st = "x"; T.eq(zones[0].list[0].st, before); c.forEach(function (z) { z.list.forEach(function (l) { T.assert(!("photos" in l), "copió fotos"); }); }); });
   T.add("dto/mundo-crea-repartidores", function () { var w = dtoWorld(dtoQuick({ riders: 50 })); T.eq(w.riders.length, 50); w.riders.forEach(function (r) { T.assert(DTO_PROFILES.indexOf(r.prof) >= 0 && r.zi >= 0 && r.zi <= 9, "repartidor inválido"); }); T.eq(dtoWorld(dtoQuick({ riders: 0 })).riders.length, 0); });
   T.add("dto/mundo-no-toca-zones", function () { var a = dtoZSnap(); dtoWorld(dtoQuick({ riders: 20 })); T.eq(dtoZSnap() === a, true); });
@@ -5376,14 +5484,58 @@
   T.add("dto/paso-ejecutivos-contactan", function () { var w = dtoRunSync(dtoQuick({ execs: 20, execCapDay: 50, contactProb: 1, rejectProb: 0, days: 5, riders: 200 })); w.leads.forEach(function (l) { if (w.t - l.born > 24) T.assert(l.st !== "postulado", "quedó sin contactar"); }); });
   T.add("dto/paso-canales-llegan", function () { var w = dtoRunSync(dtoQuick({ days: 1, riders: 10, channelScale: 4 })), s = {}; w.leads.forEach(function (l) { s[l.src] = 1; }); T.assert(s.google && s.scraping && s.auto, "faltan canales"); T.eq(dtoRunSync(dtoQuick({ days: 3, riders: 10, channelScale: 0 })).leads.filter(function (l) { return l.src !== "hunter"; }).length, 0); });
   T.add("dto/paso-noParticipa", function () { var w = dtoRunSync(dtoQuick({ days: 5, riders: 200, mix: { oportunista: 0, constante: 0, esporadico: 0, noParticipa: 1 } })); T.eq(w.leads.filter(function (l) { return l.src === "hunter"; }).length, 0); });
-  T.add("dto/paso-politica-sla", function () { var a = 0, b = 0; for (var s = 0; s < 4; s++) { a += dtoSlaOut(dtoRunSync(dtoQuick({ seed: 100 + s, execs: 3, days: 12, riders: 400, policy: "fifo" }))); b += dtoSlaOut(dtoRunSync(dtoQuick({ seed: 100 + s, execs: 3, days: 12, riders: 400, policy: "sla" }))); } T.assert(b <= a, "la política SLA dejó más fuera de SLA (" + b + " > " + a + ")"); });
+  T.add("dto/paso-politica-sla", function () { var a = 0, b = 0; for (var s = 0; s < 4; s++) { a += dtoSlaOut(dtoRunSync(dtoQuick({ seed: 100 + s, execs: 3, days: 12, riders: 400, policy: "fifo", realism: false }))); b += dtoSlaOut(dtoRunSync(dtoQuick({ seed: 100 + s, execs: 3, days: 12, riders: 400, policy: "sla", realism: false }))); } T.assert(b <= a, "la política SLA dejó más fuera de SLA (" + b + " > " + a + ")"); });
   T.add("dto/inv-corrida-limpia", function () { T.eq(dtoCheck(dtoRunSync(dtoQuick({ days: 14, riders: 300 }))), []); });
-  function mutOk(inv, scn, mut) { var v = dtoCheck(dtoRunSync(dtoScenarioParams(scn, { days: 4, riders: 150, mut: mut }))); T.assert(v.some(function (x) { return x.inv === inv; }), "la mutación " + JSON.stringify(mut) + " no activó la invariante " + inv); }
+  function mutOk(inv, scn, mut) { var v = dtoCheck(dtoRunSync(dtoScenarioParams(scn, { days: 4, riders: 150, mut: mut, realism: inv === 10 }))); T.assert(v.some(function (x) { return x.inv === inv; }), "la mutación " + JSON.stringify(mut) + " no activó la invariante " + inv); }
   T.add("dto/inv-mutacion-cupo", function () { mutOk(1, "cupo", { ignoreCupo: true }); });
   T.add("dto/inv-mutacion-lock", function () { mutOk(2, "base", { ignoreLock: true }); });
   T.add("dto/inv-mutacion-dup", function () { mutOk(3, "spam", { ignoreDup: true }); });
   T.add("dto/inv-mutacion-retroceso", function () { mutOk(4, "base", { regress: true }); });
+  T.add("v19/inv-mutacion-pausa", function () { mutOk(10, "fulltime", { ignorePause: true }); });
   T.add("dto/inv-mutacion-pierde-lead", function () { mutOk(5, "base", { dropLead: true }); });
+  /* ===== v19: pruebas de las condiciones realistas ===== */
+  T.add("v19/legacy-apaga-realismo", function () { var q = dtoParams({ legacy: true }); T.eq(q.realism, false); T.eq(dtoParams({}).realism, true); });
+  T.add("v19/params-limites", function () { var q = dtoParams({ fullShare: 7, syncFail: -1, reportMin: 999, pertBonus: "false", demandPause: "0" }); T.eq([q.fullShare, q.syncFail, q.reportMin, q.pertBonus, q.demandPause], [1, 0, 60, false, false]); });
+  T.add("v19/pausa-full-time", function () {
+    var w = dtoRunSync(dtoQuick({ days: 14, riders: 400, fullShare: 1 })), s = dtoSummary(w);
+    T.assert(s.pauseBlocked > 0, "no hubo pausas"); T.eq(dtoCheck(w), []);
+    var v = dtoSummary(dtoRunSync(dtoQuick({ days: 14, riders: 400, fullShare: 1, demandPause: false }))); T.assert(v.pauseBlocked === 0, "sin pausa no debería haber pausas");
+    T.assert(v.leadsHunter > s.leadsHunter, "la pausa no baja los leads de full-time");
+  });
+  T.add("v19/full-time-en-zona-alta-sin-pausa", function () { var a = dtoSummary(dtoRunSync(dtoQuick({ days: 14, riders: 400 }))), b = dtoSummary(dtoRunSync(dtoQuick({ days: 14, riders: 400, demandPause: false }))); T.eq(a.fullAlta, 0); T.assert(b.fullAlta > 0, "sin pausa debería haber reportes de full-time en zonas de alta demanda"); });
+  T.add("v19/pausa-no-afecta-part-time", function () { var s = dtoSummary(dtoRunSync(dtoQuick({ days: 14, riders: 400, fullShare: 0 }))); T.eq(s.pauseBlocked, 0); T.assert(s.leadsHunter > 0, "sin leads"); });
+  T.add("v19/bono-pertinente-sostiene-motivacion", function () {
+    var a = 0, b = 0, n = 6, i; for (i = 0; i < n; i++) { a += dtoSummary(dtoRunSync(dtoQuick({ seed: 40 + i, days: 28, riders: 300, pertBonus: true }))).motMedia; b += dtoSummary(dtoRunSync(dtoQuick({ seed: 40 + i, days: 28, riders: 300, pertBonus: false }))).motMedia; }
+    T.assert(a > b, "con bono " + (a / n).toFixed(3) + " vs sin bono " + (b / n).toFixed(3));
+  });
+  T.add("v19/pertinentes-sin-cierre", function () { var s = dtoSummary(dtoRunSync(dtoQuick({ days: 28, riders: 400, rejectProb: .15 }))); T.assert(s.pertinentes > 0 && s.pertSinCierre >= 0 && s.pertSinCierre <= s.pertinentes, "conteo inválido"); });
+  T.add("v19/domingo-sin-oficina", function () {
+    var w = dtoRunSync(dtoQuick({ days: 21, riders: 300 }));
+    w.leads.forEach(function (l) { if (l.hist.length > 1 && l.stAt > 0 && Math.floor(l.stAt / 24) % 7 === 6) T.assert(false, "movimiento en domingo: " + l.cid); });
+    var w2 = dtoRunSync(dtoQuick({ days: 21, riders: 300, weekCurve: false })), x = 0; w2.leads.forEach(function (l) { if (l.hist.length > 1 && Math.floor(l.stAt / 24) % 7 === 6) x++; }); T.assert(x > 0, "sin semana laboral debería haber movimiento en domingo");
+  });
+  T.add("v19/sync-fallido-retrasa", function () {
+    var w = dtoRunSync(dtoQuick({ days: 10, riders: 300, syncFail: 1 })), hn = w.leads.filter(function (l) { return l.src === "hunter"; });
+    T.assert(hn.length > 0, "sin leads"); T.eq(w.stats.syncDelayed, hn.length);
+    hn.forEach(function (l) { if (l.hist.length > 1) T.assert(l.stAt >= l.born + 24, "avanzó antes de llegar al CRM"); });
+  });
+  T.add("v19/fraude-detectado", function () {
+    var s = dtoSummary(dtoRunSync(dtoQuick({ days: 14, riders: 400, fraudShare: .2, fraudDetect: 1 })));
+    T.assert(s.fakeFiled > 0, "sin leads falsos"); T.assert(s.fakeCaught <= s.fakeFiled && s.execWasteShare > 0, "conteo inválido");
+    T.eq(dtoSummary(dtoRunSync(dtoQuick({ days: 14, riders: 400, fraudShare: 0 }))).fakeFiled, 0);
+  });
+  T.add("v19/adopcion-y-conversion-en-rango", function () { var s = dtoSummary(dtoRunSync(dtoQuick({ days: 28, riders: 400 }))); T.eq(s.adopcionSemanas.length, 4); [s.adopcionSemanal, s.convHunterMaduro, s.interruptShare].forEach(function (x) { T.assert(x >= 0 && x <= 1, "fuera de rango " + x); }); });
+  T.add("v19/sin-realismo-sin-efectos", function () { var s = dtoSummary(dtoRunSync(dtoQuick({ days: 10, riders: 300, legacy: true }))); T.eq([s.pauseBlocked, s.fakeFiled, s.syncDelayed, s.pertinentes > 0], [0, 0, 0, s.pertinentes > 0]); });
+  T.add("v19/embudo-realista", function () {
+    var a = 0, b = 0, i; for (i = 0; i < 3; i++) { a += dtoSummary(dtoRunSync(dtoQuick({ seed: 70 + i, days: 40, riders: 500 }))).convHunterMaduro; b += dtoSummary(dtoRunSync(dtoQuick({ seed: 70 + i, days: 40, riders: 500, strictFunnel: false }))).convHunterMaduro; }
+    a /= 3; b /= 3; T.assert(a > .10 && a < .40, "conversión de Hunters " + a.toFixed(3) + " fuera de lo razonable (10 % a 40 %)"); T.assert(b > a + .1, "sin embudo realista debería convertir mucho más (" + b.toFixed(3) + " vs " + a.toFixed(3) + ")");
+  });
+  T.add("v19/tope-diario", function () {
+    var w = dtoRunSync(dtoQuick({ days: 10, riders: 300, dayCap: 2, fraudShare: .3, fraudRate: 1, findProb: .5 })), c = {}, mx = 0;
+    w.leads.forEach(function (l) { if (l.src === "hunter") { var k = l.by + ":" + Math.floor(l.born / 24); c[k] = (c[k] || 0) + 1; mx = Math.max(mx, c[k]); } });
+    T.assert(mx <= 2 && mx > 0, "un Hunter superó el tope: " + mx); T.assert(w.stats.dayCapBlocked > 0, "el tope no frenó nada");
+  });
+  T.add("v19/reintento-y-descarte", function () { var w = dtoRunSync(dtoQuick({ days: 30, riders: 400, retryProb: 0 })), s = dtoSummary(w); T.assert(s.funnel.rechazado > 0, "no hubo descartes"); w.leads.forEach(function (l) { T.assert((l.tries || 0) <= w.p.maxTries, "demasiados reintentos"); }); T.eq(dtoCheck(w), []); });
   /* ===== v16: pruebas de las reglas nuevas ===== */
   T.add("v16/legacy-apaga-todo", function () { var q = dtoParams({ legacy: true, zoneCap: 40, missions: .5, geoDedup: true }); for (var k in DTO_LEGACY_OFF) T.eq(q[k], DTO_LEGACY_OFF[k], k); });
   T.add("v16/params-nuevos", function () { var q = dtoParams({ dedupM: 9999, rejBlockDays: -3, zoneCap: "abc", missions: 7, geoDedup: "false", policy: "etapa" }); T.eq([q.dedupM, q.rejBlockDays, q.zoneCap, q.missions, q.geoDedup, q.policy], [500, 0, 0, 1, false, "etapa"]); T.eq(dtoParams({ policy: "otra" }).policy, "fifo"); });
@@ -5412,12 +5564,12 @@
   T.add("v16/inv-mutacion-cola", function () { var v = dtoCheck(dtoRunSync(dtoScenarioParams("cupo", { days: 4, riders: 300, officeCap: true, mut: { ignoreOfficeCap: true } }))); T.assert(v.some(function (x) { return x.inv === 9; }), "la mutación ignoreOfficeCap no activó la invariante 9"); });
   T.add("v16/cola-cuenta-bien", function () { var w = dtoRunSync(dtoQuick({ days: 8, riders: 300, officeCap: true })); T.eq(w.queue, w.leads.filter(function (l) { return l.st === "postulado"; }).length); });
   T.add("v16/cola-protege-oficina", function () { var a = dtoSummary(dtoRunSync(dtoScenarioParams("cupo", { days: 15, riders: 400 }))), b = dtoSummary(dtoRunSync(dtoScenarioParams("cupo", { days: 15, riders: 400, officeCap: true }))); T.assert(b.slaOut < a.slaOut / 5, "la pausa por cola no bajó el fuera de SLA (" + a.slaOut + " → " + b.slaOut + ")"); T.eq(b.violations, []); });
-  T.add("v16/etapa-no-baja-conversion", function () { var a = 0, b = 0; for (var i = 0; i < 3; i++) { a += dtoSummary(dtoRunSync(dtoScenarioParams("saturada", { seed: 60 + i, days: 20, riders: 400 }))).funnel.incorporado; b += dtoSummary(dtoRunSync(dtoScenarioParams("saturada", { seed: 60 + i, days: 20, riders: 400, policy: "etapa" }))).funnel.incorporado; } T.assert(b >= a * .97, "la prioridad por etapa bajó los incorporados (" + a + " → " + b + ")"); });
+  T.add("v16/etapa-no-baja-conversion", function () { var a = 0, b = 0; for (var i = 0; i < 3; i++) { a += dtoSummary(dtoRunSync(dtoScenarioParams("saturada", { seed: 60 + i, days: 20, riders: 400, realism: false }))).funnel.incorporado; b += dtoSummary(dtoRunSync(dtoScenarioParams("saturada", { seed: 60 + i, days: 20, riders: 400, policy: "etapa", realism: false }))).funnel.incorporado; } T.assert(b >= a * .97, "la prioridad por etapa bajó los incorporados (" + a + " → " + b + ")"); });
   T.add("v16/app-bloquea-descartado-reciente", function () { var g = appGuard("Pastas Ossa", "", null); T.assert(g && g.why === "rej", "no frenó el descartado de ejemplo"); T.assert(findExisting("Pastas Ossa", "") === null, "findExisting cambió"); });
   T.add("v16/app-descartado-vencido", function () { var z = zones[4], it = { n: "Cafetería Prueba Vencida", t: "rest", st: "rechazado", src: "hunter", rejAt: Date.now() - 31 * 864e5 }; z.list.push(it); try { T.eq(appGuard("Cafetería Prueba Vencida", "", null), null); it.rejAt = Date.now() - 2 * 864e5; T.eq(appGuard("Cafetería Prueba Vencida", "", null).why, "rej"); } finally { z.list.splice(z.list.indexOf(it), 1); } });
   T.add("v16/app-geo-con-gps", function () { var z = zones[2], it = { n: "Panadería Quintrala Sur", t: "rest", st: "postulado", src: "hunter", ll: [-33.456, -70.597] }; z.list.push(it); try { var g = appGuard(dtoVariantName("Panadería Quintrala Sur"), "", [-33.4562, -70.5972]); T.assert(g && g.why === "geo", "no frenó la variante cercana"); T.eq(appGuard(dtoVariantName("Panadería Quintrala Sur"), "", [-33.47, -70.62]), null); T.eq(appGuard(dtoVariantName("Panadería Quintrala Sur"), "", null), null); } finally { z.list.splice(z.list.indexOf(it), 1); } });
   T.add("v16/legacy-igual-v15-forma", function () { var s = dtoSummary(dtoRunSync(dtoScenarioParams("base", { days: 5, riders: 200, legacy: true }))); T.eq([s.geoBlocked, s.rejBlocked, s.zoneCapBlocked], [0, 0, 0]); });
-  T.add("dto/inv-salida", function () { T.eq(dtoCheckOutput({ riders: [{ id: "S1", n: 3 }] })[0].inv, 6); T.eq(dtoCheckOutput({ ok: 1 }), []); T.eq(dtoCheckOutput({ x: "$2.900" })[0].inv, 7); T.eq(dtoCheckOutput({ x: "15 pesos" })[0].inv, 7); T.eq(DTO_INV.length, 9); });
+  T.add("dto/inv-salida", function () { T.eq(dtoCheckOutput({ riders: [{ id: "S1", n: 3 }] })[0].inv, 6); T.eq(dtoCheckOutput({ ok: 1 }), []); T.eq(dtoCheckOutput({ x: "$2.900" })[0].inv, 7); T.eq(dtoCheckOutput({ x: "15 pesos" })[0].inv, 7); T.eq(DTO_INV.length, 10); });
   T.add("dto/res-determinista", function () { var p = dtoQuick({ days: 6, riders: 150 }), a = JSON.stringify(dtoSummary(dtoRunSync(p))), b = JSON.stringify(dtoSummary(dtoRunSync(dtoQuick({ days: 6, riders: 150 })))), c = JSON.stringify(dtoSummary(dtoRunSync(dtoQuick({ days: 6, riders: 150, seed: 99 })))); T.assert(a === b, "no determinista"); T.assert(a !== c, "otra semilla dio lo mismo"); });
   T.add("dto/res-valle0", function () { T.eq(dtoSummary(dtoRunSync(dtoScenarioParams("valle0", { days: 10, riders: 300 }))).leadsHunter, 0); });
   T.add("dto/res-sin-ids-ni-dinero", function () { DTO_SCENARIOS.forEach(function (s) { T.eq(dtoCheckOutput(dtoSummary(dtoRunSync(dtoScenarioParams(s.id, { days: 7, riders: 200 })))), [], s.id); }); });
@@ -5487,7 +5639,22 @@
     { k: "valleCurve", l: "Valle según la hora del día", tag: "supuesto", opts: [["true", "Sí (poco valle en almuerzo y cena)"], ["false", "No (parejo todo el día)"]] },
     { k: "zoneCap", l: "Tope de leads por comuna al día (0 = sin tope)", tag: "control", step: 5 },
     { k: "officeCap", l: "Pausar reportes si la cola de primer contacto pasa de 48 h", tag: "control", opts: [["false", "Apagado"], ["true", "Encendido"]] },
-    { k: "missions", l: "Aceptan misión a comuna fría (%)", tag: "control", pct: 1, step: 1 }
+    { k: "missions", l: "Aceptan misión a comuna fría (%)", tag: "control", pct: 1, step: 1 },
+    { k: "realism", l: "Condiciones realistas (v19)", tag: "control", opts: [["true", "Encendidas"], ["false", "Apagadas (como la v15)"]] },
+    { k: "fullShare", l: "Hunters full-time (%)", tag: "supuesto", pct: 1, step: 5 },
+    { k: "demandPause", l: "Pausa de full-time en zonas de alta demanda", tag: "control", opts: [["true", "Encendida"], ["false", "Apagada"]] },
+    { k: "pertBonus", l: "Bono por lead pertinente aunque no cierre", tag: "control", opts: [["true", "Sí"], ["false", "No"]] },
+    { k: "motivation", l: "Motivación y desgaste de la novedad", tag: "supuesto", opts: [["true", "Sí"], ["false", "No"]] },
+    { k: "noveltyDecay", l: "Caída de la novedad en un mes (%)", tag: "supuesto", pct: 1, step: 5 },
+    { k: "weekCurve", l: "Semana laboral (domingo cerrado, sábado medio día)", tag: "supuesto", opts: [["true", "Sí"], ["false", "No"]] },
+    { k: "execAbsence", l: "Ausencias de ejecutivos (% de la capacidad)", tag: "supuesto", pct: 1, step: 1 },
+    { k: "consentRate", l: "Avisan al dueño antes de reportar (%)", tag: "supuesto", pct: 1, step: 5 },
+    { k: "syncFail", l: "Leads que se demoran en llegar al CRM (%)", tag: "supuesto", pct: 1, step: 1 },
+    { k: "fraudShare", l: "Hunters que inventan leads (%)", tag: "supuesto", pct: 1, step: 1 },
+    { k: "fraudDetect", l: "Leads falsos detectados al primer contacto (%)", tag: "supuesto", pct: 1, step: 5 },
+    { k: "strictFunnel", l: "Embudo realista: los leads que no avanzan se descartan", tag: "supuesto", opts: [["true", "Sí"], ["false", "No (se reintentan siempre)"]] },
+    { k: "retryProb", l: "Reintento del ejecutivo tras una gestión fallida (%)", tag: "supuesto", pct: 1, step: 5 },
+    { k: "dayCap", l: "Tope de reportes por Hunter al día (0 = sin tope)", tag: "control", step: 1 }
   ];
   function dtoGet(p, k) { return k.indexOf("mix.") === 0 ? p.mix[k.slice(4)] : p[k]; }
   function dtoBuildForm() {
@@ -5552,6 +5719,17 @@
       ["Duplicados que se colaron", dtoPct(s.escapeRate || 0), "de los intentos de duplicado · locales nuevos frenados por error: " + dtoPct(s.falseRate || 0), (s.escapeRate || 0) > .05 ? "bad" : "ok"],
       ["Leads de comunas frías", dtoPct(s.coldShare || 0), "en el momento del reporte · " + dtoPct(s.coldStartShare || 0) + " en comunas que partieron frías" + (s.params.missions ? " · con misiones" : ""), ""]
     ];
+    if (s.params.realism) {
+      k.push(["Adopción semanal", dtoPct(s.adopcionSemanal), "Hunters con 2 o más leads por semana (meta del proyecto: 40 %) · con al menos 1: " + dtoPct(s.adopcion1), s.adopcionSemanal >= .4 ? "ok" : "bad"]);
+      k.push(["Permanencia", dtoPct(s.retencion), "Hunters con algún lead en la última semana, respecto de su mejor semana", s.retencion && s.retencion < .6 ? "bad" : ""]);
+      k.push(["Conversión de leads Hunter", dtoPct(s.convHunterMaduro), "con 14 días de madurez · meta: 20 % o más · equilibrio: 17 %", s.convHunterMaduro >= .2 ? "ok" : s.convHunterMaduro >= .17 ? "" : "bad"]);
+      k.push(["Leads pertinentes", dtoNf(s.pertinentes), dtoNf(s.pertSinCierre) + " no cerraron" + (s.params.pertBonus ? " y igual dieron bono de reconocimiento" : " y no dieron nada al repartidor"), ""]);
+      k.push(["Pausas por alta demanda", dtoNf(s.pauseBlocked), s.params.demandPause ? "reportes frenados a full-time en zonas con muchos pedidos · es lo que se pierde para proteger las entregas" : "pausa apagada: " + dtoNf(s.fullAlta) + " reportes de full-time salieron de zonas con muchos pedidos", ""]);
+      k.push(["Demora de entrega por reportar", (s.demoraEntrega * 100).toFixed(3).replace(".", ",") + " %", dtoPct(s.interruptShare) + " de los reportes se cruzan con un pedido nuevo · tope del proyecto: 3 a 5 % de demora", s.demoraEntrega > .03 ? "bad" : "ok"]);
+      if (s.params.dayCap) k.push(["Frenados por tope diario", dtoNf(s.dayCapBlocked), "máximo " + s.params.dayCap + " reportes por Hunter al día", ""]);
+      if (s.params.fraudShare) k.push(["Leads falsos", dtoNf(s.fakeFiled), dtoNf(s.fakeCaught) + " detectados · " + dtoPct(s.execWasteShare) + " de las gestiones se gastaron en ellos", s.execWasteShare > .05 ? "bad" : ""]);
+      if (s.params.syncFail) k.push(["Demora de integración", dtoNf(s.syncDelayed), "leads que tardaron un día más en llegar al CRM", ""]);
+    }
     if (s.params.zoneCap) k.push(["Frenados por tope de comuna", dtoNf(s.zoneCapBlocked || 0), "tope de " + s.params.zoneCap + " al día por comuna", ""]);
     if (s.params.officeCap) k.push(["Frenados por cola llena", dtoNf(s.officeCapBlocked || 0), "se pausan los reportes con " + dtoNf(s.dayCap || 0) + " o más leads esperando primer contacto", ""]);
     if (s.params.rejBlockDays) k.push(["Descartados que volvieron", dtoNf(s.rejBlocked || 0), "frenados · " + dtoNf(s.rejReadmit || 0) + " admitidos tras " + s.params.rejBlockDays + " días", ""]);
@@ -5642,7 +5820,8 @@
     });
   }
   var DTO_MULTI_LABELS = { leadsHunter: ["Leads de Hunters", dtoNf], leadsTotal: ["Leads en total", dtoNf], convIncorp: ["Conversión a incorporado", dtoPct], avgHoursToContact: ["Horas al primer contacto", function (v) { return v.toFixed(1).replace(".", ","); }], slaOut: ["Fuera de SLA", dtoNf], cupoUtil: ["Uso del cupo", dtoPct], dupBlocked: ["Duplicados frenados", dtoNf], dupEscaped: ["Duplicados que se colaron", dtoNf], execLoad: ["Carga de ejecutivos", dtoPct],
-    geoBlocked: ["Frenados por ubicación", dtoNf], escapeRate: ["% de duplicados que se colaron", dtoPct], falseRate: ["% de locales nuevos frenados por error", dtoPct], coldShare: ["Leads de comunas frías", dtoPct], coldStartShare: ["Leads en comunas que partieron frías", dtoPct], zoneCapBlocked: ["Frenados por tope de comuna", dtoNf], officeCapBlocked: ["Frenados por cola llena", dtoNf] };
+    geoBlocked: ["Frenados por ubicación", dtoNf], escapeRate: ["% de duplicados que se colaron", dtoPct], falseRate: ["% de locales nuevos frenados por error", dtoPct], coldShare: ["Leads de comunas frías", dtoPct], coldStartShare: ["Leads en comunas que partieron frías", dtoPct], zoneCapBlocked: ["Frenados por tope de comuna", dtoNf], officeCapBlocked: ["Frenados por cola llena", dtoNf],
+    adopcionSemanal: ["Adopción semanal (≥ 2 leads por semana)", dtoPct], retencion: ["Permanencia: última semana ÷ primera", dtoPct], convHunterMaduro: ["Conversión de leads Hunter (con 14 días de madurez)", dtoPct], pauseBlocked: ["Pausas por alta demanda", dtoNf], fullAlta: ["Reportes de full-time en zonas de alta demanda", dtoNf], demoraEntrega: ["Demora media por pedido por los reportes (tope 3 a 5 %)", function (v) { return (v * 100).toFixed(3).replace(".", ",") + " %"; }], execWasteShare: ["Gestiones gastadas en leads falsos", dtoPct] };
   function dtoMultiUi(n) {
     dtoCancel(); dtoStopPlay();
     var p = dtoReadForm(); dtoWriteForm(p); dui.cur = p;

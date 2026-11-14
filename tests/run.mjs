@@ -9,7 +9,7 @@ import path from "node:path";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
-const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v18.html");
+const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v19.html");
 const only = (args.find(a => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
 const want = k => !only.length || only.includes(k);
 const BASE = path.join(HERE, "baseline-v15.json");
@@ -159,7 +159,7 @@ if (want("virtual")) {
 /* 5. v17: feedback de Rappi (13-nov): pausa por demanda, bono por lead pertinente, piloto en todo Santiago */
 if (want("v17")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v1[78]/.test(document.title));
+  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v1[789]/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     await click("#hint-hunter"); await page.waitForTimeout(1200);
