@@ -9,9 +9,20 @@ import path from "node:path";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
-const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v19.html");
+const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v20.html");
 const only = (args.find(a => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
 const want = k => !only.length || only.includes(k);
+/* Mide texto y controles que el repartidor ve de verdad dentro de una raíz (misma regla que tests/measure-ui.mjs): visible, dentro de la pantalla, y con marcadores de campos vacíos */
+const uiMeasure = (page, root) => page.evaluate(root => {
+  const R = document.querySelector(root); const out = { chars: 0, words: 0, controls: 0, txt: [] };
+  const vis = e => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e); return r.width > 0 && r.height > 0 && cs.visibility !== "hidden" && cs.display !== "none" && parseFloat(cs.opacity) > 0.05 && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth; };
+  const hiddenAnc = e => { for (let n = e; n && n !== R; n = n.parentElement) { const cs = getComputedStyle(n); if (cs.display === "none" || cs.visibility === "hidden" || n.hidden || (n.getAttribute("aria-hidden") === "true" && !n.matches(".bnav,.top,.top *"))) return true; } return false; };
+  const w = document.createTreeWalker(R, NodeFilter.SHOW_TEXT); let n;
+  while ((n = w.nextNode())) { const t = n.nodeValue.replace(/\s+/g, " ").trim(); if (!t) continue; const e = n.parentElement; if (e.closest("script,style,svg,.sr") || !vis(e) || hiddenAnc(e)) continue; out.chars += t.length; out.words += t.split(" ").length; out.txt.push(t); }
+  R.querySelectorAll("input[placeholder],textarea[placeholder]").forEach(e => { if (e.value || !vis(e) || hiddenAnc(e)) return; const t = e.getAttribute("placeholder").trim(); if (t) { out.chars += t.length; out.words += t.split(" ").length; out.txt.push(t); } });
+  R.querySelectorAll("button,a[href],input,select,textarea,[role=tab],[role=radio],[role=switch]").forEach(e => { if (e.type !== "hidden" && vis(e) && !hiddenAnc(e) && !e.closest(".sr")) out.controls++; });
+  return out;
+}, root);
 const BASE = path.join(HERE, "baseline-v15.json");
 const OUT = path.join(HERE, "out");
 mkdirSync(OUT, { recursive: true });
@@ -159,7 +170,7 @@ if (want("virtual")) {
 /* 5. v17: feedback de Rappi (13-nov): pausa por demanda, bono por lead pertinente, piloto en todo Santiago */
 if (want("v17")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v1[789]/.test(document.title));
+  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v(1[789]|20)/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     await click("#hint-hunter"); await page.waitForTimeout(1200);
@@ -167,7 +178,9 @@ if (want("v17")) {
     await click("#avatar-btn"); await page.waitForTimeout(600);
     await click('#pf-tabs [data-pt="ajustes"]'); await page.waitForTimeout(300);
     const txt = await page.evaluate(() => document.getElementById("pf-ajustes").textContent);
-    ok("v17: Ajustes dice que el piloto cubre todo Santiago con grupo reducido", /grupo reducido/.test(txt) && /todo Santiago/.test(txt));
+    const nFleet = await page.evaluate(() => document.querySelectorAll('#pf-ajustes [data-fleet]').length);
+    const aj = await uiMeasure(page, "#pf-ajustes");
+    ok("v20: Ajustes queda mínimo (Part/Full-time, GPS y Hunter; ≤ 40 caracteres)", nFleet === 2 && aj.chars >= 10 && aj.chars <= 40, aj.chars + " caracteres · " + aj.txt.join(" | "));
     await click('[data-fleet="full"]'); await page.waitForTimeout(300);
     await click("#pf-close"); await page.waitForTimeout(600);
     let r = await page.evaluate(() => { document.getElementById("hunter").click(); return { paused: document.getElementById("hunter").classList.contains("paused"), sheet: document.getElementById("lead-sheet").getAttribute("aria-hidden"), toast: document.getElementById("rtoast-txt").textContent }; });
@@ -179,18 +192,52 @@ if (want("v17")) {
     r = await page.evaluate(() => { document.getElementById("hunter").click(); return { paused: document.getElementById("hunter").classList.contains("paused"), sheet: document.getElementById("lead-sheet").getAttribute("aria-hidden") }; });
     ok("v17: part-time puede reportar en la misma zona", !r.paused && r.sheet === "false");
     await page.waitForTimeout(900);
-    const vis = await page.evaluate(() => {
-      const R = document.getElementById("lead-sheet"); let n = 0, w = document.createTreeWalker(R, NodeFilter.SHOW_TEXT), x;
-      while ((x = w.nextNode())) { const t = x.nodeValue.replace(/\s+/g, " ").trim(), e = x.parentElement; if (t && !e.closest("script,style,svg") && e.getClientRects().length && getComputedStyle(e).display !== "none") n += t.length; }
-      const hid = q => { const e = document.querySelector(q); return !e || e.getClientRects().length === 0; };
-      return { n, hid: hid("#sc-legend") && hid("#help-btn") && hid("#ls-dir") && hid("#ls-obs") ? 1 : 0 };
-    });
-    ok("v18: el formulario muestra poco texto (≤ 230 caracteres) y sin campos opcionales", vis.n <= 230 && vis.hid === 1, vis.n + " caracteres");
     const src = await page.content();
     ok("v17: el seguimiento reconoce el lead pertinente aunque no cierre", /Pertinente · bono/.test(src) && /Conservas tu bono/.test(src));
     ok("v17: la oficina marca leads pertinentes y la sincronización con HubSpot", /pert-badge/.test(src) && /HubSpot: lead sincronizado/.test(src));
     ok("v17: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
   } else ok("v17: no incluido en esta versión (se omite)", true);
+  await ctx.close();
+}
+
+/* 6. v20: mitad de la mitad de información, con objetivos y misiones de actualizar leads a la vista */
+if (want("v20")) {
+  const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
+  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v20/.test(document.title));
+  if (has) {
+    const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
+    const wnOpen = await page.evaluate(() => document.getElementById("wn").getAttribute("aria-hidden") === "false");
+    ok("v20: las novedades no se abren solas", !wnOpen);
+    await click("#order-skip"); await page.waitForTimeout(1200); await click("#order-skip"); await page.waitForTimeout(1200);
+    await click("#hint-hunter"); await page.waitForTimeout(1200);
+    await click("#invite-accept"); await page.waitForTimeout(3200);
+    for (let i = 0; i < 4; i++) for (const id of ["#wn-skip", "#co-skip", "#geo-demo"]) { await click(id); await page.waitForTimeout(250); }
+    await page.waitForTimeout(1200);
+    const o = await page.evaluate(() => {
+      const vis = e => e.getClientRects().length > 0;
+      const objs = [...document.querySelectorAll("#obj-row .obj")].filter(vis);
+      return { objs: objs.length, txt: objs.map(e => e.innerText.replace(/\s+/g, " ").trim()).join(" | "), nav: vis(document.getElementById("bnav")) };
+    });
+    const hm = await uiMeasure(page, "#view-ruta");
+    ok("v20: objetivos a la vista en el panel Hunter (hoy, semana, actualizados)", o.objs === 3 && o.txt.includes("Hoy 0/3") && o.txt.includes("Actualizados 0/2"), o.txt);
+    ok("v20: pantalla Hunter sin barra inferior y con ≤ 160 caracteres y ≤ 10 controles", !o.nav && hm.chars <= 160 && hm.controls <= 10, hm.chars + " caracteres · " + hm.controls + " controles");
+    await click("#hunter"); await page.waitForTimeout(1500);
+    const fm = await uiMeasure(page, "#lead-sheet");
+    const hidOpt = await page.evaluate(() => { const hid = q => { const e = document.querySelector(q); return !e || e.getClientRects().length === 0; }; return hid("#sc-legend") && hid("#help-btn") && hid("#ls-dir") && hid("#ls-obs"); });
+    ok("v20: el formulario muestra ≤ 115 caracteres (con marcadores) y sin campos opcionales", fm.chars >= 20 && fm.chars <= 115 && hidOpt, fm.chars + " caracteres · " + fm.txt.join(" | "));
+    await click("#ls-backdrop"); await page.waitForTimeout(800);
+    // actualizar dos leads (misión «Actualiza 2 leads») y ver que el objetivo y la misión suben
+    for (let i = 0; i < 2; i++) {
+      await page.evaluate(() => { const c = document.querySelectorAll("#carousel .lead:not(.visited) .lead-det")[0]; c.click(); });
+      await page.waitForTimeout(700);
+      await click("#ld-visit"); await page.waitForTimeout(900);
+    }
+    await click('.seg-b[data-tab="misiones"]'); await page.waitForTimeout(400);
+    const m = await page.evaluate(() => ({ obj: document.querySelector("#obj-row .obj:nth-child(3)").innerText.replace(/\s+/g, " ").trim(), done: [...document.querySelectorAll("#mis-list .mis.done .mis-t")].map(e => e.textContent), all: [...document.querySelectorAll("#mis-list .mis-t")].map(e => e.textContent) }));
+    ok("v20: actualizar 2 leads sube el objetivo a 2/2 y cumple la misión", m.obj.includes("2/2") && m.done.indexOf("Actualiza 2 leads") >= 0, m.obj + " · " + m.done.join(","));
+    ok("v20: hay misiones de actualizar leads (frío y general)", m.all.some(t => /Actualiza 1 lead frío/.test(t)) && m.all.some(t => /Actualiza 2 leads/.test(t)), m.all.join(" | "));
+    ok("v20: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
+  } else ok("v20: no incluido en esta versión (se omite)", true);
   await ctx.close();
 }
 

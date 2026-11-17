@@ -23,7 +23,7 @@
 <p align="center"><sub><b>App del repartidor</b> · <b>Oficina (mapa y leads)</b> · <b>Gemelo digital</b></sub></p>
 
 Proyecto del **dLab UDD 2026 · Desafío 18 «Repartidores como Hunters»**, para Rappi Chile.
-**Versión actual: v19** (gemelo digital más realista: embudo calibrado (~23 % de conversión Hunter en vez de ~70 %), full-time y part-time, pausa por demanda, bono por lead pertinente, semana laboral, integración y fraude; ver [docs/Informe_Gemelo_v19.md](docs/Informe_Gemelo_v19.md)). Antes, v18: (interfaz mínima del repartidor: −58 % de texto en pantalla, ver [docs/Interfaz_minima_v18.md](docs/Interfaz_minima_v18.md)). Antes, v17: (ajustes tras el feedback de Rappi del 13-nov: bono por lead pertinente, pausa por alta demanda para full-time, textos más cortos y piloto en todo Santiago; ver [docs/Ajustes_v17_feedback_Rappi.md](docs/Ajustes_v17_feedback_Rappi.md)). Antes, v16: (escenario virtual en la Oficina, anti-spam por distancia, bloqueo de locales descartados, misiones a comunas frías, pausa por cola de la oficina y pruebas automáticas antes de publicar). Todo corre en el navegador: un único archivo HTML, sin servidor, sin dependencias y sin instalar nada.
+**Versión actual: v20** (interfaz del repartidor con otra mitad menos de información: −54 % de texto y −52 % de palabras frente a la v19, con los objetivos y las misiones de actualizar leads de vuelta a la vista; ver `docs/Interfaz_minima_v20.md`). Antes: v19 (gemelo digital más realista, `docs/Informe_Gemelo_v19.md`).
 
 ## Qué incluye
 
@@ -72,6 +72,8 @@ Detalle, tablas y supuestos por confirmar en el [informe v16](docs/Informe_Prueb
 ```
 index.html                 Prototipo publicado (GitHub Pages) · versión actual v16
 Rappi_Hunter_v16.html      Misma versión, con nombre de entrega
+Rappi_Hunter_v20.html      Versión actual (interfaz mínima + objetivos y misiones)
+Rappi_Hunter_v19.html      Gemelo digital más realista
 Rappi_Hunter_v15.html      Versión anterior (mapa real)
 Rappi_Hunter_v14.html      Versión base del primer informe de pruebas
 docs/Informe_Pruebas_v16.md  Informe de pruebas de la v16 (palancas y escenario virtual)
