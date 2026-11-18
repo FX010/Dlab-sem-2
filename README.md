@@ -23,7 +23,7 @@
 <p align="center"><sub><b>App del repartidor</b> · <b>Oficina (mapa y leads)</b> · <b>Gemelo digital</b></sub></p>
 
 Proyecto del **dLab UDD 2026 · Desafío 18 «Repartidores como Hunters»**, para Rappi Chile.
-**Versión actual: v22** (igual que la v21, pero con palabras y nombres en vez de íconos sueltos: «Saltar simulación», «Simular pedido», nombres de modo y de la barra inferior). Antes: v21 (`docs/Interfaz_equilibrada_v21.md`), v20 y v19.
+**Versión actual: v23** (como la v22, pero la tarjeta de lead muestra la dirección y el modo demostración del repartidor usa el mapa real de Santiago, con la posición simulada en Ñuñoa; sin conexión vuelve al mapa esquemático). Antes: v22, v21 (`docs/Interfaz_equilibrada_v21.md`), v20 y v19.
 
 ## Qué incluye
 
@@ -72,7 +72,8 @@ Detalle, tablas y supuestos por confirmar en el [informe v16](docs/Informe_Prueb
 ```
 index.html                 Prototipo publicado (GitHub Pages) · versión actual v16
 Rappi_Hunter_v16.html      Misma versión, con nombre de entrega
-Rappi_Hunter_v22.html      Versión actual (interfaz equilibrada, con palabras)
+Rappi_Hunter_v23.html      Versión actual (dirección en el lead + mapa real en la demo)
+Rappi_Hunter_v22.html      Interfaz equilibrada, con palabras
 Rappi_Hunter_v21.html      Interfaz equilibrada con íconos sueltos
 Rappi_Hunter_v20.html      Interfaz mínima + objetivos y misiones
 Rappi_Hunter_v19.html      Gemelo digital más realista

@@ -10,7 +10,7 @@ import { execFileSync } from "node:child_process";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
-const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v22.html");
+const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v23.html");
 const only = (args.find(a => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
 const want = k => !only.length || only.includes(k);
 /* Mide texto y controles que el repartidor ve de verdad dentro de una raíz (misma regla que tests/measure-ui.mjs): visible, dentro de la pantalla, y con marcadores de campos vacíos */
@@ -19,9 +19,9 @@ const uiMeasure = (page, root) => page.evaluate(root => {
   const vis = e => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e); return r.width > 0 && r.height > 0 && cs.visibility !== "hidden" && cs.display !== "none" && parseFloat(cs.opacity) > 0.05 && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth; };
   const hiddenAnc = e => { for (let n = e; n && n !== R; n = n.parentElement) { const cs = getComputedStyle(n); if (cs.display === "none" || cs.visibility === "hidden" || n.hidden || (n.getAttribute("aria-hidden") === "true" && !n.matches(".bnav,.top,.top *"))) return true; } return false; };
   const w = document.createTreeWalker(R, NodeFilter.SHOW_TEXT); let n;
-  while ((n = w.nextNode())) { const t = n.nodeValue.replace(/\s+/g, " ").trim(); if (!t) continue; const e = n.parentElement; if (e.closest("script,style,svg,.sr") || !vis(e) || hiddenAnc(e)) continue; out.chars += t.length; out.words += t.split(" ").length; out.txt.push(t); }
+  while ((n = w.nextNode())) { const t = n.nodeValue.replace(/\s+/g, " ").trim(); if (!t) continue; const e = n.parentElement; if (e.closest("script,style,svg,.sr,#map-real") || !vis(e) || hiddenAnc(e)) continue; out.chars += t.length; out.words += t.split(" ").length; out.txt.push(t); }
   R.querySelectorAll("input[placeholder],textarea[placeholder]").forEach(e => { if (e.value || !vis(e) || hiddenAnc(e)) return; const t = e.getAttribute("placeholder").trim(); if (t) { out.chars += t.length; out.words += t.split(" ").length; out.txt.push(t); } });
-  R.querySelectorAll("button,a[href],input,select,textarea,[role=tab],[role=radio],[role=switch]").forEach(e => { if (e.type !== "hidden" && vis(e) && !hiddenAnc(e) && !e.closest(".sr")) out.controls++; });
+  R.querySelectorAll("button,a[href],input,select,textarea,[role=tab],[role=radio],[role=switch]").forEach(e => { if (e.type !== "hidden" && vis(e) && !hiddenAnc(e) && !e.closest(".sr,#map-real")) out.controls++; });
   return out;
 }, root);
 const BASE = path.join(HERE, "baseline-v15.json");
@@ -171,7 +171,7 @@ if (want("virtual")) {
 /* 5. v17: feedback de Rappi (13-nov): pausa por demanda, bono por lead pertinente, piloto en todo Santiago */
 if (want("v17")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v(1[789]|2[012])/.test(document.title));
+  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v(1[789]|2[0123])/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     await click("#hint-hunter"); await page.waitForTimeout(1200);
@@ -204,7 +204,7 @@ if (want("v17")) {
 /* 6. v20: mitad de la mitad de información, con objetivos y misiones de actualizar leads a la vista */
 if (want("v21")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v2[12]/.test(document.title));
+  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v2[123]/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     const wnOpen = await page.evaluate(() => document.getElementById("wn").getAttribute("aria-hidden") === "false");
@@ -221,7 +221,7 @@ if (want("v21")) {
     });
     const hm = await uiMeasure(page, "#view-ruta");
     ok("v21: objetivos a la vista en el panel Hunter (hoy, semana, actualizados)", o.objs === 3 && o.txt.toLowerCase().includes("hoy 0/3") && o.txt.toLowerCase().includes("actualizados 0/2"), o.txt);
-    ok("v21: pantalla Hunter sin barra inferior y con ≤ 200 caracteres y ≤ 10 controles", !o.nav && hm.chars <= 200 && hm.controls <= 10, hm.chars + " caracteres · " + hm.controls + " controles");
+    ok("v21: pantalla Hunter sin barra inferior y con ≤ 230 caracteres y ≤ 10 controles", !o.nav && hm.chars <= 230 && hm.controls <= 10, hm.chars + " caracteres · " + hm.controls + " controles");
     await click("#hunter"); await page.waitForTimeout(1500);
     const fm = await uiMeasure(page, "#lead-sheet");
     const hidOpt = await page.evaluate(() => { const hid = q => { const e = document.querySelector(q); return !e || e.getClientRects().length === 0; }; return hid("#sc-legend") && hid("#help-btn") && hid("#ls-dir") && hid("#ls-obs"); });
@@ -245,7 +245,7 @@ if (want("v21")) {
 /* 7. v21: textos esenciales (seguridad, decisión, resultado, ayuda) presentes en el momento justo, dentro de un presupuesto total */
 if (want("v21")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v2[12]/.test(document.title));
+  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v2[123]/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     const txtOf = sel => page.evaluate(s => document.querySelector(s).innerText.replace(/\s+/g, " ").trim(), sel);

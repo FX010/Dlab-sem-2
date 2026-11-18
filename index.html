@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rappi Hunter · concepto v22</title>
+<title>Rappi Hunter · concepto v23</title>
 <script>try{var __t=localStorage.getItem("rh_theme");if(__t==="light"||__t==="dark")document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1873,7 +1873,7 @@
 .faq-head p, .faq-foot > span, .sr-h p, .sr-tile span, .sr-goal p, .pf-note, .sr-row .tx em, .req,
 #profile .pf-sec > p:not(.keep):not(.fl-note), #profile .pf-row small, .ls-head > p:not(.ls-safe):not(.ls-draft),
 .tl-node:not(.cur):not(.rej) .tl-lbl, .wn-k, #wn-p, #help-btn, #sc-in, #sc-out,  .tl-lbl small, .sr-c h4 small, .o-skip-x, #o-eta-l,
-.order.valle:not(.sr-offl) .valle-chip, .faq-sec, .lead-sub .zdot + *, #pf-ajustes .pf-sec:has([data-theme-set]), #pf-ajustes .pf-sec:has([data-pref]), .ls-field:has(#ls-dir), .ls-field:has(#ls-obs), .sr-ord .sr-chip.ok, .qr-card > p, .geo-card > p, .geo-list { display: none !important; }
+.order.valle:not(.sr-offl) .valle-chip, .faq-sec, #pf-ajustes .pf-sec:has([data-theme-set]), #pf-ajustes .pf-sec:has([data-pref]), .ls-field:has(#ls-dir), .ls-field:has(#ls-obs), .sr-ord .sr-chip.ok, .qr-card > p, .geo-card > p, .geo-list { display: none !important; }
 /* v20: otra mitad menos. Solo queda lo que el repartidor necesita para decidir o actuar. Objetivos y misiones de actualizar leads, siempre a la vista */
 .order.valle .who, .order.valle .what, .o-main .what,
 .iv-brand, .iv-note-x,
@@ -1883,7 +1883,7 @@
 #ped-fil, .sr-ord .s, .sr-ord-t .sr-chip,
 .faq-tabs, #faq-title + p, .sr-goal p, .sr-goal-t .sr-chip, .sr-hero p, .sr-c h4 small, .sr-hun small,
 .ld-tile small, .ld-sub, #ld .ld-go span,
-.zfilter span, .lead-sub .zdot ~ *, .lead-top .lead-dist { display: none !important; }
+.zfilter span, .lead-top .lead-dist { display: none !important; }
 .lead-top .lead-dist { display: inline !important; }
 .leads > .obj-row { grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0 14px 8px; }
 .leads .obj { padding: 7px 9px; border-radius: 12px; }
@@ -1901,6 +1901,7 @@
 .mis .mis-d { font-size: 11.5px; }
 .mode-btn .mb-t { white-space: nowrap; }
 .o-skip, #sim-order, #sim-order2 { font-size: 13px; }
+.leads .lead-sub { min-width: 0; } .leads .lead-sub .zdot { flex: none; } .ls-a { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -3894,7 +3895,7 @@
 
   /* ---------- Mapa del Modo Hunter: demostración (esquemático) o real (GPS + mapa) ---------- */
   var ME = { x: 352, y: 336 }, M_PER_U = 30; /* posición simulada del repartidor (Ñuñoa) y metros por unidad del mapa */
-  var mapMode = "demo", meLL = toLL(ME.x, ME.y), realKit = null, geoWatch = null;
+  var simGps = false, mapMode = "demo", meLL = toLL(ME.x, ME.y), realKit = null, geoWatch = null;
   var zoneFilter = "todas", zoneSel = null;
 
   var sclSvg = document.getElementById("map-scl");
@@ -4000,7 +4001,7 @@
   document.getElementById("sc-legend").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-z]");
     if (b) { zoneFilter = zoneFilter === b.dataset.z ? "todas" : b.dataset.z; renderRiderLeads(); return; }
-    if (e.target.closest("#sc-src")) { if (mapMode === "real") geoUserDemo(); else geoUserAsk(); }
+    if (e.target.closest("#sc-src")) { if (mapMode === "real" && !simGps) geoUserDemo(); else geoUserAsk(); }
   });
   document.getElementById("zfilter").addEventListener("click", function (e) {
     if (e.target.closest("button")) selectComm(null);
@@ -4076,7 +4077,7 @@
       var x = o.item, om = originMeta[x.src], pr = leadPriority(o);
       return '<article class="lead' + (selLead === x.n ? " sel" : "") + (x.visited ? " visited" : "") + '" data-n="' + esc(x.n) + '" style="animation-delay:' + (i * 50) + 'ms">' +
         '<div class="lead-top"><span class="lead-n">' + esc(x.n) + '</span><span class="lead-dist">' + o.geo.dist + "</span></div>" +
-        '<div class="lead-sub"><i class="zdot ' + o.kind + '"></i>' + o.zone.name + (o.kind === "cold" ? " · fría" : "") + "</div>" +
+        '<div class="lead-sub"><i class="zdot ' + o.kind + '"></i><span class="ls-a">' + esc(x.dir) + ", " + o.zone.name + (o.kind === "cold" ? " · fría" : "") + "</span></div>" +
         '' +
         '<div class="lead-meta">' + (x.visited ? '<span class="vtag">✓</span>' : "") + '<button type="button" class="lead-det" data-n="' + esc(x.n) + '" aria-label="Ver detalles">›</button></div></article>';
     }).join("") : '<div class="lead-empty">' + (all.length ? (sc ? "No tienes leads disponibles en " + sc.name + " por ahora." : "No hay leads en este tipo de zona.") : "Sin leads nuevos por ahora. Te avisamos cuando la oficina comparta uno.") + "</div>";
@@ -4125,7 +4126,7 @@
   function setSrcChip() {
     var chip = document.getElementById("sc-src");
     chip.dataset.m = mapMode;
-    chip.querySelector("span").textContent = mapMode === "real" ? (meComm ? "GPS · " + meComm.lbl : "GPS real") : "Mapa demo";
+    chip.querySelector("span").textContent = mapMode === "real" ? (simGps ? "Mapa real · simulado" : meComm ? "GPS · " + meComm.lbl : "GPS real") : "Mapa demo";
     if (typeof syncPause === "function") syncPause();
   }
   function setMapMode(m) {
@@ -4141,17 +4142,31 @@
     if (typeof renderAjustes === "function") renderAjustes();
   }
   function stopWatch() { if (geoWatch != null && navigator.geolocation) navigator.geolocation.clearWatch(geoWatch); geoWatch = null; }
-  function useDemo(msg) {
-    stopWatch();
+  function useSchematic(msg) { /* respaldo sin conexión: mapa esquemático */
+    stopWatch(); simGps = false;
     meLL = toLL(ME.x, ME.y); meComm = null; meSpeed = null; meAcc = 0;
     setMapMode("demo");
     if (msg) showRToast(msg);
+  }
+  function useDemo(msg) { /* v23: la demostración usa el mapa real de Santiago, con la posición simulada en Ñuñoa y sin pedir GPS */
+    stopWatch();
+    ensureLeaflet().then(function () {
+      var c0 = nunoa && nunoa.comm; if (!c0) throw new Error("sin comuna");
+      meLL = c0.rc.slice(); meComm = c0; meSpeed = null; meAcc = 0; simGps = true;
+      if (!realKit) {
+        realKit = makeReal(document.getElementById("map-real"), { scalePos: "bottomleft", onOffline: function () { showRToast("Sin conexión: faltan partes del mapa. Tus leads siguen disponibles en la lista."); } });
+        realKit.map.attributionControl.setPosition("bottomleft");
+        realKit.map.on("click", function () { if (zoneSel) selectComm(null); });
+      }
+      setMapMode("real");
+      if (msg) showRToast(msg);
+    }).catch(function () { useSchematic(msg); });
   }
   function useReal(pos) {
     var ll = [pos.coords.latitude, pos.coords.longitude];
     if (distM(ll, [-33.44, -70.6]) > 45000) { useDemo("Estás fuera de Santiago: te mostramos el mapa de demostración."); return; }
     ensureLeaflet().then(function () {
-      meLL = ll; meComm = commAt(ll); meAcc = pos.coords.accuracy || 0; meSpeed = pos.coords.speed == null ? null : pos.coords.speed;
+      simGps = false; meLL = ll; meComm = commAt(ll); meAcc = pos.coords.accuracy || 0; meSpeed = pos.coords.speed == null ? null : pos.coords.speed;
       if (!realKit) {
         realKit = makeReal(document.getElementById("map-real"), { scalePos: "bottomleft", onOffline: function () { showRToast("Sin conexión: faltan partes del mapa. Tus leads siguen disponibles en la lista."); } });
         realKit.map.attributionControl.setPosition("bottomleft");
@@ -4186,7 +4201,7 @@
     if (geoBooted) return;
     geoBooted = true;
     var ch = geoRead();
-    if (ch === "demo") { setSrcChip(); return; }
+    if (ch === "demo") { useDemo(""); return; }
     if (!navigator.geolocation) { return; }
     if (ch === "granted") { requestPos(true); return; }
     if (navigator.permissions && navigator.permissions.query) {
@@ -6272,7 +6287,7 @@
   }
   function renderAjustes() {
     var box = document.getElementById("pf-ajustes"); if (!box) return;
-    var real = mapMode === "real";
+    var real = mapMode === "real" && !simGps;
     var where = real ? "GPS real activo" + (meComm ? " · estás en " + meComm.name : "") : "Mapa de demostración";
     box.innerHTML =
       '<div class="pf-sec"><div class="pf-btns"><button type="button" class="pf-btn' + (real ? "" : " sec") + '" data-act="' + (real ? "geo-demo" : "geo-real") + '" aria-pressed="' + real + '">GPS</button></div></div>' + hunterAjustesSec();
