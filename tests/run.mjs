@@ -10,7 +10,7 @@ import { execFileSync } from "node:child_process";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
-const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v21.html");
+const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v22.html");
 const only = (args.find(a => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
 const want = k => !only.length || only.includes(k);
 /* Mide texto y controles que el repartidor ve de verdad dentro de una raíz (misma regla que tests/measure-ui.mjs): visible, dentro de la pantalla, y con marcadores de campos vacíos */
@@ -171,7 +171,7 @@ if (want("virtual")) {
 /* 5. v17: feedback de Rappi (13-nov): pausa por demanda, bono por lead pertinente, piloto en todo Santiago */
 if (want("v17")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v(1[789]|2[01])/.test(document.title));
+  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v(1[789]|2[012])/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     await click("#hint-hunter"); await page.waitForTimeout(1200);
@@ -204,7 +204,7 @@ if (want("v17")) {
 /* 6. v20: mitad de la mitad de información, con objetivos y misiones de actualizar leads a la vista */
 if (want("v21")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v21/.test(document.title));
+  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v2[12]/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     const wnOpen = await page.evaluate(() => document.getElementById("wn").getAttribute("aria-hidden") === "false");
@@ -221,11 +221,11 @@ if (want("v21")) {
     });
     const hm = await uiMeasure(page, "#view-ruta");
     ok("v21: objetivos a la vista en el panel Hunter (hoy, semana, actualizados)", o.objs === 3 && o.txt.toLowerCase().includes("hoy 0/3") && o.txt.toLowerCase().includes("actualizados 0/2"), o.txt);
-    ok("v21: pantalla Hunter sin barra inferior y con ≤ 175 caracteres y ≤ 10 controles", !o.nav && hm.chars <= 175 && hm.controls <= 10, hm.chars + " caracteres · " + hm.controls + " controles");
+    ok("v21: pantalla Hunter sin barra inferior y con ≤ 200 caracteres y ≤ 10 controles", !o.nav && hm.chars <= 200 && hm.controls <= 10, hm.chars + " caracteres · " + hm.controls + " controles");
     await click("#hunter"); await page.waitForTimeout(1500);
     const fm = await uiMeasure(page, "#lead-sheet");
     const hidOpt = await page.evaluate(() => { const hid = q => { const e = document.querySelector(q); return !e || e.getClientRects().length === 0; }; return hid("#sc-legend") && hid("#help-btn") && hid("#ls-dir") && hid("#ls-obs"); });
-    ok("v21: el formulario muestra ≤ 180 caracteres, con rótulos y motivo de bloqueo (con marcadores) y sin campos opcionales", fm.chars >= 20 && fm.chars <= 180 && hidOpt && fm.txt.includes("Teléfono") && fm.txt.some(t => t.startsWith("Falta")), fm.chars + " caracteres · " + fm.txt.join(" | "));
+    ok("v21: el formulario muestra ≤ 200 caracteres, con rótulos y motivo de bloqueo (con marcadores) y sin campos opcionales", fm.chars >= 20 && fm.chars <= 200 && hidOpt && fm.txt.includes("Teléfono") && fm.txt.some(t => t.startsWith("Falta")), fm.chars + " caracteres · " + fm.txt.join(" | "));
     await click("#ls-backdrop"); await page.waitForTimeout(800);
     // actualizar dos leads (misión «Actualiza 2 leads») y ver que el objetivo y la misión suben
     for (let i = 0; i < 2; i++) {
@@ -245,7 +245,7 @@ if (want("v21")) {
 /* 7. v21: textos esenciales (seguridad, decisión, resultado, ayuda) presentes en el momento justo, dentro de un presupuesto total */
 if (want("v21")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v21/.test(document.title));
+  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v2[12]/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     const txtOf = sel => page.evaluate(s => document.querySelector(s).innerText.replace(/\s+/g, " ").trim(), sel);
@@ -259,7 +259,7 @@ if (want("v21")) {
     const mis = await page.evaluate(() => [...document.querySelectorAll("#mis-list .mis")].map(m => (m.querySelector(".mis-d") || {}).textContent || ""));
     ok("v21 esencial: cada misión explica qué hacer en una línea", mis.length === 4 && mis.every(t => t.trim().length >= 10 && t.length <= 45), mis.join(" | "));
     const modo = await uiMeasure(page, ".mode-switch");
-    ok("v21 esencial: el selector de modo muestra el nombre del modo activo", modo.txt.join(" ") === "Hunter", modo.txt.join(" "));
+    ok("v21 esencial: el selector de modo muestra los nombres de ambos modos", modo.txt.join(" ") === "Repartidor Hunter", modo.txt.join(" "));
     await click(".lead-det"); await page.waitForTimeout(900);
     const ld = await txtOf("#ld");
     ok("v21 esencial: el detalle del lead recuerda avisar al dueño", /ejecutivo lo llamará/.test(ld), ld);
@@ -287,7 +287,7 @@ if (want("v21")) {
   /* presupuesto total de información de la app del repartidor: la regla se mide con tests/measure-ui.mjs */
   const out = execFileSync(process.execPath, [path.join(HERE, "measure-ui.mjs"), file], { encoding: "utf8" });
   const m = out.match(/TOTAL\s+(\d+) car\s+(\d+) pal\s+(\d+) controles/);
-  ok("v21 presupuesto: la app del repartidor muestra ≤ 1.900 caracteres, ≤ 380 palabras y ≤ 85 controles en 14 pantallas", !!m && +m[1] <= 1900 && +m[2] <= 380 && +m[3] <= 85, m ? m[1] + " car · " + m[2] + " pal · " + m[3] + " controles" : "sin medida");
+  ok("v21 presupuesto: la app del repartidor muestra ≤ 2.100 caracteres, ≤ 400 palabras y ≤ 85 controles en 14 pantallas", !!m && +m[1] <= 2100 && +m[2] <= 400 && +m[3] <= 85, m ? m[1] + " car · " + m[2] + " pal · " + m[3] + " controles" : "sin medida");
 }
 
 await browser.close();

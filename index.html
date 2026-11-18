@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rappi Hunter · concepto v21</title>
+<title>Rappi Hunter · concepto v22</title>
 <script>try{var __t=localStorage.getItem("rh_theme");if(__t==="light"||__t==="dark")document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1872,11 +1872,9 @@
 .sc-legend, #prof-open, .rush-txt, .hs-col small, .hint, .order.valle .what, #o-what, #of-sub, .shot-note, .ls-ticket-sub, .ls-gps div span, .ls-gps em,
 .faq-head p, .faq-foot > span, .sr-h p, .sr-tile span, .sr-goal p, .pf-note, .sr-row .tx em, .req,
 #profile .pf-sec > p:not(.keep):not(.fl-note), #profile .pf-row small, .ls-head > p:not(.ls-safe):not(.ls-draft),
-.tl-node:not(.cur):not(.rej) .tl-lbl, .wn-k, #wn-p, #help-btn, #sc-in, #sc-out, .bn:not([aria-current="page"]) > span:not(.bn-c), .bn:not([aria-current="page"]) .bn-lbl, .tl-lbl small, .sr-c h4 small, .o-skip-x, #o-eta-l,
+.tl-node:not(.cur):not(.rej) .tl-lbl, .wn-k, #wn-p, #help-btn, #sc-in, #sc-out,  .tl-lbl small, .sr-c h4 small, .o-skip-x, #o-eta-l,
 .order.valle:not(.sr-offl) .valle-chip, .faq-sec, .lead-sub .zdot + *, #pf-ajustes .pf-sec:has([data-theme-set]), #pf-ajustes .pf-sec:has([data-pref]), .ls-field:has(#ls-dir), .ls-field:has(#ls-obs), .sr-ord .sr-chip.ok, .qr-card > p, .geo-card > p, .geo-list { display: none !important; }
 /* v20: otra mitad menos. Solo queda lo que el repartidor necesita para decidir o actuar. Objetivos y misiones de actualizar leads, siempre a la vista */
-.mode-btn[aria-checked="false"] .mb-t { display: none; } .mode-btn[aria-checked="false"] { gap: 0; }
-.bn > span:not(.bn-c), .bn .bn-lbl,
 .order.valle .who, .order.valle .what, .o-main .what,
 .iv-brand, .iv-note-x,
 .ls-gps b + span,
@@ -1902,6 +1900,7 @@
 .leads > .hunter.paused .t2 { display: block; font-size: 11.5px; }
 .mis .mis-d { font-size: 11.5px; }
 .mode-btn .mb-t { white-space: nowrap; }
+.o-skip, #sim-order, #sim-order2 { font-size: 13px; }
 </style>
 </head>
 <body>
@@ -1930,14 +1929,14 @@
 
       <div class="top">
         <div class="mode-row">
-          <div class="mode-solo hr-off"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg></div>
+          <div class="mode-solo hr-off"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>Repartidor</div>
           <div class="mode-switch" role="radiogroup" aria-label="Modo de la app">
             <span class="mode-thumb" aria-hidden="true"></span>
             <button class="mode-btn" type="button" role="radio" data-mode="delivery" aria-label="Repartidor" aria-checked="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span class="mb-t">Repartidor</span></button>
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>Repartidor</button>
             <button class="mode-btn" id="mode-hunter" type="button" role="radio" data-mode="hunter" aria-label="Hunter" aria-checked="false" aria-disabled="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="mode-lock" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
-              <span class="mb-t">Hunter</span><i class="mode-dot" id="mode-dot" aria-hidden="true"></i>
+              Hunter<i class="mode-dot" id="mode-dot" aria-hidden="true"></i>
             </button>
           </div>
           <button class="help-btn" id="help-btn" type="button" aria-haspopup="dialog" aria-controls="faq" aria-label="Soporte" title="Soporte"><span class="hq" aria-hidden="true">?</span><span class="ht">Soporte</span></button>
@@ -1952,7 +1951,7 @@
         <div class="strip h-only">
           <i class="dot" aria-hidden="true"></i>
           <span><b>Valle</b></span>
-          <button type="button" id="sim-order" aria-label="Simular pedido nuevo" title="Simular pedido nuevo"><svg class="sim-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button type="button" id="sim-order">Simular pedido</button>
         </div>
 
         <div class="hstats h-only">
@@ -1977,7 +1976,7 @@
         </div>
         <div class="o-wait" id="o-wait" hidden><i id="o-wait-i"></i></div>
         <button class="order-btn" id="order-done" type="button">Llegué al local</button>
-        <button class="o-skip" id="order-skip" type="button" aria-label="Saltar simulación" title="Saltar simulación">»</button>
+        <button class="o-skip" id="order-skip" type="button">Saltar simulación</button>
       </div>
       <div class="order valle d-only n-only">
         <span class="valle-chip"><i aria-hidden="true"></i>Tiempo de valle</span>
@@ -1986,7 +1985,7 @@
         <div class="valle-row">
           <button class="sec hr-on" id="prof-open2" type="button">Mis leads</button>
           <button class="sec hr-off" id="hunter-learn" type="button">Hunter</button>
-          <button class="pri" id="sim-order2" type="button" aria-label="Simular pedido nuevo" title="Simular pedido nuevo"><svg class="sim-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button class="pri" id="sim-order2" type="button">Simular pedido</button>
         </div>
       </div>
 
@@ -2117,7 +2116,7 @@
             <span class="ls-submit-txt">Enviar</span>
           </button>
           <p class="ls-missing" id="ls-missing"></p>
-          <button type="button" class="ls-skip" id="ls-example" aria-label="Rellenar con datos de ejemplo" title="Rellenar con datos de ejemplo">Ejemplo</button>
+          <button type="button" class="ls-skip" id="ls-example">Rellenar con datos de ejemplo</button>
         </form>
         <div class="ls-success" aria-hidden="true">
           <svg class="ls-mustache" viewBox="0 0 64 32" aria-hidden="true">
