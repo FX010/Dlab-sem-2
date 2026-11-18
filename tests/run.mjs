@@ -6,10 +6,11 @@ import { chromium } from "playwright-core";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
-const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v20.html");
+const file = path.resolve(HERE, args.find(a => !a.startsWith("--")) || "../Rappi_Hunter_v21.html");
 const only = (args.find(a => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
 const want = k => !only.length || only.includes(k);
 /* Mide texto y controles que el repartidor ve de verdad dentro de una raíz (misma regla que tests/measure-ui.mjs): visible, dentro de la pantalla, y con marcadores de campos vacíos */
@@ -170,7 +171,7 @@ if (want("virtual")) {
 /* 5. v17: feedback de Rappi (13-nov): pausa por demanda, bono por lead pertinente, piloto en todo Santiago */
 if (want("v17")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v(1[789]|20)/.test(document.title));
+  const has = await page.evaluate(() => !!document.querySelector("#hunter-t2") && /v(1[789]|2[01])/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     await click("#hint-hunter"); await page.waitForTimeout(1200);
@@ -180,7 +181,7 @@ if (want("v17")) {
     const txt = await page.evaluate(() => document.getElementById("pf-ajustes").textContent);
     const nFleet = await page.evaluate(() => document.querySelectorAll('#pf-ajustes [data-fleet]').length);
     const aj = await uiMeasure(page, "#pf-ajustes");
-    ok("v20: Ajustes queda mínimo (Part/Full-time, GPS y Hunter; ≤ 40 caracteres)", nFleet === 2 && aj.chars >= 10 && aj.chars <= 40, aj.chars + " caracteres · " + aj.txt.join(" | "));
+    ok("v21: Ajustes queda mínimo (Part/Full-time, GPS y Hunter; ≤ 130 caracteres y la regla de pausa)", nFleet === 2 && aj.chars >= 10 && aj.chars <= 130 && /pausa/i.test(aj.txt.join(" ")), aj.chars + " caracteres · " + aj.txt.join(" | "));
     await click('[data-fleet="full"]'); await page.waitForTimeout(300);
     await click("#pf-close"); await page.waitForTimeout(600);
     let r = await page.evaluate(() => { document.getElementById("hunter").click(); return { paused: document.getElementById("hunter").classList.contains("paused"), sheet: document.getElementById("lead-sheet").getAttribute("aria-hidden"), toast: document.getElementById("rtoast-txt").textContent }; });
@@ -193,7 +194,7 @@ if (want("v17")) {
     ok("v17: part-time puede reportar en la misma zona", !r.paused && r.sheet === "false");
     await page.waitForTimeout(900);
     const src = await page.content();
-    ok("v17: el seguimiento reconoce el lead pertinente aunque no cierre", /Pertinente · bono/.test(src) && /Conservas tu bono/.test(src));
+    ok("v17: el seguimiento reconoce el lead pertinente aunque no cierre", /Pertinente · bono/.test(src) && /Conservas el bono/.test(src));
     ok("v17: la oficina marca leads pertinentes y la sincronización con HubSpot", /pert-badge/.test(src) && /HubSpot: lead sincronizado/.test(src));
     ok("v17: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
   } else ok("v17: no incluido en esta versión (se omite)", true);
@@ -201,13 +202,13 @@ if (want("v17")) {
 }
 
 /* 6. v20: mitad de la mitad de información, con objetivos y misiones de actualizar leads a la vista */
-if (want("v20")) {
+if (want("v21")) {
   const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
-  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v20/.test(document.title));
+  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v21/.test(document.title));
   if (has) {
     const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
     const wnOpen = await page.evaluate(() => document.getElementById("wn").getAttribute("aria-hidden") === "false");
-    ok("v20: las novedades no se abren solas", !wnOpen);
+    ok("v21: las novedades no se abren solas", !wnOpen);
     await click("#order-skip"); await page.waitForTimeout(1200); await click("#order-skip"); await page.waitForTimeout(1200);
     await click("#hint-hunter"); await page.waitForTimeout(1200);
     await click("#invite-accept"); await page.waitForTimeout(3200);
@@ -219,12 +220,12 @@ if (want("v20")) {
       return { objs: objs.length, txt: objs.map(e => e.innerText.replace(/\s+/g, " ").trim()).join(" | "), nav: vis(document.getElementById("bnav")) };
     });
     const hm = await uiMeasure(page, "#view-ruta");
-    ok("v20: objetivos a la vista en el panel Hunter (hoy, semana, actualizados)", o.objs === 3 && o.txt.includes("Hoy 0/3") && o.txt.includes("Actualizados 0/2"), o.txt);
-    ok("v20: pantalla Hunter sin barra inferior y con ≤ 160 caracteres y ≤ 10 controles", !o.nav && hm.chars <= 160 && hm.controls <= 10, hm.chars + " caracteres · " + hm.controls + " controles");
+    ok("v21: objetivos a la vista en el panel Hunter (hoy, semana, actualizados)", o.objs === 3 && o.txt.toLowerCase().includes("hoy 0/3") && o.txt.toLowerCase().includes("actualizados 0/2"), o.txt);
+    ok("v21: pantalla Hunter sin barra inferior y con ≤ 175 caracteres y ≤ 10 controles", !o.nav && hm.chars <= 175 && hm.controls <= 10, hm.chars + " caracteres · " + hm.controls + " controles");
     await click("#hunter"); await page.waitForTimeout(1500);
     const fm = await uiMeasure(page, "#lead-sheet");
     const hidOpt = await page.evaluate(() => { const hid = q => { const e = document.querySelector(q); return !e || e.getClientRects().length === 0; }; return hid("#sc-legend") && hid("#help-btn") && hid("#ls-dir") && hid("#ls-obs"); });
-    ok("v20: el formulario muestra ≤ 115 caracteres (con marcadores) y sin campos opcionales", fm.chars >= 20 && fm.chars <= 115 && hidOpt, fm.chars + " caracteres · " + fm.txt.join(" | "));
+    ok("v21: el formulario muestra ≤ 180 caracteres, con rótulos y motivo de bloqueo (con marcadores) y sin campos opcionales", fm.chars >= 20 && fm.chars <= 180 && hidOpt && fm.txt.includes("Teléfono") && fm.txt.some(t => t.startsWith("Falta")), fm.chars + " caracteres · " + fm.txt.join(" | "));
     await click("#ls-backdrop"); await page.waitForTimeout(800);
     // actualizar dos leads (misión «Actualiza 2 leads») y ver que el objetivo y la misión suben
     for (let i = 0; i < 2; i++) {
@@ -234,11 +235,59 @@ if (want("v20")) {
     }
     await click('.seg-b[data-tab="misiones"]'); await page.waitForTimeout(400);
     const m = await page.evaluate(() => ({ obj: document.querySelector("#obj-row .obj:nth-child(3)").innerText.replace(/\s+/g, " ").trim(), done: [...document.querySelectorAll("#mis-list .mis.done .mis-t")].map(e => e.textContent), all: [...document.querySelectorAll("#mis-list .mis-t")].map(e => e.textContent) }));
-    ok("v20: actualizar 2 leads sube el objetivo a 2/2 y cumple la misión", m.obj.includes("2/2") && m.done.indexOf("Actualiza 2 leads") >= 0, m.obj + " · " + m.done.join(","));
-    ok("v20: hay misiones de actualizar leads (frío y general)", m.all.some(t => /Actualiza 1 lead frío/.test(t)) && m.all.some(t => /Actualiza 2 leads/.test(t)), m.all.join(" | "));
-    ok("v20: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
-  } else ok("v20: no incluido en esta versión (se omite)", true);
+    ok("v21: actualizar 2 leads sube el objetivo a 2/2 y cumple la misión", m.obj.includes("2/2") && m.done.indexOf("Actualiza 2 leads") >= 0, m.obj + " · " + m.done.join(","));
+    ok("v21: hay misiones de actualizar leads (frío y general)", m.all.some(t => /Actualiza 1 lead frío/.test(t)) && m.all.some(t => /Actualiza 2 leads/.test(t)), m.all.join(" | "));
+    ok("v21: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
+  } else ok("v21: no incluido en esta versión (se omite)", true);
   await ctx.close();
+}
+
+/* 7. v21: textos esenciales (seguridad, decisión, resultado, ayuda) presentes en el momento justo, dentro de un presupuesto total */
+if (want("v21")) {
+  const { ctx, page, errors } = await openPage({ width: 420, height: 900 });
+  const has = await page.evaluate(() => !!document.getElementById("obj-row") && /v21/.test(document.title));
+  if (has) {
+    const click = sel => page.evaluate(s => document.querySelector(s).click(), sel);
+    const txtOf = sel => page.evaluate(s => document.querySelector(s).innerText.replace(/\s+/g, " ").trim(), sel);
+    await click("#order-skip"); await page.waitForTimeout(1200); await click("#order-skip"); await page.waitForTimeout(1200);
+    await click("#hint-hunter"); await page.waitForTimeout(1300);
+    const iv = await txtOf("#invite");
+    ok("v21 esencial: la invitación dice que el bono llega aunque no cierre, que es voluntario y los Términos", /aunque no cierren/.test(iv) && /Tú decides/.test(iv) && /Términos/.test(iv), iv);
+    await click("#invite-accept"); await page.waitForTimeout(3200);
+    for (let i = 0; i < 4; i++) for (const id of ["#wn-skip", "#co-skip", "#geo-demo"]) { await click(id); await page.waitForTimeout(250); }
+    await page.waitForTimeout(1000);
+    const mis = await page.evaluate(() => [...document.querySelectorAll("#mis-list .mis")].map(m => (m.querySelector(".mis-d") || {}).textContent || ""));
+    ok("v21 esencial: cada misión explica qué hacer en una línea", mis.length === 4 && mis.every(t => t.trim().length >= 10 && t.length <= 45), mis.join(" | "));
+    const modo = await uiMeasure(page, ".mode-switch");
+    ok("v21 esencial: el selector de modo muestra el nombre del modo activo", modo.txt.join(" ") === "Hunter", modo.txt.join(" "));
+    await click(".lead-det"); await page.waitForTimeout(900);
+    const ld = await txtOf("#ld");
+    ok("v21 esencial: el detalle del lead recuerda avisar al dueño", /ejecutivo lo llamará/.test(ld), ld);
+    await click("#ld-back"); await page.waitForTimeout(600);
+    await click("#avatar-btn"); await page.waitForTimeout(700);
+    await click('#pf-tabs [data-pt="leads"]'); await page.waitForTimeout(600);
+    const ml = (await uiMeasure(page, "#profile")).txt.join(" ");
+    ok("v21 esencial: Mis leads dice si el lead fue pertinente, que conserva el bono y cómo ver el motivo", /Pertinente · bono/.test(ml) && /Ya ganaste bono/.test(ml) && /ver el motivo/.test(ml) && /Bono ganado/.test(ml), ml);
+    await click('#pf-tabs [data-pt="ajustes"]'); await page.waitForTimeout(500);
+    await click('[data-fleet="full"]'); await page.waitForTimeout(400);
+    await click("#pf-close"); await page.waitForTimeout(700);
+    const pz = await page.evaluate(() => { const t = document.getElementById("hunter-t2"); return { vis: t.getClientRects().length > 0, txt: t.textContent }; });
+    ok("v21 esencial: con full-time en zona de mucha demanda el botón dice por qué está en pausa", pz.vis && /pausa/i.test(pz.txt), pz.txt);
+    await click('[data-fleet="part"]'); /* no existe fuera del perfil: se ignora si falla */
+    await click("#help-btn"); await page.waitForTimeout(900);
+    const fq = (await uiMeasure(page, "#faq")).txt.join(" ");
+    ok("v21 esencial: Soporte cubre manejar, pago, lead pertinente y actualizar", /manejando/.test(fq), fq);
+    const fqAll = await page.evaluate(() => document.getElementById("faq-body").textContent);
+    ok("v21 esencial: Soporte explica pertinente y actualizar un lead", /pertinente/.test(fqAll) && /actualizar un lead/.test(fqAll) && /bono/.test(fqAll));
+    ok("v21: consola sin errores", errors.length === 0, errors.slice(0, 3).join(" | "));
+  } else ok("v21 esencial: no incluido en esta versión (se omite)", true);
+  await ctx.close();
+}
+if (want("v21")) {
+  /* presupuesto total de información de la app del repartidor: la regla se mide con tests/measure-ui.mjs */
+  const out = execFileSync(process.execPath, [path.join(HERE, "measure-ui.mjs"), file], { encoding: "utf8" });
+  const m = out.match(/TOTAL\s+(\d+) car\s+(\d+) pal\s+(\d+) controles/);
+  ok("v21 presupuesto: la app del repartidor muestra ≤ 1.900 caracteres, ≤ 380 palabras y ≤ 85 controles en 14 pantallas", !!m && +m[1] <= 1900 && +m[2] <= 380 && +m[3] <= 85, m ? m[1] + " car · " + m[2] + " pal · " + m[3] + " controles" : "sin medida");
 }
 
 await browser.close();

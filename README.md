@@ -23,7 +23,7 @@
 <p align="center"><sub><b>App del repartidor</b> · <b>Oficina (mapa y leads)</b> · <b>Gemelo digital</b></sub></p>
 
 Proyecto del **dLab UDD 2026 · Desafío 18 «Repartidores como Hunters»**, para Rappi Chile.
-**Versión actual: v20** (interfaz del repartidor con otra mitad menos de información: −54 % de texto y −52 % de palabras frente a la v19, con los objetivos y las misiones de actualizar leads de vuelta a la vista; ver `docs/Interfaz_minima_v20.md`). Antes: v19 (gemelo digital más realista, `docs/Informe_Gemelo_v19.md`).
+**Versión actual: v21** (interfaz equilibrada: −33 % de texto frente a la v19, pero con los textos de seguridad, decisión, resultado y ayuda que el repartidor Hunter necesita; ver `docs/Interfaz_equilibrada_v21.md`). Antes: v20 (mínima, `docs/Interfaz_minima_v20.md`) y v19 (gemelo digital más realista).
 
 ## Qué incluye
 
@@ -72,7 +72,8 @@ Detalle, tablas y supuestos por confirmar en el [informe v16](docs/Informe_Prueb
 ```
 index.html                 Prototipo publicado (GitHub Pages) · versión actual v16
 Rappi_Hunter_v16.html      Misma versión, con nombre de entrega
-Rappi_Hunter_v20.html      Versión actual (interfaz mínima + objetivos y misiones)
+Rappi_Hunter_v21.html      Versión actual (interfaz equilibrada)
+Rappi_Hunter_v20.html      Interfaz mínima + objetivos y misiones
 Rappi_Hunter_v19.html      Gemelo digital más realista
 Rappi_Hunter_v15.html      Versión anterior (mapa real)
 Rappi_Hunter_v14.html      Versión base del primer informe de pruebas
